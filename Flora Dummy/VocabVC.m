@@ -8,14 +8,6 @@
 
 #import "VocabVC.h"
 
-@implementation Question
-
-
-
-@end
-
-
-
 @interface VocabVC ()
 {
     Question *q1;
@@ -23,6 +15,12 @@
     Question *q3;
     int curQuestion;
     NSArray *questions;
+}
+@end
+
+@implementation Question
+{
+    
 }
 @end
 
