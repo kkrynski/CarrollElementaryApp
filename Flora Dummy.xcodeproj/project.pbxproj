@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
+		4C0BCF3C19FC15F800E69F5C /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BCF3A19FC15F800E69F5C /* VocabVC.m */; };
+		4C0BCF3D19FC15F800E69F5C /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BCF3B19FC15F800E69F5C /* VocabVC.xib */; };
 		9208482318E4F9FA00BE2F55 /* ModuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9208482218E4F9FA00BE2F55 /* ModuleVC.m */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		9208CD1018F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
@@ -21,7 +22,6 @@
 		9218950817F7752A00DFB26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921894E717F7752A00DFB26B /* UIKit.framework */; };
 		9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9218950E17F7752A00DFB26B /* InfoPlist.strings */; };
 		9218951217F7752A00DFB26B /* Flora_DummyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218951117F7752A00DFB26B /* Flora_DummyTests.m */; };
-		9218951E17F775C200DFB26B /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218951C17F775C200DFB26B /* HomeVC.m */; };
 		9218952317F775EA00DFB26B /* LanguageArtsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218952117F775EA00DFB26B /* LanguageArtsVC.m */; };
 		9218952817F775F600DFB26B /* MathVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218952617F775F600DFB26B /* MathVC.m */; };
 		9218952D17F7760800DFB26B /* ScienceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218952B17F7760800DFB26B /* ScienceVC.m */; };
@@ -116,8 +116,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flora Dummy-Bridging-Header.h"; sourceTree = "<group>"; };
-		10B8787819FC1B40005D9937 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4C0BCF3919FC15F800E69F5C /* VocabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabVC.h; sourceTree = "<group>"; };
+		4C0BCF3A19FC15F800E69F5C /* VocabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabVC.m; sourceTree = "<group>"; };
+		4C0BCF3B19FC15F800E69F5C /* VocabVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VocabVC.xib; sourceTree = "<group>"; };
 		9208482118E4F9FA00BE2F55 /* ModuleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleVC.h; sourceTree = "<group>"; };
 		9208482218E4F9FA00BE2F55 /* ModuleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleVC.m; sourceTree = "<group>"; };
 		9208CD0E18F8CD3500D83602 /* Flora_Garden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Flora_Garden.png; sourceTree = "<group>"; };
@@ -263,13 +264,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10B8787A19FC2011005D9937 /* Old Objective-C Code */ = {
+		4C0BCF3819FC155900E69F5C /* Riley */ = {
 			isa = PBXGroup;
 			children = (
-				921894F217F7752A00DFB26B /* AppDelegate.h */,
-				921894F317F7752A00DFB26B /* AppDelegate.m */,
+				4C0BCF3919FC15F800E69F5C /* VocabVC.h */,
+				4C0BCF3A19FC15F800E69F5C /* VocabVC.m */,
+				4C0BCF3B19FC15F800E69F5C /* VocabVC.xib */,
 			);
-			name = "Old Objective-C Code";
+			name = Riley;
 			sourceTree = "<group>";
 		};
 		9208482018E4F9CF00BE2F55 /* Module */ = {
@@ -325,6 +327,7 @@
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				9282390518A6A39300223265 /* Main2.storyboard */,
+				10B8787B19FC250A005D9937 /* HomeVC.swift */,
 				9218951B17F775C200DFB26B /* HomeVC.h */,
 				9218951C17F775C200DFB26B /* HomeVC.m */,
 				925A10C619FC287D006CD757 /* TestingTVC.h */,
@@ -340,7 +343,9 @@
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
 				9278D09E18DB7A2F00E98BC4 /* Carroll.json */,
+				4C0BCF3819FC155900E69F5C /* Riley */,
 				921894EA17F7752A00DFB26B /* Supporting Files */,
+				10B8787D19FC2881005D9937 /* Definitions.swift */,
 			);
 			path = "Flora Dummy";
 			sourceTree = "<group>";
@@ -639,6 +644,7 @@
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
+				4C0BCF3D19FC15F800E69F5C /* VocabVC.xib in Resources */,
 				9278D09F18DB7A2F00E98BC4 /* Carroll.json in Resources */,
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
 				921894EE17F7752A00DFB26B /* InfoPlist.strings in Resources */,
@@ -695,15 +701,17 @@
 				925A10C819FC287D006CD757 /* TestingTVC.m in Sources */,
 				92B193A3182F29F200F1583E /* Page_ReadVC.m in Sources */,
 				9218952D17F7760800DFB26B /* ScienceVC.m in Sources */,
+				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
 				92EF999918B6F5CD00288BAF /* GardenDetailVC.m in Sources */,
 				9218952817F775F600DFB26B /* MathVC.m in Sources */,
 				9218953217F7761500DFB26B /* SettingsVC.m in Sources */,
 				92C261AB18370D1500FDA09B /* Page_DragAndDropVC.m in Sources */,
-				9218951E17F775C200DFB26B /* HomeVC.m in Sources */,
+				10B8787C19FC250A005D9937 /* HomeVC.swift in Sources */,
 				92B193961825F72900F1583E /* PageVC.m in Sources */,
 				9218952317F775EA00DFB26B /* LanguageArtsVC.m in Sources */,
 				92E7A1311864E3BA006A712B /* Page_GardenDataVC.m in Sources */,
 				92C261C11840414400FDA09B /* DragObject.m in Sources */,
+				4C0BCF3C19FC15F800E69F5C /* VocabVC.m in Sources */,
 				92F4064A1801E19A00668376 /* UIOutlinedLabel.m in Sources */,
 				921C731D189ADE7F007DFB34 /* EquationFormatter.m in Sources */,
 				92FFDB5618C01D6D00C3294A /* UIButton_Typical.m in Sources */,
