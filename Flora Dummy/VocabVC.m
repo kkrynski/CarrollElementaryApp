@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad
 {
-    *questionLabel.text = @"Another word for " + *questions[curquestion]
+    //*questionLabel.text = @"Another word for " + *questions[curquestion]
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
