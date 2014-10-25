@@ -18,6 +18,12 @@
 }
 @end
 
+@implementation Question
+{
+    
+}
+@end
+
 @implementation VocabVC
 @synthesize questionLabel;
 

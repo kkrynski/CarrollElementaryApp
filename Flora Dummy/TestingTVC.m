@@ -8,8 +8,10 @@
 
 #import "TestingTVC.h"
 
-#import "ModuleVC.h"
 #import "PageManager.h"
+
+#import "ModuleVC.h"
+#import "VocabVC.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -457,6 +459,15 @@
     // Create a PageManager for the activity and store it in THIS view controller.
     PageManager *pageManager = [[PageManager alloc]initWithActivity: activityDict forParentViewController:self];
     
+}
+
+-(void)launchVocab
+{
+    VocabVC *vocabVC = [[VocabVC alloc] init];
+    
+    NSArray *questions = [NSArray arrayWithObjects:@"Is this working?", nil];
+    
+    [self presentViewController:vocabVC animated:YES completion:nil];
 }
 
 @end
