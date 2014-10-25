@@ -8,6 +8,14 @@
 
 #import "VocabVC.h"
 
+@implementation Question
+
+
+
+@end
+
+
+
 @interface VocabVC ()
 {
     Question *q1;
