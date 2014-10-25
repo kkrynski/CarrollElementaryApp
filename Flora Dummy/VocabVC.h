@@ -12,7 +12,7 @@
 @interface Question : NSObject
 
 @property (nonatomic,retain) NSString *question;
-@property (nonatomic,retain) NSArray *answers;
+@property (nonatomic,retain) NSMutableArray *answers;
 @property int *indexOfAnswer;
 
 @end
@@ -25,6 +25,7 @@
 @property (nonatomic,retain) IBOutlet UIButton *butAnswer3;
 @property (nonatomic,retain) IBOutlet UIButton *butAnswer4;
 @property (nonatomic,retain) IBOutlet UIButton *butAnswer5;
+
 @property (nonatomic, retain) NSArray *questions;
 
 
