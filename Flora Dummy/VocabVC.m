@@ -9,11 +9,17 @@
 #import "VocabVC.h"
 
 @interface VocabVC ()
-
+{
+    Question *q1;
+    Question *q2;
+    Question *q3;
+    int curQuestion;
+    NSArray *questions;
+}
 @end
 
 @implementation VocabVC
-int *curQuestion = 0;
+@synthesize questionLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,14 +30,12 @@ int *curQuestion = 0;
     return self;
 }
 
-Question *q1;
-Question *q2;
-Question *q3;
 
 - (void)viewDidLoad
 {
     q1 = [[Question alloc] init];
     q1.question = @"ambititous";
+    q1.indexOfAnswer = 0;
     NSMutableArray *answers = [[NSMutableArray alloc]init];
     q1.answers = answers;
     [q1.answers addObject:@"Determined"];
@@ -42,9 +46,9 @@ Question *q3;
     
     q2 = [[Question alloc] init];
     q3 = [[Question alloc] init];
-    NSArray *questions = @[q1, q2, q3];
+    questions = @[q1, q2, q3];
 
-    *_questionLabel.text = @"Another word for %@ is:" , *_questions[curQuestion].question;
+    questionLabel.text = @"Another word for %@ is:" , [[questions objectAtIndex:curQuestion] question];
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
@@ -56,7 +60,7 @@ Question *q3;
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)but1:(id)sender {
-    if (questions[*curQuestion].indexOfAnswer == 0) {
+    if ([[questions objectAtIndex:curQuestion] indexOfAnswer] == 0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @""
                                                        message: @"Correct!"
                                                       delegate: self
@@ -65,7 +69,7 @@ Question *q3;
         
         [alert setTag:1];
         [alert show];
-         *curQuestion = *curQuestion + 1;
+        curQuestion+=1;
     } else {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @""
                                                        message: @"Try Again"
