@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5E23B54B-9A43-474C-9374-9F1C1762C21F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Flora Dummy</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FD4189DB-19FA-46F2-BD10-045EE630FE0E</key>
+		<string>https://github.com/sgsciOS/FloraApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Flora Dummy.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FD4189DB-19FA-46F2-BD10-045EE630FE0E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sgsciOS/FloraApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FD4189DB-19FA-46F2-BD10-045EE630FE0E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FD4189DB-19FA-46F2-BD10-045EE630FE0E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Flora Dummy</string>
+		</dict>
+	</array>
+</dict>
+</plist>
