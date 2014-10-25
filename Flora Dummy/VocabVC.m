@@ -44,11 +44,11 @@
     q1.indexOfAnswer = 0;
     NSMutableArray *answers = [[NSMutableArray alloc]init];
     q1.answers = answers;
-    [q1.answers addObject:@"Determined"];
+  /*  [q1.answers addObject:@"Determined"];
     [q1.answers addObject:@"Lazy"];
     [q1.answers addObject:@"Satisfied"];
     [q1.answers addObject:@"Content"];
-
+*/
     
     q2 = [[Question alloc] init];
     q3 = [[Question alloc] init];
