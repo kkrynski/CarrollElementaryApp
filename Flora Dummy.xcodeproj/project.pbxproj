@@ -291,7 +291,7 @@
 				921894F217F7752A00DFB26B /* AppDelegate.h */,
 				921894F317F7752A00DFB26B /* AppDelegate.m */,
 			);
-			name = Riley;
+			name = "Old Objective-C Code";
 			sourceTree = "<group>";
 		};
 		9208482018E4F9CF00BE2F55 /* Module */ = {
@@ -362,7 +362,6 @@
 				9278D09E18DB7A2F00E98BC4 /* Carroll.json */,
 				4C0BCF3819FC155900E69F5C /* Riley */,
 				921894EA17F7752A00DFB26B /* Supporting Files */,
-				10B8787D19FC2881005D9937 /* Definitions.swift */,
 			);
 			path = "Flora Dummy";
 			sourceTree = "<group>";
