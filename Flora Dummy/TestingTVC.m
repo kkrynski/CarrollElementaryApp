@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley", @"Michael", @"Zach - Module", @"Kyle", @"Yazeed", @"Mason", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Yazeed", @"Mason", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -139,8 +139,9 @@
         
         case 0:
         {
-            // Riley
+            // Riley - Vocab
             
+            [self launchVocab];
             
             
             break;
@@ -466,6 +467,8 @@
     VocabVC *vocabVC = [[VocabVC alloc] init];
     
     NSArray *questions = [NSArray arrayWithObjects:@"Is this working?", nil];
+    
+    vocabVC.questions = questions;
     
     [self presentViewController:vocabVC animated:YES completion:nil];
 }
