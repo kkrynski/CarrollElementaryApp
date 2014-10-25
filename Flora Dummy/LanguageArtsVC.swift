@@ -40,12 +40,36 @@ class LanguageArtsVC: UIViewController/*, UITableViewDelegate, UITableViewDataSo
     {
         super.viewDidLoad()
         
+        let standardDefaults = NSUserDefaults.standardUserDefaults()
+        
+        //Update all colors
+        primaryColor = Definitions.colorWithHexString(standardDefaults.objectForKey("primaryColor") as String)
+        secondaryColor = Definitions.colorWithHexString(standardDefaults.objectForKey("secondaryColor") as String)
+        view.backgroundColor = Definitions.colorWithHexString(standardDefaults.objectForKey("backgroundColor") as String)
+        
+        primaryColor = .whiteColor()
+        
+        titleLabel!.textColor = primaryColor
+        Definitions.outlineTextInLabel(titleLabel!)
+        
+        notificationField!.textColor = primaryColor
+        //notificationField!.backgroundColor = ;
+        //Definitions.outlineTextInLabel(notificationField!)
+        
+        //activitiesTable!.backgroundColor =
+        
+        //Do JSON Work
         let mainDirectory = NSBundle.mainBundle().resourcePath
         let fullPath = mainDirectory?.stringByAppendingPathComponent("Carroll.json")
         let jsonFile = NSData(contentsOfFile: fullPath!)
         let jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonFile!, options: .AllowFragments, error: nil) as NSDictionary
         
+        // Get courses/activities
+        courseDictionary = jsonDictionary["Cources"] as? NSDictionary
         
+        activitiesTable!.layer.borderWidth = CGFloat(borderWidth)
+        activitiesTable!.layer.borderColor = UIColor.whiteColor().CGColor
     }
-
+    
+    
 }
