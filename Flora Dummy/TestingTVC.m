@@ -46,7 +46,6 @@
     
     tests = [[NSMutableArray alloc]initWithObjects:@"Riley", @"Michael", @"Zach - Module", @"Kyle", @"Yazeed", @"Mason", nil];
     
-    
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
     font = [[UIFont alloc]init];
