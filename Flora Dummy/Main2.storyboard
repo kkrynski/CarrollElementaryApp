@@ -7,7 +7,7 @@
         <!--Home-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="HomeVC" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="HomeVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QTE-5n-Fqu"/>
                         <viewControllerLayoutGuide type="bottom" id="6PU-LD-61f"/>
@@ -43,9 +43,9 @@
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="acW-dT-cKf"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="homeImageView" destination="YdE-jI-cAd" id="JMC-ep-9dY"/>
-                        <outlet property="subTitleLabel" destination="Cib-kg-5aM" id="Mxk-q5-P9p"/>
-                        <outlet property="titleLabel" destination="BcE-c4-v7X" id="YnE-8Q-PYa"/>
+                        <outlet property="homeImageView" destination="YdE-jI-cAd" id="Xdw-XC-Khg"/>
+                        <outlet property="subTitleLabel" destination="Cib-kg-5aM" id="HGc-ic-RBl"/>
+                        <outlet property="titleLabel" destination="BcE-c4-v7X" id="LUN-Ft-lQ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
