@@ -52,6 +52,34 @@
             </objects>
             <point key="canvasLocation" x="3005" y="-1160"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="W1L-c9-mVd">
+            <objects>
+                <tableViewController id="aYi-6i-8tL" customClass="TestingTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="i9Q-dU-ivj">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kXL-ED-rub">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kXL-ED-rub" id="01O-kV-LL6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aYi-6i-8tL" id="Nnx-sy-MBD"/>
+                            <outlet property="delegate" destination="aYi-6i-8tL" id="8Zd-b6-Pm8"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="I3O-uc-Qbc"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h58-YT-Hgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1697" y="-146"/>
+        </scene>
         <!--Language Arts-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -461,6 +489,7 @@ Science includes learning about the scientific method and even going on scavenge
                         <segue destination="WtB-Oa-cH2" kind="relationship" relationship="viewControllers" id="5Ub-ub-bpf"/>
                         <segue destination="flJ-CE-eRV" kind="relationship" relationship="viewControllers" id="U0T-lX-HgP"/>
                         <segue destination="aUo-zj-yvZ" kind="relationship" relationship="viewControllers" id="yAq-IO-9fB"/>
+                        <segue destination="aYi-6i-8tL" kind="relationship" relationship="viewControllers" id="TCK-gO-gKB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

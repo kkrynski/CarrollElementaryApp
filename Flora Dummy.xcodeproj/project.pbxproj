@@ -30,6 +30,7 @@
 		921C73131899BB1A007DFB34 /* MathProblemVC_Normal.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */; };
 		921C731D189ADE7F007DFB34 /* EquationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C731C189ADE7F007DFB34 /* EquationFormatter.m */; };
 		921C731E189ADE7F007DFB34 /* EquationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C731C189ADE7F007DFB34 /* EquationFormatter.m */; };
+		925A10C819FC287D006CD757 /* TestingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 925A10C719FC287D006CD757 /* TestingTVC.m */; };
 		926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0D18E4EA69006CDB2F /* HOME1.gif */; };
 		926C9B1218E4EA69006CDB2F /* HOME1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0D18E4EA69006CDB2F /* HOME1.gif */; };
 		926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0E18E4EA69006CDB2F /* HOME2.gif */; };
@@ -151,6 +152,8 @@
 		921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathProblemVC_Normal.m; sourceTree = "<group>"; };
 		921C731B189ADE7F007DFB34 /* EquationFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquationFormatter.h; sourceTree = "<group>"; };
 		921C731C189ADE7F007DFB34 /* EquationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquationFormatter.m; sourceTree = "<group>"; };
+		925A10C619FC287D006CD757 /* TestingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingTVC.h; sourceTree = "<group>"; };
+		925A10C719FC287D006CD757 /* TestingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingTVC.m; sourceTree = "<group>"; };
 		926C9B0D18E4EA69006CDB2F /* HOME1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME1.gif; sourceTree = "<group>"; };
 		926C9B0E18E4EA69006CDB2F /* HOME2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME2.gif; sourceTree = "<group>"; };
 		926C9B0F18E4EA69006CDB2F /* HOME3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME3.gif; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				9282390518A6A39300223265 /* Main2.storyboard */,
 				9218951B17F775C200DFB26B /* HomeVC.h */,
 				9218951C17F775C200DFB26B /* HomeVC.m */,
+				925A10C619FC287D006CD757 /* TestingTVC.h */,
+				925A10C719FC287D006CD757 /* TestingTVC.m */,
 				92E7A12D1864E372006A712B /* Subjects */,
 				9218952F17F7761500DFB26B /* SettingsVC.h */,
 				9218953017F7761500DFB26B /* SettingsVC.m */,
@@ -687,6 +692,7 @@
 			files = (
 				92B193931825F2F500F1583E /* PageManager.m in Sources */,
 				9282390C18B0085200223265 /* FormattedVC.m in Sources */,
+				925A10C819FC287D006CD757 /* TestingTVC.m in Sources */,
 				92B193A3182F29F200F1583E /* Page_ReadVC.m in Sources */,
 				9218952D17F7760800DFB26B /* ScienceVC.m in Sources */,
 				92EF999918B6F5CD00288BAF /* GardenDetailVC.m in Sources */,
