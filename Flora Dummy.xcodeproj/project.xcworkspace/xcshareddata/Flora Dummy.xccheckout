@@ -10,29 +10,29 @@
 	<string>Flora Dummy</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>1F451436-3E2B-4C57-B20E-B5D083CD5F49</key>
+		<key>47D3209A10F8AAC8D345947FFC8C19EAA893BAB3</key>
 		<string>ssh://github.com/kkrynski/CarrollElementaryApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Flora Dummy.xcodeproj/project.xcworkspace</string>
+	<string>Flora Dummy.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>1F451436-3E2B-4C57-B20E-B5D083CD5F49</key>
+		<key>47D3209A10F8AAC8D345947FFC8C19EAA893BAB3</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/kkrynski/CarrollElementaryApp.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1F451436-3E2B-4C57-B20E-B5D083CD5F49</string>
+	<string>47D3209A10F8AAC8D345947FFC8C19EAA893BAB3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1F451436-3E2B-4C57-B20E-B5D083CD5F49</string>
+			<string>47D3209A10F8AAC8D345947FFC8C19EAA893BAB3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CarrollElementaryApp</string>
 		</dict>

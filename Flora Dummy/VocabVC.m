@@ -13,7 +13,6 @@
 @end
 
 @implementation VocabVC
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,6 +24,7 @@
 
 - (void)viewDidLoad
 {
+    *questionLabel.text = @"Another word for " + *questions[curquestion]
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
