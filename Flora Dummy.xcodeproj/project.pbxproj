@@ -11,8 +11,6 @@
 		10B8787C19FC250A005D9937 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
-		4CC305E319FC426C0066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E119FC426C0066A53B /* VocabVC.m */; };
-		4CC305E419FC426C0066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E219FC426C0066A53B /* VocabVC.xib */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
 		4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E719FC42C00066A53B /* VocabVC.xib */; };
 		9208482318E4F9FA00BE2F55 /* ModuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9208482218E4F9FA00BE2F55 /* ModuleVC.m */; };
@@ -126,8 +124,6 @@
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		10B8787D19FC2881005D9937 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		10B8788019FC3342005D9937 /* LanguageArtsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageArtsVC.swift; sourceTree = "<group>"; };
-		4CC305E119FC426C0066A53B /* VocabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabVC.m; sourceTree = "<group>"; };
-		4CC305E219FC426C0066A53B /* VocabVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VocabVC.xib; sourceTree = "<group>"; };
 		4CC305E519FC42C00066A53B /* VocabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabVC.h; sourceTree = "<group>"; };
 		4CC305E619FC42C00066A53B /* VocabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabVC.m; sourceTree = "<group>"; };
 		4CC305E719FC42C00066A53B /* VocabVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VocabVC.xib; sourceTree = "<group>"; };
@@ -675,7 +671,6 @@
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
-				4CC305E419FC426C0066A53B /* VocabVC.xib in Resources */,
 				9278D09F18DB7A2F00E98BC4 /* Carroll.json in Resources */,
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
 				921894EE17F7752A00DFB26B /* InfoPlist.strings in Resources */,
@@ -735,7 +730,6 @@
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
 				92EF999918B6F5CD00288BAF /* GardenDetailVC.m in Sources */,
 				9218952817F775F600DFB26B /* MathVC.m in Sources */,
-				4CC305E319FC426C0066A53B /* VocabVC.m in Sources */,
 				9218953217F7761500DFB26B /* SettingsVC.m in Sources */,
 				92C261AB18370D1500FDA09B /* Page_DragAndDropVC.m in Sources */,
 				10B8787C19FC250A005D9937 /* HomeVC.swift in Sources */,
