@@ -460,7 +460,7 @@
 {
     VocabVC *vocabVC = [[VocabVC alloc] init];
     NSString *question = @"ambitious";
-    NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil];
+    NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil]; //Add an empty string if less than 5 answers.
     int indexOfAnswer = 1;
     vocabVC.question = question;
     vocabVC.answers = answers;
