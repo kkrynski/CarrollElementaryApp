@@ -156,13 +156,13 @@ class SettingsVC: UIViewController
     }
     
     //Update the background color
-    @IBAction func colorButtonPressed(sender : AnyObject)
+    @IBAction private func colorButtonPressed(sender : AnyObject)
     {
         //Get the text of the button.  Should be its color
         let button = sender as UIButton
         let color = button.titleLabel!.text
         
-        let colorDictionary = colorSchemeDictionary!.objectForKey(color!) as NSDictionary
+        let colorDictionary = colorSchemeDictionary![color!] as NSDictionary
         
         let standardDefaults = NSUserDefaults.standardUserDefaults()
         
@@ -171,6 +171,10 @@ class SettingsVC: UIViewController
         standardDefaults.setObject(colorDictionary["Background"], forKey: "backgroundColor")
         
         standardDefaults.synchronize()
+        
+        //Fancy Animate the button press and background color change
+        
+        view.bringSubviewToFront(button)
         
         UIView.animateKeyframesWithDuration(0.3, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in
@@ -185,7 +189,7 @@ class SettingsVC: UIViewController
         }, completion: nil)
     }
 
-    @IBAction func gradeButtonPressed(sender : AnyObject)
+    @IBAction private func gradeButtonPressed(sender : AnyObject)
     {
         //Get the grade number
         let button = sender as UIButton
@@ -204,6 +208,10 @@ class SettingsVC: UIViewController
         standardDefaults.setObject(grade!, forKey: "gradeNumber")
         
         standardDefaults.synchronize()
+        
+        //Fancy Animate the button press
+        
+        view.bringSubviewToFront(button)
         
         UIView.animateKeyframesWithDuration(0.3, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in

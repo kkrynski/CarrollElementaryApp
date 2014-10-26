@@ -103,12 +103,6 @@
     // keeps the app from crashing.
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-        // Creates a default style table view cell
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-    }
     
     // Update and format the title label, or the primary label in the cell.
     cell.textLabel.text = (NSString *)[tests objectAtIndex:indexPath.row];
