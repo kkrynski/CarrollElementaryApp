@@ -1,5 +1,5 @@
 //
-//  LanguageArtsVC.swift
+//  MathVC.swift
 //  Flora Dummy
 //
 //  Created by Michael Schloss on 10/25/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSource
+class MathVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     //The current grade
     private var gradeNumber : String?
@@ -33,7 +33,7 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var titleLabel : UILabel?
     @IBOutlet var activitiesTable : UITableView?
     @IBOutlet var notificationField : UITextView?
-    
+
     //Get all JSON data on startup
     override func viewDidLoad()
     {
@@ -56,7 +56,6 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         activitiesTable!.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
-    //Everytime the view is shown on screen, make sure all data is updated
     override func viewWillAppear(animated: Bool)
     {
         
@@ -89,11 +88,11 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Update the activities for the tableView
         gradeNumber = standardDefaults.objectForKey("gradeNumber") as? String
         let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary
-        activities = gradeDictionary.objectForKey("LA") as NSArray
+        activities = gradeDictionary.objectForKey("Math") as NSArray
         
         activitiesTable!.reloadData()
     }
-    
+
     //MARK: - Table View Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -114,7 +113,7 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         //Get a cell that isn't currently on screen
-        var cell = tableView.dequeueReusableCellWithIdentifier("LACell") as UITableViewCell?
+        var cell = tableView.dequeueReusableCellWithIdentifier("MathCell") as UITableViewCell?
         
         //Get the information for the activity for the cell
         let activityDictionary = activities[indexPath.row] as NSDictionary
