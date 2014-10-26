@@ -459,10 +459,12 @@
 -(void)launchVocab
 {
     VocabVC *vocabVC = [[VocabVC alloc] init];
-    
-    NSArray *questions = [NSArray arrayWithObjects:@"Is this working?", nil];
-    
-    vocabVC.questions = questions;
+    NSString *question = @"ambitious";
+    NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil];
+    int indexOfAnswer = 1;
+    vocabVC.question = question;
+    vocabVC.answers = answers;
+    vocabVC.indexOfAnswer = indexOfAnswer;
     
     [self presentViewController:vocabVC animated:YES completion:nil];
 }
