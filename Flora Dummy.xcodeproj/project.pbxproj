@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		106C8BD419FED841009B0983 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD319FED841009B0983 /* SettingsVC.swift */; };
+		106C8BD619FEE55B009B0983 /* MathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD519FEE55B009B0983 /* MathVC.swift */; };
+		106C8BD819FEE574009B0983 /* ScienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD719FEE574009B0983 /* ScienceVC.swift */; };
+		106C8BD919FEE6A4009B0983 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
-		10B8787C19FC250A005D9937 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
@@ -26,9 +29,6 @@
 		9218950817F7752A00DFB26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921894E717F7752A00DFB26B /* UIKit.framework */; };
 		9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9218950E17F7752A00DFB26B /* InfoPlist.strings */; };
 		9218951217F7752A00DFB26B /* Flora_DummyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218951117F7752A00DFB26B /* Flora_DummyTests.m */; };
-		9218952817F775F600DFB26B /* MathVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218952617F775F600DFB26B /* MathVC.m */; };
-		9218952D17F7760800DFB26B /* ScienceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218952B17F7760800DFB26B /* ScienceVC.m */; };
-		9218953217F7761500DFB26B /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218953017F7761500DFB26B /* SettingsVC.m */; };
 		9218953617F776BA00DFB26B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218953517F776BA00DFB26B /* CoreData.framework */; };
 		921C73131899BB1A007DFB34 /* MathProblemVC_Normal.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */; };
 		921C731D189ADE7F007DFB34 /* EquationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C731C189ADE7F007DFB34 /* EquationFormatter.m */; };
@@ -119,6 +119,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		106C8BD319FED841009B0983 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		106C8BD519FEE55B009B0983 /* MathVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathVC.swift; sourceTree = "<group>"; };
+		106C8BD719FEE574009B0983 /* ScienceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScienceVC.swift; sourceTree = "<group>"; };
 		10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flora Dummy-Bridging-Header.h"; sourceTree = "<group>"; };
 		10B8787819FC1B40005D9937 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -275,6 +278,12 @@
 		10B8787F19FC32F4005D9937 /* Subjects */ = {
 			isa = PBXGroup;
 			children = (
+				9218952017F775EA00DFB26B /* LanguageArtsVC.h */,
+				9218952117F775EA00DFB26B /* LanguageArtsVC.m */,
+				9218952517F775F600DFB26B /* MathVC.h */,
+				9218952617F775F600DFB26B /* MathVC.m */,
+				9218952A17F7760800DFB26B /* ScienceVC.h */,
+				9218952B17F7760800DFB26B /* ScienceVC.m */,
 			);
 			name = Subjects;
 			sourceTree = "<group>";
@@ -287,6 +296,8 @@
 				9218951C17F775C200DFB26B /* HomeVC.m */,
 				921894F217F7752A00DFB26B /* AppDelegate.h */,
 				921894F317F7752A00DFB26B /* AppDelegate.m */,
+				9218952F17F7761500DFB26B /* SettingsVC.h */,
+				9218953017F7761500DFB26B /* SettingsVC.m */,
 			);
 			name = "Old Objective-C Code";
 			sourceTree = "<group>";
@@ -359,8 +370,7 @@
 				925A10C619FC287D006CD757 /* TestingTVC.h */,
 				925A10C719FC287D006CD757 /* TestingTVC.m */,
 				92E7A12D1864E372006A712B /* Subjects */,
-				9218952F17F7761500DFB26B /* SettingsVC.h */,
-				9218953017F7761500DFB26B /* SettingsVC.m */,
+				106C8BD319FED841009B0983 /* SettingsVC.swift */,
 				92E7A1281864E303006A712B /* Pages */,
 				92F406481801E19A00668376 /* UIOutlinedLabel.h */,
 				92F406491801E19A00668376 /* UIOutlinedLabel.m */,
@@ -550,12 +560,8 @@
 			isa = PBXGroup;
 			children = (
 				10B8788019FC3342005D9937 /* LanguageArtsVC.swift */,
-				9218952017F775EA00DFB26B /* LanguageArtsVC.h */,
-				9218952117F775EA00DFB26B /* LanguageArtsVC.m */,
-				9218952517F775F600DFB26B /* MathVC.h */,
-				9218952617F775F600DFB26B /* MathVC.m */,
-				9218952A17F7760800DFB26B /* ScienceVC.h */,
-				9218952B17F7760800DFB26B /* ScienceVC.m */,
+				106C8BD519FEE55B009B0983 /* MathVC.swift */,
+				106C8BD719FEE574009B0983 /* ScienceVC.swift */,
 			);
 			name = Subjects;
 			sourceTree = "<group>";
@@ -723,16 +729,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B193931825F2F500F1583E /* PageManager.m in Sources */,
+				106C8BD619FEE55B009B0983 /* MathVC.swift in Sources */,
 				9282390C18B0085200223265 /* FormattedVC.m in Sources */,
 				925A10C819FC287D006CD757 /* TestingTVC.m in Sources */,
 				92B193A3182F29F200F1583E /* Page_ReadVC.m in Sources */,
-				9218952D17F7760800DFB26B /* ScienceVC.m in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
 				92EF999918B6F5CD00288BAF /* GardenDetailVC.m in Sources */,
-				9218952817F775F600DFB26B /* MathVC.m in Sources */,
-				9218953217F7761500DFB26B /* SettingsVC.m in Sources */,
+				106C8BD419FED841009B0983 /* SettingsVC.swift in Sources */,
 				92C261AB18370D1500FDA09B /* Page_DragAndDropVC.m in Sources */,
-				10B8787C19FC250A005D9937 /* HomeVC.swift in Sources */,
+				106C8BD919FEE6A4009B0983 /* HomeVC.swift in Sources */,
 				92B193961825F72900F1583E /* PageVC.m in Sources */,
 				92E7A1311864E3BA006A712B /* Page_GardenDataVC.m in Sources */,
 				92C261C11840414400FDA09B /* DragObject.m in Sources */,
@@ -741,6 +746,7 @@
 				921C731D189ADE7F007DFB34 /* EquationFormatter.m in Sources */,
 				92FFDB5618C01D6D00C3294A /* UIButton_Typical.m in Sources */,
 				921C73131899BB1A007DFB34 /* MathProblemVC_Normal.m in Sources */,
+				106C8BD819FEE574009B0983 /* ScienceVC.swift in Sources */,
 				92B1938F1824665A00F1583E /* Page_IntroVC.m in Sources */,
 				92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */,
 				9208482318E4F9FA00BE2F55 /* ModuleVC.m in Sources */,

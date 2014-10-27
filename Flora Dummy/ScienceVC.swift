@@ -1,5 +1,5 @@
 //
-//  LanguageArtsVC.swift
+//  ScienceVC.swift
 //  Flora Dummy
 //
 //  Created by Michael Schloss on 10/25/14.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSource
+class ScienceVC: UIViewController
 {
+    
     //The current grade
     private var gradeNumber : String?
     
@@ -56,7 +57,6 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         activitiesTable!.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
-    //Everytime the view is shown on screen, make sure all data is updated
     override func viewWillAppear(animated: Bool)
     {
         
@@ -89,7 +89,7 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Update the activities for the tableView
         gradeNumber = standardDefaults.objectForKey("gradeNumber") as? String
         let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary
-        activities = gradeDictionary.objectForKey("LA") as NSArray
+        activities = gradeDictionary.objectForKey("Science") as NSArray
         
         activitiesTable!.reloadData()
     }
@@ -114,7 +114,7 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         //Get a cell that isn't currently on screen
-        var cell = tableView.dequeueReusableCellWithIdentifier("LACell") as UITableViewCell?
+        var cell = tableView.dequeueReusableCellWithIdentifier("ScienceCell") as UITableViewCell?
         
         //Get the information for the activity for the cell
         let activityDictionary = activities[indexPath.row] as NSDictionary
@@ -145,4 +145,5 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Create a PageManager for the activity and store it in THIS view controller
         pageManager = PageManager(activity: activityDictionary, forParentViewController: self)
     }
+    
 }
