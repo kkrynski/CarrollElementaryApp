@@ -16,8 +16,10 @@ class HomeVC: UIViewController
     @IBOutlet var homeImageView : UIImageView?
     
     //Set the colors here for instant loading
-    override func viewWillAppear(animated: Bool)
+    override func viewDidLoad()
     {
+        super.viewDidLoad()
+        
         //Directly set the colors since we don't need to later reference them at anytime
         
         let standardDefaults = NSUserDefaults.standardUserDefaults()

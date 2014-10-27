@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = UIStoryboard(name: "Main2", bundle: nil)
         let tabBarController = storyBoard.instantiateInitialViewController() as UITabBarController
         
         window!.rootViewController = tabBarController
