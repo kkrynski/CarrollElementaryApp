@@ -16,6 +16,7 @@
 #import "Page_GardenDataVC.h"
 #import "Page_QRCodeVC.h"
 #import "ModuleVC.h"
+#import "QuickQuizVC.h"
 
 @interface PageManager ()
 {
@@ -378,6 +379,26 @@
             
             
             [pageViewController setViewControllers:[NSArray arrayWithObjects:mVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+            
+        }else if ([name isEqualToString:@"Page_QuickQuiz"])
+        {
+            // Create a reading page
+            QuickQuizVC *qVC = [[QuickQuizVC alloc] init];
+            qVC.parentManager = self;
+            
+            // Save important data to page
+            qVC.pageDictionary = page.pageDictionary;
+            qVC.titleString = page.titleString;
+            qVC.dateString = page.dateString;
+            qVC.pageNumber = page.pageNumber;
+            qVC.pageCount = page.pageCount;
+            
+            qVC.question = (NSString *)[page.pageDictionary objectForKey:@"Question"];
+            qVC.answers = (NSArray *)[page.pageDictionary objectForKey:@"Answers"];
+            qVC.correctIndex = (NSNumber *)[page.pageDictionary objectForKey:@"CorrectIndex"];
+            
+            [pageViewController setViewControllers:[NSArray arrayWithObjects:qVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+            
         }
 
 

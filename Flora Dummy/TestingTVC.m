@@ -12,6 +12,7 @@
 
 #import "ModuleVC.h"
 #import "VocabVC.h"
+#import "QuickQuizVC.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -46,7 +47,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Yazeed", @"Mason", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Yazeed", @"Mason", @"All about plants", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -175,6 +176,14 @@
         }case 5:
         {
             // Mason
+            
+            break;
+            
+        }case 6:
+        {
+            // All about plants
+            
+            [self launchPlants];
             
             break;
             
@@ -471,6 +480,31 @@
     vocabVC.questions = questions;
     
     [self presentViewController:vocabVC animated:YES completion:nil];
+}
+
+-(void)launchPlants
+{
+    [self launchQuickQuiz];
+}
+
+-(void)launchQuickQuiz
+{
+    QuickQuizVC *quickQuizVC = [[QuickQuizVC alloc] init];
+    
+    NSString *question = [NSString stringWithFormat:@"What does a plant NOT need?"];
+    
+    NSArray *answers = [NSArray arrayWithObjects:[UIImage imageNamed:@"25-weather"],
+                        [UIImage imageNamed:@"65-note"],
+                        [UIImage imageNamed:@"61-brightness"],
+                        nil];
+    
+    NSNumber *correct = [NSNumber numberWithInt:1]; // Music
+    
+    quickQuizVC.question = question;
+    quickQuizVC.answers = answers;
+    quickQuizVC.correctIndex = correct;
+    
+    [self presentViewController:quickQuizVC animated:YES completion:nil];
 }
 
 @end

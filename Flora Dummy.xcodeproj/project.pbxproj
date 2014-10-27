@@ -44,8 +44,6 @@
 		926C9B1818E4EA69006CDB2F /* HOME4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B1018E4EA69006CDB2F /* HOME4.gif */; };
 		9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D09818DB70A600E98BC4 /* QRComplete.png */; };
 		9278D09A18DB70A600E98BC4 /* QRComplete.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D09818DB70A600E98BC4 /* QRComplete.png */; };
-		9278D09F18DB7A2F00E98BC4 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 9278D09E18DB7A2F00E98BC4 /* Carroll.json */; };
-		9278D0A018DB7A2F00E98BC4 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 9278D09E18DB7A2F00E98BC4 /* Carroll.json */; };
 		9282390618A6A39300223265 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9282390518A6A39300223265 /* Main2.storyboard */; };
 		9282390C18B0085200223265 /* FormattedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282390B18B0085200223265 /* FormattedVC.m */; };
 		9282390D18B0085200223265 /* FormattedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9282390B18B0085200223265 /* FormattedVC.m */; };
@@ -72,6 +70,9 @@
 		92C261C11840414400FDA09B /* DragObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C261C01840414400FDA09B /* DragObject.m */; };
 		92C261C21840414400FDA09B /* DragObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C261C01840414400FDA09B /* DragObject.m */; };
 		92C2620518419B5600FDA09B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C2620418419B5600FDA09B /* QuartzCore.framework */; };
+		92C7EAA119FDD83500F731B6 /* QuickQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7EAA019FDD83500F731B6 /* QuickQuizVC.m */; };
+		92C7EAAA19FDF31C00F731B6 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 92C7EAA919FDF31C00F731B6 /* Carroll.json */; };
+		92C7EAAB19FDF31C00F731B6 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 92C7EAA919FDF31C00F731B6 /* Carroll.json */; };
 		92D06A0318D13066004850C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0218D13066004850C6 /* AudioToolbox.framework */; };
 		92D06A0518D13076004850C6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0418D13076004850C6 /* CoreMedia.framework */; };
 		92D06A0718D1307D004850C6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0618D1307D004850C6 /* CoreVideo.framework */; };
@@ -168,7 +169,6 @@
 		926C9B0F18E4EA69006CDB2F /* HOME3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME3.gif; sourceTree = "<group>"; };
 		926C9B1018E4EA69006CDB2F /* HOME4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME4.gif; sourceTree = "<group>"; };
 		9278D09818DB70A600E98BC4 /* QRComplete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRComplete.png; sourceTree = "<group>"; };
-		9278D09E18DB7A2F00E98BC4 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		9282390518A6A39300223265 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		9282390A18B0085200223265 /* FormattedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattedVC.h; sourceTree = "<group>"; };
 		9282390B18B0085200223265 /* FormattedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattedVC.m; sourceTree = "<group>"; };
@@ -193,6 +193,9 @@
 		92C261BF1840414400FDA09B /* DragObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragObject.h; sourceTree = "<group>"; };
 		92C261C01840414400FDA09B /* DragObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragObject.m; sourceTree = "<group>"; };
 		92C2620418419B5600FDA09B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		92C7EA9F19FDD83500F731B6 /* QuickQuizVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickQuizVC.h; sourceTree = "<group>"; };
+		92C7EAA019FDD83500F731B6 /* QuickQuizVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickQuizVC.m; sourceTree = "<group>"; };
+		92C7EAA919FDF31C00F731B6 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		92D069E918D12FD6004850C6 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		92D069EA18D12FD6004850C6 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		92D069EB18D12FD6004850C6 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -368,7 +371,8 @@
 				92FFDB5518C01D6D00C3294A /* UIButton_Typical.m */,
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
-				9278D09E18DB7A2F00E98BC4 /* Carroll.json */,
+				92C7EAA919FDF31C00F731B6 /* Carroll.json */,
+				92C7EAA219FDD84C00F731B6 /* Zach's Super Secret Project */,
 				4C0BCF3819FC155900E69F5C /* Riley */,
 				921894EA17F7752A00DFB26B /* Supporting Files */,
 			);
@@ -413,6 +417,15 @@
 				921C731C189ADE7F007DFB34 /* EquationFormatter.m */,
 			);
 			name = "Math Problems";
+			sourceTree = "<group>";
+		};
+		92C7EAA219FDD84C00F731B6 /* Zach's Super Secret Project */ = {
+			isa = PBXGroup;
+			children = (
+				92C7EA9F19FDD83500F731B6 /* QuickQuizVC.h */,
+				92C7EAA019FDD83500F731B6 /* QuickQuizVC.m */,
+			);
+			name = "Zach's Super Secret Project";
 			sourceTree = "<group>";
 		};
 		92D069F218D12FE3004850C6 /* zbar */ = {
@@ -655,6 +668,7 @@
 				92F4064F1801ED2D00668376 /* Flora DUmmy 4.png in Resources */,
 				92E8CB4D18F0C4BD0025264E /* Wind1.gif in Resources */,
 				92EF999418B6E6AD00288BAF /* Garden_Top.jpg in Resources */,
+				92C7EAAA19FDF31C00F731B6 /* Carroll.json in Resources */,
 				92D06A2318D140F4004850C6 /* zbar-help.html in Resources */,
 				92C261AC18370D1500FDA09B /* Page_DragAndDropVC.xib in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
@@ -671,7 +685,6 @@
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
-				9278D09F18DB7A2F00E98BC4 /* Carroll.json in Resources */,
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
 				921894EE17F7752A00DFB26B /* InfoPlist.strings in Resources */,
 				92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */,
@@ -702,6 +715,7 @@
 				9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */,
 				92C261B51839D40800FDA09B /* apple_green.png in Resources */,
 				926C9B1818E4EA69006CDB2F /* HOME4.gif in Resources */,
+				92C7EAAB19FDF31C00F731B6 /* Carroll.json in Resources */,
 				92EF999518B6E6AD00288BAF /* Garden_Top.jpg in Resources */,
 				92C261BE183BFBBC00FDA09B /* woods.png in Resources */,
 				92B193A6182F29F200F1583E /* Page_ReadVC.xib in Resources */,
@@ -711,7 +725,6 @@
 				92E8CB4E18F0C4BD0025264E /* Wind1.gif in Resources */,
 				926C9B1218E4EA69006CDB2F /* HOME1.gif in Resources */,
 				92D06A2418D140F4004850C6 /* zbar-help.html in Resources */,
-				9278D0A018DB7A2F00E98BC4 /* Carroll.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +753,7 @@
 				92F4064A1801E19A00668376 /* UIOutlinedLabel.m in Sources */,
 				921C731D189ADE7F007DFB34 /* EquationFormatter.m in Sources */,
 				92FFDB5618C01D6D00C3294A /* UIButton_Typical.m in Sources */,
+				92C7EAA119FDD83500F731B6 /* QuickQuizVC.m in Sources */,
 				921C73131899BB1A007DFB34 /* MathProblemVC_Normal.m in Sources */,
 				92B1938F1824665A00F1583E /* Page_IntroVC.m in Sources */,
 				92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */,
