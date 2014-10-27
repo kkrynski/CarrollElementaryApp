@@ -61,10 +61,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kXL-ED-rub">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="3r5-Wi-Jlb" style="IBUITableViewCellStyleDefault" id="kXL-ED-rub">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kXL-ED-rub" id="01O-kV-LL6">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3r5-Wi-Jlb">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -78,7 +86,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h58-YT-Hgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1697" y="-146"/>
+            <point key="canvasLocation" x="4257" y="154"/>
         </scene>
         <!--Language Arts-->
         <scene sceneID="wg7-f3-ORb">
@@ -107,9 +115,25 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AQe-8D-wo7">
                                 <rect key="frame" x="20" y="146" width="656" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LACell" textLabel="Cu7-tf-lUP" style="IBUITableViewCellStyleDefault" id="acI-5q-qHv">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="acI-5q-qHv" id="t9j-iI-qoD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cu7-tf-lUP">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="Ihv-QW-I0Y"/>
-                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="NnQ-2u-db6"/>
+                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="udQ-kY-eGQ"/>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="ZHa-S3-Fzi"/>
                                 </connections>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqL-U7-1s6">
@@ -132,8 +156,8 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
                     <tabBarItem key="tabBarItem" title="Language Arts" image="Language Arts" id="cPa-gy-q4n"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="activitiesTableView" destination="AQe-8D-wo7" id="rrH-gt-1Ng"/>
-                        <outlet property="notificationTextField" destination="bqL-U7-1s6" id="aM9-Gb-WaD"/>
+                        <outlet property="activitiesTable" destination="AQe-8D-wo7" id="dJV-n9-7ZP"/>
+                        <outlet property="notificationField" destination="bqL-U7-1s6" id="pcU-G3-rSM"/>
                         <outlet property="titleLabel" destination="kbt-fw-nc7" id="9AR-nJ-DUs"/>
                     </connections>
                 </viewController>
@@ -144,7 +168,7 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
         <!--Math-->
         <scene sceneID="Un9-il-hCe">
             <objects>
-                <viewController id="WtB-Oa-cH2" customClass="MathVC" sceneMemberID="viewController">
+                <viewController id="WtB-Oa-cH2" customClass="MathVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M5M-BF-N0K"/>
                         <viewControllerLayoutGuide type="bottom" id="uK1-IU-GPU"/>
@@ -162,6 +186,22 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LN7-uM-duu">
                                 <rect key="frame" x="20" y="146" width="656" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MathCell" textLabel="uAb-ny-ghf" style="IBUITableViewCellStyleDefault" id="Sjs-R3-j8r">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sjs-R3-j8r" id="maz-q2-mcz">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uAb-ny-ghf">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="WtB-Oa-cH2" id="CX8-KD-5z8"/>
                                     <outlet property="delegate" destination="WtB-Oa-cH2" id="NS9-Lg-vjl"/>
@@ -188,8 +228,8 @@ You might find simple addition games on this page, or maybe you can learn how to
                     <tabBarItem key="tabBarItem" title="Math" image="Math" id="S8s-Zv-Qi8"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="activitiesTableView" destination="LN7-uM-duu" id="SlN-s2-VG1"/>
-                        <outlet property="notificationTextField" destination="XR6-IK-a23" id="eDz-4k-b9W"/>
+                        <outlet property="activitiesTable" destination="LN7-uM-duu" id="oJB-wA-WFd"/>
+                        <outlet property="notificationField" destination="XR6-IK-a23" id="sbb-QA-vq6"/>
                         <outlet property="titleLabel" destination="0F8-4F-S1t" id="3sk-81-EuF"/>
                     </connections>
                 </viewController>
@@ -200,7 +240,7 @@ You might find simple addition games on this page, or maybe you can learn how to
         <!--Science-->
         <scene sceneID="RvN-1i-wYb">
             <objects>
-                <viewController id="flJ-CE-eRV" customClass="ScienceVC" sceneMemberID="viewController">
+                <viewController id="flJ-CE-eRV" customClass="ScienceVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ibz-7D-Gkm"/>
                         <viewControllerLayoutGuide type="bottom" id="Sbx-iM-tNA"/>
@@ -224,6 +264,22 @@ You might find simple addition games on this page, or maybe you can learn how to
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2Aa-oa-l3T">
                                 <rect key="frame" x="20" y="146" width="656" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ScienceCell" textLabel="LkS-Zv-KMG" style="IBUITableViewCellStyleDefault" id="l2j-GD-7wt">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l2j-GD-7wt" id="NPF-vo-jJg">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LkS-Zv-KMG">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="flJ-CE-eRV" id="tfC-cL-DWF"/>
                                     <outlet property="delegate" destination="flJ-CE-eRV" id="FTM-hh-s7B"/>
@@ -244,8 +300,8 @@ Science includes learning about the scientific method and even going on scavenge
                     <tabBarItem key="tabBarItem" title="Science" image="Science" id="GsW-Iz-b46"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="activitiesTableView" destination="2Aa-oa-l3T" id="z1D-Of-vQ1"/>
-                        <outlet property="notificationTextField" destination="pNC-Vc-KKy" id="Wdo-9o-l05"/>
+                        <outlet property="activitiesTable" destination="2Aa-oa-l3T" id="Kmm-vY-eCJ"/>
+                        <outlet property="notificationField" destination="pNC-Vc-KKy" id="tUa-UW-p6a"/>
                         <outlet property="titleLabel" destination="G0D-LU-Xrj" id="G9u-cy-PjV"/>
                     </connections>
                 </viewController>
@@ -256,7 +312,7 @@ Science includes learning about the scientific method and even going on scavenge
         <!--Settings-->
         <scene sceneID="jS8-jD-fx8">
             <objects>
-                <viewController id="aUo-zj-yvZ" customClass="SettingsVC" sceneMemberID="viewController">
+                <viewController id="aUo-zj-yvZ" customClass="SettingsVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UPv-kq-V5F"/>
                         <viewControllerLayoutGuide type="bottom" id="Fjz-gQ-K60"/>

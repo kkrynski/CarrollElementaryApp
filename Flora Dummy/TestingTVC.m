@@ -104,12 +104,6 @@
     // keeps the app from crashing.
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-        // Creates a default style table view cell
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-    }
     
     // Update and format the title label, or the primary label in the cell.
     cell.textLabel.text = (NSString *)[tests objectAtIndex:indexPath.row];
@@ -474,10 +468,12 @@
 -(void)launchVocab
 {
     VocabVC *vocabVC = [[VocabVC alloc] init];
-    
-    NSArray *questions = [NSArray arrayWithObjects:@"Is this working?", nil];
-    
-    vocabVC.questions = questions;
+    NSString *question = @"ambitious";
+    NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil]; //Add an empty string if less than 5 answers.
+    int indexOfAnswer = 1;
+    vocabVC.question = question;
+    vocabVC.answers = answers;
+    vocabVC.indexOfAnswer = indexOfAnswer;
     
     [self presentViewController:vocabVC animated:YES completion:nil];
 }
