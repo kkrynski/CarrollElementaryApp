@@ -139,9 +139,9 @@
     NSDictionary *specials = (NSDictionary *)[dict objectForKey:@"Specials"];
     
     // Get image
-    if ((UIImage *)[specials objectForKey:@"Image"])
+    if ((NSString *)[specials objectForKey:@"Image"])
     {
-        iV.image = (UIImage *)[specials objectForKey:@"Image"];
+        iV.image = [UIImage imageNamed:[specials objectForKey:@"Image"]];
 
     }else
     {

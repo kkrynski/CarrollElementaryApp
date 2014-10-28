@@ -72,4 +72,6 @@
 // and sends signal to page manager to move back.
 -(IBAction)goToPreviousPage;
 
+-(void)reloadView;
+
 @end
