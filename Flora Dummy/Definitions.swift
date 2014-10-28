@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
-//  This Swift file will contain all functions that are found everywhere.  This reduces code load and centralizes any changed needed to be made.
+//  This Swift file will contain all functions that are found everywhere.  This reduces code load and centralizes any changes needed to be made.
 
 import UIKit
 import QuartzCore
