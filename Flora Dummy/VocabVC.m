@@ -7,7 +7,6 @@
 //
 
 #import "VocabVC.h"
-
 @interface VocabVC ()
 {
     
@@ -31,7 +30,7 @@
 //int *indexOfAnswer;
 - (void)viewDidLoad
 {
-    
+    [super viewDidLoad];
     questionLabel.text = [NSString stringWithFormat:@"%@ %@ %@", @"Another word for", _question,@"is:"];
     if([_answers objectAtIndex:0] != nil){
         [_butAnswer1 setTitle:[_answers objectAtIndex:0] forState:UIControlStateNormal];
@@ -48,7 +47,7 @@
     if([_answers objectAtIndex:4] != nil){
         [_butAnswer5 setTitle:[_answers objectAtIndex:4] forState:UIControlStateNormal];
     }
-    [super viewDidLoad];
+   
     
 }
 
