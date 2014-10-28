@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3005" y="-1160"/>
+            <point key="canvasLocation" x="3018" y="-1020"/>
         </scene>
         <!--Item-->
         <scene sceneID="W1L-c9-mVd">
@@ -61,10 +61,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kXL-ED-rub">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="GZJ-Un-Doe" style="IBUITableViewCellStyleDefault" id="kXL-ED-rub">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kXL-ED-rub" id="01O-kV-LL6">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GZJ-Un-Doe">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -78,7 +86,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h58-YT-Hgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4225" y="214"/>
+            <point key="canvasLocation" x="4257" y="758"/>
         </scene>
         <!--Language Arts-->
         <scene sceneID="wg7-f3-ORb">
@@ -157,7 +165,7 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3005" y="-268"/>
+            <point key="canvasLocation" x="3018" y="-124"/>
         </scene>
         <!--Math-->
         <scene sceneID="Un9-il-hCe">
@@ -229,7 +237,7 @@ You might find simple addition games on this page, or maybe you can learn how to
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v8-uQ-FLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="741"/>
+            <point key="canvasLocation" x="3018" y="758"/>
         </scene>
         <!--Science-->
         <scene sceneID="RvN-1i-wYb">
@@ -301,7 +309,7 @@ Science includes learning about the scientific method and even going on scavenge
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8k-yl-5of" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="1717"/>
+            <point key="canvasLocation" x="3018" y="1673"/>
         </scene>
         <!--Settings-->
         <scene sceneID="jS8-jD-fx8">
@@ -520,7 +528,7 @@ Science includes learning about the scientific method and even going on scavenge
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vt-VB-rX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3005" y="2721"/>
+            <point key="canvasLocation" x="3018" y="2569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

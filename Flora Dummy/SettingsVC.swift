@@ -202,8 +202,6 @@ class SettingsVC: UIViewController
             break
         }
         
-        print(standardDefaults.integerForKey("selectedBackgroundButton"))
-        
         switch standardDefaults.integerForKey("selectedBackgroundButton")
         {
         case 1:
