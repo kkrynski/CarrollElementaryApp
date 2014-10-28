@@ -12,6 +12,7 @@
 
 #import "ModuleVC.h"
 #import "VocabVC.h"
+#import "QuickQuizVC.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -46,7 +47,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Yazeed", @"Mason", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Yazeed", @"Mason", @"All about plants", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -103,12 +104,6 @@
     // keeps the app from crashing.
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-        // Creates a default style table view cell
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-    }
     
     // Update and format the title label, or the primary label in the cell.
     cell.textLabel.text = (NSString *)[tests objectAtIndex:indexPath.row];
@@ -175,6 +170,14 @@
         }case 5:
         {
             // Mason
+            
+            break;
+            
+        }case 6:
+        {
+            // All about plants
+            
+            [self launchPlants];
             
             break;
             
@@ -465,12 +468,38 @@
 -(void)launchVocab
 {
     VocabVC *vocabVC = [[VocabVC alloc] init];
+    NSString *question = @"ambitious";
+    NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil]; //Add an empty string if less than 5 answers.
+    int indexOfAnswer = 1;
+    vocabVC.question = question;
+    vocabVC.answers = answers;
+    vocabVC.indexOfAnswer = indexOfAnswer;
     
-    NSArray *questions = [NSArray arrayWithObjects:@"Is this working?", nil];
+    [self presentViewController:vocabVC animated:YES completion:nil];}
+
+-(void)launchPlants
+{
+    [self launchQuickQuiz];
+}
+
+-(void)launchQuickQuiz
+{
+    QuickQuizVC *quickQuizVC = [[QuickQuizVC alloc] init];
     
-    vocabVC.questions = questions;
+    NSString *question = [NSString stringWithFormat:@"What does a plant NOT need?"];
     
-    [self presentViewController:vocabVC animated:YES completion:nil];
+    NSArray *answers = [NSArray arrayWithObjects:[UIImage imageNamed:@"25-weather"],
+                        [UIImage imageNamed:@"65-note"],
+                        [UIImage imageNamed:@"61-brightness"],
+                        nil];
+    
+    NSNumber *correct = [NSNumber numberWithInt:1]; // Music
+    
+    quickQuizVC.question = question;
+    quickQuizVC.answers = answers;
+    quickQuizVC.correctIndex = correct;
+    
+    [self presentViewController:quickQuizVC animated:YES completion:nil];
 }
 
 @end

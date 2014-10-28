@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flora Dummy/PageManager.m"
-            timestampString = "417659628.921805"
+            timestampString = "436145671.593433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-launchAppropriateViewControllerForPage:inDirection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flora Dummy/PageManager.m"
-            timestampString = "417659996.143228"
+            timestampString = "436145671.593433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "-launchAppropriateViewControllerForPage:inDirection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -238,6 +238,38 @@
             startingLineNumber = "121"
             endingLineNumber = "121"
             landmarkName = "-addTextView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Flora Dummy/PageManager.m"
+            timestampString = "436145671.593433"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
+            landmarkName = "-launchAppropriateViewControllerForPage:inDirection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Flora Dummy/PageManager.m"
+            timestampString = "436145671.593433"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
+            landmarkName = "-launchAppropriateViewControllerForPage:inDirection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -20,25 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Another word for * is:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-W2-c1U">
-                    <rect key="frame" x="184" y="217" width="399" height="66"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9Z-NA-gTx">
-                    <rect key="frame" x="578" y="151" width="130" height="30"/>
+                    <rect key="frame" x="401" y="231" width="223" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 1">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="but1:" destination="-1" eventType="touchUpInside" id="S7C-H5-whR"/>
-                        <action selector="butClick:" destination="-1" eventType="touchUpInside" id="OK4-fJ-GoX"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drk-Wr-KFh">
-                    <rect key="frame" x="578" y="210" width="130" height="30"/>
+                    <rect key="frame" x="401" y="290" width="223" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 2">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,7 +41,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XZ-WV-g5x">
-                    <rect key="frame" x="578" y="272" width="130" height="30"/>
+                    <rect key="frame" x="401" y="352" width="223" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 3">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,7 +51,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emz-Gf-5uv">
-                    <rect key="frame" x="578" y="401" width="130" height="30"/>
+                    <rect key="frame" x="401" y="481" width="223" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 5">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,7 +61,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-y9-eh3">
-                    <rect key="frame" x="578" y="336" width="130" height="30"/>
+                    <rect key="frame" x="401" y="416" width="223" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 4">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,6 +70,12 @@
                         <action selector="but4:" destination="-1" eventType="touchUpInside" id="hgm-80-0hY"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Another word for * is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-W2-c1U">
+                    <rect key="frame" x="313" y="128" width="399" height="66"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

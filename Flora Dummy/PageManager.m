@@ -16,6 +16,7 @@
 #import "Page_GardenDataVC.h"
 #import "Page_QRCodeVC.h"
 #import "ModuleVC.h"
+#import "QuickQuizVC.h"
 
 @interface PageManager ()
 {
@@ -173,6 +174,8 @@
             introVC.pageNumber = page.pageNumber;
             introVC.pageCount = page.pageCount;
             
+            [introVC reloadView];
+            
             // Set summary text if there is any
             if (((NSString *)[page.pageDictionary objectForKey:@"PageText"])
                 && ![(NSString *)[page.pageDictionary objectForKey:@"PageText"] isEqualToString:@""])
@@ -234,7 +237,8 @@
             readVC.pageNumber = page.pageNumber;
             readVC.pageCount = page.pageCount;
             
-            
+            [readVC reloadView];
+
             
             //[parentViewController presentModalViewController:pageViewController animated:YES];
             
@@ -269,6 +273,8 @@
             dragVC.pageNumber = page.pageNumber;
             dragVC.pageCount = page.pageCount;
             
+            [dragVC reloadView];
+
             
             // If the direction is 0, bring this page to the screen
             //
@@ -300,6 +306,8 @@
             mathVC.pageNumber = page.pageNumber;
             mathVC.pageCount = page.pageCount;
             
+            [mathVC reloadView];
+
             
             // If the direction is 0, bring this page to the screen
             //
@@ -340,6 +348,9 @@
             qrVC.pageNumber = page.pageNumber;
             qrVC.pageCount = page.pageCount;
             
+            [qrVC reloadView];
+
+            
             qrVC.targetQR = [page.pageDictionary objectForKey:@"TargetID"];
             qrVC.pageDict = page.pageDictionary;
             [pageViewController setViewControllers:[NSArray arrayWithObjects:qrVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -359,6 +370,8 @@
             readVC.pageNumber = page.pageNumber;
             readVC.pageCount = page.pageCount;
             
+            [readVC reloadView];
+
             
             [pageViewController setViewControllers:[NSArray arrayWithObjects:readVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
         
@@ -376,8 +389,31 @@
             mVC.pageNumber = page.pageNumber;
             mVC.pageCount = page.pageCount;
             
+            [mVC reloadView];
             
             [pageViewController setViewControllers:[NSArray arrayWithObjects:mVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+            
+        }else if ([name isEqualToString:@"Page_QuickQuiz"])
+        {
+            // Create a reading page
+            QuickQuizVC *qVC = [[QuickQuizVC alloc] init];
+            qVC.parentManager = self;
+            
+            // Save important data to page
+            qVC.pageDictionary = page.pageDictionary;
+            qVC.titleString = page.titleString;
+            qVC.dateString = page.dateString;
+            qVC.pageNumber = page.pageNumber;
+            qVC.pageCount = page.pageCount;
+            
+            [qVC reloadView];
+            
+            qVC.question = (NSString *)[page.pageDictionary objectForKey:@"Question"];
+            qVC.answers = (NSArray *)[page.pageDictionary objectForKey:@"Answers"];
+            qVC.correctIndex = (NSNumber *)[page.pageDictionary objectForKey:@"CorrectIndex"];
+            
+            [pageViewController setViewControllers:[NSArray arrayWithObjects:qVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+            
         }
 
 
