@@ -9,13 +9,6 @@
 #import "PageVC.h"
 
 
-@interface Question : NSObject
-
-@property (nonatomic,retain) NSString *question;
-@property (nonatomic,retain) NSMutableArray *answers;
-@property int *indexOfAnswer;
-
-@end
 
 
 @interface VocabVC : PageVC
@@ -26,7 +19,8 @@
 @property (nonatomic,retain) IBOutlet UIButton *butAnswer4;
 @property (nonatomic,retain) IBOutlet UIButton *butAnswer5;
 
-@property (nonatomic, retain) NSArray *questions;
-
+@property (nonatomic, retain) NSString *question;
+@property (nonatomic, retain) NSArray *answers;
+@property (nonatomic, assign) int *indexOfAnswer;
 
 @end
