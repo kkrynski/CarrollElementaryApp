@@ -154,20 +154,20 @@
 		9211951419FE01DC00644054 /* Page_GardenDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page_GardenDataVC.m; sourceTree = "<group>"; };
 		9211951C19FE02CB00644054 /* ModuleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleVC.h; sourceTree = "<group>"; };
 		9211951D19FE02CB00644054 /* ModuleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleVC.m; sourceTree = "<group>"; };
-		921894E017F7752A00DFB26B /* Flora Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flora Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		921894E017F7752A00DFB26B /* FloraDummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloraDummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		921894E317F7752A00DFB26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		921894E517F7752A00DFB26B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		921894E717F7752A00DFB26B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		921894EB17F7752A00DFB26B /* Flora Dummy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Flora Dummy-Info.plist"; sourceTree = "<group>"; };
+		921894EB17F7752A00DFB26B /* FloraDummy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FloraDummy-Info.plist"; sourceTree = "<group>"; };
 		921894ED17F7752A00DFB26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		921894EF17F7752A00DFB26B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		921894F117F7752A00DFB26B /* Flora Dummy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flora Dummy-Prefix.pch"; sourceTree = "<group>"; };
+		921894F117F7752A00DFB26B /* FloraDummy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FloraDummy-Prefix.pch"; sourceTree = "<group>"; };
 		921894F217F7752A00DFB26B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		921894F317F7752A00DFB26B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		921894FE17F7752A00DFB26B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9218950417F7752A00DFB26B /* Flora DummyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flora DummyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9218950417F7752A00DFB26B /* FloraDummyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloraDummyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9218950517F7752A00DFB26B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9218950D17F7752A00DFB26B /* Flora DummyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Flora DummyTests-Info.plist"; sourceTree = "<group>"; };
+		9218950D17F7752A00DFB26B /* FloraDummyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FloraDummyTests-Info.plist"; sourceTree = "<group>"; };
 		9218950F17F7752A00DFB26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9218951117F7752A00DFB26B /* Flora_DummyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flora_DummyTests.m; sourceTree = "<group>"; };
 		9218951B17F775C200DFB26B /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
@@ -352,8 +352,8 @@
 		921894E117F7752A00DFB26B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				921894E017F7752A00DFB26B /* Flora Dummy.app */,
-				9218950417F7752A00DFB26B /* Flora DummyTests.xctest */,
+				921894E017F7752A00DFB26B /* FloraDummy.app */,
+				9218950417F7752A00DFB26B /* FloraDummyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,10 +407,10 @@
 		921894EA17F7752A00DFB26B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				921894EB17F7752A00DFB26B /* Flora Dummy-Info.plist */,
+				921894EB17F7752A00DFB26B /* FloraDummy-Info.plist */,
 				921894EC17F7752A00DFB26B /* InfoPlist.strings */,
 				921894EF17F7752A00DFB26B /* main.m */,
-				921894F117F7752A00DFB26B /* Flora Dummy-Prefix.pch */,
+				921894F117F7752A00DFB26B /* FloraDummy-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 		9218950C17F7752A00DFB26B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9218950D17F7752A00DFB26B /* Flora DummyTests-Info.plist */,
+				9218950D17F7752A00DFB26B /* FloraDummyTests-Info.plist */,
 				9218950E17F7752A00DFB26B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -602,9 +602,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		921894DF17F7752A00DFB26B /* Flora Dummy */ = {
+		921894DF17F7752A00DFB26B /* FloraDummy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9218951517F7752A00DFB26B /* Build configuration list for PBXNativeTarget "Flora Dummy" */;
+			buildConfigurationList = 9218951517F7752A00DFB26B /* Build configuration list for PBXNativeTarget "FloraDummy" */;
 			buildPhases = (
 				921894DC17F7752A00DFB26B /* Sources */,
 				921894DD17F7752A00DFB26B /* Frameworks */,
@@ -614,14 +614,14 @@
 			);
 			dependencies = (
 			);
-			name = "Flora Dummy";
+			name = FloraDummy;
 			productName = "Flora Dummy";
-			productReference = 921894E017F7752A00DFB26B /* Flora Dummy.app */;
+			productReference = 921894E017F7752A00DFB26B /* FloraDummy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9218950317F7752A00DFB26B /* Flora DummyTests */ = {
+		9218950317F7752A00DFB26B /* FloraDummyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9218951817F7752A00DFB26B /* Build configuration list for PBXNativeTarget "Flora DummyTests" */;
+			buildConfigurationList = 9218951817F7752A00DFB26B /* Build configuration list for PBXNativeTarget "FloraDummyTests" */;
 			buildPhases = (
 				9218950017F7752A00DFB26B /* Sources */,
 				9218950117F7752A00DFB26B /* Frameworks */,
@@ -632,9 +632,9 @@
 			dependencies = (
 				9218950A17F7752A00DFB26B /* PBXTargetDependency */,
 			);
-			name = "Flora DummyTests";
+			name = FloraDummyTests;
 			productName = "Flora DummyTests";
-			productReference = 9218950417F7752A00DFB26B /* Flora DummyTests.xctest */;
+			productReference = 9218950417F7752A00DFB26B /* FloraDummyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -654,7 +654,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 921894DB17F7752A00DFB26B /* Build configuration list for PBXProject "Flora Dummy" */;
+			buildConfigurationList = 921894DB17F7752A00DFB26B /* Build configuration list for PBXProject "FloraDummy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -667,8 +667,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				921894DF17F7752A00DFB26B /* Flora Dummy */,
-				9218950317F7752A00DFB26B /* Flora DummyTests */,
+				921894DF17F7752A00DFB26B /* FloraDummy */,
+				9218950317F7752A00DFB26B /* FloraDummyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -803,7 +803,7 @@
 /* Begin PBXTargetDependency section */
 		9218950A17F7752A00DFB26B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 921894DF17F7752A00DFB26B /* Flora Dummy */;
+			target = 921894DF17F7752A00DFB26B /* FloraDummy */;
 			targetProxy = 9218950917F7752A00DFB26B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -909,13 +909,13 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Flora Dummy/Flora Dummy-Prefix.pch";
-				INFOPLIST_FILE = "Flora Dummy/Flora Dummy-Info.plist";
+				GCC_PREFIX_HEADER = "Flora Dummy/FloraDummy-Prefix.pch";
+				INFOPLIST_FILE = "Flora Dummy/FloraDummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -932,13 +932,13 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Flora Dummy/Flora Dummy-Prefix.pch";
-				INFOPLIST_FILE = "Flora Dummy/Flora Dummy-Info.plist";
+				GCC_PREFIX_HEADER = "Flora Dummy/FloraDummy-Prefix.pch";
+				INFOPLIST_FILE = "Flora Dummy/FloraDummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -960,9 +960,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Flora DummyTests/Flora DummyTests-Info.plist";
+				INFOPLIST_FILE = "Flora DummyTests/FloraDummyTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FloraDummyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -979,9 +979,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Flora Dummy/Flora Dummy-Prefix.pch";
-				INFOPLIST_FILE = "Flora DummyTests/Flora DummyTests-Info.plist";
+				INFOPLIST_FILE = "Flora DummyTests/FloraDummyTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FloraDummyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -990,7 +990,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		921894DB17F7752A00DFB26B /* Build configuration list for PBXProject "Flora Dummy" */ = {
+		921894DB17F7752A00DFB26B /* Build configuration list for PBXProject "FloraDummy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9218951317F7752A00DFB26B /* Debug */,
@@ -999,7 +999,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9218951517F7752A00DFB26B /* Build configuration list for PBXNativeTarget "Flora Dummy" */ = {
+		9218951517F7752A00DFB26B /* Build configuration list for PBXNativeTarget "FloraDummy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9218951617F7752A00DFB26B /* Debug */,
@@ -1008,7 +1008,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9218951817F7752A00DFB26B /* Build configuration list for PBXNativeTarget "Flora DummyTests" */ = {
+		9218951817F7752A00DFB26B /* Build configuration list for PBXNativeTarget "FloraDummyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9218951917F7752A00DFB26B /* Debug */,

@@ -7,6 +7,8 @@
 //
 
 #import "VocabVC.h"
+#import "FloraDummy-Swift.h"
+
 @interface VocabVC ()
 {
     
@@ -34,18 +36,23 @@
     questionLabel.text = [NSString stringWithFormat:@"%@ %@ %@", @"Another word for", _question,@"is:"];
     if([_answers objectAtIndex:0] != nil){
         [_butAnswer1 setTitle:[_answers objectAtIndex:0] forState:UIControlStateNormal];
+        [Definitions outlineButton:_butAnswer1];
     }
     if([_answers objectAtIndex:1] != nil){
         [_butAnswer2 setTitle:[_answers objectAtIndex:1] forState:UIControlStateNormal];
+        [Definitions outlineButton:_butAnswer2];
     }
     if([_answers objectAtIndex:2] != nil){
         [_butAnswer3 setTitle:[_answers objectAtIndex:2] forState:UIControlStateNormal];
+        [Definitions outlineButton:_butAnswer3];
     }
     if([_answers objectAtIndex:3] != nil){
         [_butAnswer4 setTitle:[_answers objectAtIndex:3] forState:UIControlStateNormal];
+        [Definitions outlineButton:_butAnswer4];
     }
     if([_answers objectAtIndex:4] != nil){
         [_butAnswer5 setTitle:[_answers objectAtIndex:4] forState:UIControlStateNormal];
+        [Definitions outlineButton:_butAnswer5];
     }
    
     
