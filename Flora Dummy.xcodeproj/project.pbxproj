@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		106C8BD419FED841009B0983 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD319FED841009B0983 /* SettingsVC.swift */; };
+		106C8BD619FEE55B009B0983 /* MathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD519FEE55B009B0983 /* MathVC.swift */; };
+		106C8BD819FEE574009B0983 /* ScienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD719FEE574009B0983 /* ScienceVC.swift */; };
+		106C8BD919FEE6A4009B0983 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
-		10B8787C19FC250A005D9937 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
@@ -41,9 +44,6 @@
 		9218950817F7752A00DFB26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921894E717F7752A00DFB26B /* UIKit.framework */; };
 		9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9218950E17F7752A00DFB26B /* InfoPlist.strings */; };
 		9218951217F7752A00DFB26B /* Flora_DummyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218951117F7752A00DFB26B /* Flora_DummyTests.m */; };
-		9218952817F775F600DFB26B /* MathVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218952617F775F600DFB26B /* MathVC.m */; };
-		9218952D17F7760800DFB26B /* ScienceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218952B17F7760800DFB26B /* ScienceVC.m */; };
-		9218953217F7761500DFB26B /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218953017F7761500DFB26B /* SettingsVC.m */; };
 		9218953617F776BA00DFB26B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218953517F776BA00DFB26B /* CoreData.framework */; };
 		921C73131899BB1A007DFB34 /* MathProblemVC_Normal.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */; };
 		921C731D189ADE7F007DFB34 /* EquationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 921C731C189ADE7F007DFB34 /* EquationFormatter.m */; };
@@ -126,6 +126,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		106C8BD319FED841009B0983 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		106C8BD519FEE55B009B0983 /* MathVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathVC.swift; sourceTree = "<group>"; };
+		106C8BD719FEE574009B0983 /* ScienceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScienceVC.swift; sourceTree = "<group>"; };
 		10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flora Dummy-Bridging-Header.h"; sourceTree = "<group>"; };
 		10B8787819FC1B40005D9937 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -284,6 +287,12 @@
 		10B8787F19FC32F4005D9937 /* Subjects */ = {
 			isa = PBXGroup;
 			children = (
+				9218952017F775EA00DFB26B /* LanguageArtsVC.h */,
+				9218952117F775EA00DFB26B /* LanguageArtsVC.m */,
+				9218952517F775F600DFB26B /* MathVC.h */,
+				9218952617F775F600DFB26B /* MathVC.m */,
+				9218952A17F7760800DFB26B /* ScienceVC.h */,
+				9218952B17F7760800DFB26B /* ScienceVC.m */,
 			);
 			name = Subjects;
 			sourceTree = "<group>";
@@ -296,6 +305,8 @@
 				9218951C17F775C200DFB26B /* HomeVC.m */,
 				921894F217F7752A00DFB26B /* AppDelegate.h */,
 				921894F317F7752A00DFB26B /* AppDelegate.m */,
+				9218952F17F7761500DFB26B /* SettingsVC.h */,
+				9218953017F7761500DFB26B /* SettingsVC.m */,
 			);
 			name = "Old Objective-C Code";
 			sourceTree = "<group>";
@@ -377,8 +388,7 @@
 				9211950D19FE01CC00644054 /* TestingTVC.h */,
 				9211950E19FE01CC00644054 /* TestingTVC.m */,
 				92E7A12D1864E372006A712B /* Subjects */,
-				9218952F17F7761500DFB26B /* SettingsVC.h */,
-				9218953017F7761500DFB26B /* SettingsVC.m */,
+				106C8BD319FED841009B0983 /* SettingsVC.swift */,
 				92E7A1281864E303006A712B /* Pages */,
 				92F406481801E19A00668376 /* UIOutlinedLabel.h */,
 				92F406491801E19A00668376 /* UIOutlinedLabel.m */,
@@ -569,12 +579,8 @@
 			isa = PBXGroup;
 			children = (
 				10B8788019FC3342005D9937 /* LanguageArtsVC.swift */,
-				9218952017F775EA00DFB26B /* LanguageArtsVC.h */,
-				9218952117F775EA00DFB26B /* LanguageArtsVC.m */,
-				9218952517F775F600DFB26B /* MathVC.h */,
-				9218952617F775F600DFB26B /* MathVC.m */,
-				9218952A17F7760800DFB26B /* ScienceVC.h */,
-				9218952B17F7760800DFB26B /* ScienceVC.m */,
+				106C8BD519FEE55B009B0983 /* MathVC.swift */,
+				106C8BD719FEE574009B0983 /* ScienceVC.swift */,
 			);
 			name = Subjects;
 			sourceTree = "<group>";
@@ -745,7 +751,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B193A3182F29F200F1583E /* Page_ReadVC.m in Sources */,
-				9218952D17F7760800DFB26B /* ScienceVC.m in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
 				9218952817F775F600DFB26B /* MathVC.m in Sources */,
 				9218953217F7761500DFB26B /* SettingsVC.m in Sources */,
@@ -907,10 +912,7 @@
 				INFOPLIST_FILE = "Flora Dummy/Flora Dummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/Zach/FloraApp/Flora\\ Dummy",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
@@ -933,10 +935,7 @@
 				INFOPLIST_FILE = "Flora Dummy/Flora Dummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/Zach/FloraApp/Flora\\ Dummy",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
@@ -961,10 +960,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Flora DummyTests/Flora DummyTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/Zach/FloraApp/Flora\\ Dummy",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -983,10 +979,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Flora Dummy/Flora Dummy-Prefix.pch";
 				INFOPLIST_FILE = "Flora DummyTests/Flora DummyTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/Zach/FloraApp/Flora\\ Dummy",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
