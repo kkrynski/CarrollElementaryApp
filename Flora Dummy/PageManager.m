@@ -12,7 +12,6 @@
 
 #import "PageVC.h"
 #import "Page_DragAndDropVC.h"
-#import "MathProblemVC_Normal.h"
 #import "Page_GardenDataVC.h"
 #import "Page_QRCodeVC.h"
 #import "ModuleVC.h"
@@ -69,7 +68,7 @@
         currentPage.pageCount = [NSNumber numberWithInt:pageArray.count];
         
         // Bring the page to the screen
-        [parentViewController presentModalViewController:pageViewController animated:YES];
+        [parentViewController presentViewController:pageViewController animated:YES completion:nil];
 
         // Make sure that the page manager keeps up
         [self goToViewControllerAtIndex:currentIndex inDirection:[NSNumber numberWithInt:0]];

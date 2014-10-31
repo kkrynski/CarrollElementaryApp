@@ -157,7 +157,7 @@
     // Edit button appearance for nav bar
     id barButtonAppearance = [UIBarButtonItem appearance];
     NSDictionary *barButtonTextAttributes = @{
-                                              UITextAttributeFont: [UIFont fontWithName:@"Marker Felt" size:24.0],
+                                              NSFontAttributeName: [UIFont fontWithName:@"Marker Felt" size:24.0],
                                               UITextAttributeTextShadowColor: [UIColor colorWithWhite:0.0f alpha:0.2f],
                                               UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)]
                                               };
