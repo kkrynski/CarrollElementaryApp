@@ -8,9 +8,9 @@
 
 #import "PageManager.h"
 
+#import "FloraDummy-Swift.h"
+
 #import "PageVC.h"
-#import "Page_IntroVC.h"
-#import "Page_ReadVC.h"
 #import "Page_DragAndDropVC.h"
 #import "MathProblemVC_Normal.h"
 #import "Page_GardenDataVC.h"
