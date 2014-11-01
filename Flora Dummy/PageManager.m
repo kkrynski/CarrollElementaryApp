@@ -224,7 +224,7 @@
             // If it's a reading page
             
             // Create a reading page
-            Page_ReadVC *readVC = [[Page_ReadVC alloc]init];
+            Page_ReadVC *readVC = [[Page_ReadVC alloc] initWithNibName:@"Page_ReadVC" bundle:nil];
             readVC.parentManager = self;
             
             // Save important data to page
