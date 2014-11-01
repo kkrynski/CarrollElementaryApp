@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Page_IntroVC" customModule="FloraDummy" customModuleProvider="target">
             <connections>
-                <outlet property="summaryTextView" destination="2Oe-gL-7zy" id="roT-16-EmA"/>
+                <outlet property="summaryTextView" destination="2Oe-gL-7zy" id="rcG-jg-xPR"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>

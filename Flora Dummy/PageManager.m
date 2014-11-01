@@ -163,7 +163,7 @@
         if ([name isEqualToString:@"Page_IntroVC"])
         {
             // Create intro page
-            Page_IntroVC *introVC = [[Page_IntroVC alloc]init];
+            Page_IntroVC *introVC = [[Page_IntroVC alloc] initWithNibName:@"Page_IntroVC" bundle:nil];
             introVC.parentManager = self;
             
             // Save appropriate information to new intro page
