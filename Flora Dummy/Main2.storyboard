@@ -7,7 +7,7 @@
         <!--Home-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="HomeVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="HomeVC" customModule="FloraDummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QTE-5n-Fqu"/>
                         <viewControllerLayoutGuide type="bottom" id="6PU-LD-61f"/>
@@ -91,7 +91,7 @@
         <!--Language Arts-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="LanguageArtsVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="LanguageArtsVC" customModule="FloraDummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NJf-ZT-M4k"/>
                         <viewControllerLayoutGuide type="bottom" id="mRh-Sb-X1X"/>
@@ -170,7 +170,7 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
         <!--Math-->
         <scene sceneID="Un9-il-hCe">
             <objects>
-                <viewController id="WtB-Oa-cH2" customClass="MathVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WtB-Oa-cH2" customClass="MathVC" customModule="FloraDummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M5M-BF-N0K"/>
                         <viewControllerLayoutGuide type="bottom" id="uK1-IU-GPU"/>
@@ -242,7 +242,7 @@ You might find simple addition games on this page, or maybe you can learn how to
         <!--Science-->
         <scene sceneID="RvN-1i-wYb">
             <objects>
-                <viewController id="flJ-CE-eRV" customClass="ScienceVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="flJ-CE-eRV" customClass="ScienceVC" customModule="FloraDummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ibz-7D-Gkm"/>
                         <viewControllerLayoutGuide type="bottom" id="Sbx-iM-tNA"/>
@@ -314,7 +314,7 @@ Science includes learning about the scientific method and even going on scavenge
         <!--Settings-->
         <scene sceneID="jS8-jD-fx8">
             <objects>
-                <viewController id="aUo-zj-yvZ" customClass="SettingsVC" customModule="Flora_Dummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aUo-zj-yvZ" customClass="SettingsVC" customModule="FloraDummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UPv-kq-V5F"/>
                         <viewControllerLayoutGuide type="bottom" id="Fjz-gQ-K60"/>

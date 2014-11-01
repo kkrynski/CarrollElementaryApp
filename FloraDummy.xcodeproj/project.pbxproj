@@ -42,6 +42,8 @@
 		9218950817F7752A00DFB26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921894E717F7752A00DFB26B /* UIKit.framework */; };
 		9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9218950E17F7752A00DFB26B /* InfoPlist.strings */; };
 		9218953617F776BA00DFB26B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218953517F776BA00DFB26B /* CoreData.framework */; };
+		923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 923774531A0552A400A49D14 /* PictureQuizVC.m */; };
+		923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923774541A0552A400A49D14 /* PictureQuizVC.xib */; };
 		924690B919FF08CD00A1F9B7 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 924690B819FF08CD00A1F9B7 /* Carroll.json */; };
 		924690BA19FF08CD00A1F9B7 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 924690B819FF08CD00A1F9B7 /* Carroll.json */; };
 		926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0D18E4EA69006CDB2F /* HOME1.gif */; };
@@ -176,6 +178,9 @@
 		921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathProblemVC_Normal.m; sourceTree = "<group>"; };
 		921C731B189ADE7F007DFB34 /* EquationFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquationFormatter.h; sourceTree = "<group>"; };
 		921C731C189ADE7F007DFB34 /* EquationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquationFormatter.m; sourceTree = "<group>"; };
+		923774521A0552A400A49D14 /* PictureQuizVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureQuizVC.h; sourceTree = "<group>"; };
+		923774531A0552A400A49D14 /* PictureQuizVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureQuizVC.m; sourceTree = "<group>"; };
+		923774541A0552A400A49D14 /* PictureQuizVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureQuizVC.xib; sourceTree = "<group>"; };
 		924690B819FF08CD00A1F9B7 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		926C9B0D18E4EA69006CDB2F /* HOME1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME1.gif; sourceTree = "<group>"; };
 		926C9B0E18E4EA69006CDB2F /* HOME2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME2.gif; sourceTree = "<group>"; };
@@ -428,6 +433,7 @@
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
 				924690B819FF08CD00A1F9B7 /* Carroll.json */,
+				923774511A05524100A49D14 /* Stephen's Stuff */,
 				921194FC19FE014200644054 /* Zach's SUper Secret Project */,
 				4C0BCF3819FC155900E69F5C /* Riley */,
 				921894EA17F7752A00DFB26B /* Supporting Files */,
@@ -471,6 +477,16 @@
 				104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */,
 			);
 			name = "Math Problems";
+			sourceTree = "<group>";
+		};
+		923774511A05524100A49D14 /* Stephen's Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				923774521A0552A400A49D14 /* PictureQuizVC.h */,
+				923774531A0552A400A49D14 /* PictureQuizVC.m */,
+				923774541A0552A400A49D14 /* PictureQuizVC.xib */,
+			);
+			name = "Stephen's Stuff";
 			sourceTree = "<group>";
 		};
 		92D069F218D12FE3004850C6 /* zbar */ = {
@@ -718,6 +734,7 @@
 				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
 				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
 				926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */,
+				923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */,
 				926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */,
 				92D06A2118D140F4004850C6 /* zbar-back.png in Resources */,
 				4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */,
@@ -791,6 +808,7 @@
 				104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */,
 				104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
+				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				9211950919FE01C000644054 /* PageManager.m in Sources */,
 				9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */,
 				9211950B19FE01C000644054 /* PageVC.m in Sources */,
