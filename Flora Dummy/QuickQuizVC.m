@@ -56,7 +56,7 @@
                                                               self.dateLabel.frame.size.height + 20)];
     
     questionLabel.text = question;
-    questionLabel.textAlignment = UITextAlignmentCenter;
+    questionLabel.textAlignment = NSTextAlignmentCenter;
     questionLabel.font = self.font;
     
     questionLabel.textColor = primaryColor;

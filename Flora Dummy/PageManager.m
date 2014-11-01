@@ -8,11 +8,10 @@
 
 #import "PageManager.h"
 
+#import "FloraDummy-Swift.h"
+
 #import "PageVC.h"
-#import "Page_IntroVC.h"
-#import "Page_ReadVC.h"
 #import "Page_DragAndDropVC.h"
-#import "MathProblemVC_Normal.h"
 #import "Page_GardenDataVC.h"
 #import "Page_QRCodeVC.h"
 #import "ModuleVC.h"
@@ -69,7 +68,7 @@
         currentPage.pageCount = [NSNumber numberWithInt:pageArray.count];
         
         // Bring the page to the screen
-        [parentViewController presentModalViewController:pageViewController animated:YES];
+        [parentViewController presentViewController:pageViewController animated:YES completion:nil];
 
         // Make sure that the page manager keeps up
         [self goToViewControllerAtIndex:currentIndex inDirection:[NSNumber numberWithInt:0]];
@@ -164,7 +163,7 @@
         if ([name isEqualToString:@"Page_IntroVC"])
         {
             // Create intro page
-            Page_IntroVC *introVC = [[Page_IntroVC alloc]init];
+            Page_IntroVC *introVC = [[Page_IntroVC alloc] initWithNibName:@"Page_IntroVC" bundle:nil];
             introVC.parentManager = self;
             
             // Save appropriate information to new intro page
@@ -225,7 +224,7 @@
             // If it's a reading page
             
             // Create a reading page
-            Page_ReadVC *readVC = [[Page_ReadVC alloc]init];
+            Page_ReadVC *readVC = [[Page_ReadVC alloc] initWithNibName:@"Page_ReadVC" bundle:nil];
             readVC.parentManager = self;
             
             // Save important data to page

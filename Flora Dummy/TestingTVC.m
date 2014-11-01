@@ -473,7 +473,7 @@
     int indexOfAnswer = 1;
     vocabVC.question = question;
     vocabVC.answers = answers;
-    vocabVC.indexOfAnswer = indexOfAnswer;
+    vocabVC.indexOfAnswer = &(indexOfAnswer);
     
     [self presentViewController:vocabVC animated:YES completion:nil];}
 
