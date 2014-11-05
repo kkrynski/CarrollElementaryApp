@@ -168,8 +168,30 @@ int state = 0;
             calLabel.text = num1;
             num2 = @"";
         }
+    }else if(operator == 5){
+            num1 = [NSString stringWithFormat:@"%f",(pow(num1.doubleValue,num2.doubleValue))];
+            NSRange searchResult = [num1 rangeOfString:@"."];
+            bool tempo = false;
+            int index = 6;
+            for(int i = 0; i<6;i++){
+                if(tempo == false){
+                    NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i, 1)]);
+                    if([temp isEqualToString:@"0"]){
+                        tempo = true;
+                        index = i-1;
+                    }
+                } else {
+                    NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i,1)]);
+                    if(![temp isEqualToString:@"0"]){
+                        tempo = false;
+                        index = 6;
+                    }
+                }
+            }
+            num1 = [self roundem:index];
+            calLabel.text = num1;
+            num2 = @"";
     }
-        
     operator = 0;
     num2 = @"";
 }
@@ -266,6 +288,67 @@ int state = 0;
 }
 - (IBAction)decBut:(id)sender {
     [self command:@"."];
+}
+- (IBAction)powBut:(id)sender {
+    if(operator == 0){
+        operator = 5;
+    } else if(![num2 isEqualToString:@""]){
+        [self calculate];
+        operator = 5;
+    }
+}
+- (IBAction)rootBut:(id)sender {
+    if([num2 isEqualToString:@""]) {
+        num1 = [NSString stringWithFormat:@"%f",(sqrt(num1.doubleValue))];
+        NSRange searchResult = [num1 rangeOfString:@"."];
+        bool tempo = false;
+        int index = 6;
+        for(int i = 0; i<6;i++){
+            if(tempo == false){
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i, 1)]);
+                if([temp isEqualToString:@"0"]){
+                    tempo = true;
+                    index = i-1;
+                }
+            } else {
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i,1)]);
+                if(![temp isEqualToString:@"0"]){
+                    tempo = false;
+                    index = 6;
+                }
+            }
+        }
+        num1 = [self roundem:index];
+        calLabel.text = num1;
+        num2 = @"";
+    } else {
+        num2 = [NSString stringWithFormat:@"%f",(sqrt(num2.doubleValue))];
+        NSRange searchResult = [num1 rangeOfString:@"."];
+        bool tempo = false;
+        int index = 6;
+        for(int i = 0; i<6;i++){
+            if(tempo == false){
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i, 1)]);
+                if([temp isEqualToString:@"0"]){
+                    tempo = true;
+                    index = i-1;
+                }
+            } else {
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i,1)]);
+                if(![temp isEqualToString:@"0"]){
+                    tempo = false;
+                    index = 6;
+                }
+            }
+        }
+        num2 = [self roundem:index];
+        calLabel.text = num2;
+
+    }
+}
+- (IBAction)piBut:(id)sender {
+}
+- (IBAction)negBut:(id)sender {
 }
 
 @end
