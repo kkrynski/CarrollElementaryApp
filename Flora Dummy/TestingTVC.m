@@ -12,8 +12,10 @@
 
 #import "ModuleVC.h"
 #import "VocabVC.h"
+#import "CalculatorVC.h"
 #import "QuickQuizVC.h"
 #import "PictureQuizVC.h"
+#import "PasswordVC.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -48,7 +50,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason", @"All about plants", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -172,7 +174,9 @@
             
         }case 5:
         {
-            // Mason
+            // Mason - Password
+            
+            [self launchPassword];
             
             break;
             
@@ -470,6 +474,7 @@
 
 -(void)launchVocab
 {
+    /*
     VocabVC *vocabVC = [[VocabVC alloc] init];
     NSString *question = @"ambitious";
     NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil]; //Add an empty string if less than 5 answers.
@@ -477,8 +482,9 @@
     vocabVC.question = question;
     vocabVC.answers = answers;
     vocabVC.indexOfAnswer = &(indexOfAnswer);
-    
-    [self presentViewController:vocabVC animated:YES completion:nil];
+    */
+    CalculatorVC *calc = [[CalculatorVC alloc] init];
+    [self presentViewController:calc animated:YES completion:nil];
 
 }
 
@@ -527,6 +533,20 @@
     
     [self presentViewController:pictureQuizVC animated:YES completion:nil];
 
+}
+
+-(void)launchPassword
+{
+    PasswordVC *passwordVC = [[PasswordVC alloc] init];
+    
+    NSString *username = [NSString stringWithFormat:@"qwerty"];
+    NSString *password = [NSString stringWithFormat:@"qwerty"];
+    
+    passwordVC.username = username;
+    passwordVC.password = password;
+    
+    [self presentViewController:passwordVC animated:YES completion:nil];
+    
 }
 
 @end
