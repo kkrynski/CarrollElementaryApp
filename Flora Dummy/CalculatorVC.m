@@ -264,5 +264,8 @@ int state = 0;
     num1 = @"";
     num2 = @"";
 }
+- (IBAction)decBut:(id)sender {
+    [self command:@"."];
+}
 
 @end

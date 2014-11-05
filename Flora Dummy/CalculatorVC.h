@@ -27,5 +27,6 @@
 @property (strong, retain) IBOutlet UIButton *mulBut;
 @property (strong, retain) IBOutlet UIButton *subBut;
 @property (strong, retain) IBOutlet UIButton *addBut;
+@property (strong, retain) IBOutlet UIButton *decBut;
 
 @end

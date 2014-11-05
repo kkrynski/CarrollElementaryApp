@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="addBut" destination="mOr-xo-4Dh" id="sTM-2p-TZw"/>
                 <outlet property="calLabel" destination="Stq-YL-00z" id="HGf-3c-D5B"/>
+                <outlet property="decBut" destination="ZFO-Ww-zEA" id="BLC-gP-qnj"/>
                 <outlet property="divBut" destination="C97-3X-veD" id="BYI-dR-slH"/>
                 <outlet property="eightBut" destination="1hA-8E-ARL" id="1vd-1g-Vxi"/>
                 <outlet property="equalsBut" destination="g66-bh-W7J" id="aLh-Hf-Exh"/>
@@ -141,20 +142,8 @@
                         <action selector="nineBut:" destination="-1" eventType="touchUpInside" id="MGa-W5-pvh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOr-xo-4Dh">
-                    <rect key="frame" x="381" y="251" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="eWe-3B-SMB"/>
-                    </constraints>
-                    <state key="normal" title="+">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="addBut:" destination="-1" eventType="touchUpInside" id="9Gk-h1-dhz"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk8-7f-Ewf">
-                    <rect key="frame" x="381" y="319" width="60" height="60"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk8-7f-Ewf">
+                    <rect key="frame" x="381" y="297" width="60" height="60"/>
                     <state key="normal" title="-">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -162,8 +151,8 @@
                         <action selector="subBut:" destination="-1" eventType="touchUpInside" id="gXR-bs-jn8"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OL-aF-AtW">
-                    <rect key="frame" x="381" y="387" width="60" height="60"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OL-aF-AtW">
+                    <rect key="frame" x="381" y="359" width="60" height="60"/>
                     <state key="normal" title="*">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -171,8 +160,8 @@
                         <action selector="mulBut:" destination="-1" eventType="touchUpInside" id="i7K-Eu-6VN"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C97-3X-veD">
-                    <rect key="frame" x="381" y="455" width="60" height="60"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C97-3X-veD">
+                    <rect key="frame" x="381" y="412" width="60" height="60"/>
                     <state key="normal" title="/">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -208,6 +197,31 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFO-Ww-zEA">
+                    <rect key="frame" x="381" y="455" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="orC-9g-wzB"/>
+                    </constraints>
+                    <state key="normal" title=".">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addBut:" destination="-1" eventType="touchUpInside" id="Faf-Zv-fmR"/>
+                        <action selector="decBut:" destination="-1" eventType="touchUpInside" id="ElV-fq-BWd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOr-xo-4Dh">
+                    <rect key="frame" x="381" y="251" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="eWe-3B-SMB"/>
+                    </constraints>
+                    <state key="normal" title="+">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addBut:" destination="-1" eventType="touchUpInside" id="9Gk-h1-dhz"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -217,6 +231,8 @@
                 <constraint firstItem="Hk8-7f-Ewf" firstAttribute="trailing" secondItem="6OL-aF-AtW" secondAttribute="trailing" id="2ux-l6-YzK"/>
                 <constraint firstItem="6OL-aF-AtW" firstAttribute="leading" secondItem="Hk8-7f-Ewf" secondAttribute="leading" id="3F3-Ej-VmA"/>
                 <constraint firstItem="lme-Uy-Fec" firstAttribute="baseline" secondItem="Hk8-7f-Ewf" secondAttribute="baseline" id="3YQ-5i-6cr"/>
+                <constraint firstItem="ZFO-Ww-zEA" firstAttribute="leading" secondItem="lme-Uy-Fec" secondAttribute="trailing" constant="59" id="3vJ-Gh-rj9"/>
+                <constraint firstItem="ZFO-Ww-zEA" firstAttribute="top" secondItem="Hk8-7f-Ewf" secondAttribute="top" id="4ri-NO-Mfp"/>
                 <constraint firstItem="mOr-xo-4Dh" firstAttribute="baseline" secondItem="l4F-rv-jlm" secondAttribute="firstBaseline" id="7Lo-jh-1z8"/>
                 <constraint firstItem="C97-3X-veD" firstAttribute="top" secondItem="g66-bh-W7J" secondAttribute="top" id="7tm-1z-RxG"/>
                 <constraint firstItem="6OL-aF-AtW" firstAttribute="baseline" secondItem="x8w-kv-lXo" secondAttribute="baseline" id="8E1-WD-0mZ"/>
@@ -237,6 +253,7 @@
                 <constraint firstItem="lme-Uy-Fec" firstAttribute="leading" secondItem="x8w-kv-lXo" secondAttribute="leading" id="PYJ-7j-qiM"/>
                 <constraint firstItem="MQY-OG-pkg" firstAttribute="top" secondItem="LGW-7P-Mva" secondAttribute="bottom" constant="8" symbolic="YES" id="Pw2-xI-AlI"/>
                 <constraint firstItem="lLv-n1-3PL" firstAttribute="baseline" secondItem="o7Z-oW-ZmF" secondAttribute="firstBaseline" id="Qb6-Tx-qIg"/>
+                <constraint firstItem="ZFO-Ww-zEA" firstAttribute="baseline" secondItem="Hk8-7f-Ewf" secondAttribute="baseline" id="QvY-IM-hYx"/>
                 <constraint firstItem="x8w-kv-lXo" firstAttribute="top" secondItem="Yvo-rs-gD1" secondAttribute="top" id="R6x-fv-M22"/>
                 <constraint firstItem="lme-Uy-Fec" firstAttribute="baseline" secondItem="Hk8-7f-Ewf" secondAttribute="firstBaseline" id="RUZ-jQ-7Xc"/>
                 <constraint firstItem="Yvo-rs-gD1" firstAttribute="leading" secondItem="o7Z-oW-ZmF" secondAttribute="leading" id="SLe-5w-37A"/>
@@ -249,6 +266,7 @@
                 <constraint firstItem="mOr-xo-4Dh" firstAttribute="top" secondItem="l4F-rv-jlm" secondAttribute="top" id="ZV1-2f-DEL"/>
                 <constraint firstItem="Hk8-7f-Ewf" firstAttribute="baseline" secondItem="lme-Uy-Fec" secondAttribute="firstBaseline" id="Zpq-kq-MM2"/>
                 <constraint firstItem="g66-bh-W7J" firstAttribute="leading" secondItem="x8w-kv-lXo" secondAttribute="leading" id="bri-Na-p8f"/>
+                <constraint firstItem="ZFO-Ww-zEA" firstAttribute="firstBaseline" secondItem="Hk8-7f-Ewf" secondAttribute="baseline" id="cYa-13-f0a"/>
                 <constraint firstItem="x8w-kv-lXo" firstAttribute="top" secondItem="6OL-aF-AtW" secondAttribute="top" id="dZY-6q-Sy6"/>
                 <constraint firstItem="Ch2-fr-WYy" firstAttribute="leading" secondItem="lLv-n1-3PL" secondAttribute="leading" id="dhY-Eo-lfz"/>
                 <constraint firstItem="MQY-OG-pkg" firstAttribute="trailing" secondItem="LGW-7P-Mva" secondAttribute="trailing" id="e1O-CM-QQ2"/>

@@ -12,6 +12,7 @@
 
 #import "ModuleVC.h"
 #import "VocabVC.h"
+#import "CalculatorVC.h"
 #import "QuickQuizVC.h"
 #import "PictureQuizVC.h"
 
@@ -470,6 +471,7 @@
 
 -(void)launchVocab
 {
+    /*
     VocabVC *vocabVC = [[VocabVC alloc] init];
     NSString *question = @"ambitious";
     NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil]; //Add an empty string if less than 5 answers.
@@ -477,8 +479,9 @@
     vocabVC.question = question;
     vocabVC.answers = answers;
     vocabVC.indexOfAnswer = &(indexOfAnswer);
-    
-    [self presentViewController:vocabVC animated:YES completion:nil];
+    */
+    CalculatorVC *calc = [[CalculatorVC alloc] init];
+    [self presentViewController:calc animated:YES completion:nil];
 
 }
 
