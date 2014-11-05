@@ -20,6 +20,8 @@
 		10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD519FEE55B009B0983 /* MathVC.swift */; };
 		10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD719FEE574009B0983 /* ScienceVC.swift */; };
 		10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD319FED841009B0983 /* SettingsVC.swift */; };
+		4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7DC3FC1A09A32C006E3E23 /* CalculatorVC.m */; };
+		4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7DC3FD1A09A32C006E3E23 /* CalculatorVC.xib */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
 		4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E719FC42C00066A53B /* VocabVC.xib */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
@@ -127,6 +129,9 @@
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		10B8787D19FC2881005D9937 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		10B8788019FC3342005D9937 /* LanguageArtsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageArtsVC.swift; sourceTree = "<group>"; };
+		4C7DC3FB1A09A32C006E3E23 /* CalculatorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorVC.h; sourceTree = "<group>"; };
+		4C7DC3FC1A09A32C006E3E23 /* CalculatorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorVC.m; sourceTree = "<group>"; };
+		4C7DC3FD1A09A32C006E3E23 /* CalculatorVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalculatorVC.xib; sourceTree = "<group>"; };
 		4CC305E519FC42C00066A53B /* VocabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabVC.h; sourceTree = "<group>"; };
 		4CC305E619FC42C00066A53B /* VocabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabVC.m; sourceTree = "<group>"; };
 		4CC305E719FC42C00066A53B /* VocabVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VocabVC.xib; sourceTree = "<group>"; };
@@ -353,6 +358,9 @@
 				4CC305E519FC42C00066A53B /* VocabVC.h */,
 				4CC305E619FC42C00066A53B /* VocabVC.m */,
 				4CC305E719FC42C00066A53B /* VocabVC.xib */,
+				4C7DC3FB1A09A32C006E3E23 /* CalculatorVC.h */,
+				4C7DC3FC1A09A32C006E3E23 /* CalculatorVC.m */,
+				4C7DC3FD1A09A32C006E3E23 /* CalculatorVC.xib */,
 			);
 			name = Riley;
 			sourceTree = "<group>";
@@ -725,6 +733,7 @@
 				92EF999B18B6F5CD00288BAF /* GardenDetailVC.xib in Resources */,
 				92F4064F1801ED2D00668376 /* Flora DUmmy 4.png in Resources */,
 				92E8CB4D18F0C4BD0025264E /* Wind1.gif in Resources */,
+				4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */,
 				92EF999418B6E6AD00288BAF /* Garden_Top.jpg in Resources */,
 				924690B919FF08CD00A1F9B7 /* Carroll.json in Resources */,
 				92D06A2318D140F4004850C6 /* zbar-help.html in Resources */,
@@ -818,6 +827,7 @@
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,
 				10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */,
 				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
+				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
 			);
