@@ -17,6 +17,9 @@
 #import "PictureQuizVC.h"
 #import "PasswordVC.h"
 
+    //Michael's Test Code
+#import "FloraDummy-Swift.h"
+
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface TestingTVC ()
@@ -483,7 +486,12 @@
     vocabVC.answers = answers;
     vocabVC.indexOfAnswer = &(indexOfAnswer);
     */
-    CalculatorVC *calc = [[CalculatorVC alloc] init];
+    CalculatorVC *calc = [[CalculatorVC alloc] initWithNibName:@"CalculatorVC" bundle:nil];
+    
+        //Michael's Test Code PLEASE DON'T REMOVE:
+    [calc setModalPresentationStyle:UIModalPresentationCustom];
+    [calc setTransitioningDelegate:self];
+    
     [self presentViewController:calc animated:YES completion:nil];
 
 }
@@ -547,6 +555,31 @@
     
     [self presentViewController:passwordVC animated:YES completion:nil];
     
+}
+
+#pragma mark Michael's Transition Methods
+
+- (UIPresentationController *) presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
+{
+    if ([presented isKindOfClass:[CalculatorVC class]])
+    {
+        return [[CalculatorPresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>) animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    if ([presented isKindOfClass:[CalculatorVC class]])
+        return [[CalculatorTransitionManager alloc] initWithIsPresenting:YES];
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>) animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    if ([dismissed isKindOfClass:[CalculatorVC class]])
+        return [[CalculatorTransitionManager alloc] initWithIsPresenting:NO];
+    return nil;
 }
 
 @end

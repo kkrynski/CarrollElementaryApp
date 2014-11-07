@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestingTVC : UITableViewController
+@interface TestingTVC : UITableViewController <UIViewControllerTransitioningDelegate>
 
 @end
