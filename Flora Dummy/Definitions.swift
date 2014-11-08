@@ -21,6 +21,11 @@ class Definitions: NSObject
 {
     //MARK: - Calculator Position
     
+    class func transitionDuration() -> NSTimeInterval
+    {
+        return transitionLength
+    }
+    
     /**
     Returns the Calculator's position on screen
     
