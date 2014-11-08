@@ -8,10 +8,6 @@
 
 import UIKit
 
-//Notifications for calculator increasing and decrasing size
-let CalculatorWillIncreaseSizeNotification = "CalculatorWillIncreaseSizeNotification"
-let CalculatorWillDecreaseSizeNotification = "CalculatorWillDecreaseSizeNotification"
-
 class CalculatorPresentationController: UIPresentationController
 {
     var blurView : UIVisualEffectView?  //The background blur view
@@ -21,6 +17,17 @@ class CalculatorPresentationController: UIPresentationController
     var dismissButton : UIButton?       //The dismiss button
     
     var calculatorHolderView : UIView?  //This view manages expanding and collapsing the calculator for special functions
+    
+    
+    class func CalculatorWillIncreaseSizeNotification() -> String
+    {
+        return "CalculatorWillIncreaseSizeNotification"
+    }
+    
+    class func CalculatorWillDecreaseSizeNotification() -> String
+    {
+        return "CalculatorWillDecreaseSizeNotification"
+    }
     
     //MARK: - Presentation
     
@@ -102,8 +109,8 @@ class CalculatorPresentationController: UIPresentationController
         }
         else                   //Register for the calculator expansion and collapse if it presented
         {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "increaseCalculatorSize", name: CalculatorWillIncreaseSizeNotification, object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "decreaseCalculatorSize", name: CalculatorWillDecreaseSizeNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "increaseCalculatorSize", name: CalculatorPresentationController.CalculatorWillIncreaseSizeNotification(), object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "decreaseCalculatorSize", name: CalculatorPresentationController.CalculatorWillIncreaseSizeNotification(), object: nil)
         }
     }
     
