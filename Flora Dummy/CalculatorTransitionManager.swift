@@ -22,7 +22,7 @@ class CalculatorTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
     //Returns the duration of the transition
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval
     {
-        return 0.3
+        return transitionLength
     }
     
     //Animates the transition based on whether we're presenting or not
@@ -48,14 +48,29 @@ class CalculatorTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
         
         // Position the presented view off the top of the container view
         presentedControllerView.frame = transitionContext.finalFrameForViewController(presentedController!)
-        presentedControllerView.center.x -= containerView.bounds.size.width
+        
+        if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
+        {
+            presentedControllerView.center.x -= 40 + presentedControllerView.frame.size.width
+        }
+        else
+        {
+            presentedControllerView.center.x += 40 + presentedControllerView.frame.size.width
+        }
         
         containerView.addSubview(presentedControllerView)
         
         // Animate the presented view to it's final position
-        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations:
+        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 0.77, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations:
             {
-                presentedControllerView.center.x += containerView.bounds.size.width
+                if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
+                {
+                    presentedControllerView.center.x += 40 + presentedControllerView.frame.size.width
+                }
+                else
+                {
+                    presentedControllerView.center.x -= 40 + presentedControllerView.frame.size.width
+                }
             }, completion:
             {(completed: Bool) -> Void in
                 transitionContext.completeTransition(completed)
@@ -72,7 +87,14 @@ class CalculatorTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
         // Animate the presented view off the bottom of the view
         UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations:
             {
-                presentedControllerView.center.x -= containerView.bounds.size.height
+                if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
+                {
+                    presentedControllerView.center.x -= 40 + presentedControllerView.frame.size.width
+                }
+                else
+                {
+                    presentedControllerView.center.x += 40 + presentedControllerView.frame.size.width
+                }
             }, completion:
             {(completed: Bool) -> Void in
                 transitionContext.completeTransition(completed)

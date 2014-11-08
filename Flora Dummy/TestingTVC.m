@@ -491,6 +491,8 @@
         //Michael's Test Code PLEASE DON'T REMOVE:
     [calc setModalPresentationStyle:UIModalPresentationCustom];
     [calc setTransitioningDelegate:self];
+    [calc setPreferredContentSize:CGSizeMake(304, 440)];
+        //End Test Code
     
     [self presentViewController:calc animated:YES completion:nil];
 
