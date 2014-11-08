@@ -51,8 +51,6 @@
 		9218953617F776BA00DFB26B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218953517F776BA00DFB26B /* CoreData.framework */; };
 		923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 923774531A0552A400A49D14 /* PictureQuizVC.m */; };
 		923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923774541A0552A400A49D14 /* PictureQuizVC.xib */; };
-		924690B919FF08CD00A1F9B7 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 924690B819FF08CD00A1F9B7 /* Carroll.json */; };
-		924690BA19FF08CD00A1F9B7 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 924690B819FF08CD00A1F9B7 /* Carroll.json */; };
 		926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0D18E4EA69006CDB2F /* HOME1.gif */; };
 		926C9B1218E4EA69006CDB2F /* HOME1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0D18E4EA69006CDB2F /* HOME1.gif */; };
 		926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0E18E4EA69006CDB2F /* HOME2.gif */; };
@@ -64,6 +62,8 @@
 		9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D09818DB70A600E98BC4 /* QRComplete.png */; };
 		9278D09A18DB70A600E98BC4 /* QRComplete.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D09818DB70A600E98BC4 /* QRComplete.png */; };
 		9282390618A6A39300223265 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9282390518A6A39300223265 /* Main2.storyboard */; };
+		92A648E81A0E8F0A007485C4 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 92A648E71A0E8F0A007485C4 /* Carroll.json */; };
+		92A648E91A0E8F0A007485C4 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 92A648E71A0E8F0A007485C4 /* Carroll.json */; };
 		92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B1938E1824665A00F1583E /* Page_IntroVC.xib */; };
 		92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B193A2182F29F200F1583E /* Page_ReadVC.xib */; };
 		92B193A6182F29F200F1583E /* Page_ReadVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B193A2182F29F200F1583E /* Page_ReadVC.xib */; };
@@ -197,13 +197,13 @@
 		923774521A0552A400A49D14 /* PictureQuizVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureQuizVC.h; sourceTree = "<group>"; };
 		923774531A0552A400A49D14 /* PictureQuizVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureQuizVC.m; sourceTree = "<group>"; };
 		923774541A0552A400A49D14 /* PictureQuizVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureQuizVC.xib; sourceTree = "<group>"; };
-		924690B819FF08CD00A1F9B7 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		926C9B0D18E4EA69006CDB2F /* HOME1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME1.gif; sourceTree = "<group>"; };
 		926C9B0E18E4EA69006CDB2F /* HOME2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME2.gif; sourceTree = "<group>"; };
 		926C9B0F18E4EA69006CDB2F /* HOME3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME3.gif; sourceTree = "<group>"; };
 		926C9B1018E4EA69006CDB2F /* HOME4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME4.gif; sourceTree = "<group>"; };
 		9278D09818DB70A600E98BC4 /* QRComplete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRComplete.png; sourceTree = "<group>"; };
 		9282390518A6A39300223265 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
+		92A648E71A0E8F0A007485C4 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		92B1938C1824665A00F1583E /* Page_IntroVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page_IntroVC.h; sourceTree = "<group>"; };
 		92B1938D1824665A00F1583E /* Page_IntroVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page_IntroVC.m; sourceTree = "<group>"; };
 		92B1938E1824665A00F1583E /* Page_IntroVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page_IntroVC.xib; sourceTree = "<group>"; };
@@ -462,7 +462,6 @@
 		921894E917F7752A00DFB26B /* Flora Dummy */ = {
 			isa = PBXGroup;
 			children = (
-				5D709CAC1A09A28A000F44DF /* Mason */,
 				10B8788319FC422C005D9937 /* Old Objective-C Code */,
 				10B8787D19FC2881005D9937 /* Definitions.swift */,
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
@@ -480,11 +479,11 @@
 				92FFDB5518C01D6D00C3294A /* UIButton_Typical.m */,
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
-				924690B819FF08CD00A1F9B7 /* Carroll.json */,
-				100E28381A0D6996000D5B34 /* Michael */,
+				92A648E71A0E8F0A007485C4 /* Carroll.json */,
 				923774511A05524100A49D14 /* Stephen's Stuff */,
 				921194FC19FE014200644054 /* Zach's SUper Secret Project */,
 				4C0BCF3819FC155900E69F5C /* Riley */,
+				5D709CAC1A09A28A000F44DF /* Mason */,
 				921894EA17F7752A00DFB26B /* Supporting Files */,
 			);
 			path = "Flora Dummy";
@@ -776,9 +775,9 @@
 				92E8CB4D18F0C4BD0025264E /* Wind1.gif in Resources */,
 				4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */,
 				92EF999418B6E6AD00288BAF /* Garden_Top.jpg in Resources */,
-				924690B919FF08CD00A1F9B7 /* Carroll.json in Resources */,
 				92D06A2318D140F4004850C6 /* zbar-help.html in Resources */,
 				92C261AC18370D1500FDA09B /* Page_DragAndDropVC.xib in Resources */,
+				92A648E81A0E8F0A007485C4 /* Carroll.json in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
 				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
@@ -826,7 +825,7 @@
 				9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */,
 				92C261B51839D40800FDA09B /* apple_green.png in Resources */,
 				926C9B1818E4EA69006CDB2F /* HOME4.gif in Resources */,
-				924690BA19FF08CD00A1F9B7 /* Carroll.json in Resources */,
+				92A648E91A0E8F0A007485C4 /* Carroll.json in Resources */,
 				92EF999518B6E6AD00288BAF /* Garden_Top.jpg in Resources */,
 				92C261BE183BFBBC00FDA09B /* woods.png in Resources */,
 				92B193A6182F29F200F1583E /* Page_ReadVC.xib in Resources */,

@@ -439,7 +439,7 @@
                   [NSNumber numberWithFloat:300],
                   [NSNumber numberWithFloat:300]] forKey:@"Bounds"];
     NSMutableDictionary *ii = [[NSMutableDictionary alloc] init];
-    [ii setValue:[UIImage imageNamed:@"apple_red.png"] forKey:@"Image"];
+    [ii setValue:[NSString stringWithFormat:@"apple_red"] forKey:@"Image"];
     [i setValue:ii forKey:@"Specials"];
     
     
@@ -451,10 +451,10 @@
                   [NSNumber numberWithFloat:500]] forKey:@"Bounds"];
     NSMutableDictionary *gg = [[NSMutableDictionary alloc] init];
     [gg setValue: [NSArray arrayWithObjects:
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind1.gif"],0.1),
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind2.gif"],0.1),
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind3.gif"],0.1),
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind4.gif"],0.1),
+                   [NSString stringWithFormat:@"Wind1"],
+                   [NSString stringWithFormat:@"Wind2"],
+                   [NSString stringWithFormat:@"Wind3"],
+                   [NSString stringWithFormat:@"Wind4"],
                    nil]
           forKey:@"GIFs"];
     [gg setValue:[NSNumber numberWithFloat:0.35] forKey:@"GIFDuration"];
@@ -509,9 +509,9 @@
     
     NSString *question = [NSString stringWithFormat:@"What does a plant NOT need?"];
     
-    NSArray *answers = [NSArray arrayWithObjects:[UIImage imageNamed:@"25-weather"],
-                        [UIImage imageNamed:@"65-note"],
-                        [UIImage imageNamed:@"61-brightness"],
+    NSArray *answers = [NSArray arrayWithObjects:[NSString stringWithFormat:@"25-weather"],
+                        [NSString stringWithFormat:@"65-note"],
+                        [NSString stringWithFormat:@"61-brightness"],
                         nil];
     
     NSNumber *correct = [NSNumber numberWithInt:1]; // Music

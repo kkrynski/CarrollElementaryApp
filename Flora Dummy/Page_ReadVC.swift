@@ -19,7 +19,9 @@ class Page_ReadVC: PageVC
     {
         super.viewDidLoad()
 
-        summaryTextView!.text = pageText!
+        let formattedString = (pageText! as NSString).stringByReplacingOccurrencesOfString("\\n", withString: "\n") as String
+        
+        summaryTextView!.text = formattedString
         
         //Frame overrides
         
