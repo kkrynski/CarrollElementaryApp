@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
-#import "PageVC.h"
+#import "FormattedVC.h"
 
-@interface CalculatorVC : PageVC
+@interface CalculatorVC : FormattedVC
 
 @property (strong, retain) IBOutlet UILabel *calLabel;
 @property (strong, retain) IBOutlet UIButton *zeroBut;
