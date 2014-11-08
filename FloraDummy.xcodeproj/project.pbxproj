@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		100E283A1A0D69BB000D5B34 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */; };
-		100E283C1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
 		104BA0FB1A0429E2007BD9DE /* UIOutlinedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F406491801E19A00668376 /* UIOutlinedLabel.m */; };
 		104BA0FC1A0429E6007BD9DE /* UIButton_Typical.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FFDB5518C01D6D00C3294A /* UIButton_Typical.m */; };
 		104BA0FE1A042A30007BD9DE /* MathProblemVC_Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */; };
 		104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */; };
+		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
+		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
+		1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */; };
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
@@ -27,7 +28,6 @@
 		4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7DC3FD1A09A32C006E3E23 /* CalculatorVC.xib */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
 		4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E719FC42C00066A53B /* VocabVC.xib */; };
-		5D709CB01A09A2F8000F44DF /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
 		5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		9208CD1018F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
@@ -122,8 +122,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorPresentationController.swift; sourceTree = "<group>"; };
-		100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorTransitionManager.swift; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC_Normal.swift; sourceTree = "<group>"; };
@@ -131,6 +129,8 @@
 		106C8BD319FED841009B0983 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		106C8BD519FEE55B009B0983 /* MathVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathVC.swift; sourceTree = "<group>"; };
 		106C8BD719FEE574009B0983 /* ScienceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScienceVC.swift; sourceTree = "<group>"; };
+		1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorPresentationController.swift; sourceTree = "<group>"; };
+		1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorTransitionManager.swift; sourceTree = "<group>"; };
 		10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flora Dummy-Bridging-Header.h"; sourceTree = "<group>"; };
 		10B8787819FC1B40005D9937 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -296,15 +296,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		100E28381A0D6996000D5B34 /* Michael */ = {
-			isa = PBXGroup;
-			children = (
-				100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */,
-				1078FC131A0DCBF300A14836 /* Calculator Presentation */,
-			);
-			name = Michael;
-			sourceTree = "<group>";
-		};
 		104BA0F61A0424DA007BD9DE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,12 +335,21 @@
 			name = "Math Problems";
 			sourceTree = "<group>";
 		};
-		1078FC131A0DCBF300A14836 /* Calculator Presentation */ = {
+		1078FC141A0E944500A14836 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
-				100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */,
+				1078FC151A0E945000A14836 /* Calculator Transition */,
 			);
-			name = "Calculator Presentation";
+			name = Michael;
+			sourceTree = "<group>";
+		};
+		1078FC151A0E945000A14836 /* Calculator Transition */ = {
+			isa = PBXGroup;
+			children = (
+				1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */,
+				1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */,
+			);
+			name = "Calculator Transition";
 			sourceTree = "<group>";
 		};
 		10B8787F19FC32F4005D9937 /* Subjects */ = {
@@ -480,6 +480,7 @@
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
 				92A648E71A0E8F0A007485C4 /* Carroll.json */,
+				1078FC141A0E944500A14836 /* Michael */,
 				923774511A05524100A49D14 /* Stephen's Stuff */,
 				921194FC19FE014200644054 /* Zach's SUper Secret Project */,
 				4C0BCF3819FC155900E69F5C /* Riley */,
@@ -849,7 +850,7 @@
 				9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */,
 				9211951E19FE02CB00644054 /* ModuleVC.m in Sources */,
 				92C261AB18370D1500FDA09B /* Page_DragAndDropVC.m in Sources */,
-				100E283C1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift in Sources */,
+				1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */,
 				92C261C11840414400FDA09B /* DragObject.m in Sources */,
 				9211950F19FE01CC00644054 /* TestingTVC.m in Sources */,
 				104BA0FC1A0429E6007BD9DE /* UIButton_Typical.m in Sources */,
@@ -869,12 +870,12 @@
 				10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */,
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,
 				10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */,
+				1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */,
+				1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */,
 				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
 				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
-				100E283A1A0D69BB000D5B34 /* CalculatorPresentationController.swift in Sources */,
-				5D709CB01A09A2F8000F44DF /* PasswordVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
