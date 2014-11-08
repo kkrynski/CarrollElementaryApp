@@ -104,9 +104,8 @@
     MARGIN_GV_BOTTOM = 20;
     GV_X = MARGIN_GV_SIDE;
     GV_Y = MARGIN_GV_TOP;
-    float statusHeight = [UIApplication sharedApplication].statusBarFrame.size.width; // since landscape
     GV_WIDTH = self.view.bounds.size.width - (2 * MARGIN_GV_SIDE);
-    GV_HEIGHT = self.view.bounds.size.height - GV_Y - MARGIN_GV_TOP - MARGIN_GV_BOTTOM - self.navigationController.navigationBar.frame.size.height - statusHeight;
+    GV_HEIGHT = self.view.bounds.size.height - GV_Y - MARGIN_GV_TOP - MARGIN_GV_BOTTOM - self.navigationController.navigationBar.frame.size.height;
 ;
     
     

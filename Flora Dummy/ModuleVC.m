@@ -145,7 +145,7 @@
 
     }else
     {
-        iV.image = [UIImage imageNamed:@"Settings2.3.png"];
+        iV.image = [UIImage imageNamed:@"Settings2.3"];
     }
     
     // Add image view to screen and content array
@@ -176,9 +176,13 @@
         if (gifDuration && (gifDuration.floatValue != 0))
         {
             NSMutableArray *gifPicArray = [[NSMutableArray alloc] init];
-            for (NSData *gifData in gifArray)
+            for (NSString *gifName in gifArray)
             {
-               [gifPicArray addObject: [UIImage imageWithData:gifData]];
+                if([UIImage imageNamed:gifName])
+                {
+                    [gifPicArray addObject: [UIImage imageNamed:gifName]];
+
+                }
             }
             
             iV.animationImages = gifPicArray;
@@ -188,12 +192,12 @@
         
         }else
         {
-            iV.image = [UIImage imageNamed:@"Settings2.3.png"];
+            iV.image = [UIImage imageNamed:@"Settings2.3"];
         }
         
     }else
     {
-        iV.image = [UIImage imageNamed:@"Settings2.3.png"];
+        iV.image = [UIImage imageNamed:@"Settings2.3"];
     }
     
     // Add image view to screen and content array
@@ -225,7 +229,7 @@
                   [NSNumber numberWithFloat:100],
                   [NSNumber numberWithFloat:200],
                   [NSNumber numberWithFloat:200]] forKey:@"Bounds"];
-    [i setValue:[UIImage imageNamed:@"apple_red.png"] forKey:@"Image"];
+    [i setValue:[UIImage imageNamed:@"apple_red"] forKey:@"Image"];
     
     NSMutableDictionary *g = [[NSMutableDictionary alloc] init];
     [g setValue:@"GIF" forKey:@"Type"];
@@ -234,22 +238,22 @@
                   [NSNumber numberWithFloat:600],
                   [NSNumber numberWithFloat:200]] forKey:@"Bounds"];
     [g setValue: [NSArray arrayWithObjects:
-                  [UIImage imageNamed:@"HOME1.gif"],
-                  [UIImage imageNamed:@"HOME2.gif"],
-                  [UIImage imageNamed:@"HOME2.gif"],
-                  [UIImage imageNamed:@"HOME2.gif"],
-                  [UIImage imageNamed:@"HOME3.gif"],
-                  [UIImage imageNamed:@"HOME3.gif"],
-                  [UIImage imageNamed:@"HOME3.gif"],
-                  [UIImage imageNamed:@"HOME4.gif"],
-                  [UIImage imageNamed:@"HOME4.gif"],
-                  [UIImage imageNamed:@"HOME4.gif"],
-                  [UIImage imageNamed:@"HOME3.gif"],
-                  [UIImage imageNamed:@"HOME3.gif"],
-                  [UIImage imageNamed:@"HOME3.gif"],
-                  [UIImage imageNamed:@"HOME2.gif"],
-                  [UIImage imageNamed:@"HOME2.gif"],
-                  [UIImage imageNamed:@"HOME2.gif"],
+                  [UIImage imageNamed:@"HOME1"],
+                  [UIImage imageNamed:@"HOME2"],
+                  [UIImage imageNamed:@"HOME2"],
+                  [UIImage imageNamed:@"HOME2"],
+                  [UIImage imageNamed:@"HOME3"],
+                  [UIImage imageNamed:@"HOME3"],
+                  [UIImage imageNamed:@"HOME3"],
+                  [UIImage imageNamed:@"HOME4"],
+                  [UIImage imageNamed:@"HOME4"],
+                  [UIImage imageNamed:@"HOME4"],
+                  [UIImage imageNamed:@"HOME3"],
+                  [UIImage imageNamed:@"HOME3"],
+                  [UIImage imageNamed:@"HOME3"],
+                  [UIImage imageNamed:@"HOME2"],
+                  [UIImage imageNamed:@"HOME2"],
+                  [UIImage imageNamed:@"HOME2"],
                   nil]
          forKey:@"GIFs"];
     [g setValue:[NSNumber numberWithFloat:0.8] forKey:@"GIFDuration"];
