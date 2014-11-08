@@ -110,7 +110,7 @@ class CalculatorPresentationController: UIPresentationController
         else                   //Register for the calculator expansion and collapse if it presented
         {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "increaseCalculatorSize", name: CalculatorPresentationController.CalculatorWillIncreaseSizeNotification(), object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "decreaseCalculatorSize", name: CalculatorPresentationController.CalculatorWillIncreaseSizeNotification(), object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "decreaseCalculatorSize", name: CalculatorPresentationController.CalculatorWillDecreaseSizeNotification(), object: nil)
         }
     }
     
@@ -253,7 +253,7 @@ class CalculatorPresentationController: UIPresentationController
     
     //Decrease the calculator's width to hide the special functions view
     func decreaseCalculatorSize()
-    {
+    {        
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
             
