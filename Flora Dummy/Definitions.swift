@@ -13,7 +13,7 @@ import QuartzCore
 
 //MARK: - Global Variables
 
-let transitionLength = 0.3
+let transitionLength = 0.3  //All transitions in swift files should use this variable for animationDuration to keep uniform
 
 //MARK: - Definitions Class
 
