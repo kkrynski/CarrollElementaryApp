@@ -377,7 +377,7 @@ int state = 0;
     }
 }
 - (IBAction)trigBut:(id)sender {
-    [self setPreferredContentSize:CGSizeMake(384, 508)]
+    [self setPreferredContentSize:CGSizeMake(384, 508)];
     [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
     
 }
