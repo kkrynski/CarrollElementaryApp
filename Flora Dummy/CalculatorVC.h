@@ -8,7 +8,7 @@
 
 #import "PageVC.h"
 
-@interface CalculatorVC : PageVC
+@interface CalculatorVC : FormattedVC
 
 @property (strong, retain) IBOutlet UILabel *calLabel;
 @property (strong, retain) IBOutlet UIButton *zeroBut;
