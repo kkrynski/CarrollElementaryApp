@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -9,10 +9,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalculatorVC">
             <connections>
                 <outlet property="calLabel" destination="Stq-YL-00z" id="HGf-3c-D5B"/>
+                <outlet property="constBut" destination="uKU-SP-VCM" id="bpB-IE-n7J"/>
                 <outlet property="decBut" destination="ZFO-Ww-zEA" id="BLC-gP-qnj"/>
                 <outlet property="divBut" destination="C97-3X-veD" id="BYI-dR-slH"/>
                 <outlet property="eightBut" destination="1hA-8E-ARL" id="1vd-1g-Vxi"/>
                 <outlet property="equalsBut" destination="g66-bh-W7J" id="aLh-Hf-Exh"/>
+                <outlet property="expoBut" destination="XTy-YH-ze5" id="tXI-eh-N2v"/>
+                <outlet property="extraBut" destination="Mat-a7-gbc" id="W7r-FJ-S7L"/>
                 <outlet property="fiveBut" destination="qbv-mg-oaD" id="UAv-AC-E1i"/>
                 <outlet property="fourBut" destination="MQY-OG-pkg" id="Jim-Hh-S5R"/>
                 <outlet property="mulBut" destination="6OL-aF-AtW" id="2gJ-MW-OjA"/>
@@ -27,6 +30,7 @@
                 <outlet property="sixBut" destination="lme-Uy-Fec" id="WVI-HK-FVY"/>
                 <outlet property="subBut" destination="Hk8-7f-Ewf" id="FAU-YX-Jho"/>
                 <outlet property="threeBut" destination="x8w-kv-lXo" id="HF2-yM-ceZ"/>
+                <outlet property="trigBut" destination="QjU-WQ-B4D" id="dLL-O0-jWy"/>
                 <outlet property="twoBut" destination="Yvo-rs-gD1" id="CgH-TS-TyO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -74,7 +78,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqv-J2-wyo">
-                    <rect key="frame" x="125" y="383" width="60" height="60"/>
+                    <rect key="frame" x="540" y="51" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="ajT-kI-AAK"/>
                     </constraints>
@@ -86,7 +90,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5i-Sv-hMV">
-                    <rect key="frame" x="125" y="451" width="60" height="60"/>
+                    <rect key="frame" x="492" y="142" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Pre-n6-UTs"/>
                     </constraints>
@@ -134,7 +138,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFw-L6-Wqx">
-                    <rect key="frame" x="125" y="315" width="60" height="60"/>
+                    <rect key="frame" x="540" y="202" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="0dG-gA-9GI"/>
                     </constraints>
@@ -182,7 +186,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyi-BP-eyd">
-                    <rect key="frame" x="125" y="247" width="60" height="60"/>
+                    <rect key="frame" x="517" y="-9" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="dWo-Vy-VmJ"/>
                         <constraint firstAttribute="width" constant="60" id="g8K-xH-v56"/>
@@ -296,7 +300,7 @@
                         <action selector="decBut:" destination="-1" eventType="touchUpInside" id="ElV-fq-BWd"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkD-kW-LRC">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkD-kW-LRC">
                     <rect key="frame" x="376" y="466" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -316,6 +320,95 @@
                     <connections>
                         <action selector="addBut:" destination="-1" eventType="touchUpInside" id="9Gk-h1-dhz"/>
                     </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjU-WQ-B4D">
+                    <rect key="frame" x="20" y="428" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="nsu-so-lsB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
+                    <state key="normal" title="Trig">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="trigBut:" destination="-1" eventType="touchUpInside" id="fhb-jr-K9a"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTy-YH-ze5">
+                    <rect key="frame" x="88" y="428" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="sRF-EP-nu1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
+                    <state key="normal" title="Exp">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="expoBut:" destination="-1" eventType="touchUpInside" id="z13-7e-IzP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cq-IG-Kpf">
+                    <rect key="frame" x="371" y="194" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="UaL-7C-ZIt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
+                    <state key="normal" title="csc">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTp-Vn-y8u">
+                    <rect key="frame" x="371" y="262" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="uTd-hX-Snw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
+                    <state key="normal" title="sec">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-SP-VCM">
+                    <rect key="frame" x="156" y="428" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="UpH-we-gnk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
+                    <state key="normal" title="Const">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="constBut:" destination="-1" eventType="touchUpInside" id="SsS-8U-ScG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mat-a7-gbc">
+                    <rect key="frame" x="224" y="428" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="lQs-Bp-GuD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="26"/>
+                    <state key="normal" title="...">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="extraBut:" destination="-1" eventType="touchUpInside" id="397-gB-SM7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btA-t0-NhV">
+                    <rect key="frame" x="371" y="330" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="pEi-SI-4M3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
+                    <state key="normal" title="cot">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -391,6 +484,14 @@
                 <constraint firstItem="Ch2-fr-WYy" firstAttribute="baseline" secondItem="Yvo-rs-gD1" secondAttribute="firstBaseline" id="zHU-xv-fNt"/>
                 <constraint firstItem="qbv-mg-oaD" firstAttribute="trailing" secondItem="Yvo-rs-gD1" secondAttribute="trailing" id="zh9-yI-bVT"/>
             </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="xkD-kW-LRC"/>
+                    <exclude reference="4cq-IG-Kpf"/>
+                    <exclude reference="vTp-Vn-y8u"/>
+                    <exclude reference="btA-t0-NhV"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

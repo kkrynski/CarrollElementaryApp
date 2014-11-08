@@ -32,5 +32,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *powBut;
 @property (strong, nonatomic) IBOutlet UIButton *piBut;
 @property (strong, nonatomic) IBOutlet UIButton *negBut;
+@property (strong, nonatomic) IBOutlet UIButton *trigBut;
+@property (strong, nonatomic) IBOutlet UIButton *expoBut;
+@property (strong, nonatomic) IBOutlet UIButton *constBut;
+@property (strong, nonatomic) IBOutlet UIButton *extraBut;
 
 @end

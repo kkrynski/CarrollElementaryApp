@@ -376,5 +376,19 @@ int state = 0;
         }
     }
 }
+- (IBAction)trigBut:(id)sender {
+    [NSNotificationCenter defaultCenter] postNotificationName:(CAl *) object:<#(id)#>
+    
+}
+- (IBAction)expoBut:(id)sender {
+    
+}
+- (IBAction)constBut:(id)sender {
+    
+}
+- (IBAction)extraBut:(id)sender {
+    
+}
+
 
 @end
