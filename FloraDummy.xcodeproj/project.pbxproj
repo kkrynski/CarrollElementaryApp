@@ -297,6 +297,7 @@
 		100E28381A0D6996000D5B34 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
+				100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */,
 				1078FC131A0DCBF300A14836 /* Calculator Presentation */,
 			);
 			name = Michael;
@@ -344,7 +345,6 @@
 		1078FC131A0DCBF300A14836 /* Calculator Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */,
 				100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */,
 			);
 			name = "Calculator Presentation";
