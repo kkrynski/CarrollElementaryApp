@@ -29,7 +29,14 @@
 NSString *num1;
 NSString *num2;
 int operator;
-
+bool trigisClicked = false;
+bool expoisClicked= false;
+bool constisClicked= false;
+bool extraisClicked= false;
+UIView *trigView;
+UIView *expoView;
+UIView *constView;
+UIView *constView;
 int state = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -377,8 +384,23 @@ int state = 0;
     }
 }
 - (IBAction)trigBut:(id)sender {
-    [self setPreferredContentSize:CGSizeMake(384, 508)];
-    [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+    if(trigisClicked){
+        trigisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+        [self performSelector:@selector(removetrigView) withObject:nil afterDelay:[Definitions transitionDuration]];
+    } else {
+            [self setPreferredContentSize:CGSizeMake(384, 508)];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"trigView" owner:nil options:nil];
+            
+            trigView = [array objectAtIndex:0];
+            [trigView setBackgroundColor:self.view.backgroundColor];
+            [self.view addSubview:trigView];
+            [trigView setCenter:CGPointMake(0 - trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
+            trigisClicked = true;
+
+    }
     
 }
 - (IBAction)expoBut:(id)sender {
@@ -389,6 +411,12 @@ int state = 0;
 }
 - (IBAction)extraBut:(id)sender {
     
+}
+
+- (void)removetrigView
+{
+    [trigView removeFromSuperview];
+    trigView = nil;
 }
 
 

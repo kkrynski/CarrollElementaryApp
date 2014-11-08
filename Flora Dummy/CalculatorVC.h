@@ -36,5 +36,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *expoBut;
 @property (strong, nonatomic) IBOutlet UIButton *constBut;
 @property (strong, nonatomic) IBOutlet UIButton *extraBut;
+@property (nonatomic, retain) IBOutlet UIView *trigviewer;
 
 @end
