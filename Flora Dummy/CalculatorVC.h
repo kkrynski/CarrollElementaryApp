@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
-#import "PageVC.h"
+#import "FormattedVC.h"
 
 @interface CalculatorVC : FormattedVC
 
@@ -28,5 +28,9 @@
 @property (strong, retain) IBOutlet UIButton *subBut;
 @property (strong, retain) IBOutlet UIButton *addBut;
 @property (strong, retain) IBOutlet UIButton *decBut;
+@property (strong, nonatomic) IBOutlet UIButton *rootBut;
+@property (strong, nonatomic) IBOutlet UIButton *powBut;
+@property (strong, nonatomic) IBOutlet UIButton *piBut;
+@property (strong, nonatomic) IBOutlet UIButton *negBut;
 
 @end
