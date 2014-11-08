@@ -377,7 +377,8 @@ int state = 0;
     }
 }
 - (IBAction)trigBut:(id)sender {
-    [NSNotificationCenter defaultCenter] postNotificationName:(CAl *) object:<#(id)#>
+    [self setPreferredContentSize:CGSizeMake(384, 508)]
+    [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
     
 }
 - (IBAction)expoBut:(id)sender {
