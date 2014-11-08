@@ -19,6 +19,28 @@ let transitionLength = 0.3  //All transitions in swift files should use this var
 
 class Definitions: NSObject
 {
+    //MARK: - Calculator Position
+    
+    /**
+    Returns the Calculator's position on screen
+    
+    :param: calculatorVC The Calculator View Controller asking for it's position
+    
+    :returns: * nil:    The CalculatorVC is not on screen
+    :returns: * Left:   The CalculatorVC is on the left side of the screen
+    :returns: * Right:  CalculatorVC is on the right side of the screen
+      */
+    class func positionOfCalculatorOnScreen(calculatorVC : CalculatorVC?) -> String?
+    {
+        if calculatorVC != nil && calculatorVC!.isViewLoaded()
+        {
+            return NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition")
+        }
+        else
+        {
+            return nil
+        }
+    }
     
     //MARK: - Color Methods
     
