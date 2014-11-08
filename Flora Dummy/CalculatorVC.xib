@@ -80,7 +80,6 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="oneBut:" destination="-1" eventType="touchUpInside" id="9Vd-r2-4ip"/>
                         <action selector="piBut:" destination="-1" eventType="touchUpInside" id="edB-7V-H7k"/>
                     </connections>
                 </button>
@@ -94,7 +93,6 @@
                     </state>
                     <connections>
                         <action selector="negBut:" destination="-1" eventType="touchUpInside" id="dvQ-14-rpp"/>
-                        <action selector="oneBut:" destination="-1" eventType="touchUpInside" id="2SU-EB-dhB"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvo-rs-gD1">
@@ -136,7 +134,6 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="fourBut:" destination="-1" eventType="touchUpInside" id="amS-Kb-svO"/>
                         <action selector="rootBut:" destination="-1" eventType="touchUpInside" id="0t2-ph-Ucc"/>
                     </connections>
                 </button>

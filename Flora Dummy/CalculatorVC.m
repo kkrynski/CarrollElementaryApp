@@ -322,7 +322,8 @@ int state = 0;
         calLabel.text = num1;
         num2 = @"";
     } else {
-        num2 = [NSString stringWithFormat:@"%f",(sqrt(num2.doubleValue))];
+        [self calculate];
+        num1 = [NSString stringWithFormat:@"%f",(sqrt(num1.doubleValue))];
         NSRange searchResult = [num1 rangeOfString:@"."];
         bool tempo = false;
         int index = 6;
@@ -341,14 +342,39 @@ int state = 0;
                 }
             }
         }
-        num2 = [self roundem:index];
-        calLabel.text = num2;
-
+        num1 = [self roundem:index];
+        calLabel.text = num1;
+        num2 = @"";
     }
 }
 - (IBAction)piBut:(id)sender {
+   if([num1 isEqualToString:@""]) {
+       num1 = [NSString stringWithFormat:@"%f",(3.141593)];
+       calLabel.text = num1;
+   } else {
+       num2 = [NSString stringWithFormat:@"%f",(3.141593)];
+       calLabel.text = num2;
+
+   }
 }
 - (IBAction)negBut:(id)sender {
+    if([num2 isEqualToString:@""]) {
+        if([([num1 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
+            num1 =[num1 substringFromIndex:(1)];
+            calLabel.text = num1;
+        } else {
+            num1 = [NSString stringWithFormat:@"-%@",num1];
+            calLabel.text = num1;
+        }
+    } else {
+        if([([num2 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
+            num2 =[num2 substringFromIndex:(1)];
+            calLabel.text = num2;
+        } else {
+            num2 = [NSString stringWithFormat:@"-%@",num2];
+            calLabel.text = num2;
+        }
+    }
 }
 
 @end
