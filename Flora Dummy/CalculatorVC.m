@@ -397,8 +397,12 @@ int state = 0;
             trigView = [array objectAtIndex:0];
             [trigView setBackgroundColor:self.view.backgroundColor];
             [self.view addSubview:trigView];
+        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
+        if ([position isEqualToString:@"Left"])
             [trigView setCenter:CGPointMake(0 - trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
-            trigisClicked = true;
+        else if ([position isEqualToString:@"Right"])
+            [trigView setCenter:CGPointMake(self.view.frame.size.width + trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
+        trigisClicked = true;
 
     }
     
