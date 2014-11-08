@@ -168,8 +168,30 @@ int state = 0;
             calLabel.text = num1;
             num2 = @"";
         }
+    }else if(operator == 5){
+            num1 = [NSString stringWithFormat:@"%f",(pow(num1.doubleValue,num2.doubleValue))];
+            NSRange searchResult = [num1 rangeOfString:@"."];
+            bool tempo = false;
+            int index = 6;
+            for(int i = 0; i<6;i++){
+                if(tempo == false){
+                    NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i, 1)]);
+                    if([temp isEqualToString:@"0"]){
+                        tempo = true;
+                        index = i-1;
+                    }
+                } else {
+                    NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i,1)]);
+                    if(![temp isEqualToString:@"0"]){
+                        tempo = false;
+                        index = 6;
+                    }
+                }
+            }
+            num1 = [self roundem:index];
+            calLabel.text = num1;
+            num2 = @"";
     }
-        
     operator = 0;
     num2 = @"";
 }
@@ -267,5 +289,109 @@ int state = 0;
 - (IBAction)decBut:(id)sender {
     [self command:@"."];
 }
+- (IBAction)powBut:(id)sender {
+    if(operator == 0){
+        operator = 5;
+    } else if(![num2 isEqualToString:@""]){
+        [self calculate];
+        operator = 5;
+    }
+}
+- (IBAction)rootBut:(id)sender {
+    if([num2 isEqualToString:@""]) {
+        num1 = [NSString stringWithFormat:@"%f",(sqrt(num1.doubleValue))];
+        NSRange searchResult = [num1 rangeOfString:@"."];
+        bool tempo = false;
+        int index = 6;
+        for(int i = 0; i<6;i++){
+            if(tempo == false){
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i, 1)]);
+                if([temp isEqualToString:@"0"]){
+                    tempo = true;
+                    index = i-1;
+                }
+            } else {
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i,1)]);
+                if(![temp isEqualToString:@"0"]){
+                    tempo = false;
+                    index = 6;
+                }
+            }
+        }
+        num1 = [self roundem:index];
+        calLabel.text = num1;
+        num2 = @"";
+    } else {
+        [self calculate];
+        num1 = [NSString stringWithFormat:@"%f",(sqrt(num1.doubleValue))];
+        NSRange searchResult = [num1 rangeOfString:@"."];
+        bool tempo = false;
+        int index = 6;
+        for(int i = 0; i<6;i++){
+            if(tempo == false){
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i, 1)]);
+                if([temp isEqualToString:@"0"]){
+                    tempo = true;
+                    index = i-1;
+                }
+            } else {
+                NSString *temp = ([num1 substringWithRange:NSMakeRange(searchResult.location + i,1)]);
+                if(![temp isEqualToString:@"0"]){
+                    tempo = false;
+                    index = 6;
+                }
+            }
+        }
+        num1 = [self roundem:index];
+        calLabel.text = num1;
+        num2 = @"";
+    }
+}
+- (IBAction)piBut:(id)sender {
+   if([num1 isEqualToString:@""]) {
+       num1 = [NSString stringWithFormat:@"%f",(3.141593)];
+       calLabel.text = num1;
+   } else {
+       num2 = [NSString stringWithFormat:@"%f",(3.141593)];
+       calLabel.text = num2;
+
+   }
+}
+- (IBAction)negBut:(id)sender {
+    if([num2 isEqualToString:@""]) {
+        if([([num1 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
+            num1 =[num1 substringFromIndex:(1)];
+            calLabel.text = num1;
+        } else {
+            num1 = [NSString stringWithFormat:@"-%@",num1];
+            calLabel.text = num1;
+        }
+    } else {
+        if([([num2 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
+            num2 =[num2 substringFromIndex:(1)];
+            calLabel.text = num2;
+        } else {
+            num2 = [NSString stringWithFormat:@"-%@",num2];
+            calLabel.text = num2;
+        }
+    }
+}
+- (IBAction)trigBut:(id)sender {
+    
+    
+    [self setPreferredContentSize:CGSizeMake(384, 508)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+    
+}
+- (IBAction)expoBut:(id)sender {
+    
+}
+- (IBAction)constBut:(id)sender {
+    
+}
+- (IBAction)extraBut:(id)sender {
+    
+}
+
 
 @end

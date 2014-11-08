@@ -272,7 +272,7 @@ class SettingsVC: UIViewController
         
         view.bringSubviewToFront(button)
         
-        UIView.animateKeyframesWithDuration(0.3, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateKeyframesWithDuration(transitionLength, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in
                 //self.viewDidLoad()
                 self.view.backgroundColor = Definitions.colorWithHexString(standardDefaults.objectForKey("backgroundColor") as String)
@@ -287,7 +287,7 @@ class SettingsVC: UIViewController
             })
             }, completion: { (finished : Bool) -> Void in
                 self.selectedColorButton = button
-                UIView.animateWithDuration(0.3, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                UIView.animateWithDuration(transitionLength, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                     button.highlighted = true
                     }, completion: nil)
         })
@@ -317,7 +317,7 @@ class SettingsVC: UIViewController
         
         view.bringSubviewToFront(button)
         
-        UIView.animateKeyframesWithDuration(0.3, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateKeyframesWithDuration(transitionLength, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in
                 self.selectedGradeButton?.highlighted = false
                 self.selectedGradeButton?.userInteractionEnabled = true
@@ -330,7 +330,7 @@ class SettingsVC: UIViewController
             })
             }, completion: { (finished : Bool) -> Void in
                 self.selectedGradeButton = button
-                UIView.animateWithDuration(0.3, delay: 0.3, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                UIView.animateWithDuration(transitionLength, delay: 0.3, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                     button.highlighted = true
                     }, completion: nil)
         })
