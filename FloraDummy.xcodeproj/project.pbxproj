@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		100E283A1A0D69BB000D5B34 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */; };
 		100E283C1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */; };
-		100E283E1A0D6F09000D5B34 /* CalculatorTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100E283D1A0D6F09000D5B34 /* CalculatorTransitionDelegate.swift */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
 		104BA0FB1A0429E2007BD9DE /* UIOutlinedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F406491801E19A00668376 /* UIOutlinedLabel.m */; };
@@ -124,7 +123,6 @@
 /* Begin PBXFileReference section */
 		100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorPresentationController.swift; sourceTree = "<group>"; };
 		100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorTransitionManager.swift; sourceTree = "<group>"; };
-		100E283D1A0D6F09000D5B34 /* CalculatorTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorTransitionDelegate.swift; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC_Normal.swift; sourceTree = "<group>"; };
@@ -299,9 +297,7 @@
 		100E28381A0D6996000D5B34 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
-				100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */,
-				100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */,
-				100E283D1A0D6F09000D5B34 /* CalculatorTransitionDelegate.swift */,
+				1078FC131A0DCBF300A14836 /* Calculator Presentation */,
 			);
 			name = Michael;
 			sourceTree = "<group>";
@@ -343,6 +339,15 @@
 				921C731C189ADE7F007DFB34 /* EquationFormatter.m */,
 			);
 			name = "Math Problems";
+			sourceTree = "<group>";
+		};
+		1078FC131A0DCBF300A14836 /* Calculator Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				100E28391A0D69BB000D5B34 /* CalculatorPresentationController.swift */,
+				100E283B1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift */,
+			);
+			name = "Calculator Presentation";
 			sourceTree = "<group>";
 		};
 		10B8787F19FC32F4005D9937 /* Subjects */ = {
@@ -843,7 +848,6 @@
 				92C261AB18370D1500FDA09B /* Page_DragAndDropVC.m in Sources */,
 				100E283C1A0D6C2A000D5B34 /* CalculatorTransitionManager.swift in Sources */,
 				92C261C11840414400FDA09B /* DragObject.m in Sources */,
-				100E283E1A0D6F09000D5B34 /* CalculatorTransitionDelegate.swift in Sources */,
 				9211950F19FE01CC00644054 /* TestingTVC.m in Sources */,
 				104BA0FC1A0429E6007BD9DE /* UIButton_Typical.m in Sources */,
 				4CC305E819FC42C00066A53B /* VocabVC.m in Sources */,
@@ -1020,6 +1024,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
