@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -50,10 +50,11 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-n1-3PL">
                     <rect key="frame" x="193" y="451" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="lN1-4h-fjY"/>
+                        <constraint firstAttribute="height" constant="60" id="hbI-mG-dVU"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
                     <state key="normal" title="0">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="zeroBut:" destination="-1" eventType="touchUpInside" id="WSf-XD-mTR"/>
@@ -62,10 +63,11 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ch2-fr-WYy">
                     <rect key="frame" x="193" y="383" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="hsQ-rX-SmP"/>
+                        <constraint firstAttribute="height" constant="60" id="8vb-bF-gRh"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
                     <state key="normal" title="1">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="oneBut:" destination="-1" eventType="touchUpInside" id="76Y-DO-ePr"/>
@@ -98,7 +100,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvo-rs-gD1">
                     <rect key="frame" x="269" y="383" width="60" height="60"/>
                     <state key="normal" title="2">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="twoBut:" destination="-1" eventType="touchUpInside" id="xWT-Zn-6Eq"/>
@@ -107,7 +109,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8w-kv-lXo">
                     <rect key="frame" x="347" y="383" width="60" height="60"/>
                     <state key="normal" title="3">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="threeBut:" destination="-1" eventType="touchUpInside" id="ZaT-FF-bwt"/>
@@ -116,10 +118,11 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-OG-pkg">
                     <rect key="frame" x="193" y="315" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="rdW-i2-HA9"/>
+                        <constraint firstAttribute="height" constant="60" id="ppb-Ls-Jsj"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
                     <state key="normal" title="4">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="fourBut:" destination="-1" eventType="touchUpInside" id="yth-Bc-rev"/>
@@ -140,7 +143,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbv-mg-oaD">
                     <rect key="frame" x="269" y="315" width="60" height="60"/>
                     <state key="normal" title="5">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="fiveBut:" destination="-1" eventType="touchUpInside" id="ub8-er-w6X"/>
@@ -149,7 +152,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lme-Uy-Fec">
                     <rect key="frame" x="347" y="315" width="60" height="60"/>
                     <state key="normal" title="6">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="sixBut:" destination="-1" eventType="touchUpInside" id="8ud-9l-Icq"/>
@@ -158,11 +161,11 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGW-7P-Mva">
                     <rect key="frame" x="193" y="247" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="Ujp-Rm-b5O"/>
-                        <constraint firstAttribute="width" constant="60" id="qxd-Dp-1nU"/>
+                        <constraint firstAttribute="height" constant="60" id="wso-Jx-OhP"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
                     <state key="normal" title="7">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="sevenBut:" destination="-1" eventType="touchUpInside" id="iHV-tJ-ICp"/>
@@ -184,10 +187,11 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hA-8E-ARL">
                     <rect key="frame" x="269" y="247" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="A3f-mg-rCr"/>
+                        <constraint firstAttribute="width" constant="60" id="Neq-yR-bTb"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
                     <state key="normal" title="8">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="eightBut:" destination="-1" eventType="touchUpInside" id="K7S-1B-ZZq"/>
@@ -196,10 +200,11 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4F-rv-jlm">
                     <rect key="frame" x="347" y="247" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="72t-is-v3J"/>
+                        <constraint firstAttribute="width" constant="60" id="Rab-tb-e96"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
                     <state key="normal" title="9">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="nineBut:" destination="-1" eventType="touchUpInside" id="MGa-W5-pvh"/>
@@ -247,7 +252,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g66-bh-W7J">
                     <rect key="frame" x="347" y="451" width="60" height="60"/>
                     <state key="normal" title="=">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="equalsBut:" destination="-1" eventType="touchUpInside" id="S4a-2Q-b92"/>
@@ -256,7 +261,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7Z-oW-ZmF">
                     <rect key="frame" x="269" y="451" width="60" height="60"/>
                     <state key="normal" title="C">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="resetBut:" destination="-1" eventType="touchUpInside" id="fXF-tZ-uAb"/>
@@ -268,7 +273,7 @@
                         <constraint firstAttribute="width" constant="60" id="orC-9g-wzB"/>
                     </constraints>
                     <state key="normal" title=".">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="addBut:" destination="-1" eventType="touchUpInside" id="Faf-Zv-fmR"/>

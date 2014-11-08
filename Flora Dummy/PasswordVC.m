@@ -38,4 +38,18 @@
 }
 */
 
+- (IBAction)submit:(id)sender {
+
+    NSString *tempUsername = usernameInput.text;
+    NSString *tempPassword = passwordInput.text;
+    if([tempUsername isEqualToString: username]) {
+        if([tempPassword isEqualToString: password] ){
+            
+        }
+    }
+    NSLog(@"submit");
+    
+
+}
+
 @end
