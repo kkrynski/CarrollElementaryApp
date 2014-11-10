@@ -390,7 +390,29 @@ int state = 0;
     
 }
 - (IBAction)expoBut:(id)sender {
-    
+    if(expoisClicked){
+        expoisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+        [self performSelector:@selector(removeexpoView) withObject:nil afterDelay:[Definitions transitionDuration]];
+    } else {
+        [self setPreferredContentSize:CGSizeMake(384, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"expoView" owner:nil options:nil];
+        
+        expoView = [array objectAtIndex:0];
+        [expoView setBackgroundColor:self.view.backgroundColor];
+        [self.view addSubview:expoView];
+        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
+        if ([position isEqualToString:@"Left"])
+            [expoView setCenter:CGPointMake(0 - expoView.frame.size.width/2.0, expoView.frame.size.height/2.0)];
+        else if ([position isEqualToString:@"Right"])
+            [expoView setCenter:CGPointMake(self.view.frame.size.width + expoView.frame.size.width/2.0, expoView.frame.size.height/2.0)];
+        trigisClicked = false;
+        expoisClicked = true;
+        extraisClicked = false;
+        constisClicked = false;
+    }
 }
 - (IBAction)constBut:(id)sender {
     if(constisClicked){
@@ -420,27 +442,27 @@ int state = 0;
 }
 - (IBAction)extraBut:(id)sender {
     if(extraisClicked){
-        constisClicked = false;
+        extraisClicked = false;
         [self setPreferredContentSize:CGSizeMake(304, 508)];
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
-        [self performSelector:@selector(removeconstView) withObject:nil afterDelay:[Definitions transitionDuration]];
+        [self performSelector:@selector(removeextraview) withObject:nil afterDelay:[Definitions transitionDuration]];
     } else {
         [self setPreferredContentSize:CGSizeMake(384, 508)];
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"constView" owner:nil options:nil];
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"extraView" owner:nil options:nil];
         
-        constView = [array objectAtIndex:0];
-        [constView setBackgroundColor:self.view.backgroundColor];
-        [self.view addSubview:constView];
+        extraView = [array objectAtIndex:0];
+        [extraView setBackgroundColor:self.view.backgroundColor];
+        [self.view addSubview:extraView];
         NSString *position = [Definitions positionOfCalculatorOnScreen:self];
         if ([position isEqualToString:@"Left"])
-            [constView setCenter:CGPointMake(0 - constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+            [extraView setCenter:CGPointMake(0 - extraView.frame.size.width/2.0, extraView.frame.size.height/2.0)];
         else if ([position isEqualToString:@"Right"])
-            [constView setCenter:CGPointMake(self.view.frame.size.width + constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+            [extraView setCenter:CGPointMake(self.view.frame.size.width + extraView.frame.size.width/2.0, extraView.frame.size.height/2.0)];
         trigisClicked = false;
         expoisClicked = false;
-        extraisClicked = false;
-        constisClicked = true;
+        extraisClicked = true;
+        constisClicked = false;
     }
 }
 
