@@ -36,30 +36,10 @@ bool extraisClicked= false;
 UIView *trigView;
 UIView *expoView;
 UIView *constView;
-UIView *constView;
+UIView *extraView;
 int state = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[_addBut setImage:@"apple_yellow.png" forState:UIControlStateHighlighted];
-    //[_zeroBut setTitle:[@"0"] forState:UIControlStateNormal];
-   /* [Definitions outlineButton:_zeroBut];
-    [Definitions outlineButton:_oneBut];
-    [Definitions outlineButton:_twoBut];
-    [Definitions outlineButton:_threeBut];
-    [Definitions outlineButton:_fourBut];
-    [Definitions outlineButton:_fiveBut];
-    [Definitions outlineButton:_sixBut];       Unknown crashing issue here
-    [Definitions outlineButton:_sevenBut];
-    [Definitions outlineButton:_eightBut];
-    [Definitions outlineButton:_nineBut];
-    [Definitions outlineButton:_equalsBut];
-    [Definitions outlineButton:_addBut];
-    [Definitions outlineButton:_resetBut];
-    [Definitions outlineButton:_subBut];
-    [Definitions outlineButton:_divBut];
-    [Definitions outlineButton:_mulBut];
-    // Do any additional setup after loading the view from its nib.oij
-    */
     num1 = @"";
     num2 = @"";
 }
@@ -403,7 +383,9 @@ int state = 0;
         else if ([position isEqualToString:@"Right"])
             [trigView setCenter:CGPointMake(self.view.frame.size.width + trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
         trigisClicked = true;
-
+        expoisClicked = false;
+        extraisClicked = false;
+        constisClicked = false;
     }
     
 }
@@ -411,10 +393,55 @@ int state = 0;
     
 }
 - (IBAction)constBut:(id)sender {
+    if(constisClicked){
+        constisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+        [self performSelector:@selector(removeconstView) withObject:nil afterDelay:[Definitions transitionDuration]];
+    } else {
+        [self setPreferredContentSize:CGSizeMake(384, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"constView" owner:nil options:nil];
+        
+        constView = [array objectAtIndex:0];
+        [constView setBackgroundColor:self.view.backgroundColor];
+        [self.view addSubview:constView];
+        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
+        if ([position isEqualToString:@"Left"])
+            [constView setCenter:CGPointMake(0 - constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+        else if ([position isEqualToString:@"Right"])
+            [constView setCenter:CGPointMake(self.view.frame.size.width + constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+        trigisClicked = false;
+        expoisClicked = false;
+        extraisClicked = false;
+        constisClicked = true;
+    }
     
 }
 - (IBAction)extraBut:(id)sender {
-    
+    if(extraisClicked){
+        constisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+        [self performSelector:@selector(removeconstView) withObject:nil afterDelay:[Definitions transitionDuration]];
+    } else {
+        [self setPreferredContentSize:CGSizeMake(384, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"constView" owner:nil options:nil];
+        
+        constView = [array objectAtIndex:0];
+        [constView setBackgroundColor:self.view.backgroundColor];
+        [self.view addSubview:constView];
+        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
+        if ([position isEqualToString:@"Left"])
+            [constView setCenter:CGPointMake(0 - constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+        else if ([position isEqualToString:@"Right"])
+            [constView setCenter:CGPointMake(self.view.frame.size.width + constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+        trigisClicked = false;
+        expoisClicked = false;
+        extraisClicked = false;
+        constisClicked = true;
+    }
 }
 
 - (void)removetrigView
@@ -422,6 +449,20 @@ int state = 0;
     [trigView removeFromSuperview];
     trigView = nil;
 }
-
+- (void)removeexpoView
+{
+    [expoView removeFromSuperview];
+    expoView = nil;
+}
+- (void)removeconstView
+{
+    [constView removeFromSuperview];
+    constView = nil;
+}
+- (void)removeextraview
+{
+    [extraView removeFromSuperview];
+    extraView = nil;
+}
 
 @end
