@@ -17,6 +17,9 @@
 #import "PictureQuizVC.h"
 #import "PasswordVC.h"
 
+    //Michael's Test Code
+#import "FloraDummy-Swift.h"
+
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface TestingTVC ()
@@ -436,7 +439,7 @@
                   [NSNumber numberWithFloat:300],
                   [NSNumber numberWithFloat:300]] forKey:@"Bounds"];
     NSMutableDictionary *ii = [[NSMutableDictionary alloc] init];
-    [ii setValue:[UIImage imageNamed:@"apple_red.png"] forKey:@"Image"];
+    [ii setValue:[NSString stringWithFormat:@"apple_red"] forKey:@"Image"];
     [i setValue:ii forKey:@"Specials"];
     
     
@@ -448,10 +451,10 @@
                   [NSNumber numberWithFloat:500]] forKey:@"Bounds"];
     NSMutableDictionary *gg = [[NSMutableDictionary alloc] init];
     [gg setValue: [NSArray arrayWithObjects:
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind1.gif"],0.1),
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind2.gif"],0.1),
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind3.gif"],0.1),
-                   UIImageJPEGRepresentation([UIImage imageNamed:@"Wind4.gif"],0.1),
+                   [NSString stringWithFormat:@"Wind1"],
+                   [NSString stringWithFormat:@"Wind2"],
+                   [NSString stringWithFormat:@"Wind3"],
+                   [NSString stringWithFormat:@"Wind4"],
                    nil]
           forKey:@"GIFs"];
     [gg setValue:[NSNumber numberWithFloat:0.35] forKey:@"GIFDuration"];
@@ -483,7 +486,14 @@
     vocabVC.answers = answers;
     vocabVC.indexOfAnswer = &(indexOfAnswer);
     */
-    CalculatorVC *calc = [[CalculatorVC alloc] init];
+    CalculatorVC *calc = [[CalculatorVC alloc] initWithNibName:@"CalculatorVC" bundle:nil];
+    
+        //Michael's Test Code PLEASE DON'T REMOVE:
+    [calc setModalPresentationStyle:UIModalPresentationCustom];
+    [calc setTransitioningDelegate:self];
+    [calc setPreferredContentSize:CGSizeMake(304, 508)];
+        //End Test Code
+    
     [self presentViewController:calc animated:YES completion:nil];
 
 }
@@ -499,9 +509,9 @@
     
     NSString *question = [NSString stringWithFormat:@"What does a plant NOT need?"];
     
-    NSArray *answers = [NSArray arrayWithObjects:[UIImage imageNamed:@"25-weather"],
-                        [UIImage imageNamed:@"65-note"],
-                        [UIImage imageNamed:@"61-brightness"],
+    NSArray *answers = [NSArray arrayWithObjects:[NSString stringWithFormat:@"25-weather"],
+                        [NSString stringWithFormat:@"65-note"],
+                        [NSString stringWithFormat:@"61-brightness"],
                         nil];
     
     NSNumber *correct = [NSNumber numberWithInt:1]; // Music
@@ -547,6 +557,31 @@
     
     [self presentViewController:passwordVC animated:YES completion:nil];
     
+}
+
+#pragma mark Michael's Transition Methods
+
+- (UIPresentationController *) presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
+{
+    if ([presented isKindOfClass:[CalculatorVC class]])
+    {
+        return [[CalculatorPresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>) animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    if ([presented isKindOfClass:[CalculatorVC class]])
+        return [[CalculatorTransitionManager alloc] initWithIsPresenting:YES];
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>) animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    if ([dismissed isKindOfClass:[CalculatorVC class]])
+        return [[CalculatorTransitionManager alloc] initWithIsPresenting:NO];
+    return nil;
 }
 
 @end

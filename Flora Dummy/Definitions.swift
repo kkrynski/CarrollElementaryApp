@@ -11,9 +11,43 @@
 import UIKit
 import QuartzCore
 
+//MARK: - Global Variables
+
+let transitionLength = 0.3  //All transitions in swift files should use this variable for animationDuration to keep uniform
+
+//MARK: - Definitions Class
+
 class Definitions: NSObject
 {
-    //MARK: - Color methods
+    //MARK: - Calculator Position
+    
+    class func transitionDuration() -> NSTimeInterval
+    {
+        return transitionLength
+    }
+    
+    /**
+    Returns the Calculator's position on screen
+    
+    :param: calculatorVC The Calculator View Controller asking for it's position
+    
+    :returns: * nil:    The CalculatorVC is not on screen
+    :returns: * Left:   The CalculatorVC is on the left side of the screen
+    :returns: * Right:  CalculatorVC is on the right side of the screen
+      */
+    class func positionOfCalculatorOnScreen(calculatorVC : CalculatorVC?) -> String?
+    {
+        if calculatorVC != nil && calculatorVC!.isViewLoaded()
+        {
+            return NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition")
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    //MARK: - Color Methods
     
     //Convert a hex string to UIColor
     class func colorWithHexString(hexString : String) -> UIColor
@@ -54,7 +88,7 @@ class Definitions: NSObject
         return UIColor(red: red - 0.1, green: green - 0.1, blue: blue - 0.1, alpha: alpha)
     }
     
-    //MARK: - Outline functions
+    //MARK: - Outline Methods
     
     //Outline a UILabel
     class func outlineTextInLabel(label : UILabel)
@@ -107,7 +141,8 @@ class Definitions: NSObject
         button.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
-    // MARK: - Private class functions for Definitions.  These will NOT be able to be referenced outside the app. (They don't need to be).
+    // MARK: - Private Methods
+                //for Definitions.  These will NOT be able to be referenced outside the app. (They don't need to be).
     
     private class func colorCompenentFrom(string : String, atStartIndex start : Int, withLength length : Int) ->Float
     {
