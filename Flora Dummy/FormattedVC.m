@@ -55,7 +55,8 @@
     primaryColor = [UIColor blackColor];
     secondaryColor = [UIColor clearColor];
     backgroundColor = [UIColor clearColor];
-
+    
+    [self updateColors];
 }
 
 -(void)viewWillAppear:(BOOL)animated
