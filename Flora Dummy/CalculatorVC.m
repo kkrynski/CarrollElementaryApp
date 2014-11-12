@@ -284,6 +284,98 @@ int state = 0;
         operator = 5;
     }
 }
+- (IBAction)negBut:(id)sender {
+    if([num2 isEqualToString:@""]) {
+        if([([num1 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
+            num1 =[num1 substringFromIndex:(1)];
+            calLabel.text = num1;
+        } else {
+            num1 = [NSString stringWithFormat:@"-%@",num1];
+            calLabel.text = num1;
+        }
+    } else {
+        if([([num2 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
+            num2 =[num2 substringFromIndex:(1)];
+            calLabel.text = num2;
+        } else {
+            num2 = [NSString stringWithFormat:@"-%@",num2];
+            calLabel.text = num2;
+        }
+    }
+}
+- (IBAction)trigBut:(id)sender {
+    if(trigisClicked){
+        trigisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+        [self performSelector:@selector(removetrigView) withObject:nil afterDelay:[Definitions transitionDuration]];
+    } else {
+            [self setPreferredContentSize:CGSizeMake(384, 508)];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"trigView" owner:nil options:nil];
+            
+            trigView = [array objectAtIndex:0];
+            [trigView setBackgroundColor:self.view.backgroundColor];
+            [self.view addSubview:trigView];
+        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
+        if ([position isEqualToString:@"Left"])
+            [trigView setCenter:CGPointMake(0 - trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
+        else if ([position isEqualToString:@"Right"])
+            [trigView setCenter:CGPointMake(self.view.frame.size.width + trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
+        trigisClicked = true;
+        expoisClicked = false;
+        extraisClicked = false;
+        constisClicked = false;
+    }
+    
+}
+
+- (IBAction)constBut:(id)sender {
+    if(constisClicked){
+        constisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+        [self performSelector:@selector(removeconstView) withObject:nil afterDelay:[Definitions transitionDuration]];
+    } else {
+        [self setPreferredContentSize:CGSizeMake(384, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"constView" owner:nil options:nil];
+        
+        constView = [array objectAtIndex:0];
+        [constView setBackgroundColor:self.view.backgroundColor];
+        [self.view addSubview:constView];
+        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
+        if ([position isEqualToString:@"Right"])
+            [constView setCenter:CGPointMake(0 - constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+        else if ([position isEqualToString:@"Left"])
+            [constView setCenter:CGPointMake(self.view.frame.size.width + constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
+        trigisClicked = false;
+        expoisClicked = false;
+        extraisClicked = false;
+        constisClicked = true;
+    }
+    
+}
+- (IBAction)eBut:(id)sender {
+    if([num1 isEqualToString:@""]) {
+        num1 = [NSString stringWithFormat:@"%f",(2.718282)];
+        calLabel.text = num1;
+    } else {
+        num2 = [NSString stringWithFormat:@"%f",(2.718282)];
+        calLabel.text = num2;
+        
+    }
+}
+- (IBAction)piBut:(id)sender {
+    if([num1 isEqualToString:@""]) {
+        num1 = [NSString stringWithFormat:@"%f",(3.141593)];
+        calLabel.text = num1;
+    } else {
+        num2 = [NSString stringWithFormat:@"%f",(3.141593)];
+        calLabel.text = num2;
+        
+    }
+}
 - (IBAction)rootBut:(id)sender {
     if([num2 isEqualToString:@""]) {
         num1 = [NSString stringWithFormat:@"%f",(sqrt(num1.doubleValue))];
@@ -333,61 +425,7 @@ int state = 0;
         calLabel.text = num1;
         num2 = @"";
     }
-}
-- (IBAction)piBut:(id)sender {
-   if([num1 isEqualToString:@""]) {
-       num1 = [NSString stringWithFormat:@"%f",(3.141593)];
-       calLabel.text = num1;
-   } else {
-       num2 = [NSString stringWithFormat:@"%f",(3.141593)];
-       calLabel.text = num2;
 
-   }
-}
-- (IBAction)negBut:(id)sender {
-    if([num2 isEqualToString:@""]) {
-        if([([num1 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
-            num1 =[num1 substringFromIndex:(1)];
-            calLabel.text = num1;
-        } else {
-            num1 = [NSString stringWithFormat:@"-%@",num1];
-            calLabel.text = num1;
-        }
-    } else {
-        if([([num2 substringWithRange:NSMakeRange(0, 1)]) isEqualToString:@"-"]){
-            num2 =[num2 substringFromIndex:(1)];
-            calLabel.text = num2;
-        } else {
-            num2 = [NSString stringWithFormat:@"-%@",num2];
-            calLabel.text = num2;
-        }
-    }
-}
-- (IBAction)trigBut:(id)sender {
-    if(trigisClicked){
-        trigisClicked = false;
-        [self setPreferredContentSize:CGSizeMake(304, 508)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
-        [self performSelector:@selector(removetrigView) withObject:nil afterDelay:[Definitions transitionDuration]];
-    } else {
-            [self setPreferredContentSize:CGSizeMake(384, 508)];
-            [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
-            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"trigView" owner:nil options:nil];
-            
-            trigView = [array objectAtIndex:0];
-            [trigView setBackgroundColor:self.view.backgroundColor];
-            [self.view addSubview:trigView];
-        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
-        if ([position isEqualToString:@"Left"])
-            [trigView setCenter:CGPointMake(0 - trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
-        else if ([position isEqualToString:@"Right"])
-            [trigView setCenter:CGPointMake(self.view.frame.size.width + trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
-        trigisClicked = true;
-        expoisClicked = false;
-        extraisClicked = false;
-        constisClicked = false;
-    }
-    
 }
 - (IBAction)expoBut:(id)sender {
     if(expoisClicked){
@@ -404,9 +442,9 @@ int state = 0;
         [expoView setBackgroundColor:self.view.backgroundColor];
         [self.view addSubview:expoView];
         NSString *position = [Definitions positionOfCalculatorOnScreen:self];
-        if ([position isEqualToString:@"Left"])
+        if ([position isEqualToString:@"Right"])
             [expoView setCenter:CGPointMake(0 - expoView.frame.size.width/2.0, expoView.frame.size.height/2.0)];
-        else if ([position isEqualToString:@"Right"])
+        else if ([position isEqualToString:@"Left"])
             [expoView setCenter:CGPointMake(self.view.frame.size.width + expoView.frame.size.width/2.0, expoView.frame.size.height/2.0)];
         trigisClicked = false;
         expoisClicked = true;
@@ -414,31 +452,13 @@ int state = 0;
         constisClicked = false;
     }
 }
-- (IBAction)constBut:(id)sender {
-    if(constisClicked){
-        constisClicked = false;
-        [self setPreferredContentSize:CGSizeMake(304, 508)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
-        [self performSelector:@selector(removeconstView) withObject:nil afterDelay:[Definitions transitionDuration]];
-    } else {
-        [self setPreferredContentSize:CGSizeMake(384, 508)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"constView" owner:nil options:nil];
-        
-        constView = [array objectAtIndex:0];
-        [constView setBackgroundColor:self.view.backgroundColor];
-        [self.view addSubview:constView];
-        NSString *position = [Definitions positionOfCalculatorOnScreen:self];
-        if ([position isEqualToString:@"Left"])
-            [constView setCenter:CGPointMake(0 - constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
-        else if ([position isEqualToString:@"Right"])
-            [constView setCenter:CGPointMake(self.view.frame.size.width + constView.frame.size.width/2.0, constView.frame.size.height/2.0)];
-        trigisClicked = false;
-        expoisClicked = false;
-        extraisClicked = false;
-        constisClicked = true;
-    }
+- (IBAction)sinBut:(id)sender {
     
+}
+- (IBAction)cosBut:(id)sender {
+    
+}
+- (IBAction)tanBut:(id)sender {\
 }
 - (IBAction)extraBut:(id)sender {
     if(extraisClicked){
@@ -455,9 +475,9 @@ int state = 0;
         [extraView setBackgroundColor:self.view.backgroundColor];
         [self.view addSubview:extraView];
         NSString *position = [Definitions positionOfCalculatorOnScreen:self];
-        if ([position isEqualToString:@"Left"])
+        if ([position isEqualToString:@"Right"])
             [extraView setCenter:CGPointMake(0 - extraView.frame.size.width/2.0, extraView.frame.size.height/2.0)];
-        else if ([position isEqualToString:@"Right"])
+        else if ([position isEqualToString:@"Left"])
             [extraView setCenter:CGPointMake(self.view.frame.size.width + extraView.frame.size.width/2.0, extraView.frame.size.height/2.0)];
         trigisClicked = false;
         expoisClicked = false;
