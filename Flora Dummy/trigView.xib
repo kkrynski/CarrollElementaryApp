@@ -11,7 +11,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4g-ot-9FD">
-                    <rect key="frame" x="540" y="224" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="224" width="60" height="60"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="oOV-ss-Lgc"/>
@@ -25,7 +25,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWD-D2-vtg">
-                    <rect key="frame" x="540" y="292" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="292" width="60" height="60"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="RCe-bL-8ZF"/>
@@ -39,7 +39,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSY-my-aDf">
-                    <rect key="frame" x="540" y="156" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="156" width="60" height="60"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="7U7-aq-lAI"/>
@@ -54,17 +54,67 @@
                         <action selector="sinBut:" destination="-1" eventType="touchUpInside" id="10A-9J-geY"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAO-my-HA0">
+                    <rect key="frame" x="68" y="224" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Sly-sr-5De"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
+                    <state key="normal" title="arccos">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="cosBut:" destination="-1" eventType="touchUpInside" id="y4k-d7-Qir"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXP-oi-fdz">
+                    <rect key="frame" x="68" y="292" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="lyM-ef-meZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
+                    <state key="normal" title="arctan">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tanBut:" destination="-1" eventType="touchUpInside" id="wou-j4-OGJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idd-70-QYr">
+                    <rect key="frame" x="68" y="156" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="0aV-AT-eZe"/>
+                        <constraint firstAttribute="height" constant="60" id="d8j-0U-GPp"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="sWU-1Z-D3s"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
+                    <state key="normal" title="arcsin">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="sinBut:" destination="-1" eventType="touchUpInside" id="v40-w2-umf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="fAO-my-HA0" firstAttribute="top" secondItem="idd-70-QYr" secondAttribute="bottom" constant="8" symbolic="YES" id="0Ph-d5-yjk"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="0ly-hY-MDu"/>
+                <constraint firstItem="qSY-my-aDf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="12d-ad-wov"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="leading" secondItem="a4g-ot-9FD" secondAttribute="leading" id="236-gY-yzR"/>
+                <constraint firstItem="idd-70-QYr" firstAttribute="leading" secondItem="fAO-my-HA0" secondAttribute="leading" id="270-jB-3Iu"/>
                 <constraint firstItem="SWD-D2-vtg" firstAttribute="top" secondItem="a4g-ot-9FD" secondAttribute="bottom" constant="8" symbolic="YES" id="7Kh-3k-xfz"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="trailing" secondItem="SWD-D2-vtg" secondAttribute="trailing" id="AZN-Dr-eMx"/>
+                <constraint firstItem="pXP-oi-fdz" firstAttribute="top" secondItem="fAO-my-HA0" secondAttribute="bottom" constant="8" symbolic="YES" id="Ktl-ly-1Pa"/>
+                <constraint firstItem="idd-70-QYr" firstAttribute="leading" secondItem="pXP-oi-fdz" secondAttribute="leading" id="PrH-ZB-mmM"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="trailing" secondItem="a4g-ot-9FD" secondAttribute="trailing" id="SWe-1h-IeF"/>
-                <constraint firstAttribute="trailing" secondItem="qSY-my-aDf" secondAttribute="trailing" id="TJd-su-Hnk"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="leading" secondItem="SWD-D2-vtg" secondAttribute="leading" id="cSb-AZ-zfJ"/>
                 <constraint firstItem="a4g-ot-9FD" firstAttribute="top" secondItem="qSY-my-aDf" secondAttribute="bottom" constant="8" symbolic="YES" id="dhK-UN-aee"/>
+                <constraint firstItem="idd-70-QYr" firstAttribute="trailing" secondItem="pXP-oi-fdz" secondAttribute="trailing" id="erD-4B-eBM"/>
+                <constraint firstItem="idd-70-QYr" firstAttribute="trailing" secondItem="fAO-my-HA0" secondAttribute="trailing" id="wTL-OU-rMi"/>
             </constraints>
         </view>
     </objects>

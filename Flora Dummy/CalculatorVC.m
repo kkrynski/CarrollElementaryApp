@@ -358,20 +358,20 @@ int state = 0;
 }
 - (IBAction)eBut:(id)sender {
     if([num1 isEqualToString:@""]) {
-        num1 = [NSString stringWithFormat:@"%f",(2.718282)];
+        num1 = [NSString stringWithFormat:@"%f",(M_E)];
         calLabel.text = num1;
     } else {
-        num2 = [NSString stringWithFormat:@"%f",(2.718282)];
+        num2 = [NSString stringWithFormat:@"%f",(M_E)];
         calLabel.text = num2;
         
     }
 }
 - (IBAction)piBut:(id)sender {
     if([num1 isEqualToString:@""]) {
-        num1 = [NSString stringWithFormat:@"%f",(3.141593)];
+        num1 = [NSString stringWithFormat:@"%f",(M_PI)];
         calLabel.text = num1;
     } else {
-        num2 = [NSString stringWithFormat:@"%f",(3.141593)];
+        num2 = [NSString stringWithFormat:@"%f",(M_PI)];
         calLabel.text = num2;
         
     }
@@ -458,7 +458,7 @@ int state = 0;
 - (IBAction)cosBut:(id)sender {
     
 }
-- (IBAction)tanBut:(id)sender {\
+- (IBAction)tanBut:(id)sender {
 }
 - (IBAction)extraBut:(id)sender {
     if(extraisClicked){
