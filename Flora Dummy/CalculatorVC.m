@@ -461,6 +461,12 @@ int state = 0;
 }
 - (IBAction)tanBut:(id)sender {
 }
+- (IBAction)arcsinBut:(id)sender {
+}
+- (IBAction)arccosBut:(id)sender {
+}
+- (IBAction)arctanBut:(id)sender {
+}
 - (IBAction)extraBut:(id)sender {
     if(extraisClicked){
         extraisClicked = false;

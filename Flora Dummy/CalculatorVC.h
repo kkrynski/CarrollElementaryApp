@@ -28,15 +28,17 @@
 @property (strong, retain) IBOutlet UIButton *subBut;
 @property (strong, retain) IBOutlet UIButton *addBut;
 @property (strong, retain) IBOutlet UIButton *decBut;
-@property (strong, nonatomic) IBOutlet UIButton *rootBut;
-@property (strong, nonatomic) IBOutlet UIButton *powBut;
-@property (strong, nonatomic) IBOutlet UIButton *piBut;
-@property (strong, nonatomic) IBOutlet UIButton *negBut;
-@property (strong, nonatomic) IBOutlet UIButton *trigBut;
-@property (strong, nonatomic) IBOutlet UIButton *expoBut;
-@property (strong, nonatomic) IBOutlet UIButton *constBut;
-@property (strong, nonatomic) IBOutlet UIButton *extraBut;
-@property (nonatomic, retain) IBOutlet UIView *trigviewer;//inverse trig x^2 x^y e^x lnx 10^x log 10 (y root of x) fatorial , degree conversion abolute value
-@property (strong, nonatomic) IBOutlet UIButton *arcsinBut;
+@property (strong, retain) IBOutlet UIButton *rootBut;
+@property (strong, retain) IBOutlet UIButton *powBut;
+@property (strong, retain) IBOutlet UIButton *piBut;
+@property (strong, retain) IBOutlet UIButton *negBut;
+@property (strong, retain) IBOutlet UIButton *trigBut;
+@property (strong, retain) IBOutlet UIButton *expoBut;
+@property (strong, retain) IBOutlet UIButton *constBut;
+@property (strong, retain) IBOutlet UIButton *extraBut;
+@property (strong, retain) IBOutlet UIView *trigviewer;//inverse trig x^2 x^y e^x lnx 10^x log 10 (y root of x) fatorial , degree conversion abolute value
+@property (strong, retain) IBOutlet UIButton *arcsinBut;
+@property (strong, retain) IBOutlet UIButton *arccosBut;
+@property (strong, retain) IBOutlet UIButton *arctanBut;
 
 @end
