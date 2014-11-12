@@ -238,7 +238,7 @@ class CalculatorPresentationController: UIPresentationController
         
         calculatorHolderView = UIView(frame: presentedView().frame)
         calculatorHolderView!.clipsToBounds = true
-            presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0, calculatorHolderView!.frame.size.height/2.0)
+        presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0, calculatorHolderView!.frame.size.height/2.0)
         calculatorHolderView!.addSubview(presentedView())
         containerView.addSubview(calculatorHolderView!)
         
@@ -262,17 +262,11 @@ class CalculatorPresentationController: UIPresentationController
     
     //Decrease the calculator's width to hide the special functions view
     func decreaseCalculatorSize()
-    {        
+    {
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             
-            if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
-            {
-                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
-            }
-            else
-            {
-                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
-            }
+            self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
+            self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0, self.calculatorHolderView!.frame.size.height/2.0)
             
             }, completion: { (finished) -> Void in
                 
