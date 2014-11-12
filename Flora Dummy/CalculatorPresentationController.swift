@@ -236,28 +236,22 @@ class CalculatorPresentationController: UIPresentationController
         rightArrow!.userInteractionEnabled = false
         dismissButton!.userInteractionEnabled = false
         
-        calculatorHolderView = UIView(frame: frameOfPresentedViewInContainerView())
+        calculatorHolderView = UIView(frame: presentedView().frame)
         calculatorHolderView!.clipsToBounds = true
-        if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
-        {
-            presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0 - (calculatorHolderView!.frame.size.width - presentedView().frame.size.width)/2.0, calculatorHolderView!.frame.size.height/2.0)
-        }
-        else
-        {
-            presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0 + (calculatorHolderView!.frame.size.width - presentedView().frame.size.width)/2.0, calculatorHolderView!.frame.size.height/2.0)
-        }
+            presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0, calculatorHolderView!.frame.size.height/2.0)
         calculatorHolderView!.addSubview(presentedView())
         containerView.addSubview(calculatorHolderView!)
         
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             
+            self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
             if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
             {
-                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
+                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
             }
             else
             {
-                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
+                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
             }
             
             self.leftArrow!.alpha = 0.0
