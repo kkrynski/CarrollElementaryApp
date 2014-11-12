@@ -42,6 +42,7 @@ int state = 0;
     [super viewDidLoad];
     num1 = @"";
     num2 = @"";
+    [calLabel setBackgroundColor:[Definitions lighterColorForColor:backgroundColor]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -310,7 +311,7 @@ int state = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
         [self performSelector:@selector(removetrigView) withObject:nil afterDelay:[Definitions transitionDuration]];
     } else {
-            [self setPreferredContentSize:CGSizeMake(384, 508)];
+            [self setPreferredContentSize:CGSizeMake(452, 508)];
             [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"trigView" owner:nil options:nil];
             
@@ -318,9 +319,9 @@ int state = 0;
             [trigView setBackgroundColor:self.view.backgroundColor];
             [self.view addSubview:trigView];
         NSString *position = [Definitions positionOfCalculatorOnScreen:self];
-        if ([position isEqualToString:@"Left"])
+        if ([position isEqualToString:@"Right"])
             [trigView setCenter:CGPointMake(0 - trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
-        else if ([position isEqualToString:@"Right"])
+        else if ([position isEqualToString:@"Left"])
             [trigView setCenter:CGPointMake(self.view.frame.size.width + trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
         trigisClicked = true;
         expoisClicked = false;
