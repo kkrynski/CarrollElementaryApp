@@ -39,17 +39,19 @@
 */
 
 - (IBAction)submit:(id)sender {
-
+    NSString *defaultUsername = @"qwerty";
+    NSString *defaultPassword = @"qwerty";
     NSString *tempUsername = usernameInput.text;
     NSString *tempPassword = passwordInput.text;
-    if([tempUsername isEqualToString: username]) {
-        if([tempPassword isEqualToString: password] ){
-            
+    if([tempUsername isEqualToString: defaultUsername]) {
+        if([tempPassword isEqualToString: defaultPassword] ){
+          //  UIViewController *homeView = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"];
+          //  [self.navigationController pushViewController:homeView animated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
     NSLog(@"submit");
-    
-
 }
+
 
 @end

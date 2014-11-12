@@ -16,6 +16,7 @@
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
 		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
 		1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */; };
+		1078FC231A0FD83600A14836 /* MathProblemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC221A0FD83600A14836 /* MathProblemVC.swift */; };
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
@@ -31,6 +32,8 @@
 		4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7DC3FD1A09A32C006E3E23 /* CalculatorVC.xib */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
 		4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E719FC42C00066A53B /* VocabVC.xib */; };
+		5D03D4AA1A1276100008A9EA /* DragAndDrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03D4A91A1276100008A9EA /* DragAndDrop.m */; };
+		5D03D4AD1A1276B90008A9EA /* DragAndDrop.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D03D4AC1A1276B90008A9EA /* DragAndDrop.xib */; };
 		5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		9208CD1018F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
@@ -134,6 +137,7 @@
 		106C8BD719FEE574009B0983 /* ScienceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScienceVC.swift; sourceTree = "<group>"; };
 		1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorPresentationController.swift; sourceTree = "<group>"; };
 		1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorTransitionManager.swift; sourceTree = "<group>"; };
+		1078FC221A0FD83600A14836 /* MathProblemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC.swift; sourceTree = "<group>"; };
 		10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flora Dummy-Bridging-Header.h"; sourceTree = "<group>"; };
 		10B8787819FC1B40005D9937 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -149,6 +153,9 @@
 		4CC305E519FC42C00066A53B /* VocabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabVC.h; sourceTree = "<group>"; };
 		4CC305E619FC42C00066A53B /* VocabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabVC.m; sourceTree = "<group>"; };
 		4CC305E719FC42C00066A53B /* VocabVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VocabVC.xib; sourceTree = "<group>"; };
+		5D03D4A91A1276100008A9EA /* DragAndDrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragAndDrop.m; sourceTree = "<group>"; };
+		5D03D4AB1A1276270008A9EA /* DragAndDrop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragAndDrop.h; sourceTree = "<group>"; };
+		5D03D4AC1A1276B90008A9EA /* DragAndDrop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragAndDrop.xib; sourceTree = "<group>"; };
 		5D709CAD1A09A2F8000F44DF /* PasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordVC.h; sourceTree = "<group>"; };
 		5D709CAE1A09A2F8000F44DF /* PasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordVC.m; sourceTree = "<group>"; };
 		5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordVC.xib; sourceTree = "<group>"; };
@@ -344,6 +351,7 @@
 		1078FC141A0E944500A14836 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
+				1078FC1F1A0FD72D00A14836 /* Math Problems */,
 				1078FC151A0E945000A14836 /* Calculator Transition */,
 			);
 			name = Michael;
@@ -356,6 +364,14 @@
 				1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */,
 			);
 			name = "Calculator Transition";
+			sourceTree = "<group>";
+		};
+		1078FC1F1A0FD72D00A14836 /* Math Problems */ = {
+			isa = PBXGroup;
+			children = (
+				1078FC221A0FD83600A14836 /* MathProblemVC.swift */,
+			);
+			name = "Math Problems";
 			sourceTree = "<group>";
 		};
 		10B8787F19FC32F4005D9937 /* Subjects */ = {
@@ -409,6 +425,9 @@
 				5D709CAD1A09A2F8000F44DF /* PasswordVC.h */,
 				5D709CAE1A09A2F8000F44DF /* PasswordVC.m */,
 				5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */,
+				5D03D4A91A1276100008A9EA /* DragAndDrop.m */,
+				5D03D4AB1A1276270008A9EA /* DragAndDrop.h */,
+				5D03D4AC1A1276B90008A9EA /* DragAndDrop.xib */,
 			);
 			name = Mason;
 			sourceTree = "<group>";
@@ -813,6 +832,7 @@
 				4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */,
 				92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */,
 				926C9B1718E4EA69006CDB2F /* HOME4.gif in Resources */,
+				5D03D4AD1A1276B90008A9EA /* DragAndDrop.xib in Resources */,
 				9282390618A6A39300223265 /* Main2.storyboard in Resources */,
 				92E8CB5118F0C4BD0025264E /* Wind3.gif in Resources */,
 				92C261B41839D40800FDA09B /* apple_green.png in Resources */,
@@ -858,6 +878,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1078FC231A0FD83600A14836 /* MathProblemVC.swift in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
 				9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */,
 				9211951E19FE02CB00644054 /* ModuleVC.m in Sources */,
@@ -884,6 +905,7 @@
 				10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */,
 				1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */,
 				1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */,
+				5D03D4AA1A1276100008A9EA /* DragAndDrop.m in Sources */,
 				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
 				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,

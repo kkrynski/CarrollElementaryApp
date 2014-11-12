@@ -138,6 +138,8 @@
     }
     
     [self reloadView];
+    
+    [self updateColors];
 
 }
 

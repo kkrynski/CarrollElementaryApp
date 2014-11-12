@@ -53,7 +53,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -150,6 +150,7 @@
         }case 1:
         {
             // Michael
+            [self launchMathController];
             
             break;
             
@@ -557,6 +558,14 @@
     
     [self presentViewController:passwordVC animated:YES completion:nil];
     
+}
+
+- (void) launchMathController
+{
+    MathProblemVC *mathProblemVC = [[MathProblemVC alloc] init];
+    mathProblemVC.mathEquation = @"3+3=#w#";
+    
+    [self presentViewController:mathProblemVC animated:YES completion:nil];
 }
 
 #pragma mark Michael's Transition Methods

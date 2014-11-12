@@ -22,33 +22,33 @@ class EquationFormatter: NSObject
         
         let stringComponents = equation.componentsSeparatedByString("_")
         
-        for component : NSString in stringComponents
+        for component : String in stringComponents
         {
             if component != ""
             {
-                let firstChar = component.substringWithRange(NSMakeRange(0, 1))
+                let firstChar = (component as NSString).substringWithRange(NSMakeRange(0, 1))
                 
                 //Test to see if there is a variable
                 switch firstChar
                 {
                 case "#": //We have a variable
-                    let varStr = component.substringWithRange(NSMakeRange(1, component.length - 1))
+                    let varStr = (component as NSString).substringWithRange(NSMakeRange(1, (component as NSString).length - 1))
                     
                     boxes.addObject(createTextBoxForString(varStr))
                     
                     //Answer box requested
                 case "?":
-                    let answerString = component.substringWithRange(NSMakeRange(1, component.length - 1))
+                    let answerString = (component as NSString).substringWithRange(NSMakeRange(1, (component as NSString).length - 1))
                     boxes.addObject(createAnswerBoxForAnswer(answerString))
                     
                 default:
-                    fatalError("Unsupported First Character: \(firstChar)")
+                    break
                 }
                 
                 //Test to see if the string is a number
-                if component.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet()).location != NSNotFound
+                if (component as NSString).rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet()).location != NSNotFound
                 {
-                    let num = NSNumber(float: component.floatValue)
+                    let num = NSNumber(float: (component as NSString).floatValue)
                     
                     boxes.addObject(createNumberTextBoxForNumber(num))
                 }
