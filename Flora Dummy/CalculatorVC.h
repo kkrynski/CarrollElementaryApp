@@ -37,5 +37,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *constBut;
 @property (strong, nonatomic) IBOutlet UIButton *extraBut;
 @property (nonatomic, retain) IBOutlet UIView *trigviewer;//inverse trig x^2 x^y e^x lnx 10^x log 10 (y root of x) fatorial , degree conversion abolute value
+@property (strong, nonatomic) IBOutlet UIButton *arcsinBut;
 
 @end
