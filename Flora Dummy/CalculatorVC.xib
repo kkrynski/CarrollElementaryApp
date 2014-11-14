@@ -9,25 +9,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalculatorVC">
             <connections>
                 <outlet property="calLabel" destination="Stq-YL-00z" id="HGf-3c-D5B"/>
-                <outlet property="constBut" destination="uKU-SP-VCM" id="bpB-IE-n7J"/>
-                <outlet property="decBut" destination="ZFO-Ww-zEA" id="BLC-gP-qnj"/>
-                <outlet property="divBut" destination="C97-3X-veD" id="BYI-dR-slH"/>
-                <outlet property="eightBut" destination="1hA-8E-ARL" id="1vd-1g-Vxi"/>
-                <outlet property="equalsBut" destination="g66-bh-W7J" id="aLh-Hf-Exh"/>
-                <outlet property="expoBut" destination="XTy-YH-ze5" id="tXI-eh-N2v"/>
-                <outlet property="extraBut" destination="Mat-a7-gbc" id="W7r-FJ-S7L"/>
-                <outlet property="fiveBut" destination="qbv-mg-oaD" id="UAv-AC-E1i"/>
-                <outlet property="fourBut" destination="MQY-OG-pkg" id="Jim-Hh-S5R"/>
-                <outlet property="mulBut" destination="6OL-aF-AtW" id="2gJ-MW-OjA"/>
-                <outlet property="nineBut" destination="l4F-rv-jlm" id="ovD-Mn-uvK"/>
-                <outlet property="oneBut" destination="Ch2-fr-WYy" id="9nu-Yr-r4c"/>
-                <outlet property="resetBut" destination="o7Z-oW-ZmF" id="hzr-aV-TLk"/>
-                <outlet property="sevenBut" destination="LGW-7P-Mva" id="Gvx-3M-YE0"/>
-                <outlet property="sixBut" destination="lme-Uy-Fec" id="WVI-HK-FVY"/>
-                <outlet property="subBut" destination="Hk8-7f-Ewf" id="FAU-YX-Jho"/>
-                <outlet property="threeBut" destination="x8w-kv-lXo" id="HF2-yM-ceZ"/>
-                <outlet property="trigBut" destination="QjU-WQ-B4D" id="dLL-O0-jWy"/>
-                <outlet property="twoBut" destination="Yvo-rs-gD1" id="CgH-TS-TyO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -243,7 +224,6 @@
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="addBut:" destination="-1" eventType="touchUpInside" id="Faf-Zv-fmR"/>
                         <action selector="decBut:" destination="-1" eventType="touchUpInside" id="ElV-fq-BWd"/>
                     </connections>
                 </button>

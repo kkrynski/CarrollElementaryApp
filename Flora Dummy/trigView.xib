@@ -4,13 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalculatorVC">
-            <connections>
-                <outlet property="arccosBut" destination="fAO-my-HA0" id="78I-an-7Np"/>
-                <outlet property="arcsinBut" destination="idd-70-QYr" id="91V-2A-AcF"/>
-                <outlet property="arctanBut" destination="pXP-oi-fdz" id="Nkq-Br-0Ml"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalculatorVC"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>

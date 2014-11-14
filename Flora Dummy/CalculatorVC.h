@@ -11,34 +11,7 @@
 @interface CalculatorVC : FormattedVC
 
 @property (strong, retain) IBOutlet UILabel *calLabel;
-@property (strong, retain) IBOutlet UIButton *zeroBut;
-@property (strong, retain) IBOutlet UIButton *oneBut;
-@property (strong, retain) IBOutlet UIButton *twoBut;
-@property (strong, retain) IBOutlet UIButton *threeBut;
-@property (strong, retain) IBOutlet UIButton *fourBut;
-@property (strong, retain) IBOutlet UIButton *fiveBut;
-@property (strong, retain) IBOutlet UIButton *sixBut;
-@property (strong, retain) IBOutlet UIButton *sevenBut;
-@property (strong, retain) IBOutlet UIButton *eightBut;
-@property (strong, retain) IBOutlet UIButton *nineBut;
-@property (strong, retain) IBOutlet UIButton *equalsBut;
-@property (strong, retain) IBOutlet UIButton *resetBut;
-@property (strong, retain) IBOutlet UIButton *divBut;
-@property (strong, retain) IBOutlet UIButton *mulBut;
-@property (strong, retain) IBOutlet UIButton *subBut;
-@property (strong, retain) IBOutlet UIButton *addBut;
-@property (strong, retain) IBOutlet UIButton *decBut;
-@property (strong, retain) IBOutlet UIButton *rootBut;
-@property (strong, retain) IBOutlet UIButton *powBut;
-@property (strong, retain) IBOutlet UIButton *piBut;
-@property (strong, retain) IBOutlet UIButton *negBut;
-@property (strong, retain) IBOutlet UIButton *trigBut;
-@property (strong, retain) IBOutlet UIButton *expoBut;
-@property (strong, retain) IBOutlet UIButton *constBut;
-@property (strong, retain) IBOutlet UIButton *extraBut;
-@property (strong, retain) IBOutlet UIView *trigviewer;//inverse trig x^2 x^y e^x lnx 10^x log 10 (y root of x) fatorial , degree conversion abolute value
-@property (strong, retain) IBOutlet UIButton *arcsinBut;
-@property (strong, retain) IBOutlet UIButton *arccosBut;
-@property (strong, retain) IBOutlet UIButton *arctanBut;
+@property (strong, retain) IBOutlet UIView *trigviewer;//fatorial , degree conversion abolute value
+
 
 @end
