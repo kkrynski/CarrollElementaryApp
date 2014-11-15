@@ -42,11 +42,11 @@
             <constraints>
                 <constraint firstItem="XxK-on-rLw" firstAttribute="top" secondItem="31P-mR-JqV" secondAttribute="bottom" constant="8" symbolic="YES" id="8aa-ke-cPR"/>
                 <constraint firstItem="31P-mR-JqV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="Au8-eB-lfz"/>
-                <constraint firstAttribute="trailing" secondItem="XxK-on-rLw" secondAttribute="trailing" constant="540" id="BeF-5n-S8K"/>
                 <constraint firstItem="XxK-on-rLw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="170" id="Kmt-v3-CpE"/>
                 <constraint firstItem="XxK-on-rLw" firstAttribute="top" secondItem="31P-mR-JqV" secondAttribute="bottom" constant="16" id="YcH-66-RAB"/>
                 <constraint firstItem="31P-mR-JqV" firstAttribute="leading" secondItem="XxK-on-rLw" secondAttribute="leading" id="eKa-gd-wBM"/>
                 <constraint firstItem="31P-mR-JqV" firstAttribute="trailing" secondItem="XxK-on-rLw" secondAttribute="trailing" id="ge3-ha-bpm"/>
+                <constraint firstItem="XxK-on-rLw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ruy-pO-Xrb"/>
                 <constraint firstItem="31P-mR-JqV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="159" id="sua-Br-5hC"/>
             </constraints>
             <variation key="default">
