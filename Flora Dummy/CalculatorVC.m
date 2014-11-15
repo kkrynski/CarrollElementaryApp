@@ -50,7 +50,6 @@ int state = 0;
     // Dispose of any resources that can be recreated.
 }
 -(void)command:(NSString *)val{
-    NSLog([NSString stringWithFormat:@"%i",operator]);
     if (operator == 0){
         num1 = [NSString stringWithFormat:@"%@%@",num1 ,val];
         calLabel.text = num1;
@@ -330,7 +329,10 @@ int state = 0;
         [self setPreferredContentSize:CGSizeMake(304, 508)];
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
         [self performSelector:@selector(removetrigView) withObject:nil afterDelay:[Definitions transitionDuration]];
+        NSLog(@"1");
     } else {
+          NSLog(@"2");
+      
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
             [self setPreferredContentSize:CGSizeMake(452, 508)];
             [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
@@ -344,6 +346,7 @@ int state = 0;
             [trigView setCenter:CGPointMake(0 - trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
         else if ([position isEqualToString:@"Left"])
             [trigView setCenter:CGPointMake(self.view.frame.size.width + trigView.frame.size.width/2.0, trigView.frame.size.height/2.0)];
+          NSLog(@"%@",trigView.userInteractionEnabled ? @"true" : @"false");
         trigisClicked = true;
         expoisClicked = false;
         extraisClicked = false;
@@ -901,7 +904,6 @@ int state = 0;
         num2 = @"";
     }
 }
-
 - (IBAction)lnxBut:(id)sender {
     if([num2 isEqualToString:@""]) {
         num1 = [NSString stringWithFormat:@"%f",(log(num1.doubleValue))];
@@ -953,7 +955,6 @@ int state = 0;
     }
 
 }
-
 - (IBAction)tothexBut:(id)sender {
     if([num2 isEqualToString:@""]) {
         num1 = [NSString stringWithFormat:@"%f",(pow(10,num1.doubleValue))];
@@ -1054,7 +1055,6 @@ int state = 0;
         num2 = @"";
     }
 }
-
 - (IBAction)factorialBut:(id)sender {
     if([num2 isEqualToString:@""]) {
         num1 = [NSString stringWithFormat:@"%f",(tgamma(num1.doubleValue))];
@@ -1175,12 +1175,6 @@ int state = 0;
         
     }
 }
-
-
-
-
-
-
 
 - (void)removetrigView
 {
