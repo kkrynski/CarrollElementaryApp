@@ -267,7 +267,7 @@ class CalculatorPresentationController: UIPresentationController
             else
             {
                 self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
-                self.calculatorExtension!.center = CGPointMake(self.calculatorExtension!.center.x - self.calculatorExtension!.frame.size.width/2.0, self.calculatorExtension!.center.y)
+                self.calculatorExtension!.center = CGPointMake(0 - self.calculatorExtension!.frame.size.width/2.0, self.calculatorExtension!.center.y)
             }
             
             self.leftArrow!.alpha = 0.0
