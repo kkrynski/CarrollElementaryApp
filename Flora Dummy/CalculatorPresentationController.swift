@@ -274,7 +274,6 @@ class CalculatorPresentationController: UIPresentationController
                 self.containerView.addSubview(self.presentedView())
                 
                 self.calculatorHolderView!.removeFromSuperview()
-                self.calculatorHolderView = nil
         })
         
         UIView.animateWithDuration(transitionLength, delay: transitionLength, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
