@@ -331,6 +331,7 @@ int state = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
         [self performSelector:@selector(removetrigView) withObject:nil afterDelay:[Definitions transitionDuration]];
     } else {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self];
             [self setPreferredContentSize:CGSizeMake(452, 508)];
             [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"trigView" owner:nil options:nil];
