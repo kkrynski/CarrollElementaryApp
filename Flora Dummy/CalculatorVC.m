@@ -436,7 +436,7 @@ int state = 0;
         expoisClicked = true;
         extraisClicked = false;
         constisClicked = false;
-        [self setPreferredContentSize:CGSizeMake(382, 508)];
+        [self setPreferredContentSize:CGSizeMake(452, 508)];
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
 
     }
