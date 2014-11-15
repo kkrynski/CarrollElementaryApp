@@ -17,7 +17,7 @@ class CalculatorPresentationController: UIPresentationController
     var dismissButton : UIButton?       //The dismiss button
     
     var calculatorHolderView : UIView?  //This view manages expanding and collapsing the calculator for special functions
-    
+    var calculatorExtension : UIView?   //The extension view to slide in.
     
     class func CalculatorWillIncreaseSizeNotification() -> String
     {
