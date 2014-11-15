@@ -326,8 +326,7 @@ int state = 0;
 - (IBAction)trigBut:(id)sender {
     if(trigisClicked){
         trigisClicked = false;
-        [self setPreferredContentSize:CGSizeMake(304, 508)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+        
     } else {
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
             [self setPreferredContentSize:CGSizeMake(452, 508)];
@@ -341,6 +340,8 @@ int state = 0;
         expoisClicked = false;
         extraisClicked = false;
         constisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
     }
     
 }
@@ -348,9 +349,7 @@ int state = 0;
 - (IBAction)constBut:(id)sender {
     if(constisClicked){
         constisClicked = false;
-        [self setPreferredContentSize:CGSizeMake(304, 508)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
-    } else {
+           } else {
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
         [self setPreferredContentSize:CGSizeMake(382, 508)];
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
@@ -363,6 +362,9 @@ int state = 0;
         expoisClicked = false;
         extraisClicked = false;
         constisClicked = true;
+               [self setPreferredContentSize:CGSizeMake(304, 508)];
+               [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+
     }
     
 }
@@ -420,8 +422,7 @@ int state = 0;
 - (IBAction)expoBut:(id)sender {
     if(expoisClicked){
         expoisClicked = false;
-        [self setPreferredContentSize:CGSizeMake(304, 508)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
+       
     } else {
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
         [self setPreferredContentSize:CGSizeMake(382, 508)];
@@ -435,6 +436,8 @@ int state = 0;
         expoisClicked = true;
         extraisClicked = false;
         constisClicked = false;
+        [self setPreferredContentSize:CGSizeMake(304, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
     }
 }
 - (IBAction)sinBut:(id)sender {
@@ -750,9 +753,8 @@ int state = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillDecreaseSizeNotification] object:nil];
     } else {
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
-        [self setPreferredContentSize:CGSizeMake(382, 508)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"extraView" owner:nil options:nil];
+       
+               NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"extraView" owner:nil options:nil];
         
         extraView = [array objectAtIndex:0];
         [extraView setBackgroundColor:self.view.backgroundColor];
@@ -761,6 +763,9 @@ int state = 0;
         expoisClicked = false;
         extraisClicked = true;
         constisClicked = false;
+         [self setPreferredContentSize:CGSizeMake(382, 508)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[CalculatorPresentationController CalculatorWillIncreaseSizeNotification] object:nil];
+
     }}
 - (IBAction)xsquaredBut:(id)sender {
     if([num2 isEqualToString:@""]) {
