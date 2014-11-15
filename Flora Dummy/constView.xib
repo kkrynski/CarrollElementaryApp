@@ -11,7 +11,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxK-on-rLw">
-                    <rect key="frame" x="540" y="219" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="222" width="60" height="60"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Mal-2a-At8"/>
@@ -23,18 +23,18 @@
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="eBut:" destination="-1" eventType="touchUpInside" id="fAg-et-oZd"/>
+                        <action selector="eBut:" destination="-1" eventType="touchUpInside" id="z8z-lD-tBf"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31P-mR-JqV">
-                    <rect key="frame" x="540" y="156" width="60" height="55"/>
+                    <rect key="frame" x="0.0" y="159" width="60" height="55"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
                     <state key="normal" title="π">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="piBut:" destination="-1" eventType="touchUpInside" id="kpd-Z5-BsK"/>
+                        <action selector="piBut:" destination="-1" eventType="touchUpInside" id="KAw-19-XN1"/>
                     </connections>
                 </button>
             </subviews>
@@ -42,12 +42,12 @@
             <constraints>
                 <constraint firstItem="XxK-on-rLw" firstAttribute="top" secondItem="31P-mR-JqV" secondAttribute="bottom" constant="8" symbolic="YES" id="8aa-ke-cPR"/>
                 <constraint firstItem="31P-mR-JqV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="Au8-eB-lfz"/>
-                <constraint firstAttribute="trailing" secondItem="XxK-on-rLw" secondAttribute="trailing" id="BeF-5n-S8K"/>
+                <constraint firstAttribute="trailing" secondItem="XxK-on-rLw" secondAttribute="trailing" constant="540" id="BeF-5n-S8K"/>
                 <constraint firstItem="XxK-on-rLw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="170" id="Kmt-v3-CpE"/>
                 <constraint firstItem="XxK-on-rLw" firstAttribute="top" secondItem="31P-mR-JqV" secondAttribute="bottom" constant="16" id="YcH-66-RAB"/>
                 <constraint firstItem="31P-mR-JqV" firstAttribute="leading" secondItem="XxK-on-rLw" secondAttribute="leading" id="eKa-gd-wBM"/>
                 <constraint firstItem="31P-mR-JqV" firstAttribute="trailing" secondItem="XxK-on-rLw" secondAttribute="trailing" id="ge3-ha-bpm"/>
-                <constraint firstItem="31P-mR-JqV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="sua-Br-5hC"/>
+                <constraint firstItem="31P-mR-JqV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="159" id="sua-Br-5hC"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
