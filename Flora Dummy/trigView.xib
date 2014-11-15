@@ -51,7 +51,7 @@
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="sinBut:" destination="-1" eventType="touchUpInside" id="10A-9J-geY"/>
+                        <action selector="sinBut:" destination="-1" eventType="touchUpInside" id="ozW-tf-g84"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAO-my-HA0">
@@ -98,6 +98,38 @@
                         <action selector="arcsinBut:" destination="-1" eventType="touchUpInside" id="xhi-kw-tf7"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8z-Bm-xoa">
+                    <rect key="frame" x="0.0" y="360" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="1cj-5P-IHI"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="QOh-M8-K4o"/>
+                        <constraint firstAttribute="width" constant="60" id="p8M-jN-X4f"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
+                    <state key="normal" title="to deg">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="radtodegreeBut:" destination="-1" eventType="touchUpInside" id="RVD-mJ-MBf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OC-mT-cL3">
+                    <rect key="frame" x="68" y="360" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="4Ec-ao-aMG"/>
+                        <constraint firstAttribute="width" constant="60" id="CAA-8l-vbH"/>
+                        <constraint firstAttribute="height" constant="60" id="fil-oU-nTe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
+                    <state key="normal" title="to rad">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="degtoradBut:" destination="-1" eventType="touchUpInside" id="RkZ-Ge-P98"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -108,13 +140,17 @@
                 <constraint firstItem="idd-70-QYr" firstAttribute="leading" secondItem="fAO-my-HA0" secondAttribute="leading" id="270-jB-3Iu"/>
                 <constraint firstItem="SWD-D2-vtg" firstAttribute="top" secondItem="a4g-ot-9FD" secondAttribute="bottom" constant="8" symbolic="YES" id="7Kh-3k-xfz"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="trailing" secondItem="SWD-D2-vtg" secondAttribute="trailing" id="AZN-Dr-eMx"/>
+                <constraint firstItem="Y8z-Bm-xoa" firstAttribute="leading" secondItem="SWD-D2-vtg" secondAttribute="leading" id="FYP-8l-Gdd"/>
+                <constraint firstItem="8OC-mT-cL3" firstAttribute="leading" secondItem="pXP-oi-fdz" secondAttribute="leading" id="GEg-EW-qCU"/>
                 <constraint firstItem="pXP-oi-fdz" firstAttribute="top" secondItem="fAO-my-HA0" secondAttribute="bottom" constant="8" symbolic="YES" id="Ktl-ly-1Pa"/>
                 <constraint firstItem="idd-70-QYr" firstAttribute="leading" secondItem="qSY-my-aDf" secondAttribute="trailing" constant="8" symbolic="YES" id="PcV-8O-tjY"/>
                 <constraint firstItem="idd-70-QYr" firstAttribute="leading" secondItem="pXP-oi-fdz" secondAttribute="leading" id="PrH-ZB-mmM"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="trailing" secondItem="a4g-ot-9FD" secondAttribute="trailing" id="SWe-1h-IeF"/>
+                <constraint firstItem="8OC-mT-cL3" firstAttribute="baseline" secondItem="Y8z-Bm-xoa" secondAttribute="baseline" id="ZWt-0L-lBA"/>
                 <constraint firstItem="qSY-my-aDf" firstAttribute="leading" secondItem="SWD-D2-vtg" secondAttribute="leading" id="cSb-AZ-zfJ"/>
                 <constraint firstItem="a4g-ot-9FD" firstAttribute="top" secondItem="qSY-my-aDf" secondAttribute="bottom" constant="8" symbolic="YES" id="dhK-UN-aee"/>
                 <constraint firstItem="idd-70-QYr" firstAttribute="trailing" secondItem="pXP-oi-fdz" secondAttribute="trailing" id="erD-4B-eBM"/>
+                <constraint firstItem="Y8z-Bm-xoa" firstAttribute="top" secondItem="SWD-D2-vtg" secondAttribute="bottom" constant="8" symbolic="YES" id="hpT-lS-MCF"/>
                 <constraint firstItem="idd-70-QYr" firstAttribute="top" secondItem="qSY-my-aDf" secondAttribute="top" id="uUO-od-vqC"/>
                 <constraint firstItem="idd-70-QYr" firstAttribute="trailing" secondItem="fAO-my-HA0" secondAttribute="trailing" id="wTL-OU-rMi"/>
             </constraints>
