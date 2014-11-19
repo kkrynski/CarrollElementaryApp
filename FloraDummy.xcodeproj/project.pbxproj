@@ -431,8 +431,8 @@
 			isa = PBXGroup;
 			children = (
 				5D03D4AE1A12E2FA0008A9EA /* SpellingTestVC.h */,
-				5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */,
 				5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */,
+				5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */,
 				5D18E9D11A1C0FEA00F8DB94 /* AudioController.h */,
 				5D18E9D21A1C0FEA00F8DB94 /* AudioController.m */,
 				5D18E9D41A1C12A900F8DB94 /* hello.wav */,

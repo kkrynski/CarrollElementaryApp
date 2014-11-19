@@ -16,6 +16,7 @@
 #import "QuickQuizVC.h"
 #import "PictureQuizVC.h"
 #import "PasswordVC.h"
+#import "SpellingTestVC.h"
 
     //Michael's Test Code
 #import "FloraDummy-Swift.h"
@@ -53,7 +54,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -189,6 +190,14 @@
             // All about plants
             
             [self launchPlants];
+            
+            break;
+            
+        }case 7:
+        {
+            // Mason - Spelling Test
+            
+            [self launchSpellingTest];
             
             break;
             
@@ -563,6 +572,19 @@
     
     [self presentViewController:mathProblemVC animated:YES completion:nil];
 }
+
+- (void) launchSpellingTest
+{
+    SpellingTestVC *spellingTestVC = [[SpellingTestVC alloc] init];
+    //spellingTestVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    
+    [self presentViewController:spellingTestVC animated:YES completion:nil];
+}
+
+
+
+
+
 
 #pragma mark Michael's Transition Methods
 
