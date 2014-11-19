@@ -1,25 +1,35 @@
 //
-//  PasswordVC.m
+//  SpellingTestVC.m
 //  FloraDummy
 //
-//  Created by Mason Herhusky on 11/4/14.
+//  Created by Mason Herhusky on 11/11/14.
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
-#import "PasswordVC.h"
+#import "SpellingTestVC.h"
+#import "AudioController.h"
 
-@interface PasswordVC ()
+@interface SpellingTestVC ()
 
 @end
 
-@implementation PasswordVC
-@synthesize username, password;
-@synthesize usernameInput, passwordInput;
+
+@implementation SpellingTestVC
+@synthesize word;
+@synthesize title;
+@synthesize input;
 @synthesize submit;
+@synthesize playSound;
+
+-(IBAction)PlayButtonPressed {
+    [_audioController playSystemSound];
+}
+
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _audioController = [[AudioController alloc]init];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -27,6 +37,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)submit:(id)sender {
+    if([self.input.text isEqualToString: self.word]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    NSLog(@"submit");
+}
+
 
 /*
 #pragma mark - Navigation
@@ -37,19 +55,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)submit:(id)sender {
-    NSString *defaultUsername = @"qwerty";
-    NSString *defaultPassword = @"qwerty";
-    NSString *tempUsername = usernameInput.text;
-    NSString *tempPassword = passwordInput.text;
-    if([tempUsername isEqualToString: defaultUsername]) {
-        if([tempPassword isEqualToString: defaultPassword] ){
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    }
-    NSLog(@"submit");
-}
-
 
 @end
