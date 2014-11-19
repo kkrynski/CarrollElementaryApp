@@ -488,13 +488,9 @@
     vocabVC.indexOfAnswer = &(indexOfAnswer);
     */
     CalculatorVC *calc = [[CalculatorVC alloc] initWithNibName:@"CalculatorVC" bundle:nil];
-    
-        //Michael's Test Code PLEASE DON'T REMOVE:
     [calc setModalPresentationStyle:UIModalPresentationCustom];
     [calc setTransitioningDelegate:self];
     [calc setPreferredContentSize:CGSizeMake(304, 508)];
-        //End Test Code
-    
     [self presentViewController:calc animated:YES completion:nil];
 
 }
@@ -563,7 +559,7 @@
 - (void) launchMathController
 {
     MathProblemVC *mathProblemVC = [[MathProblemVC alloc] init];
-    mathProblemVC.mathEquation = @"3+3=#w#";
+    mathProblemVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
     
     [self presentViewController:mathProblemVC animated:YES completion:nil];
 }

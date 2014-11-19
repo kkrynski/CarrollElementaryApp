@@ -49,10 +49,9 @@ class MathProblemTextField: UITextField, UITextFieldDelegate
         
         delegate = self
         
-        
         placeholder = "Answer"
         textAlignment = .Center
-        font = UIFont(name: "Marker Felt", size: 72)
+        font = UIFont(name: "Marker Felt", size: 68)
         minimumFontSize = 10.0
         adjustsFontSizeToFitWidth = true
         
@@ -71,8 +70,8 @@ class MathProblemTextField: UITextField, UITextFieldDelegate
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
-        let alphabetSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-        let numberSet = NSCharacterSet(charactersInString: "0123456789")
+        let alphabetSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-")
+        let numberSet = NSCharacterSet(charactersInString: "0123456789-")
         
         switch type!
         {
@@ -83,7 +82,7 @@ class MathProblemTextField: UITextField, UITextFieldDelegate
             return (string as NSString).rangeOfCharacterFromSet(alphabetSet).location == NSNotFound && (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == ""
             
         default:
-            return true
+            return (string as NSString).rangeOfCharacterFromSet(alphabetSet).location != NSNotFound || (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == ""
         }
     }
     

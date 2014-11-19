@@ -10,14 +10,16 @@ import UIKit
 
 class CalculatorPresentationController: UIPresentationController
 {
-    var blurView : UIVisualEffectView?  //The background blur view
+    private var blurView : UIVisualEffectView?          //The background blur view
     
-    var rightArrow : UIButton?          //The right-facing arrow
-    var leftArrow : UIButton?           //The left-facing arrow
-    var dismissButton : UIButton?       //The dismiss button
+    private var rightArrow : UIButton?                  //The right-facing arrow
+    private var leftArrow : UIButton?                   //The left-facing arrow
+    private var dismissButton : UIButton?               //The dismiss button
     
-    var calculatorHolderView : UIView?  //This view manages expanding and collapsing the calculator for special functions
-    var calculatorExtension : UIView?   //The extension view to slide in.
+    private var calculatorHolderView : UIView?          //This view manages expanding and collapsing the calculator for special functions
+    var calculatorExtension : UIView?                   //The extension view to slide in.
+    
+    private var dismissTap : UITapGestureRecognizer?    //The tap gesture for dismissal of calculator extension/calculator
     
     class func CalculatorWillIncreaseSizeNotification() -> String
     {
@@ -77,6 +79,9 @@ class CalculatorPresentationController: UIPresentationController
         dismissButton!.alpha = 0.0
         dismissButton!.addTarget(self, action: "dismissCalculator", forControlEvents: .TouchUpInside)
         containerView.addSubview(dismissButton!)
+        
+        dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator")
+        blurView!.addGestureRecognizer(dismissTap!)
         
         let transitionCoordinator = self.presentingViewController.transitionCoordinator()
         transitionCoordinator?.animateAlongsideTransition(
@@ -243,10 +248,15 @@ class CalculatorPresentationController: UIPresentationController
         
         calculatorHolderView = UIView(frame: presentedView().frame)
         calculatorHolderView!.clipsToBounds = true
+        calculatorHolderView!.userInteractionEnabled = false
         presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0, calculatorHolderView!.frame.size.height/2.0)
+        
         calculatorHolderView!.addSubview(calculatorExtension!)
-        calculatorExtension!.frame = CGRectMake(calculatorExtension!.frame.origin.x, calculatorExtension!.frame.origin.y, frameOfPresentedViewInContainerView().size.width - presentedView().frame.size.width, frameOfPresentedViewInContainerView().size.height)
+        
+        calculatorExtension!.frame = CGRectMake(presentedView().frame.origin.x, presentedView().frame.origin.y, frameOfPresentedViewInContainerView().size.width - presentedView().frame.size.width, frameOfPresentedViewInContainerView().size.height)
+        
         calculatorHolderView!.addSubview(presentedView())
+        
         if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
         {
             calculatorExtension!.center = CGPointMake(presentedView().frame.size.width - calculatorExtension!.frame.size.width/2.0, calculatorExtension!.frame.size.height/2.0);
@@ -255,11 +265,14 @@ class CalculatorPresentationController: UIPresentationController
         {
             calculatorExtension!.center = CGPointMake(calculatorExtension!.frame.size.width/2.0, calculatorExtension!.frame.size.height/2.0);
         }
+        
         containerView.addSubview(calculatorHolderView!)
         
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             
             self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
+            print(self.calculatorHolderView!.frame)
+            
             if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
             {
                 self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
@@ -268,24 +281,55 @@ class CalculatorPresentationController: UIPresentationController
             else
             {
                 self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
-                self.calculatorExtension!.center = CGPointMake(self.presentedView().frame.origin.x - self.calculatorExtension!.frame.size.width/2.0, self.calculatorExtension!.center.y)
+                self.calculatorExtension!.center = CGPointMake(self.calculatorExtension!.frame.size.width/2.0 + 20, self.calculatorExtension!.center.y)
             }
             
             self.leftArrow!.alpha = 0.0
             self.rightArrow!.alpha = 0.0
             self.dismissButton!.alpha = 0.0
-            }, completion: nil)
+            }, completion: { (finished) -> Void in
+                
+                self.calculatorHolderView!.userInteractionEnabled = true
+                
+                self.blurView!.removeGestureRecognizer(self.dismissTap!)
+                self.dismissTap = UITapGestureRecognizer(target: self, action: "decreaseCalculatorSize")
+                self.blurView!.addGestureRecognizer(self.dismissTap!)
+        })
     }
     
     //Decrease the calculator's width to hide the special functions view
     func decreaseCalculatorSize()
     {
+        if calculatorHolderView == nil || calculatorHolderView!.isDescendantOfView(containerView) == false
+        {
+            return
+        }
+        
+        calculatorHolderView!.userInteractionEnabled = false
+        
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             
-            self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
+            if self.frameOfPresentedViewInContainerView().width == self.calculatorHolderView!.frame.size.width
+            {
+                var rect = self.frameOfPresentedViewInContainerView()
+                rect.size.width -= (self.frameOfPresentedViewInContainerView().size.width - self.presentedView().frame.size.width)
+                if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Right"
+                {
+                    rect.origin.x += (self.frameOfPresentedViewInContainerView().size.width - self.presentedView().frame.size.width)
+                }
+                self.calculatorHolderView!.frame = rect
+            }
+            else
+            {
+                self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
+            }
             self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0, self.calculatorHolderView!.frame.size.height/2.0)
             
             }, completion: { (finished) -> Void in
+                
+                self.blurView!.removeGestureRecognizer(self.dismissTap!)
+                self.dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator")
+                self.blurView!.addGestureRecognizer(self.dismissTap!)
                 
                 self.presentedView().center = self.containerView.convertPoint(self.presentedView().center, fromView: self.calculatorHolderView!)
                 self.containerView.addSubview(self.presentedView())
