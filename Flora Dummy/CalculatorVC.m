@@ -28,6 +28,7 @@
 
 NSString *num1;
 NSString *num2;
+
 int operator;
 bool trigisClicked = false;
 bool expoisClicked= false;
@@ -899,6 +900,11 @@ int state = 0;
 }
 - (IBAction)lnxBut:(id)sender {
     if([num2 isEqualToString:@""]) {
+        if(num1.doubleValue <= 0){
+            num1 = @"Error";
+            operator = -1;
+            calLabel.text = num1;
+        }else {
         num1 = [NSString stringWithFormat:@"%f",(log(num1.doubleValue))];
         NSRange searchResult = [num1 rangeOfString:@"."];
         bool tempo = false;
@@ -921,7 +927,13 @@ int state = 0;
         num1 = [self roundem:index];
         calLabel.text = num1;
         num2 = @"";
+        }
     } else {
+        if(num1.doubleValue <= 0){
+            num1 = @"Error";
+            operator = -1;
+            calLabel.text = num1;
+        } else {
         [self calculate];
         num1 = [NSString stringWithFormat:@"%f",(log(num1.doubleValue))];
         NSRange searchResult = [num1 rangeOfString:@"."];
@@ -945,6 +957,7 @@ int state = 0;
         num1 = [self roundem:index];
         calLabel.text = num1;
         num2 = @"";
+        }
     }
      operator = -1;
 }
