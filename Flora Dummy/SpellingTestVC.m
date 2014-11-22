@@ -21,16 +21,19 @@
 @synthesize submit;
 @synthesize playSound;
 
--(IBAction)PlayButtonPressed {
-    [_audioController playSystemSound];
-}
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _audioController = [[AudioController alloc]init];
+    word = @"hello";
     // Do any additional setup after loading the view from its nib.
+}
+
+-(IBAction)PlayButtonPressed {
+    //The call below uses AudioServicesPlaySystemSound to play
+    //the word sound.
+    [_audioController playSystemSound];
+    NSLog(@"PlayButtonPressed");
 }
 
 - (void)didReceiveMemoryWarning {

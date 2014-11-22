@@ -73,7 +73,7 @@
 {
     float probRed = 45;
     float probYellow = 45;
-    float probGreen = 45;
+        //float probGreen = 45;
 
     
     if (dragObjects)

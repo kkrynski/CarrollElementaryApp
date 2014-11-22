@@ -6,3 +6,8 @@
 #import "PageVC.h"
 
 #import "CalculatorVC.h"
+
+#import "WeatherItem.h"
+#import "WeatherItem+Parse.h"
+#import "WeatherManager.h"
+#import "LocationManager.h"

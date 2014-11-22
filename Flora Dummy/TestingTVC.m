@@ -405,6 +405,7 @@
 
 // Tests
 
+
 -(void)launchModule
 {
     /*Page_ReadVC *prVC = [[Page_ReadVC alloc] initWithParent:self];
@@ -490,8 +491,7 @@
     [activityDict setObject:[NSArray arrayWithObjects:page1, page2, nil] forKey:@"PageArray"];
     
     // Create a PageManager for the activity and store it in THIS view controller.
-    PageManager *pageManager = [[PageManager alloc]initWithActivity: activityDict forParentViewController:self];
-    
+    [[[PageManager alloc]initWithActivity: activityDict forParentViewController:self] setIsAccessibilityElement:NO];
 }
 
 -(void)launchVocab
@@ -577,7 +577,7 @@
 - (void) launchMathController
 {
     MathProblemVC *mathProblemVC = [[MathProblemVC alloc] init];
-    mathProblemVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    mathProblemVC.mathEquation = @"10 + 10^2=#w#";
     
     [self presentViewController:mathProblemVC animated:YES completion:nil];
 }
