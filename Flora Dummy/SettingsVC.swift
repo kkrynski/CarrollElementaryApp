@@ -164,38 +164,38 @@ class SettingsVC: UIViewController
         switch standardDefaults.objectForKey("gradeNumber") as String
         {
         case "Kindergarten":
-            kindergartenButton!.highlighted = true
-            kindergartenButton!.userInteractionEnabled = false
+            kindergartenButton!.highlighted = YES
+            kindergartenButton!.userInteractionEnabled = NO
             selectedGradeButton = kindergartenButton
             
         case "1":
-            firstButton!.highlighted = true
-            firstButton!.userInteractionEnabled = false
+            firstButton!.highlighted = YES
+            firstButton!.userInteractionEnabled = NO
             selectedGradeButton = firstButton
             
         case "2":
-            secondButton!.highlighted = true
-            secondButton!.userInteractionEnabled = false
+            secondButton!.highlighted = YES
+            secondButton!.userInteractionEnabled = NO
             selectedGradeButton = secondButton
             
         case "3":
-            thirdButton!.highlighted = true
-            thirdButton!.userInteractionEnabled = false
+            thirdButton!.highlighted = YES
+            thirdButton!.userInteractionEnabled = NO
             selectedGradeButton = thirdButton
             
         case "4":
-            fourthButton!.highlighted = true
-            fourthButton!.userInteractionEnabled = false
+            fourthButton!.highlighted = YES
+            fourthButton!.userInteractionEnabled = NO
             selectedGradeButton = fourthButton
             
         case "5":
-            fifthButton!.highlighted = true
-            fifthButton!.userInteractionEnabled = false
+            fifthButton!.highlighted = YES
+            fifthButton!.userInteractionEnabled = NO
             selectedGradeButton = fifthButton
             
         case "6":
-            sixthButton!.highlighted = true
-            sixthButton!.userInteractionEnabled = false
+            sixthButton!.highlighted = YES
+            sixthButton!.userInteractionEnabled = NO
             selectedGradeButton = sixthButton
             
         default:
@@ -205,39 +205,39 @@ class SettingsVC: UIViewController
         switch standardDefaults.integerForKey("selectedBackgroundButton")
         {
         case 1:
-            purpleButton!.highlighted = true
-            purpleButton!.userInteractionEnabled = false;
+            purpleButton!.highlighted = YES
+            purpleButton!.userInteractionEnabled = NO;
             selectedColorButton = purpleButton!
             
         case 2:
-            redButton!.highlighted = true
-            redButton!.userInteractionEnabled = false;
+            redButton!.highlighted = YES
+            redButton!.userInteractionEnabled = NO;
             selectedColorButton = redButton!
             
         case 3:
-            pinkButton!.highlighted = true
-            pinkButton!.userInteractionEnabled = false;
+            pinkButton!.highlighted = YES
+            pinkButton!.userInteractionEnabled = NO;
             selectedColorButton = pinkButton!
             
         case 4:
-            orangeButton!.highlighted = true
-            orangeButton!.userInteractionEnabled = false;
+            orangeButton!.highlighted = YES
+            orangeButton!.userInteractionEnabled = NO;
             selectedColorButton = orangeButton!
             
         case 5:
-            yellowButton!.highlighted = true
-            yellowButton!.userInteractionEnabled = false;
+            yellowButton!.highlighted = YES
+            yellowButton!.userInteractionEnabled = NO;
             selectedColorButton = yellowButton!
             
         case 6:
-            greenButton!.highlighted = true
-            greenButton!.userInteractionEnabled = false;
+            greenButton!.highlighted = YES
+            greenButton!.userInteractionEnabled = NO;
             selectedColorButton = greenButton!
             
         case 7:
             
-            blueButton!.highlighted = true
-            blueButton!.userInteractionEnabled = false;
+            blueButton!.highlighted = YES
+            blueButton!.userInteractionEnabled = NO;
             selectedColorButton = blueButton!
             
         default:
@@ -252,8 +252,8 @@ class SettingsVC: UIViewController
         let button = sender as UIButton
         let color = button.titleLabel!.text
         
-        button.highlighted = true
-        button.userInteractionEnabled = false
+        button.highlighted = YES
+        button.userInteractionEnabled = NO
         
         let colorDictionary = colorSchemeDictionary![color!] as NSDictionary
         
@@ -276,8 +276,8 @@ class SettingsVC: UIViewController
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in
                 //self.viewDidLoad()
                 self.view.backgroundColor = Definitions.colorWithHexString(standardDefaults.objectForKey("backgroundColor") as String)
-                self.selectedColorButton?.highlighted = false
-                self.selectedColorButton?.userInteractionEnabled = true
+                self.selectedColorButton?.highlighted = NO
+                self.selectedColorButton?.userInteractionEnabled = YES
             })
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in
                 button.transform = CGAffineTransformMakeScale(1.3, 1.3)
@@ -288,7 +288,7 @@ class SettingsVC: UIViewController
             }, completion: { (finished : Bool) -> Void in
                 self.selectedColorButton = button
                 UIView.animateWithDuration(transitionLength, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
-                    button.highlighted = true
+                    button.highlighted = YES
                     }, completion: nil)
         })
     }
@@ -299,7 +299,7 @@ class SettingsVC: UIViewController
         let button = sender as UIButton
         var grade = button.titleLabel!.text
         
-        button.userInteractionEnabled = false
+        button.userInteractionEnabled = NO
         
         //Check for overflow of Kindergarten
         if grade! == "K"
@@ -319,8 +319,8 @@ class SettingsVC: UIViewController
         
         UIView.animateKeyframesWithDuration(transitionLength, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in
-                self.selectedGradeButton?.highlighted = false
-                self.selectedGradeButton?.userInteractionEnabled = true
+                self.selectedGradeButton?.highlighted = NO
+                self.selectedGradeButton?.userInteractionEnabled = YES
             })
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in
                 button.transform = CGAffineTransformMakeScale(1.3, 1.3)
@@ -331,7 +331,7 @@ class SettingsVC: UIViewController
             }, completion: { (finished : Bool) -> Void in
                 self.selectedGradeButton = button
                 UIView.animateWithDuration(transitionLength, delay: 0.3, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
-                    button.highlighted = true
+                    button.highlighted = YES
                     }, completion: nil)
         })
     }

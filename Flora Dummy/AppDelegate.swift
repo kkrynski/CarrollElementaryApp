@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         window!.makeKeyAndVisible()
         
-        return true
+        return YES
     }
     
     func applicationDidBecomeActive(application: UIApplication)

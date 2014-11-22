@@ -15,6 +15,9 @@ import QuartzCore
 
 let transitionLength = 0.3  //All transitions in swift files should use this variable for animationDuration to keep uniform
 
+let YES = 1 as Bool
+let NO = 0 as Bool
+
 //MARK: - Definitions Class
 
 class Definitions: NSObject

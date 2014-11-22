@@ -136,7 +136,7 @@ class MathVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         //Visually deselect the cell since we're moving away from the view
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: YES)
         
         //Get the information for the activity for the selected cell
         let activityDictionary = activities[indexPath.row] as NSDictionary

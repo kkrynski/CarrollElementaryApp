@@ -52,7 +52,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock Drag", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -153,7 +153,16 @@
             
             break;
             
-        }case 2:
+        }
+        case 2:
+        {
+            // Michael
+            [self launchClockDrag];
+            
+            break;
+            
+        }
+        case 3:
         {
             // Zach - Module
             
@@ -161,13 +170,13 @@
             
             break;
             
-        }case 3:
+        }case 4:
         {
             // Kyle
             
             break;
             
-        }case 4:
+        }case 5:
         {
             // Stephen - Picture Quiz
             
@@ -175,7 +184,7 @@
             
             break;
             
-        }case 5:
+        }case 6:
         {
             // Mason - Password
             
@@ -183,7 +192,7 @@
             
             break;
             
-        }case 6:
+        }case 7:
         {
             // All about plants
             
@@ -191,7 +200,7 @@
             
             break;
             
-        }case 7:
+        }case 8:
         {
             // Mason - Spelling Test
             
@@ -569,6 +578,13 @@
     mathProblemVC.mathEquation = @"10 + 10^2=#w#";
     
     [self presentViewController:mathProblemVC animated:YES completion:nil];
+}
+
+- (void) launchClockDrag
+{
+    ClockDragVC *clockDragVC = [[ClockDragVC alloc] init];
+    
+    [self presentViewController:clockDragVC animated:YES completion:nil];
 }
 
 - (void) launchSpellingTest

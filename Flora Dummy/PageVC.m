@@ -54,7 +54,10 @@
     
     // Initialize labels at top of page
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(33, 122, 480, 44)];
-    dateLabel.text = [NSString stringWithFormat:@"Date: %@", dateString];
+    if (dateString == nil || [dateString isEqualToString:@""])
+        dateLabel.text = @"Date: N/A";
+    else
+        dateLabel.text = [NSString stringWithFormat:@"Date: %@", dateString];
     dateLabel.font = subtitleFont;
     [dateLabel setTextAlignment:NSTextAlignmentLeft];
     [self.view addSubview:dateLabel];
@@ -146,7 +149,10 @@
 -(void)reloadView
 {
     // Edit labels at top of page
-    dateLabel.text = [NSString stringWithFormat:@"Date: %@", dateString];
+    if (dateString == nil || [dateString isEqualToString:@""])
+        dateLabel.text = @"Date: N/A";
+    else
+        dateLabel.text = [NSString stringWithFormat:@"Date: %@", dateString];
     
     otherLabel.text = [NSString stringWithFormat:@"Page: %i of %i", pageNumber.intValue, pageCount.intValue];
     
