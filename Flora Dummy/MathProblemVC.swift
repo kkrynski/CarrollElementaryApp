@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MathProblemVC: PageVC, UITextFieldDelegate
+class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
 {
     /**
     The Math Equation to be displayed.
@@ -100,6 +100,14 @@ class MathProblemVC: PageVC, UITextFieldDelegate
         
         createEquationLabel(equation[0], inView: equationViewView)
         createAnswerSpace(equation[1], inView: answerView)
+        
+        let calculatorButton = UIButton(frame: CGRectMake(0, 0, 100, 100))
+        calculatorButton.setImage(UIImage(named: "Math"), forState: .Normal)
+        calculatorButton.setImage(UIImage(named: "Math2"), forState: .Selected)
+        calculatorButton.addTarget(self, action: "presentCalculator", forControlEvents: .TouchUpInside)
+        view.addSubview(calculatorButton)
+        calculatorButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
+        calculatorButton.center = CGPointMake(view.frame.size.width/2.0, equationView.frame.size.height/2.0 + equationView.center.y + 10 + calculatorButton.frame.size.height/2.0)
     }
     
     //Creates the left equation side
@@ -547,5 +555,44 @@ class MathProblemVC: PageVC, UITextFieldDelegate
             answerResult += (answerBox.text as NSString).doubleValue
         }
         checkAnswer(answerResult)
+    }
+    
+    //MARK: - Calculator Presentation
+    
+    //Open the calculator
+    func presentCalculator()
+    {
+        let calculator = CalculatorVC()
+        calculator.modalPresentationStyle = .Custom
+        calculator.transitioningDelegate = self
+        calculator.preferredContentSize = CGSizeMake(304, 508)
+        presentViewController(calculator, animated: true, completion: nil)
+    }
+    
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController) -> UIPresentationController?
+    {
+        if presented.classForCoder === CalculatorVC.classForCoder()
+        {
+            return CalculatorPresentationController(presentedViewController: presented, presentingViewController: presenting)
+        }
+        return nil
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        if presented.classForCoder === CalculatorVC.classForCoder()
+        {
+            return CalculatorTransitionManager(isPresenting: true)
+        }
+        return nil
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        if dismissed.classForCoder === CalculatorVC.classForCoder()
+        {
+            return CalculatorTransitionManager(isPresenting: false)
+        }
+        return nil
     }
 }
