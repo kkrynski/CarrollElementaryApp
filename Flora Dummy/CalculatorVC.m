@@ -25,10 +25,7 @@
     }
     return self;
 }
-
-NSString *num1;
-NSString *num2;
-
+NSMutableArray *expression;
 int operator;
 bool trigisClicked = false;
 bool expoisClicked= false;
@@ -39,11 +36,13 @@ UIView *expoView;
 UIView *constView;
 UIView *extraView;
 int state = 0;
+NSString *curNum = @"";
 - (void)viewDidLoad {
     [super viewDidLoad];
-    num1 = @"";
-    num2 = @"";
+    [calLabel setAdjustsFontSizeToFitWidth:YES];
+    [calLabel setMinimumScaleFactor:0.5];
     [calLabel setBackgroundColor:[Definitions lighterColorForColor:backgroundColor]];
+    expression = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,19 +50,71 @@ int state = 0;
     // Dispose of any resources that can be recreated.
 }
 -(void)command:(NSString *)val{
-    if (operator == 0){
-        num1 = [NSString stringWithFormat:@"%@%@",num1 ,val];
-        calLabel.text = num1;
-    } else if(operator == -1){
-        num1 = [NSString stringWithFormat:@"%@",val];
-        calLabel.text = num1;
-        operator = 0;
-    } else {
-        num2 = [NSString stringWithFormat:@"%@%@",num2 ,val];
-        calLabel.text = num2;
+    if(state == -1){
+        curNum = @"";
+        [expression removeAllObjects];
+        calLabel.text = @"";
+        curNum = [NSString stringWithFormat:@"%@%@",curNum,val];
+        calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , val];
+    }else if(state == 0){
+        curNum = [NSString stringWithFormat:@"%@%@",curNum,val];
+        calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , val];
+    }else if (state == 1){
+        [expression addObject:(curNum)];
+        [expression addObject:(val)];
+        calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , val];
+        curNum = @"";
+        state = 0;
     }
 }
 -(void)calculate{
+    if(state == 0){
+        [expression addObject:(curNum)];
+        curNum = @"";
+    for(int i = 0; i < [expression count]; i++){
+        if([expression[i] isEqualToString:@"*"]){
+            NSString *num1 = expression[i-1];
+            NSString *num2 = expression[i+1];
+            [expression replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue*num2.doubleValue)]];
+            [expression removeObjectAtIndex:i];
+            [expression removeObjectAtIndex:i];
+            i--;
+        } else if([expression[i] isEqualToString:@"/"]){
+            NSString *num1 = expression[i-1];
+            NSString *num2 = expression[i+1];
+            [expression replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue/num2.doubleValue)]];
+            [expression removeObjectAtIndex:i];
+            [expression removeObjectAtIndex:i];
+            i--;
+        }
+    }
+    
+    for(int i = 0; i < [expression count]; i++){
+        if([expression[i] isEqualToString:@"+"]){
+            NSString *num1 = expression[i-1];
+            NSString *num2 = expression[i+1];
+            [expression replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue+num2.doubleValue)]];
+            [expression removeObjectAtIndex:i];
+            [expression removeObjectAtIndex:i];
+            i--;
+        } else if([expression[i] isEqualToString:@"-"]){
+            NSString *num1 = expression[i-1];
+            NSString *num2 = expression[i+1];
+            [expression replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue-num2.doubleValue)]];
+            [expression removeObjectAtIndex:i];
+            [expression removeObjectAtIndex:i];
+            i--;
+        }
+    }
+    curNum = expression[0];
+    
+    calLabel.text = [[expression[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0"]] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+    [expression removeObjectAtIndex:0];
+        state = -1;
+    }else{
+        
+    }
+    /*
     if(operator == 1){
         num1 = [NSString stringWithFormat:@"%f",(num1.doubleValue + num2.doubleValue)];
         NSRange searchResult = [num1 rangeOfString:@"."];
@@ -211,22 +262,24 @@ int state = 0;
     }
     operator = 0;
     num2 = @"";
+                  */
 }
 -(NSString *)roundem:(int)index{
+    NSString *temp = expression[0];
     if(index == 0){
-        return [NSString stringWithFormat:@"%.0f",num1.doubleValue];
+        return [NSString stringWithFormat:@"%.0f",temp.doubleValue];
     }else if (index == 1){
-        return [NSString stringWithFormat:@"%.1f",num1.doubleValue];
+        return [NSString stringWithFormat:@"%.1f",temp.doubleValue];
     }else if (index == 2){
-        return [NSString stringWithFormat:@"%.2f",num1.doubleValue];
+        return [NSString stringWithFormat:@"%.2f",temp.doubleValue];
     }else if (index == 3){
-        return [NSString stringWithFormat:@"%.3f",num1.doubleValue];
+        return [NSString stringWithFormat:@"%.3f",temp.doubleValue];
     }else if (index == 4){
-        return [NSString stringWithFormat:@"%.4f",num1.doubleValue];
+        return [NSString stringWithFormat:@"%.4f",temp.doubleValue];
     }else if (index == 5){
-        return [NSString stringWithFormat:@"%.5f",num1.doubleValue];
+        return [NSString stringWithFormat:@"%.5f",temp.doubleValue];
     }else{
-        return [NSString stringWithFormat:@"%.6f",num1.doubleValue];
+        return [NSString stringWithFormat:@"%.6f",temp.doubleValue];
     }
     
 }
@@ -262,51 +315,33 @@ int state = 0;
     [self command:@"9"];
 }
 - (IBAction)addBut:(id)sender {
-    if(operator == 0| operator == -1){
-        operator = 1;
-    } else if(![num2 isEqualToString:@""]){
-        [self calculate];
-        operator = 1;
-    }
-    
+    state = 1;
+    [self command:@"+" ];
 }
 - (IBAction)subBut:(id)sender {
-    if(operator == 0| operator == -1){
-        operator = 2;
-    } else if(![num2 isEqualToString:@""]){
-        [self calculate];
-        operator = 2;
-    }
+    state = 1;
+     [self command:@"-"];
 }
 - (IBAction)mulBut:(id)sender {
-    if(operator == 0| operator == -1){
-        operator = 3;
-    } else if(![num2 isEqualToString:@""]){
-        [self calculate];
-        operator = 3;
-    }
+    state = 1;
+    [self command:@"*"];
 }
 - (IBAction)divBut:(id)sender {
-    if(operator == 0 || operator == -1){
-        operator = 4;
-    } else if(![num2 isEqualToString:@""]){
-        [self calculate];
-        operator = 4;
-    }
+    state = 1;
+     [self command:@"/"];
 }
 - (IBAction)equalsBut:(id)sender {
     [self calculate];
-    operator = -1;
 }
 - (IBAction)resetBut:(id)sender {
-    calLabel.text = @"0";
-    operator = 0;
-    num1 = @"";
-    num2 = @"";
+    curNum = @"";
+    [expression removeAllObjects];
+    calLabel.text = @"";
 }
 - (IBAction)decBut:(id)sender {
     [self command:@"."];
 }
+/*
 - (IBAction)negBut:(id)sender {
     if ([num1 isEqualToString:@""] && [num2 isEqualToString:@""]) return;
     if([num2 isEqualToString:@""]) {
@@ -1270,5 +1305,6 @@ int state = 0;
     [extraView removeFromSuperview];
     extraView = nil;
 }
+ */
 
 @end
