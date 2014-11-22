@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
-		104BA0FB1A0429E2007BD9DE /* UIOutlinedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F406491801E19A00668376 /* UIOutlinedLabel.m */; };
-		104BA0FC1A0429E6007BD9DE /* UIButton_Typical.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FFDB5518C01D6D00C3294A /* UIButton_Typical.m */; };
 		104BA0FE1A042A30007BD9DE /* MathProblemVC_Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */; };
 		104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */; };
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
@@ -20,6 +18,7 @@
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
+		10BFE6DC1A201E2200E68C77 /* UIButton_Typical.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FFDB5518C01D6D00C3294A /* UIButton_Typical.m */; };
 		10DD07D21A1661350026B0DA /* MathProblemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD07D11A1661350026B0DA /* MathProblemTextField.swift */; };
 		10DDE8C81A00616C0079FAB9 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
 		10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD519FEE55B009B0983 /* MathVC.swift */; };
@@ -899,7 +898,6 @@
 				1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */,
 				92C261C11840414400FDA09B /* DragObject.m in Sources */,
 				9211950F19FE01CC00644054 /* TestingTVC.m in Sources */,
-				104BA0FC1A0429E6007BD9DE /* UIButton_Typical.m in Sources */,
 				4CC305E819FC42C00066A53B /* VocabVC.m in Sources */,
 				10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */,
 				104BA0FE1A042A30007BD9DE /* MathProblemVC_Normal.swift in Sources */,
@@ -910,8 +908,8 @@
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				9211950919FE01C000644054 /* PageManager.m in Sources */,
 				9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */,
+				10BFE6DC1A201E2200E68C77 /* UIButton_Typical.m in Sources */,
 				9211950B19FE01C000644054 /* PageVC.m in Sources */,
-				104BA0FB1A0429E2007BD9DE /* UIOutlinedLabel.m in Sources */,
 				92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */,
 				10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */,
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,

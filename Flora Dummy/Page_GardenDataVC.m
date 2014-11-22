@@ -46,6 +46,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     if (shakeTimer)
     {
         [shakeTimer invalidate];
@@ -155,10 +156,14 @@
 
     // Edit button appearance for nav bar
     id barButtonAppearance = [UIBarButtonItem appearance];
+    
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+    shadow.shadowOffset = CGSizeMake(0.0, 1.0);
+    
     NSDictionary *barButtonTextAttributes = @{
                                               NSFontAttributeName: [UIFont fontWithName:@"Marker Felt" size:24.0],
-                                              UITextAttributeTextShadowColor: [UIColor colorWithWhite:0.0f alpha:0.2f],
-                                              UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)]
+                                              NSShadowAttributeName: shadow
                                               };
     [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
                                        forState:UIControlStateNormal];
@@ -312,7 +317,7 @@
     return gardenImageView;
 }
 
-- (CGRect)zoomRectForScrollView:(UIScrollView *)scrollView withScale:(float)scale withCenter:(CGPoint)center {
+- (CGRect)zoomRectForScrollView:(UIScrollView *)zoomedScrollView withScale:(float)scale withCenter:(CGPoint)center {
     
     CGRect zoomRect;
     
@@ -321,8 +326,8 @@
     // imageScrollView's bounds.
     // As the zoom scale decreases, so more content is visible,
     // the size of the rect grows.
-    zoomRect.size.height = scrollView.frame.size.height / scale;
-    zoomRect.size.width  = scrollView.frame.size.width  / scale;
+    zoomRect.size.height = zoomedScrollView.frame.size.height / scale;
+    zoomRect.size.width  = zoomedScrollView.frame.size.width  / scale;
     
     // choose an origin so as to get the right center.
     zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.0);

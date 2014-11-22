@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14C68k" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalculatorVC"/>
@@ -59,19 +57,6 @@
                     <connections>
                         <action selector="xtotheyBut:" destination="-1" eventType="touchUpInside" id="4N9-CW-98I"/>
                     </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbM-X5-fQm">
-                    <rect key="frame" x="0.0" y="429" width="60" height="60"/>
-                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="TQa-uL-RHd"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="ac9-OF-ocU"/>
-                        <constraint firstAttribute="width" constant="60" id="lQk-qC-0XO"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
-                    <state key="normal" title="x^y">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5b8-dy-PMP">
                     <rect key="frame" x="68" y="224" width="60" height="60"/>
@@ -137,17 +122,6 @@
                         <action selector="etothexBut:" destination="-1" eventType="touchUpInside" id="Y4H-8s-dsR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNU-Jf-acK">
-                    <rect key="frame" x="0.0" y="156" width="60" height="60"/>
-                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
-                    <state key="normal" title="^">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="xtotheyBut:" destination="-1" eventType="touchUpInside" id="nw0-Uq-qI1"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMS-cj-EdN">
                     <rect key="frame" x="0.0" y="361" width="60" height="60"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -164,59 +138,29 @@
                         <action selector="yrootxBut:" destination="-1" eventType="touchUpInside" id="7Ed-a1-eFb"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFP-S4-WSU">
-                    <rect key="frame" x="540" y="224" width="60" height="60"/>
-                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="E3T-xT-LtR"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="EVv-eX-mst"/>
-                        <constraint firstAttribute="height" constant="60" id="jMY-hz-jyb"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
-                    <state key="normal">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="CgG-JZ-2os" firstAttribute="leading" secondItem="ZuF-pF-PSE" secondAttribute="leading" id="4Ge-Cv-DHe"/>
                 <constraint firstItem="CgG-JZ-2os" firstAttribute="top" secondItem="qRH-Jw-DcE" secondAttribute="bottom" constant="9" id="7v2-vF-IHE"/>
                 <constraint firstItem="CgG-JZ-2os" firstAttribute="top" secondItem="8Vu-Gv-UrF" secondAttribute="top" id="CUx-bt-Po6"/>
-                <constraint firstItem="FNU-Jf-acK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="ELh-8U-OcW"/>
-                <constraint firstItem="qRH-Jw-DcE" firstAttribute="top" secondItem="FNU-Jf-acK" secondAttribute="bottom" constant="16" id="Eow-Yv-Xcj"/>
-                <constraint firstItem="FNU-Jf-acK" firstAttribute="leading" secondItem="qRH-Jw-DcE" secondAttribute="leading" id="F1K-M1-l82"/>
                 <constraint firstItem="CgG-JZ-2os" firstAttribute="leading" secondItem="qRH-Jw-DcE" secondAttribute="leading" id="HXG-cs-nLm"/>
                 <constraint firstItem="8Vu-Gv-UrF" firstAttribute="leading" secondItem="CgG-JZ-2os" secondAttribute="trailing" constant="8" symbolic="YES" id="Iek-W2-FZM"/>
-                <constraint firstItem="YbM-X5-fQm" firstAttribute="top" secondItem="cMS-cj-EdN" secondAttribute="top" id="Lgy-mI-K0p"/>
                 <constraint firstItem="MMF-HH-hEE" firstAttribute="leading" secondItem="5b8-dy-PMP" secondAttribute="leading" id="NDB-70-TbU"/>
                 <constraint firstItem="cMS-cj-EdN" firstAttribute="top" secondItem="BYv-NO-ZT8" secondAttribute="bottom" constant="-60" id="PlI-yJ-o3b"/>
                 <constraint firstItem="qRH-Jw-DcE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="SOf-Dh-EAJ"/>
                 <constraint firstItem="ZuF-pF-PSE" firstAttribute="top" secondItem="CgG-JZ-2os" secondAttribute="bottom" constant="-197" id="UK8-id-PBU"/>
-                <constraint firstItem="CgG-JZ-2os" firstAttribute="leading" secondItem="YbM-X5-fQm" secondAttribute="leading" id="V44-b7-eWw"/>
-                <constraint firstItem="MMF-HH-hEE" firstAttribute="firstBaseline" secondItem="FNU-Jf-acK" secondAttribute="baseline" id="VEi-oK-WhZ"/>
                 <constraint firstItem="MMF-HH-hEE" firstAttribute="leading" secondItem="cMS-cj-EdN" secondAttribute="leading" constant="68" id="Vce-MU-ihn"/>
-                <constraint firstItem="MMF-HH-hEE" firstAttribute="baseline" secondItem="FNU-Jf-acK" secondAttribute="firstBaseline" id="XP4-j0-svs"/>
                 <constraint firstItem="CgG-JZ-2os" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZBS-xz-T4f"/>
                 <constraint firstItem="MMF-HH-hEE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="aZk-BX-rmy"/>
-                <constraint firstItem="FNU-Jf-acK" firstAttribute="trailing" secondItem="qRH-Jw-DcE" secondAttribute="trailing" id="c1k-mc-F0p"/>
                 <constraint firstItem="ZuF-pF-PSE" firstAttribute="baseline" secondItem="MMF-HH-hEE" secondAttribute="baseline" id="cYJ-mf-Nns"/>
                 <constraint firstItem="MMF-HH-hEE" firstAttribute="leading" secondItem="8Vu-Gv-UrF" secondAttribute="leading" id="dOm-Il-UBp"/>
-                <constraint firstItem="qRH-Jw-DcE" firstAttribute="top" secondItem="FNU-Jf-acK" secondAttribute="bottom" constant="8" symbolic="YES" id="esF-Kw-bse"/>
                 <constraint firstItem="MMF-HH-hEE" firstAttribute="leading" secondItem="BYv-NO-ZT8" secondAttribute="leading" id="j0H-mY-OTb"/>
                 <constraint firstItem="BYv-NO-ZT8" firstAttribute="top" secondItem="ZuF-pF-PSE" secondAttribute="top" constant="205" id="lck-oW-l8u"/>
                 <constraint firstItem="5b8-dy-PMP" firstAttribute="top" secondItem="MMF-HH-hEE" secondAttribute="bottom" constant="8" id="riR-Qx-r8J"/>
-                <constraint firstItem="FNU-Jf-acK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="tBW-n5-VL4"/>
             </constraints>
             <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="YbM-X5-fQm"/>
-                    <exclude reference="FNU-Jf-acK"/>
-                    <exclude reference="fFP-S4-WSU"/>
-                </mask>
                 <mask key="constraints">
-                    <exclude reference="tBW-n5-VL4"/>
-                    <exclude reference="Eow-Yv-Xcj"/>
                     <exclude reference="SOf-Dh-EAJ"/>
                 </mask>
             </variation>

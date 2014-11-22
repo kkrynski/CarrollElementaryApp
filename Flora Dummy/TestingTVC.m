@@ -17,8 +17,6 @@
 #import "PictureQuizVC.h"
 #import "PasswordVC.h"
 #import "SpellingTestVC.h"
-
-    //Michael's Test Code
 #import "FloraDummy-Swift.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -396,6 +394,7 @@
 
 // Tests
 
+
 -(void)launchModule
 {
     /*Page_ReadVC *prVC = [[Page_ReadVC alloc] initWithParent:self];
@@ -481,8 +480,7 @@
     [activityDict setObject:[NSArray arrayWithObjects:page1, page2, nil] forKey:@"PageArray"];
     
     // Create a PageManager for the activity and store it in THIS view controller.
-    PageManager *pageManager = [[PageManager alloc]initWithActivity: activityDict forParentViewController:self];
-    
+    [[[PageManager alloc]initWithActivity: activityDict forParentViewController:self] setIsAccessibilityElement:NO];
 }
 
 -(void)launchVocab

@@ -199,6 +199,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     // Update colors in case the user changed settings
     [self updateColors];
 }
