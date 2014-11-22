@@ -559,7 +559,7 @@
 - (void) launchMathController
 {
     MathProblemVC *mathProblemVC = [[MathProblemVC alloc] init];
-    mathProblemVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    mathProblemVC.mathEquation = @"10 + 10^2=#w#";
     
     [self presentViewController:mathProblemVC animated:YES completion:nil];
 }

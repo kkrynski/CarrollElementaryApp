@@ -8,11 +8,10 @@
 
 import UIKit
 
-let MathProblemTextFieldWillReturnNotification = "MathProblemTextFieldWillReturnNotification"
-
-class MathProblemTextField: UITextField, UITextFieldDelegate
+class MathProblemTextField: UITextField
 {
-    private var type : String?
+    //The type of text field
+    var type : String?
     
     init(frame: CGRect, andTextFieldType textFieldType : String)
     {
@@ -47,8 +46,6 @@ class MathProblemTextField: UITextField, UITextFieldDelegate
             break
         }
         
-        delegate = self
-        
         placeholder = "Answer"
         textAlignment = .Center
         font = UIFont(name: "Marker Felt", size: 68)
@@ -68,34 +65,5 @@ class MathProblemTextField: UITextField, UITextFieldDelegate
         return CGRectInset(bounds, 8, 0);
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
-    {
-        let alphabetSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-")
-        let numberSet = NSCharacterSet(charactersInString: "0123456789-")
-        
-        switch type!
-        {
-        case "Whole Number":
-            return (string as NSString).containsString(".") == false && (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == ""
-            
-        case "Decimal", "Fraction":
-            return (string as NSString).rangeOfCharacterFromSet(alphabetSet).location == NSNotFound && (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == ""
-            
-        default:
-            return (string as NSString).rangeOfCharacterFromSet(alphabetSet).location != NSNotFound || (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == ""
-        }
-    }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
-    {
-        finalizeEditing()
-        return false
-    }
-    
-    func finalizeEditing()
-    {
-        NSNotificationCenter.defaultCenter().postNotificationName(MathProblemTextFieldWillReturnNotification, object: nil)
-        resignFirstResponder()
-        endEditing(true)
-    }
 }
