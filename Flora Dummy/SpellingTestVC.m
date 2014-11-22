@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _audioController = [[AudioController alloc]init];
+    word = @"hello";
     // Do any additional setup after loading the view from its nib.
 }
 
