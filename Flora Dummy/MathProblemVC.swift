@@ -24,7 +24,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         - "Y" is the power, or exponent
     - Random Numbers: Use "#rw(X,Y)#" to create a random number, where
         - "X" is the starting number
-        - "Y" is the range of numbers
+        - "Y" is the ending range of numbers
     - Parentheses: Use "( XX )" to create paretheses, where 'XX' is an equation satisfying the before-mentioned rules
         - NOTE: Parentheses are not supported yet
     
@@ -240,7 +240,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
             {
                 let numbers = equationPart.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "#rw()")).componentsSeparatedByString(",")
                 
-                randomNumber = arc4random_uniform(UInt32((numbers[1] as NSString).integerValue)) + (numbers[0] as NSString).integerValue
+                randomNumber = arc4random_uniform(UInt32((numbers[1] as NSString).integerValue - (numbers[1] as NSString).integerValue)) + (numbers[0] as NSString).integerValue
                 
                 let equationPartLabel = UILabel()
                 equationPartLabel.font = UIFont(name: "Marker Felt", size: 85)
