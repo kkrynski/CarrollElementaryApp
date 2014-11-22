@@ -8,27 +8,73 @@
 
 import UIKit
 
-class HomeVC: UIViewController
+class HomeVC: FormattedVC, WeatherManagerDelegate
 {
     //Elements on screen
     @IBOutlet var titleLabel : UILabel?
     @IBOutlet var subTitleLabel : UILabel?
     @IBOutlet var homeImageView : UIImageView?
     
+    //Weather Stuff
+    private var weatherManager : WeatherManager?
+    private var currentWeatherItem : WeatherItem?
+    private var indexOfCurrentTempString : Int32?
+    
+    @IBOutlet var weatherHumidity : UILabel?
+    @IBOutlet var weatherTemp : UILabel?
+    @IBOutlet var weatherWindSpeed : UILabel?
+    @IBOutlet var weatherForcastImage : UIImageView?
+    @IBOutlet var weatherHumidityImage : UIImageView?
+    @IBOutlet var weatherWindImage : UIImageView?
+
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        weatherHumidity!.text = "0%"
+        weatherTemp!.text = "Updating\nWeather"
+        weatherTemp!.numberOfLines = 0
+        weatherWindSpeed!.text = "0 mph"
+        
+        weatherManager = WeatherManager.sharedManager() as WeatherManager!
+        weatherManager!.delegate = self
+        weatherManager!.startUpdatingLocation()
+    }
+    
     //Set the colors here for instant loading
     override func viewWillAppear(animated: Bool)
     {
-        //Directly set the colors since we don't need to later reference them at anytime
+        super.viewWillAppear(animated)
         
-        let standardDefaults = NSUserDefaults.standardUserDefaults()
-        
-        titleLabel!.textColor = Definitions.colorWithHexString(standardDefaults.objectForKey("primaryColor") as String)
+        titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
         
-        subTitleLabel!.textColor = Definitions.colorWithHexString(standardDefaults.objectForKey("secondaryColor") as String)
+        subTitleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(subTitleLabel!)
         
-        view.backgroundColor = Definitions.colorWithHexString(standardDefaults.objectForKey("backgroundColor") as String)
+        view.backgroundColor = backgroundColor
+        
+        weatherTemp!.textColor = primaryColor
+        Definitions.outlineTextInLabel(weatherTemp!)
+        
+        weatherHumidity!.textColor = primaryColor
+        Definitions.outlineTextInLabel(weatherHumidity!)
+        
+        weatherWindSpeed!.textColor = primaryColor
+        Definitions.outlineTextInLabel(weatherWindSpeed!)
+    }
+    
+    func didRecieveAndParseNewWeatherItem(item: WeatherItem!)
+    {
+        currentWeatherItem = item
+        indexOfCurrentTempString = item.indexForWeatherMap
+        
+        weatherForcastImage!.image = item.weatherCurrentTempImage
+        weatherTemp!.text = "\(item.weatherCurrentTemp)°"
+        weatherTemp!.numberOfLines = 0
+        weatherWindSpeed!.text = "\(item.weatherWindSpeed) mph"
+        weatherHumidity!.text = "\(item.weatherHumidity)%"
     }
     
 }

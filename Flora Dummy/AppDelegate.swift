@@ -30,4 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         return true
     }
+    
+    func applicationDidBecomeActive(application: UIApplication)
+    {
+        // WeatherManager.sharedManager().startUpdatingLocation()
+    }
 }

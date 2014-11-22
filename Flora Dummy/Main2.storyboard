@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C68k" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Ik-EQ-ANA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -17,42 +17,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Are you ready to learn?" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cib-kg-5aM">
-                                <rect key="frame" x="20" y="147" width="984" height="44"/>
+                                <rect key="frame" x="20" y="174" width="984" height="44"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Flora DUmmy 4.png" translatesAutoresizingMaskIntoConstraints="NO" id="YdE-jI-cAd">
-                                <rect key="frame" x="16" y="175" width="993" height="485"/>
+                                <rect key="frame" x="15" y="226" width="993" height="485"/>
                             </imageView>
-                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MdB-3O-KKx">
-                                <rect key="frame" x="0.0" y="1" width="1024" height="44"/>
-                                <items>
-                                    <navigationItem id="Jdn-QJ-n4N"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Welcome Carroll Elementary!" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="BcE-c4-v7X">
-                                <rect key="frame" x="27" y="45" width="971" height="94"/>
+                                <rect key="frame" x="27" y="72" width="971" height="94"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="72"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRG-2J-Dvj">
+                                <rect key="frame" x="16" y="249" width="120" height="120"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="48"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Wh-Ub-iSO">
+                                <rect key="frame" x="84" y="377" width="71" height="60"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30 mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000007" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRH-TL-dQi">
+                                <rect key="frame" x="231" y="377" width="74" height="60"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fog" translatesAutoresizingMaskIntoConstraints="NO" id="X0j-tL-oDg">
+                                <rect key="frame" x="16" y="377" width="60" height="60"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="skK-Au-nsW">
+                                <rect key="frame" x="163" y="377" width="60" height="60"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZfE-vm-0zU">
+                                <rect key="frame" x="185" y="249" width="120" height="120"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" title="Home" id="V2Z-jR-nd0"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="homeImageView" destination="YdE-jI-cAd" id="Xdw-XC-Khg"/>
                         <outlet property="subTitleLabel" destination="Cib-kg-5aM" id="HGc-ic-RBl"/>
                         <outlet property="titleLabel" destination="BcE-c4-v7X" id="LUN-Ft-lQ5"/>
+                        <outlet property="weatherForcastImage" destination="ZfE-vm-0zU" id="LLT-ZH-IOb"/>
+                        <outlet property="weatherHumidity" destination="9Wh-Ub-iSO" id="ssP-1P-snd"/>
+                        <outlet property="weatherTemp" destination="pRG-2J-Dvj" id="QdY-Js-LJQ"/>
+                        <outlet property="weatherWindSpeed" destination="rRH-TL-dQi" id="zlo-bj-WPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="-1020"/>
+            <point key="canvasLocation" x="4257" y="-998"/>
         </scene>
-        <!--Item-->
+        <!--TestingTVC-->
         <scene sceneID="W1L-c9-mVd">
             <objects>
                 <tableViewController id="aYi-6i-8tL" customClass="TestingTVC" sceneMemberID="viewController">
@@ -81,12 +107,12 @@
                             <outlet property="delegate" destination="aYi-6i-8tL" id="8Zd-b6-Pm8"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="I3O-uc-Qbc"/>
+                    <tabBarItem key="tabBarItem" selectedImage="172-pricetag" systemItem="more" id="I3O-uc-Qbc"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h58-YT-Hgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4257" y="758"/>
+            <point key="canvasLocation" x="3018" y="3434"/>
         </scene>
         <!--Language Arts-->
         <scene sceneID="wg7-f3-ORb">
@@ -100,20 +126,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ej5-n5-O85">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                <items>
-                                    <navigationItem id="WaP-O7-m87"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Language Arts" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kbt-fw-nc7">
-                                <rect key="frame" x="20" y="44" width="984" height="94"/>
+                                <rect key="frame" x="20" y="72" width="984" height="94"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="72"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AQe-8D-wo7">
-                                <rect key="frame" x="20" y="146" width="656" height="560"/>
+                                <rect key="frame" x="20" y="174" width="656" height="532"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -139,7 +159,7 @@
                                 </connections>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqL-U7-1s6">
-                                <rect key="frame" x="684" y="146" width="320" height="360"/>
+                                <rect key="frame" x="688" y="174" width="320" height="360"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">To have fun or not to have fun; that's not the question!
 
@@ -149,13 +169,9 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ej5-n5-O85" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailing" id="C9p-N0-R4o"/>
-                            <constraint firstItem="ej5-n5-O85" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="ZQW-8Y-bT4"/>
-                            <constraint firstItem="ej5-n5-O85" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="dYc-7R-70W"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Language Arts" image="Language Arts" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" title="Language Arts" id="FMu-uG-nzu"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="activitiesTable" destination="AQe-8D-wo7" id="s3i-te-Hoq"/>
@@ -165,7 +181,79 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="4257" y="-124"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="2w3-ES-FXp">
+            <objects>
+                <navigationController id="hd0-Qa-lfX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="6Bz-0d-J33"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XwH-Zr-fQS">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="QD5-r8-Lvp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lcp-gZ-gcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="3018" y="-124"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Ezs-Hn-Anp">
+            <objects>
+                <navigationController id="i0L-1i-Zbm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="qv5-3R-pK2"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cxz-5U-CD1">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WtB-Oa-cH2" kind="relationship" relationship="rootViewController" id="p04-93-k4q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="44m-Bm-1NR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3018" y="758"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="MOX-ey-LTD">
+            <objects>
+                <navigationController id="so3-MG-wac" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="QX3-UI-fyA"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJe-ML-Siy">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="flJ-CE-eRV" kind="relationship" relationship="rootViewController" id="Frz-cr-ZCn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wu5-pL-I2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3018" y="1661"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="t0W-Bj-p9M">
+            <objects>
+                <navigationController id="Qjo-mF-HfI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Obh-Be-6UH"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wbk-9M-T9F">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aUo-zj-yvZ" kind="relationship" relationship="rootViewController" id="lqL-6x-iFF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsv-lB-Ejh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3018" y="2565"/>
         </scene>
         <!--Math-->
         <scene sceneID="Un9-il-hCe">
@@ -180,13 +268,13 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Math" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0F8-4F-S1t">
-                                <rect key="frame" x="20" y="44" width="984" height="94"/>
+                                <rect key="frame" x="20" y="72" width="984" height="94"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="72"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LN7-uM-duu">
-                                <rect key="frame" x="20" y="146" width="656" height="560"/>
+                                <rect key="frame" x="20" y="174" width="656" height="532"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MathCell" textLabel="Hup-pP-YGL" style="IBUITableViewCellStyleDefault" id="kEM-vB-rMR">
@@ -210,7 +298,7 @@ Here you can learn you ABC's, read some fun stories, or practice your writing!</
                                 </connections>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XR6-IK-a23">
-                                <rect key="frame" x="684" y="146" width="320" height="360"/>
+                                <rect key="frame" x="688" y="174" width="320" height="360"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Math can be really fun!
 
@@ -218,16 +306,11 @@ You might find simple addition games on this page, or maybe you can learn how to
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWs-xo-LMi">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                <items>
-                                    <navigationItem id="y77-qy-Hyh"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Math" image="Math" id="S8s-Zv-Qi8"/>
+                    <navigationItem key="navigationItem" title="Math" id="fu8-hu-arN"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="activitiesTable" destination="LN7-uM-duu" id="AZq-sb-mwt"/>
@@ -237,7 +320,7 @@ You might find simple addition games on this page, or maybe you can learn how to
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v8-uQ-FLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="758"/>
+            <point key="canvasLocation" x="4257" y="758"/>
         </scene>
         <!--Science-->
         <scene sceneID="RvN-1i-wYb">
@@ -251,20 +334,14 @@ You might find simple addition games on this page, or maybe you can learn how to
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVF-4f-Uua">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                <items>
-                                    <navigationItem id="ENz-HU-c0H"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Science" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="G0D-LU-Xrj">
-                                <rect key="frame" x="20" y="44" width="984" height="94"/>
+                                <rect key="frame" x="20" y="72" width="984" height="94"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="72"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2Aa-oa-l3T">
-                                <rect key="frame" x="20" y="146" width="656" height="560"/>
+                                <rect key="frame" x="20" y="174" width="656" height="532"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ScienceCell" textLabel="hPD-jn-eCQ" style="IBUITableViewCellStyleDefault" id="bLb-3j-Elr">
@@ -288,7 +365,7 @@ You might find simple addition games on this page, or maybe you can learn how to
                                 </connections>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNC-Vc-KKy">
-                                <rect key="frame" x="684" y="146" width="320" height="360"/>
+                                <rect key="frame" x="688" y="174" width="320" height="360"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Don't forget about science!
 
@@ -300,6 +377,7 @@ Science includes learning about the scientific method and even going on scavenge
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Science" image="Science" id="GsW-Iz-b46"/>
+                    <navigationItem key="navigationItem" title="Science" id="SVA-48-wlW"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="activitiesTable" destination="2Aa-oa-l3T" id="eLw-6U-UyE"/>
@@ -309,7 +387,7 @@ Science includes learning about the scientific method and even going on scavenge
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8k-yl-5of" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="1673"/>
+            <point key="canvasLocation" x="4257" y="1661"/>
         </scene>
         <!--Settings-->
         <scene sceneID="jS8-jD-fx8">
@@ -323,26 +401,20 @@ Science includes learning about the scientific method and even going on scavenge
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wUe-eo-pjv">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                <items>
-                                    <navigationItem id="HNc-oF-9SQ"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="NzY-Gl-8xe">
-                                <rect key="frame" x="20" y="44" width="984" height="94"/>
+                                <rect key="frame" x="20" y="72" width="984" height="94"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="72"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Grade" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-ZE-BAm">
-                                <rect key="frame" x="20" y="146" width="984" height="47"/>
+                                <rect key="frame" x="20" y="174" width="984" height="47"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SA4-kr-9hj">
-                                <rect key="frame" x="20" y="198" width="133" height="133"/>
+                                <rect key="frame" x="23" y="229" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
                                 <state key="normal" title="K">
@@ -353,7 +425,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8q-OE-fim">
-                                <rect key="frame" x="302" y="198" width="133" height="133"/>
+                                <rect key="frame" x="305" y="229" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
                                 <state key="normal" title="2">
@@ -364,7 +436,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDc-Zf-WMA">
-                                <rect key="frame" x="161" y="198" width="133" height="133"/>
+                                <rect key="frame" x="164" y="229" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
                                 <state key="normal" title="1">
@@ -375,7 +447,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWv-Hv-nPu">
-                                <rect key="frame" x="443" y="198" width="133" height="133"/>
+                                <rect key="frame" x="446" y="229" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
                                 <state key="normal" title="3">
@@ -386,7 +458,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmb-ZC-5Uy">
-                                <rect key="frame" x="584" y="198" width="133" height="133"/>
+                                <rect key="frame" x="587" y="229" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
                                 <state key="normal" title="4">
@@ -397,7 +469,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnZ-5B-kK0">
-                                <rect key="frame" x="725" y="198" width="133" height="133"/>
+                                <rect key="frame" x="728" y="229" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
                                 <state key="normal" title="5">
@@ -408,7 +480,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGe-O5-4mz">
-                                <rect key="frame" x="866" y="198" width="133" height="133"/>
+                                <rect key="frame" x="869" y="229" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
                                 <state key="normal" title="6">
@@ -419,13 +491,13 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Color" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q92-mV-3KG">
-                                <rect key="frame" x="20" y="339" width="984" height="47"/>
+                                <rect key="frame" x="20" y="370" width="984" height="47"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJQ-HV-mPP">
-                                <rect key="frame" x="20" y="391" width="133" height="133"/>
+                                <rect key="frame" x="23" y="425" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
                                 <state key="normal" title="Purple">
@@ -436,7 +508,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKR-Rf-9CS">
-                                <rect key="frame" x="302" y="391" width="133" height="133"/>
+                                <rect key="frame" x="305" y="425" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
                                 <state key="normal" title="Pink">
@@ -446,19 +518,8 @@ Science includes learning about the scientific method and even going on scavenge
                                     <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="fol-th-cS9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29S-0W-rtQ">
-                                <rect key="frame" x="161" y="391" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Red">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="vUh-yq-jDw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hu-s5-oEe">
-                                <rect key="frame" x="443" y="391" width="133" height="133"/>
+                                <rect key="frame" x="446" y="425" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
                                 <state key="normal" title="Orange">
@@ -469,7 +530,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZ9-9W-9ID">
-                                <rect key="frame" x="584" y="391" width="133" height="133"/>
+                                <rect key="frame" x="587" y="425" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
                                 <state key="normal" title="Yellow">
@@ -480,7 +541,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMa-lM-fr5">
-                                <rect key="frame" x="725" y="391" width="133" height="133"/>
+                                <rect key="frame" x="728" y="425" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
                                 <state key="normal" title="Green">
@@ -491,7 +552,7 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvF-x5-oSp">
-                                <rect key="frame" x="866" y="391" width="133" height="133"/>
+                                <rect key="frame" x="869" y="425" width="133" height="133"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
                                 <state key="normal" title="Blue">
@@ -501,10 +562,22 @@ Science includes learning about the scientific method and even going on scavenge
                                     <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="3ws-wu-Z56"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29S-0W-rtQ">
+                                <rect key="frame" x="164" y="425" width="133" height="133"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
+                                <state key="normal" title="Red">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="vUh-yq-jDw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="DD7-fN-10Q"/>
+                    <navigationItem key="navigationItem" title="Settings" id="DLz-2e-vBy"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="blueButton" destination="pvF-x5-oSp" id="leS-Mq-y3B"/>
@@ -528,40 +601,63 @@ Science includes learning about the scientific method and even going on scavenge
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vt-VB-rX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="2569"/>
+            <point key="canvasLocation" x="4257" y="2565"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="KKv-Ci-co8">
+            <objects>
+                <navigationController id="fWy-Wx-JYZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="RWO-Nj-QtG"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oaB-gD-tJk">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="Dcx-XF-5xJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxB-k5-X74" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3018" y="-998"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="yl2-sM-qoP">
+        <scene sceneID="cpa-Pm-GdT">
             <objects>
-                <tabBarController storyboardIdentifier="InitialTabBar" id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="6Ik-EQ-ANA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SeM-aI-qxl"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
-                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="dMQ-Fh-9jQ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="WtB-Oa-cH2" kind="relationship" relationship="viewControllers" id="5Ub-ub-bpf"/>
-                        <segue destination="flJ-CE-eRV" kind="relationship" relationship="viewControllers" id="U0T-lX-HgP"/>
-                        <segue destination="aUo-zj-yvZ" kind="relationship" relationship="viewControllers" id="yAq-IO-9fB"/>
-                        <segue destination="aYi-6i-8tL" kind="relationship" relationship="viewControllers" id="TCK-gO-gKB"/>
+                        <segue destination="fWy-Wx-JYZ" kind="relationship" relationship="viewControllers" id="FJT-gP-El6"/>
+                        <segue destination="hd0-Qa-lfX" kind="relationship" relationship="viewControllers" id="vFe-mb-jam"/>
+                        <segue destination="i0L-1i-Zbm" kind="relationship" relationship="viewControllers" id="Q6e-kQ-HyM"/>
+                        <segue destination="so3-MG-wac" kind="relationship" relationship="viewControllers" id="Xl1-zj-19S"/>
+                        <segue destination="Qjo-mF-HfI" kind="relationship" relationship="viewControllers" id="ltQ-WS-1bQ"/>
+                        <segue destination="aYi-6i-8tL" kind="relationship" relationship="viewControllers" id="WZJ-SH-ogd"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c1j-MD-b6m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1703" y="758"/>
+            <point key="canvasLocation" x="1348" y="758"/>
         </scene>
     </scenes>
     <resources>
+        <image name="172-pricetag" width="28" height="23"/>
         <image name="Flora DUmmy 4.png" width="920" height="467"/>
         <image name="Home" width="22" height="22"/>
         <image name="Language Arts" width="18" height="26"/>
         <image name="Math" width="22" height="28"/>
         <image name="Science" width="20" height="24"/>
         <image name="Settings" width="26" height="28"/>
+        <image name="fog" width="450" height="450"/>
+        <image name="wind" width="450" height="450"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
