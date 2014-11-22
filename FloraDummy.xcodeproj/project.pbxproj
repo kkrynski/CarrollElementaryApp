@@ -33,8 +33,10 @@
 		4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7DC3FD1A09A32C006E3E23 /* CalculatorVC.xib */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
 		4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E719FC42C00066A53B /* VocabVC.xib */; };
-		5D03D4AA1A1276100008A9EA /* DragAndDrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03D4A91A1276100008A9EA /* DragAndDrop.m */; };
-		5D03D4AD1A1276B90008A9EA /* DragAndDrop.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D03D4AC1A1276B90008A9EA /* DragAndDrop.xib */; };
+		5D03D4B11A12E2FA0008A9EA /* SpellingTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */; };
+		5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */; };
+		5D18E9D31A1C0FEA00F8DB94 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18E9D21A1C0FEA00F8DB94 /* AudioController.m */; };
+		5D18E9D51A1C12A900F8DB94 /* hello.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9D41A1C12A900F8DB94 /* hello.wav */; };
 		5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		9208CD1018F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
@@ -155,9 +157,12 @@
 		4CC305E519FC42C00066A53B /* VocabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabVC.h; sourceTree = "<group>"; };
 		4CC305E619FC42C00066A53B /* VocabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabVC.m; sourceTree = "<group>"; };
 		4CC305E719FC42C00066A53B /* VocabVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VocabVC.xib; sourceTree = "<group>"; };
-		5D03D4A91A1276100008A9EA /* DragAndDrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragAndDrop.m; sourceTree = "<group>"; };
-		5D03D4AB1A1276270008A9EA /* DragAndDrop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragAndDrop.h; sourceTree = "<group>"; };
-		5D03D4AC1A1276B90008A9EA /* DragAndDrop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragAndDrop.xib; sourceTree = "<group>"; };
+		5D03D4AE1A12E2FA0008A9EA /* SpellingTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellingTestVC.h; sourceTree = "<group>"; };
+		5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellingTestVC.m; sourceTree = "<group>"; };
+		5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpellingTestVC.xib; sourceTree = "<group>"; };
+		5D18E9D11A1C0FEA00F8DB94 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
+		5D18E9D21A1C0FEA00F8DB94 /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
+		5D18E9D41A1C12A900F8DB94 /* hello.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hello.wav; sourceTree = "<group>"; };
 		5D709CAD1A09A2F8000F44DF /* PasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordVC.h; sourceTree = "<group>"; };
 		5D709CAE1A09A2F8000F44DF /* PasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordVC.m; sourceTree = "<group>"; };
 		5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordVC.xib; sourceTree = "<group>"; };
@@ -425,12 +430,15 @@
 		5D709CAC1A09A28A000F44DF /* Mason */ = {
 			isa = PBXGroup;
 			children = (
+				5D03D4AE1A12E2FA0008A9EA /* SpellingTestVC.h */,
+				5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */,
+				5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */,
+				5D18E9D11A1C0FEA00F8DB94 /* AudioController.h */,
+				5D18E9D21A1C0FEA00F8DB94 /* AudioController.m */,
+				5D18E9D41A1C12A900F8DB94 /* hello.wav */,
 				5D709CAD1A09A2F8000F44DF /* PasswordVC.h */,
 				5D709CAE1A09A2F8000F44DF /* PasswordVC.m */,
 				5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */,
-				5D03D4A91A1276100008A9EA /* DragAndDrop.m */,
-				5D03D4AB1A1276270008A9EA /* DragAndDrop.h */,
-				5D03D4AC1A1276B90008A9EA /* DragAndDrop.xib */,
 			);
 			name = Mason;
 			sourceTree = "<group>";
@@ -811,6 +819,7 @@
 				92C261AC18370D1500FDA09B /* Page_DragAndDropVC.xib in Resources */,
 				92A648E81A0E8F0A007485C4 /* Carroll.json in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
+				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
 				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
 				5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */,
@@ -834,8 +843,8 @@
 				92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */,
 				4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */,
 				92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */,
+				5D18E9D51A1C12A900F8DB94 /* hello.wav in Resources */,
 				926C9B1718E4EA69006CDB2F /* HOME4.gif in Resources */,
-				5D03D4AD1A1276B90008A9EA /* DragAndDrop.xib in Resources */,
 				9282390618A6A39300223265 /* Main2.storyboard in Resources */,
 				92E8CB5118F0C4BD0025264E /* Wind3.gif in Resources */,
 				92C261B41839D40800FDA09B /* apple_green.png in Resources */,
@@ -883,6 +892,7 @@
 			files = (
 				1078FC231A0FD83600A14836 /* MathProblemVC.swift in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
+				5D03D4B11A12E2FA0008A9EA /* SpellingTestVC.m in Sources */,
 				9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */,
 				9211951E19FE02CB00644054 /* ModuleVC.m in Sources */,
 				92C261AB18370D1500FDA09B /* Page_DragAndDropVC.m in Sources */,
@@ -909,9 +919,9 @@
 				10DD07D21A1661350026B0DA /* MathProblemTextField.swift in Sources */,
 				1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */,
 				1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */,
-				5D03D4AA1A1276100008A9EA /* DragAndDrop.m in Sources */,
 				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
 				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
+				5D18E9D31A1C0FEA00F8DB94 /* AudioController.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
 			);
