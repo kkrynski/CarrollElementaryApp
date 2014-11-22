@@ -90,6 +90,11 @@
 		92C261BE183BFBBC00FDA09B /* woods.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C261BC183BFBBC00FDA09B /* woods.png */; };
 		92C261C11840414400FDA09B /* DragObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C261C01840414400FDA09B /* DragObject.m */; };
 		92C2620518419B5600FDA09B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C2620418419B5600FDA09B /* QuartzCore.framework */; };
+		92CB44911A203C550082C761 /* ActivityCreationTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44901A203C550082C761 /* ActivityCreationTVC.m */; };
+		92CB44941A203DBD0082C761 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44931A203DBD0082C761 /* Activity.m */; };
+		92CB44971A203F140082C761 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44961A203F140082C761 /* Page.m */; };
+		92CB449A1A203F740082C761 /* Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44991A203F740082C761 /* Content.m */; };
+		92CB449D1A20E60E0082C761 /* PageCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB449C1A20E60E0082C761 /* PageCreationVC.m */; };
 		92D06A0318D13066004850C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0218D13066004850C6 /* AudioToolbox.framework */; };
 		92D06A0518D13076004850C6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0418D13076004850C6 /* CoreMedia.framework */; };
 		92D06A0718D1307D004850C6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0618D1307D004850C6 /* CoreVideo.framework */; };
@@ -241,6 +246,16 @@
 		92C261BF1840414400FDA09B /* DragObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragObject.h; sourceTree = "<group>"; };
 		92C261C01840414400FDA09B /* DragObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragObject.m; sourceTree = "<group>"; };
 		92C2620418419B5600FDA09B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		92CB448F1A203C550082C761 /* ActivityCreationTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCreationTVC.h; sourceTree = "<group>"; };
+		92CB44901A203C550082C761 /* ActivityCreationTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCreationTVC.m; sourceTree = "<group>"; };
+		92CB44921A203DBD0082C761 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
+		92CB44931A203DBD0082C761 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
+		92CB44951A203F140082C761 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
+		92CB44961A203F140082C761 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		92CB44981A203F740082C761 /* Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Content.h; sourceTree = "<group>"; };
+		92CB44991A203F740082C761 /* Content.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Content.m; sourceTree = "<group>"; };
+		92CB449B1A20E60E0082C761 /* PageCreationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCreationVC.h; sourceTree = "<group>"; };
+		92CB449C1A20E60E0082C761 /* PageCreationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCreationVC.m; sourceTree = "<group>"; };
 		92D069E918D12FD6004850C6 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		92D069EA18D12FD6004850C6 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		92D069EB18D12FD6004850C6 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -457,6 +472,7 @@
 			children = (
 				921194FD19FE015100644054 /* QuickQuizVC.h */,
 				921194FE19FE015100644054 /* QuickQuizVC.m */,
+				92CB448E1A203BCA0082C761 /* Much Super. So secret. Wow */,
 			);
 			name = "Zach's SUper Secret Project";
 			sourceTree = "<group>";
@@ -575,6 +591,23 @@
 				923774541A0552A400A49D14 /* PictureQuizVC.xib */,
 			);
 			name = "Stephen's Stuff";
+			sourceTree = "<group>";
+		};
+		92CB448E1A203BCA0082C761 /* Much Super. So secret. Wow */ = {
+			isa = PBXGroup;
+			children = (
+				92CB448F1A203C550082C761 /* ActivityCreationTVC.h */,
+				92CB44901A203C550082C761 /* ActivityCreationTVC.m */,
+				92CB449B1A20E60E0082C761 /* PageCreationVC.h */,
+				92CB449C1A20E60E0082C761 /* PageCreationVC.m */,
+				92CB44921A203DBD0082C761 /* Activity.h */,
+				92CB44931A203DBD0082C761 /* Activity.m */,
+				92CB44951A203F140082C761 /* Page.h */,
+				92CB44961A203F140082C761 /* Page.m */,
+				92CB44981A203F740082C761 /* Content.h */,
+				92CB44991A203F740082C761 /* Content.m */,
+			);
+			name = "Much Super. So secret. Wow";
 			sourceTree = "<group>";
 		};
 		92D069F218D12FE3004850C6 /* zbar */ = {
@@ -892,6 +925,7 @@
 			files = (
 				1078FC231A0FD83600A14836 /* MathProblemVC.swift in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
+				92CB44911A203C550082C761 /* ActivityCreationTVC.m in Sources */,
 				5D03D4B11A12E2FA0008A9EA /* SpellingTestVC.m in Sources */,
 				9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */,
 				9211951E19FE02CB00644054 /* ModuleVC.m in Sources */,
@@ -899,6 +933,7 @@
 				1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */,
 				92C261C11840414400FDA09B /* DragObject.m in Sources */,
 				9211950F19FE01CC00644054 /* TestingTVC.m in Sources */,
+				92CB44941A203DBD0082C761 /* Activity.m in Sources */,
 				104BA0FC1A0429E6007BD9DE /* UIButton_Typical.m in Sources */,
 				4CC305E819FC42C00066A53B /* VocabVC.m in Sources */,
 				10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */,
@@ -913,6 +948,7 @@
 				9211950B19FE01C000644054 /* PageVC.m in Sources */,
 				104BA0FB1A0429E2007BD9DE /* UIOutlinedLabel.m in Sources */,
 				92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */,
+				92CB44971A203F140082C761 /* Page.m in Sources */,
 				10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */,
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,
 				10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */,
@@ -924,6 +960,8 @@
 				5D18E9D31A1C0FEA00F8DB94 /* AudioController.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
+				92CB449A1A203F740082C761 /* Content.m in Sources */,
+				92CB449D1A20E60E0082C761 /* PageCreationVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

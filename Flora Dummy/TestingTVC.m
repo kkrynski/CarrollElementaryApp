@@ -17,6 +17,7 @@
 #import "PictureQuizVC.h"
 #import "PasswordVC.h"
 #import "SpellingTestVC.h"
+#import "ActivityCreationTVC.h"
 
     //Michael's Test Code
 #import "FloraDummy-Swift.h"
@@ -54,7 +55,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", @"Zach - Activity Creation", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -198,6 +199,14 @@
             // Mason - Spelling Test
             
             [self launchSpellingTest];
+            
+            break;
+            
+        }case 8:
+        {
+            // Zach - Activity Creation
+            
+            [self activityCreation];
             
             break;
             
@@ -581,6 +590,13 @@
     [self presentViewController:spellingTestVC animated:YES completion:nil];
 }
 
+- (void) activityCreation
+{
+    ActivityCreationTVC *activityCreationTVC = [[ActivityCreationTVC alloc] init];
+    //spellingTestVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    
+    [self presentViewController:activityCreationTVC animated:YES completion:nil];
+}
 
 
 
