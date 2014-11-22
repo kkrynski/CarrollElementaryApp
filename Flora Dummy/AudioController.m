@@ -35,11 +35,12 @@
     // Data Formats (a.k.a. audio encoding): linear PCM (such as LEI16) or IMA4
     // Sounds must be 30 sec or less
     // And only one sound plays at a time!
+    
     NSString *wordPath = [[NSBundle mainBundle] pathForResource:@"hello" ofType:@"wav"];
     NSURL *wordURL = [NSURL fileURLWithPath:wordPath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)wordURL, &_wordSound);
-}
 
+}
 #pragma mark - AVAudioPlayerDelegate methods
 
 
