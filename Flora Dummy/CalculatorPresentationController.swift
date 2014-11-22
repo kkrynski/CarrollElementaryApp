@@ -18,6 +18,7 @@ class CalculatorPresentationController: UIPresentationController
     
     private var calculatorHolderView : UIView?          //This view manages expanding and collapsing the calculator for special functions
     var calculatorExtension : UIView?                   //The extension view to slide in.
+    private var oldCalculatorExtension : UIView?        //N/A
     
     private var dismissTap : UITapGestureRecognizer?    //The tap gesture for dismissal of calculator extension/calculator
     
@@ -31,20 +32,18 @@ class CalculatorPresentationController: UIPresentationController
         return "CalculatorWillDecreaseSizeNotification"
     }
     
+    class func CalculatorShouldDecreaseSizeNotification() -> String
+    {
+        return "CalculatorShouldDecreaseSizeNotification"
+    }
+
+    
     //MARK: - Presentation
     
     //Present the calculator and the buttons
     //Blur the background
     override func presentationTransitionWillBegin()
     {
-        let blur = UIBlurEffect(style: .Light)
-        blurView = UIVisualEffectView(effect: blur)
-        
-        blurView!.frame = containerView.bounds
-        blurView!.alpha = 0.0
-        
-        containerView.addSubview(blurView!)
-        
         rightArrow = UIButton(frame: CGRectMake(0, 0, 100, 100))
         rightArrow!.setTitle("\u{21a6}", forState: .Normal)
         rightArrow!.titleLabel!.font = UIFont(name: "Marker Felt", size: 72)
@@ -81,12 +80,15 @@ class CalculatorPresentationController: UIPresentationController
         containerView.addSubview(dismissButton!)
         
         dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator")
-        blurView!.addGestureRecognizer(dismissTap!)
+        containerView!.addGestureRecognizer(dismissTap!)
+        
+        presentedView().layer.shadowOpacity = 1.0
+        presentedView().layer.shadowOffset = CGSizeMake(0, 1.0)
+        presentedView().layer.shadowRadius = 5.0
         
         let transitionCoordinator = self.presentingViewController.transitionCoordinator()
         transitionCoordinator?.animateAlongsideTransition(
             {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-                self.blurView!.alpha = 1.0
                 self.dismissButton!.alpha = 1.0
                 
                 if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
@@ -107,7 +109,6 @@ class CalculatorPresentationController: UIPresentationController
     {
         if completed == false   //If for some reason the transition was cancelled, remove everything
         {
-            blurView!.removeFromSuperview()
             rightArrow!.removeFromSuperview()
             leftArrow!.removeFromSuperview()
             dismissButton!.removeFromSuperview()
@@ -130,7 +131,6 @@ class CalculatorPresentationController: UIPresentationController
         let transitionCoordinator = self.presentingViewController.transitionCoordinator()
         transitionCoordinator?.animateAlongsideTransition(
             {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-                self.blurView!.alpha = 0.0
                 self.rightArrow!.alpha = 0.0
                 self.leftArrow!.alpha = 0.0
                 self.dismissButton!.alpha = 0.0
@@ -142,7 +142,6 @@ class CalculatorPresentationController: UIPresentationController
     {
         if completed    //If we finished dismissal, remove all extraneous views and stop listening for calculator expansion and collapse
         {
-            blurView!.removeFromSuperview()
             rightArrow!.removeFromSuperview()
             leftArrow!.removeFromSuperview()
             dismissButton!.removeFromSuperview()
@@ -237,82 +236,148 @@ class CalculatorPresentationController: UIPresentationController
     //Increases the calculator's width to show the special functions view
     func increaseCalculatorSize()
     {
-        if calculatorExtension == nil
+        assert(calculatorExtension != nil, "Calculator Extension not set!")
+        
+        containerView!.removeGestureRecognizer(self.dismissTap!)
+        
+        if calculatorExtension != nil && oldCalculatorExtension != nil  //A calculator extension is already presented
         {
-            fatalError("Calculator Extension not set!");
-        }
-        
-        leftArrow!.userInteractionEnabled = false
-        rightArrow!.userInteractionEnabled = false
-        dismissButton!.userInteractionEnabled = false
-        
-        calculatorHolderView = UIView(frame: presentedView().frame)
-        calculatorHolderView!.clipsToBounds = true
-        calculatorHolderView!.userInteractionEnabled = false
-        presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0, calculatorHolderView!.frame.size.height/2.0)
-        
-        calculatorHolderView!.addSubview(calculatorExtension!)
-        
-        calculatorExtension!.frame = CGRectMake(presentedView().frame.origin.x, presentedView().frame.origin.y, frameOfPresentedViewInContainerView().size.width - presentedView().frame.size.width, frameOfPresentedViewInContainerView().size.height)
-        
-        calculatorHolderView!.addSubview(presentedView())
-        
-        if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
-        {
-            calculatorExtension!.center = CGPointMake(presentedView().frame.size.width - calculatorExtension!.frame.size.width/2.0, calculatorExtension!.frame.size.height/2.0);
-        }
-        else
-        {
-            calculatorExtension!.center = CGPointMake(calculatorExtension!.frame.size.width/2.0, calculatorExtension!.frame.size.height/2.0);
-        }
-        
-        containerView.addSubview(calculatorHolderView!)
-        
-        UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+            calculatorHolderView!.insertSubview(calculatorExtension!, belowSubview: presentedView())
+            calculatorHolderView!.userInteractionEnabled = false
             
-            self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
-            print(self.calculatorHolderView!.frame)
+            calculatorExtension!.frame = CGRectMake(0, 0, frameOfPresentedViewInContainerView().size.width - presentedView().frame.size.width, frameOfPresentedViewInContainerView().size.height)
+            calculatorExtension!.backgroundColor = presentedView().backgroundColor
             
+            calculatorExtension!.alpha = 0.0
             if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
             {
-                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
-                self.calculatorExtension!.center = CGPointMake(self.presentedView().frame.size.width + self.calculatorExtension!.frame.size.width/2.0, self.calculatorExtension!.center.y)
+                calculatorExtension!.center = CGPointMake((calculatorHolderView!.frame.size.width + calculatorHolderView!.frame.origin.x) - calculatorExtension!.frame.size.width/2.0 - 20, oldCalculatorExtension!.center.y)
             }
             else
             {
-                self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
-                self.calculatorExtension!.center = CGPointMake(self.calculatorExtension!.frame.size.width/2.0 + 20, self.calculatorExtension!.center.y)
+                calculatorExtension!.center = CGPointMake(calculatorExtension!.frame.size.width/2.0, oldCalculatorExtension!.center.y)
             }
             
-            self.leftArrow!.alpha = 0.0
-            self.rightArrow!.alpha = 0.0
-            self.dismissButton!.alpha = 0.0
-            }, completion: { (finished) -> Void in
+            UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                 
-                self.calculatorHolderView!.userInteractionEnabled = true
+                self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
+                self.calculatorExtension!.frame = CGRectMake(self.calculatorExtension!.frame.origin.x, self.calculatorExtension!.frame.origin.y, self.frameOfPresentedViewInContainerView().size.width - self.presentedView().frame.size.width, self.frameOfPresentedViewInContainerView().size.height)
                 
-                self.blurView!.removeGestureRecognizer(self.dismissTap!)
-                self.dismissTap = UITapGestureRecognizer(target: self, action: "decreaseCalculatorSize")
-                self.blurView!.addGestureRecognizer(self.dismissTap!)
-        })
+                if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
+                {
+                    self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
+                    self.calculatorExtension!.center = CGPointMake(self.presentedView().frame.size.width + self.calculatorExtension!.frame.size.width/2.0, self.calculatorExtension!.center.y)
+                }
+                else
+                {
+                    self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
+                    self.calculatorExtension!.center = CGPointMake(self.calculatorExtension!.frame.size.width/2.0 + 20, self.calculatorExtension!.center.y)
+                }
+                
+                self.calculatorExtension!.alpha = 1.0
+                
+                }, completion: { (finished) -> Void in
+                    
+                    self.oldCalculatorExtension!.removeFromSuperview()
+                    self.oldCalculatorExtension = self.calculatorExtension!
+                    self.calculatorExtension = nil
+                    
+                    self.calculatorHolderView!.userInteractionEnabled = true
+            })
+        }
+        else    //We are presenting the first calculator extension
+        {
+            leftArrow!.userInteractionEnabled = false
+            rightArrow!.userInteractionEnabled = false
+            dismissButton!.userInteractionEnabled = false
+            
+            calculatorHolderView = UIView(frame: presentedView().frame)
+            calculatorHolderView!.userInteractionEnabled = false
+            presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0, calculatorHolderView!.frame.size.height/2.0)
+            presentedView().layer.shadowOpacity = 0.0
+            presentedView().layer.shadowRadius = 5.0
+            calculatorHolderView!.layer.shadowOpacity = 1.0
+            calculatorHolderView!.layer.shadowOffset = CGSizeMake(0, 1.0)
+            calculatorHolderView!.layer.shadowRadius = 5.0
+            calculatorHolderView!.backgroundColor = presentedView().backgroundColor
+            
+            calculatorHolderView!.addSubview(calculatorExtension!)
+            
+            calculatorExtension!.frame = CGRectMake(presentedView().frame.origin.x, presentedView().frame.origin.y, frameOfPresentedViewInContainerView().size.width - presentedView().frame.size.width, frameOfPresentedViewInContainerView().size.height)
+            
+            calculatorHolderView!.addSubview(presentedView())
+            
+            if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
+            {
+                calculatorExtension!.center = CGPointMake(presentedView().frame.size.width - calculatorExtension!.frame.size.width/2.0, calculatorExtension!.frame.size.height/2.0);
+            }
+            else
+            {
+                calculatorExtension!.center = CGPointMake(calculatorExtension!.frame.size.width/2.0, calculatorExtension!.frame.size.height/2.0);
+            }
+            
+            containerView.addSubview(calculatorHolderView!)
+            
+            UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                
+                self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
+                self.calculatorExtension!.frame = CGRectMake(self.calculatorExtension!.frame.origin.x, self.calculatorExtension!.frame.origin.y, self.frameOfPresentedViewInContainerView().size.width - self.presentedView().frame.size.width, self.frameOfPresentedViewInContainerView().size.height)
+                
+                if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
+                {
+                    self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
+                    self.calculatorExtension!.center = CGPointMake(self.presentedView().frame.size.width + self.calculatorExtension!.frame.size.width/2.0, self.calculatorExtension!.center.y)
+                }
+                else
+                {
+                    self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
+                    self.calculatorExtension!.center = CGPointMake(self.calculatorExtension!.frame.size.width/2.0 + 20, self.calculatorExtension!.center.y)
+                }
+                
+                self.leftArrow!.alpha = 0.0
+                self.rightArrow!.alpha = 0.0
+                self.dismissButton!.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    
+                    self.oldCalculatorExtension = self.calculatorExtension!
+                    self.calculatorExtension = nil
+                    
+                    self.calculatorHolderView!.userInteractionEnabled = true
+                    
+                    self.dismissTap = UITapGestureRecognizer(target: self, action: "dismissTapDecreaseSize")
+                    self.containerView.addGestureRecognizer(self.dismissTap!)
+            })
+        }
+    }
+    
+    //Decrease the calculator's width when tapped on screen
+    func dismissTapDecreaseSize()
+    {
+        NSNotificationCenter.defaultCenter().postNotificationName(CalculatorPresentationController.CalculatorShouldDecreaseSizeNotification(), object: nil)
+        decreaseCalculatorSize()
     }
     
     //Decrease the calculator's width to hide the special functions view
     func decreaseCalculatorSize()
     {
-        if calculatorHolderView == nil || calculatorHolderView!.isDescendantOfView(containerView) == false
+        if oldCalculatorExtension == nil || calculatorHolderView!.isDescendantOfView(containerView) == false    //Alread dismissed, do nothing
         {
             return
         }
         
+        containerView.removeGestureRecognizer(self.dismissTap!)
+        
         calculatorHolderView!.userInteractionEnabled = false
+        
+        let widthDifference = calculatorHolderView!.frame.size.width - frameOfPresentedViewInContainerView().size.width
         
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             
             if self.frameOfPresentedViewInContainerView().width == self.calculatorHolderView!.frame.size.width
             {
                 var rect = self.frameOfPresentedViewInContainerView()
-                rect.size.width -= (self.frameOfPresentedViewInContainerView().size.width - self.presentedView().frame.size.width)
+                rect.size.width = self.presentedView().frame.size.width
+                rect.size.width = max(self.presentedView().frame.size.width, rect.size.width)
                 if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Right"
                 {
                     rect.origin.x += (self.frameOfPresentedViewInContainerView().size.width - self.presentedView().frame.size.width)
@@ -321,20 +386,34 @@ class CalculatorPresentationController: UIPresentationController
             }
             else
             {
-                self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
+                
+                self.calculatorHolderView!.frame = CGRectMake(self.frameOfPresentedViewInContainerView().origin.x, self.frameOfPresentedViewInContainerView().origin.y, self.presentedView().frame.size.width, self.frameOfPresentedViewInContainerView().size.height)
             }
+            
             self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0, self.calculatorHolderView!.frame.size.height/2.0)
+            if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
+            {
+                self.oldCalculatorExtension!.center = CGPointMake(self.oldCalculatorExtension!.center.x - widthDifference, self.oldCalculatorExtension!.center.y)
+            }
+            else
+            {
+                self.oldCalculatorExtension!.center = CGPointMake(self.presentedView().frame.origin.x, self.oldCalculatorExtension!.center.y)
+            }
             
             }, completion: { (finished) -> Void in
                 
-                self.blurView!.removeGestureRecognizer(self.dismissTap!)
                 self.dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator")
-                self.blurView!.addGestureRecognizer(self.dismissTap!)
+                self.containerView.addGestureRecognizer(self.dismissTap!)
                 
                 self.presentedView().center = self.containerView.convertPoint(self.presentedView().center, fromView: self.calculatorHolderView!)
                 self.containerView.addSubview(self.presentedView())
                 
+                self.presentedView().layer.shadowOpacity = 1.0
+                
                 self.calculatorHolderView!.removeFromSuperview()
+                self.oldCalculatorExtension!.removeFromSuperview()
+                self.calculatorExtension = nil
+                self.oldCalculatorExtension = nil
         })
         
         UIView.animateWithDuration(transitionLength, delay: transitionLength, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in

@@ -45,7 +45,7 @@
 // These are some handy-dandy functions we can use to navigate
 // through the activity. It's 12:23 AM, and handy-dandy just
 // felt like a good word to use. Props if you read this.
--(void)goToViewControllerAtIndex: (NSIndexPath *)indexPath;
+//-(void)goToViewControllerAtIndex: (NSIndexPath *)indexPath;
 -(void)goToNextViewController;
 -(void)goToPreviousViewController;
 

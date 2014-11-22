@@ -21,6 +21,6 @@
 
 @property (nonatomic, retain) NSString *question;
 @property (nonatomic, retain) NSArray *answers;
-@property (nonatomic, assign) int *indexOfAnswer;
+@property (nonatomic, assign) int indexOfAnswer;
 
 @end

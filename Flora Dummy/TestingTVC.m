@@ -16,8 +16,7 @@
 #import "QuickQuizVC.h"
 #import "PictureQuizVC.h"
 #import "PasswordVC.h"
-
-    //Michael's Test Code
+#import "SpellingTestVC.h"
 #import "FloraDummy-Swift.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -53,7 +52,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -189,6 +188,14 @@
             // All about plants
             
             [self launchPlants];
+            
+            break;
+            
+        }case 7:
+        {
+            // Mason - Spelling Test
+            
+            [self launchSpellingTest];
             
             break;
             
@@ -387,6 +394,7 @@
 
 // Tests
 
+
 -(void)launchModule
 {
     /*Page_ReadVC *prVC = [[Page_ReadVC alloc] initWithParent:self];
@@ -472,8 +480,7 @@
     [activityDict setObject:[NSArray arrayWithObjects:page1, page2, nil] forKey:@"PageArray"];
     
     // Create a PageManager for the activity and store it in THIS view controller.
-    PageManager *pageManager = [[PageManager alloc]initWithActivity: activityDict forParentViewController:self];
-    
+    [[[PageManager alloc]initWithActivity: activityDict forParentViewController:self] setIsAccessibilityElement:NO];
 }
 
 -(void)launchVocab
@@ -559,10 +566,23 @@
 - (void) launchMathController
 {
     MathProblemVC *mathProblemVC = [[MathProblemVC alloc] init];
-    mathProblemVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    mathProblemVC.mathEquation = @"10 + 10^2=#w#";
     
     [self presentViewController:mathProblemVC animated:YES completion:nil];
 }
+
+- (void) launchSpellingTest
+{
+    SpellingTestVC *spellingTestVC = [[SpellingTestVC alloc] init];
+    //spellingTestVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    
+    [self presentViewController:spellingTestVC animated:YES completion:nil];
+}
+
+
+
+
+
 
 #pragma mark Michael's Transition Methods
 

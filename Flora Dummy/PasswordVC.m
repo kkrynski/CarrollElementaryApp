@@ -45,8 +45,6 @@
     NSString *tempPassword = passwordInput.text;
     if([tempUsername isEqualToString: defaultUsername]) {
         if([tempPassword isEqualToString: defaultPassword] ){
-          //  UIViewController *homeView = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"];
-          //  [self.navigationController pushViewController:homeView animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }

@@ -15,7 +15,4 @@
 
 @property(nonatomic, retain) NSMutableArray *gradientColors;
 
--(void)updateGradient;
--(void)updateGradientForColors: (NSArray *)colors;
-
 @end

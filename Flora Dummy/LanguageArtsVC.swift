@@ -59,7 +59,6 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     //Everytime the view is shown on screen, make sure all data is updated
     override func viewWillAppear(animated: Bool)
     {
-        
         let standardDefaults = NSUserDefaults.standardUserDefaults()
         
         //Update all colors
