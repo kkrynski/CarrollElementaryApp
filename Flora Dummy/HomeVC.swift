@@ -24,8 +24,6 @@ class HomeVC: FormattedVC, WeatherManagerDelegate
     @IBOutlet var weatherTemp : UILabel?
     @IBOutlet var weatherWindSpeed : UILabel?
     @IBOutlet var weatherForcastImage : UIImageView?
-    @IBOutlet var weatherHumidityImage : UIImageView?
-    @IBOutlet var weatherWindImage : UIImageView?
 
     
     override func viewDidLoad()
