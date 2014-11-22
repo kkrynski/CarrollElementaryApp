@@ -7,6 +7,9 @@
 //
 
 #import "PageVC.h"
+#import <Availability.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 
 @class AudioController;
@@ -16,7 +19,7 @@
     
 }
 
-@property(nonatomic,retain) AudioController* audioController;
+@property(strong,nonatomic) AudioController* audioController;
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSString *word;
 @property(nonatomic,retain) IBOutlet UIButton *submit;
