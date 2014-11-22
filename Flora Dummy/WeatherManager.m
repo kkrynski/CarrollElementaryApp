@@ -108,7 +108,7 @@
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:jsonData 
                                                             options:kNilOptions
                                                               error:&error];
-    NSLog(@"%@", results);
+    
     WeatherItem *item = [WeatherItem itemFromWeatherDictionary:results];
     
     if (self.delegate) {

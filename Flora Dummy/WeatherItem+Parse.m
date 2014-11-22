@@ -66,7 +66,6 @@
         [mutableForecastArray insertObject:dayTemp atIndex:i]; 
         [mutableForecastDescriptionArray insertObject:dayDescription atIndex:i];
         [mutableForecasttDescriptionImages insertObject:image atIndex:i];
-        NSLog(@"setting object %@ for key %@", dayTemp, day);
 
         i++;
     }
@@ -74,8 +73,6 @@
     item.weatherForecastConditions = (NSArray *)mutableForecastDescriptionArray;
     item.weatherForecastConditionsImages = (NSArray *)mutableForecasttDescriptionImages;
     item.nextDays = (NSArray *)mutableNextDaysArray;
-    
-    NSLog (@"%@, %@, %@, %@", item.weatherForecast, item.weatherForecastConditionsImages, item.weatherForecastConditions, item.nextDays);
     
     item.indexForWeatherMap = [self indexForTemperature:item.weatherCurrentTemp];
     return item;
