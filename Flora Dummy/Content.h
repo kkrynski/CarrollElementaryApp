@@ -11,7 +11,7 @@
 @interface Content : NSObject
 {
     // What are the bounds of this piece of content
-    CGRect *bounds;
+    CGRect bounds;
 }
 
 // What type of controller is this
@@ -32,5 +32,10 @@
 
 // Create content given JSON text
 -(id)initWithContentsOfJSONText: (NSString *)jsonText;
+-(id)init;
+
+-(void)setFrame: (NSArray *)elements;
+-(CGRect)getFrame;
+-(NSArray *)arrayForBounds;
 
 @end

@@ -16,6 +16,14 @@
 // What is the name of the activity
 @property(nonatomic, retain) NSString *name;
 
+// When it was last modified/edited
+@property(nonatomic, retain) NSDate *modDate;
+
+// When it will be released
+//
+// If blank, assume it should be released now
+@property(nonatomic, retain) NSDate *releaseDate;
+
 // When is it due
 @property(nonatomic, retain) NSDate *dueDate;
 
@@ -28,7 +36,6 @@
 // Array of pages within the activity
 @property(nonatomic, retain) NSArray *pageArray;
 
-// Given JSON text, create the activity
--(id)initWithContentsOfJSONText: (NSString *)jsonText;
+-(id)init;
 
 @end

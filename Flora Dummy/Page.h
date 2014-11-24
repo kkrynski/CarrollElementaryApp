@@ -21,6 +21,7 @@
 
 // Given JSON text, create the page
 -(id)initWithContentsOfJSONText: (NSString *)jsonText;
+-(id)init;
 
 
 @end

@@ -8,12 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityCreationTVC : UITableViewController
+#import "PageCreationVC.h"
+
+#import "ActivityInfoVC.h"
+#import "Activity.h"
+
+@interface ActivityCreationTVC : UITableViewController<PageCreationDelegate, ActivityInfoDelegate>
 {
     
 }
 
 @property(nonatomic, retain) NSMutableArray *pagesArray;
+
+@property (strong, nonatomic) PageCreationVC *pageCreationVC;
+
+@property(nonatomic, retain) Activity *activity;
+
+@property(nonatomic, retain) ActivityInfoVC *activityInfoVC;
+@property (nonatomic, strong) UIPopoverController *activityInfoPopOver;
 
 -(NSString *)createJSONForActivity;
 

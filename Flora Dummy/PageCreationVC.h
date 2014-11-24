@@ -9,12 +9,23 @@
 #import "FormattedVC.h"
 
 #import "Page.h"
+#import "ContentCreationVC.h"
 
-@interface PageCreationVC : FormattedVC
-{
+@protocol PageCreationDelegate <NSObject>
+-(void)updatePage: (Page *)p;
+@end
 
-}
+@interface PageCreationVC : FormattedVC<UIPickerViewDataSource, UIPickerViewDelegate, UISplitViewControllerDelegate, ContentCreationDelegate>
+
 
 @property(nonatomic, retain) Page *page;
+
+@property(nonatomic, retain) IBOutlet UIPickerView *pagePicker;
+
+@property (nonatomic) BOOL  isHidden;
+
+@property (nonatomic, weak) id<PageCreationDelegate>delegate;
+
+- (void)configureView;
 
 @end

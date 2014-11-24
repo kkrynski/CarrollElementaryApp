@@ -14,6 +14,18 @@
 @synthesize pageVCType;
 @synthesize contentArray;
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        // Initialize
+        pageVCType = [[NSString alloc] initWithFormat:@""];
+        contentArray = [[NSArray alloc] initWithObjects:nil];
+        
+    }
+    return self;
+}
+
 -(id)initWithContentsOfJSONText: (NSString *)jsonText
 {
     if (self = [super init])

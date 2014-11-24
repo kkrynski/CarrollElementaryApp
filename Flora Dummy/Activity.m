@@ -11,22 +11,44 @@
 #import "Page.h"
 
 @implementation Activity
-@synthesize name, dueDate, iconImageName, activityID;
+@synthesize name, modDate, releaseDate, dueDate, iconImageName, activityID;
 @synthesize pageArray;
 
--(id)initWithContentsOfJSONText: (NSString *)jsonText
+-(id)init
 {
-    if (self = [super init])
+    self = [super init];
+    if (self)
     {
         // Initialize
-        name = [[NSString alloc] initWithFormat:@""];
-        dueDate = [[NSDate alloc] init];
-        iconImageName = [[NSString alloc] initWithFormat:@"117-todo"]; // Default image name
-        activityID = [[NSString alloc] initWithFormat:@""];
-        pageArray = [[NSArray alloc] initWithObjects:nil];
+        self.name = [[NSString alloc] initWithFormat:@""];
+        self.modDate = [[NSDate alloc] init];
+        self.releaseDate = [[NSDate alloc] init];
+        self.dueDate = [[NSDate alloc] init];
+        self.iconImageName = [[NSString alloc] initWithFormat:@"117-todo"]; // Default image name
+        self.activityID = [[NSString alloc] initWithFormat:@""];
+        self.pageArray = [[NSArray alloc] initWithObjects:nil];
         
     }
     return self;
 }
+
+-(id)initWithContentsOfJSONText: (NSString *)jsonText
+{
+    self = [super init];
+    if (self)
+    {
+        // Initialize
+        self.name = [[NSString alloc] initWithFormat:@""];
+        self.modDate = [[NSDate alloc] init];
+        self.releaseDate = [[NSDate alloc] init];
+        self.dueDate = [[NSDate alloc] init];
+        self.iconImageName = [[NSString alloc] initWithFormat:@"117-todo"]; // Default image name
+        self.activityID = [[NSString alloc] initWithFormat:@""];
+        self.pageArray = [[NSArray alloc] initWithObjects:nil];
+        
+    }
+    return self;
+}
+
 
 @end
