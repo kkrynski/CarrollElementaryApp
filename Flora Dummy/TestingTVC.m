@@ -156,7 +156,16 @@
             
             break;
             
-        }case 2:
+        }
+        case 2:
+        {
+            // Michael
+            [self launchClockDrag];
+            
+            break;
+            
+        }
+        case 3:
         {
             // Zach - Activity Creation
             
@@ -164,13 +173,13 @@
             
             break;
             
-        }case 3:
+        }case 4:
         {
             // Kyle
             
             break;
             
-        }case 4:
+        }case 5:
         {
             // Stephen - Picture Quiz
             
@@ -178,7 +187,7 @@
             
             break;
             
-        }case 5:
+        }case 6:
         {
             // Mason - Password
             
@@ -186,7 +195,7 @@
             
             break;
             
-        }case 6:
+        }case 7:
         {
             // All about plants
             
@@ -194,7 +203,7 @@
             
             break;
             
-        }case 7:
+        }case 8:
         {
             // Mason - Spelling Test
             
@@ -580,6 +589,13 @@
     mathProblemVC.mathEquation = @"10 + 10^2=#w#";
     
     [self presentViewController:mathProblemVC animated:YES completion:nil];
+}
+
+- (void) launchClockDrag
+{
+    ClockDragVC *clockDragVC = [[ClockDragVC alloc] init];
+    
+    [self presentViewController:clockDragVC animated:YES completion:nil];
 }
 
 - (void) launchSpellingTest
