@@ -583,6 +583,8 @@
 - (void) launchClockDrag
 {
     ClockDragVC *clockDragVC = [[ClockDragVC alloc] init];
+    clockDragVC.startTime = @"04:15:23";
+    clockDragVC.endTime = @"08:12:34";
     
     [self presentViewController:clockDragVC animated:YES completion:nil];
 }

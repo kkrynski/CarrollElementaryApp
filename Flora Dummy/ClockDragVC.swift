@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class ClockDragVC: PageVC
 {
@@ -17,7 +18,7 @@ class ClockDragVC: PageVC
     
     :param: HH:MM:SS The time format
     */
-    var startTime : String?
+    var startTime = "00:00:00"
     
     /**
     The time to be set on the clock by the user.
@@ -28,12 +29,26 @@ class ClockDragVC: PageVC
     */
     var endTime : String?
     
+    /**
+    The buffer zone for how incorrect each hand can be.
+
+    By default, or if no value provided, this is 00:02:02
+    
+    :param: HH:MM:SS The time format
+    */
+    var bufferZone = "00:02:02"
+    
+    //The clock itself
+    private var clock : Clock?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        createAndDisplayClockForStartTime()
     }
     
+    //If we have no end time, we need to dismiss because there's nothing to do.
     override func viewDidAppear(animated: Bool)
     {
         if endTime == nil
@@ -44,6 +59,23 @@ class ClockDragVC: PageVC
             }))
             presentViewController(errorAlert, animated: YES, completion: nil)
         }
+        else
+        {
+            clock!.rotateHandsToTime(startTime)
+        }
+    }
+    
+    //MARK: - Create Clock Methods
+    
+    private func createAndDisplayClockForStartTime()
+    {
+        clock = Clock(frame: CGRectMake(0, 0, 400, 400), andBorderWidth: 8.0, showSecondsHand: YES)
+        clock!.handsMoveIndependently = NO
+        clock!.backgroundColor = .whiteColor()
+        clock!.layer.cornerRadius = clock!.frame.size.width/2.0
+        clock!.layer.borderColor = UIColor.blackColor().CGColor
+        clock!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
+        view.addSubview(clock!)
     }
     
 }
