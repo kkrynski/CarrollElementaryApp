@@ -55,7 +55,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Zach - Activity Creation", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", @"Zach - Module", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock", @"Zach - Activity Creation", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", @"Zach - Module", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
