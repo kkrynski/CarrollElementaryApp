@@ -17,6 +17,9 @@
 #import "PictureQuizVC.h"
 #import "PasswordVC.h"
 #import "SpellingTestVC.h"
+#import "ActivityCreationTVC.h"
+
+    //Michael's Test Code
 #import "FloraDummy-Swift.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -52,7 +55,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock Drag", @"Zach - Module", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock", @"Zach - Activity Creation", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", @"Zach - Module", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -164,9 +167,9 @@
         }
         case 3:
         {
-            // Zach - Module
+            // Zach - Activity Creation
             
-            [self launchModule];
+            [self activityCreation];
             
             break;
             
@@ -205,6 +208,14 @@
             // Mason - Spelling Test
             
             [self launchSpellingTest];
+            
+            break;
+            
+        }case 9:
+        {
+            // Zach - Module
+            
+            [self launchModule];
             
             break;
             
@@ -597,6 +608,20 @@
     [self presentViewController:spellingTestVC animated:YES completion:nil];
 }
 
+- (void) activityCreation
+{
+    ActivityCreationTVC *activityCreationTVC = [[ActivityCreationTVC alloc] init];
+    //spellingTestVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityCreation" bundle:nil];
+    UIViewController *vc = [sb instantiateInitialViewController];
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:vc animated:YES completion:NULL];
+    
+    //UINavigationController *navCon = [[UINavigationController alloc]initWithRootViewController:vc];
+    
+    //[self presentViewController:navCon animated:YES completion:nil];
+}
 
 
 
