@@ -21,6 +21,8 @@
 {
     UIFont *font;
     int currentIndex;
+    UIBarButtonItem *editButton;
+    UIBarButtonItem *saveButton;
 }
 @end
 
@@ -57,9 +59,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveActivity:)];
-    self.navigationItem.rightBarButtonItems = @[addButton, self.editButtonItem, saveButton];
+    saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveActivity:)];
+    editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style: UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItems = @[editButton, saveButton];
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.leftBarButtonItem = cancelButton;
@@ -79,7 +81,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+- (void)edit
+{
+    if(self.editing)
+    {
+        [super setEditing:NO animated:NO];
+        [self.tableView setEditing:NO animated:NO];
+        [self.tableView reloadData];
+        [self.editButtonItem setTitle:@"Edit"];
+        [self.editButtonItem setStyle:UIBarButtonItemStylePlain];
+        
+        saveButton.enabled = YES;
+        
+        // Enable the detail view controller again
+        self.pageCreationVC.pagePicker.userInteractionEnabled = YES;
+        self.pageCreationVC.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else
+    {
+        [super setEditing:YES animated:YES];
+        [self.tableView setEditing:YES animated:YES];
+        [self.tableView reloadData];
+        [self.editButtonItem setTitle:@"Done"];
+        [self.editButtonItem setStyle:UIBarButtonItemStyleDone];
+        
+        saveButton.enabled = NO;
+        
+        // Disable detail view controller
+        self.pageCreationVC.pagePicker.userInteractionEnabled = NO;
+        self.pageCreationVC.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
+
+- (void)insertNewObject
 {
     if (!self.pagesArray)
     {
@@ -92,21 +126,16 @@
     // It's ugly, so if you can find another way to do it, please do.
     [self.tableView beginUpdates];
     
-    [self.pagesArray insertObject:newPage atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.pagesArray addObject: newPage];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:pagesArray.count inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView moveRowAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForRow:pagesArray.count-1 inSection:0]];
     
     [self.tableView endUpdates];
-   
     
-    
-    
-    //[self.tableView reloadData];
-    
+    currentIndex = self.pagesArray.count - 1;
+
     self.pageCreationVC.page = newPage;
     [self.pageCreationVC configureView];
-    currentIndex = self.pagesArray.count - 1;
 }
 
 -(void)saveActivity: (id)sender
@@ -142,6 +171,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -149,9 +181,12 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     // Return the number of rows in the section.
-    return pagesArray.count;
+    int count = [self.pagesArray count];
+    if(self.editing) count++;
+    return count;
 }
 
 
@@ -165,6 +200,12 @@
     if (!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    
+    if(indexPath.row == ([self.pagesArray count]) && self.editing)
+    {
+        cell.textLabel.text = @"Add new page";
+        return cell;
     }
     
     // Update and format the title label, or the primary label in the cell.
@@ -198,6 +239,19 @@
     return YES;
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.editing == NO || !indexPath)
+        return UITableViewCellEditingStyleNone;
+    
+    if (self.editing && indexPath.row == ([self.pagesArray count]))
+        return UITableViewCellEditingStyleInsert;
+    else
+        return UITableViewCellEditingStyleDelete;
+    
+    return UITableViewCellEditingStyleNone;
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -208,6 +262,7 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert)
     {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        [self insertNewObject];
     }
 }
 
