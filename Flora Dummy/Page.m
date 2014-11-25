@@ -12,7 +12,7 @@
 
 @implementation Page
 @synthesize pageVCType;
-@synthesize contentArray;
+@synthesize variableContentDict;
 
 -(id)init
 {
@@ -20,7 +20,7 @@
     {
         // Initialize
         pageVCType = [[NSString alloc] initWithFormat:@""];
-        contentArray = [[NSArray alloc] initWithObjects:nil];
+        variableContentDict = [[NSDictionary alloc] init];
         
     }
     return self;
@@ -32,7 +32,7 @@
     {
         // Initialize
         pageVCType = [[NSString alloc] initWithFormat:@""];
-        contentArray = [[NSArray alloc] initWithObjects:nil];
+        variableContentDict = [[NSDictionary alloc] init];
         
     }
     return self;

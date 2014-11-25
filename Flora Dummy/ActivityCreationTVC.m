@@ -314,20 +314,20 @@
     if (self.pagesArray.count == 0)
     {
         [self.pagesArray addObject:p];
-
+        
+        [self.tableView reloadData];
+        
     }else
     {
         [self.pagesArray replaceObjectAtIndex:currentIndex withObject:p];
-
+        
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:currentIndex inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
     }
     
     [self.pageCreationVC setPage:p];
-    
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:currentIndex inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView endUpdates];
-    
-    //[self.tableView reloadData];
+
 }
 
 -(void)finishSavingActivity: (Activity *)a
@@ -345,6 +345,7 @@
     
     // Save to JSON here
     NSError *error;
+    NSLog(@"%@", [cc dictionaryForActivity:activity]);
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[cc dictionaryForActivity: activity]
                                                        options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
                                                          error:&error];

@@ -14,6 +14,8 @@
 {
     NSArray *contentTypeArray;
     NSDictionary *contentLabelsDict;
+    
+    int mode;
 }
 @end
 
@@ -22,47 +24,49 @@
 @synthesize contentTypePicker;
 @synthesize xField, yField, widthField, heightField;
 @synthesize variableContentLabel, variableContentTextView;
-@synthesize addButton;
+@synthesize finishButton;
 @synthesize pageType;
 
 ///////////// Init Methods ///////////////////////////
 
--(id)init
+-(id)initWithMode: (int)m
 {
     if (self = [super init])
     {
         // Initialize
         content = [[Content alloc] init];
-        
+        mode = m;
     }
     return self;
 }
 
--(id)initWithPageType: (NSString *)pT
+-(id)initWithPageType: (NSString *)pT andMode: (int)m
 {
     if (self = [super init])
     {
         // Initialize
         content = [[Content alloc] init];
         pageType = [[NSString alloc] initWithString:pT];
-        
+        mode = m;
+
     }
     return self;
 }
 
--(id)initWithContent: (Content *)c
+-(id)initWithContent: (Content *)c andMode: (int)m
 {
     if (self = [super init])
     {
         // Initialize
         content = [[Content alloc] init];
         content = c;
-        
+        mode = m;
+
     }
     return self;
 }
 
--(id)initWithContent: (Content *)c andPageType: (NSString *)pT
+-(id)initWithContent: (Content *)c andPageType: (NSString *)pT andMode: (int)m
 {
     if (self = [super init])
     {
@@ -70,7 +74,8 @@
         content = [[Content alloc] init];
         content = c;
         pageType = [[NSString alloc] initWithString:pT];
-        
+        mode = m;
+
     }
     return self;
 }
@@ -88,6 +93,63 @@
     {
         content.type = (NSString *)[contentTypeArray objectAtIndex:0];
     }
+    for (int i = 0; i < contentTypeArray.count; i++)
+    {
+        if ([(NSString *)[contentTypeArray objectAtIndex:i] isEqualToString:content.type])
+        {
+            [self.contentTypePicker selectRow:i inComponent:0 animated:NO];
+        }
+    }
+    
+    // Fill in text fields
+    if ([content arrayForBounds])
+    {
+        NSArray *bounds = [content arrayForBounds];
+        NSArray *fields = @[xField, yField, widthField, heightField];
+        for (int i = 0; i < fields.count; i++)
+        {
+            UITextField *field = (UITextField *)[fields objectAtIndex:i];
+            
+            if (![bounds objectAtIndex:i] || [[bounds objectAtIndex:i] isEqualToNumber:[NSNumber numberWithFloat:0.0]])
+            {
+                field.text = @"";
+                field.placeholder = @"0";
+            
+            }else
+            {
+                field.text = [NSString stringWithFormat:@"%.0f", [(NSNumber *)[bounds objectAtIndex:i] floatValue]];
+                field.placeholder = @"";
+
+
+            }
+        }
+    }
+    
+    if (content.variableContent)
+    {
+        variableContentTextView.text = (NSString *)[content.variableContent objectForKey:content.type];
+    }
+    
+    if (mode == 0)
+    {
+        // insertion mode
+        
+        [finishButton setTitle:@"Add Content" forState:UIControlStateNormal];
+        
+        [finishButton addTarget:self action:@selector(addContent) forControlEvents:UIControlEventTouchUpInside];
+        self.contentTypePicker.userInteractionEnabled = YES;
+
+    }else if (mode == 1)
+    {
+        // edit mode
+        
+        [finishButton setTitle:@"Make Changes" forState:UIControlStateNormal];
+        
+        [finishButton addTarget:self action:@selector(editContent) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.contentTypePicker.userInteractionEnabled = NO;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,14 +211,25 @@
     
 }
 
--(IBAction)addButtonPressed
+-(void)addContent
 {
     //Notify the delegate if it exists.
     if (_delegate != nil)
     {
         [self packageContent];
         
-        [_delegate updatedContent:content];
+        [_delegate insertContent:content];
+    }
+}
+
+-(void)editContent
+{
+    //Notify the delegate if it exists.
+    if (_delegate != nil)
+    {
+        [self packageContent];
+        
+        [_delegate updateContent:content];
     }
 }
 

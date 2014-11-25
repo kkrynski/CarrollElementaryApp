@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flora Dummy/ContentPopOverVC.m"
-            timestampString = "438484665.556965"
+            timestampString = "438580066.498481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "-packageContent"
             landmarkType = "5">
          </BreakpointContent>
@@ -334,6 +334,22 @@
             startingLineNumber = "111"
             endingLineNumber = "111"
             landmarkName = "-goToViewControllerAtIndex:inDirection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Flora Dummy/ContentCreationVC.m"
+            timestampString = "438577351.840871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "-editObject"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,7 +11,8 @@
 #import "Content.h"
 
 @protocol ContentPickerDelegate <NSObject>
--(void)updatedContent:(Content *)c;
+-(void)insertContent:(Content *)c;
+-(void)updateContent:(Content *)c;
 @end
 
 @interface ContentPopOverVC : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
@@ -29,14 +30,13 @@
 @property(nonatomic, retain) IBOutlet UILabel *variableContentLabel;
 @property(nonatomic, retain) IBOutlet UITextView *variableContentTextView;
 
-@property(nonatomic, retain) IBOutlet UIButton *addButton;
+@property(nonatomic, retain) IBOutlet UIButton *finishButton;
 
 @property (nonatomic, weak) id<ContentPickerDelegate>delegate;
 
--(id)init;
--(id)initWithPageType: (NSString *)pT;
--(id)initWithContent: (Content *)c;
--(id)initWithContent: (Content *)c andPageType: (NSString *)pT;
--(IBAction)addButtonPressed;
+-(id)initWithMode: (int)m;
+-(id)initWithPageType: (NSString *)pT andMode: (int)m;
+-(id)initWithContent: (Content *)c andMode: (int)m;
+-(id)initWithContent: (Content *)c andPageType: (NSString *)pT andMode: (int)m;
 
 @end

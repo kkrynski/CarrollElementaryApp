@@ -97,10 +97,14 @@
     {
         ContentCreationVC *contentCreationVC = segue.destinationViewController;
         
-        if (self.page.contentArray && self.page.contentArray.count > 0)
+        // If sandbox, it should have a content array
+        NSArray *contentArray = (NSArray *)[self.page.variableContentDict objectForKey:@"ContentArray"];
+        if (contentArray && contentArray.count > 0)
         {
-            contentCreationVC.contentArray = self.page.contentArray.mutableCopy;
+            contentCreationVC.contentArray = contentArray.mutableCopy;
+
         }
+
         
         contentCreationVC.pageType = self.page.pageVCType;
         contentCreationVC.delegate = self;
@@ -195,9 +199,13 @@
 
 
 #pragma mark - ContentPickerDelegate method
+// Only for sandbox
 -(void)updateContentArray:(NSArray *)cArray
 {
-    self.page.contentArray = cArray;
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] initWithDictionary:self.page.variableContentDict];
+    
+    [tempDict setValue:cArray forKey:@"ContentArray"];
+    self.page.variableContentDict = tempDict;
     [self.navigationController popToViewController:self animated:YES];
     
     if (_delegate != nil)

@@ -16,8 +16,23 @@
 // What type of page are we dealing with
 @property(nonatomic, retain) NSString *pageVCType;
 
-// An array of content (images, textviews, etc)
-@property(nonatomic, retain) NSArray *contentArray;
+// A dictionary of content (images, textviews, etc)
+//
+// "Content" = Array of content
+//
+// "Question" = Question (string)
+// "Answers" = Array of answers (strings, either answers or image names)
+// "CorrectIndex" = index of correct answer (NSNumber)
+//
+// "Word" = word for spelling test
+// "Recording" = voice recording for spelling test
+//
+// "Text" = text
+//
+// "Equestion" = string representing numerical equation
+// "Answer" = string representing equation's answer
+//
+@property(nonatomic, retain) NSDictionary *variableContentDict;
 
 // Given JSON text, create the page
 -(id)initWithContentsOfJSONText: (NSString *)jsonText;

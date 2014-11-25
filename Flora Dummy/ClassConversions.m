@@ -69,14 +69,45 @@
 {
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
     [output setValue:p.pageVCType forKey:@"PageVC"];
+    [output setValue:[self simplifiedContentFor:p.variableContentDict] forKey:@"VariableContentDict"];
     
-    NSMutableArray *outputContent = [[NSMutableArray alloc] init];
-    for (Content *c in p.contentArray)
+    return output;
+}
+
+-(NSDictionary *)simplifiedContentFor: (NSDictionary *)variableContent
+{
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] initWithDictionary:variableContent];
+    
+    if ([variableContent objectForKey:@"ContentArray"])
     {
-        [outputContent addObject:[self dictionaryForContent: c]];
+        // Convert content
+        NSMutableArray *newContentArray = [[NSMutableArray alloc] init];
+        for (Content *c in (NSArray *)[variableContent objectForKey:@"ContentArray"])
+        {
+            [newContentArray addObject:[self dictionaryForContent:c]];
+        }
+        
+        [output setValue:newContentArray forKey:@"ContentArray"];
     }
     
-    [output setValue:outputContent forKey:@"ContentArray"];
+    return output;
+}
+
+-(NSDictionary *)expandContentFor: (NSDictionary *)variableContent
+{
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] initWithDictionary:variableContent];
+    
+    if ([variableContent objectForKey:@"ContentArray"])
+    {
+        // Convert content
+        NSMutableArray *newContentArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *c in (NSArray *)[variableContent objectForKey:@"ContentArray"])
+        {
+            [newContentArray addObject:[self contentFromDictionary:c]];
+        }
+        
+        [output setValue:newContentArray forKey:@"ContentArray"];
+    }
     
     return output;
 }
@@ -86,15 +117,7 @@
     Page *output = [[Page alloc] init];
     
     output.pageVCType = [dict objectForKey:@"PageVC"];
-    
-    NSMutableArray *inputContent = [[NSMutableArray alloc] init];
-    for (NSDictionary *c in (NSArray *)[dict objectForKey:@"ContentArray"])
-    {
-        [inputContent addObject:[self contentFromDictionary:c]];
-        
-    }
-    
-    output.contentArray = inputContent;
+    output.variableContentDict = [self expandContentFor:(NSDictionary *)[dict objectForKey:@"VariableContentDict"] ];
     
     return output;
 }

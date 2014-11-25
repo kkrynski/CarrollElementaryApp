@@ -38,10 +38,22 @@
 
 -(void)setFrame: (NSArray *)elements
 {
-    bounds = CGRectMake([(NSNumber *)[elements objectAtIndex:0] floatValue],
-                        [(NSNumber *)[elements objectAtIndex:1] floatValue],
-                        [(NSNumber *)[elements objectAtIndex:2] floatValue],
-                        [(NSNumber *)[elements objectAtIndex:3] floatValue]);
+    NSMutableArray *mutableElements = elements.mutableCopy;
+    
+    for (int i = 0; i < mutableElements.count; i++)
+    {
+        NSNumber *n = (NSNumber *)[mutableElements objectAtIndex:i];
+    
+        if (!n || n == nil)
+        {
+            [mutableElements replaceObjectAtIndex:i withObject:[NSNumber numberWithFloat:0.0]];
+        }
+    }
+    
+    bounds = CGRectMake([(NSNumber *)[mutableElements objectAtIndex:0] floatValue],
+                        [(NSNumber *)[mutableElements objectAtIndex:1] floatValue],
+                        [(NSNumber *)[mutableElements objectAtIndex:2] floatValue],
+                        [(NSNumber *)[mutableElements objectAtIndex:3] floatValue]);
 }
 
 -(CGRect)getFrame
