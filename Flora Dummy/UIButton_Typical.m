@@ -7,6 +7,7 @@
 //
 
 #import "UIButton_Typical.h"
+#import "FloraDummy-Swift.h"
 
 @implementation UIButton_Typical
 @synthesize gradientColors;
@@ -61,6 +62,12 @@
     
     [self updateGradient];
 }*/
+
+- (void) setTitle:(NSString *)title forState:(UIControlState)state
+{
+    [super setTitle:title forState:state];
+    [Definitions outlineTextInLabel:self.titleLabel];
+}
 
 
 -(void)clickedDown:(id)sender
