@@ -139,6 +139,15 @@
 		92EF999C18B6F5CD00288BAF /* GardenDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92EF999818B6F5CD00288BAF /* GardenDetailVC.xib */; };
 		92F4064F1801ED2D00668376 /* Flora DUmmy 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F4064E1801ED2D00668376 /* Flora DUmmy 4.png */; };
 		92F406501801ED2D00668376 /* Flora DUmmy 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F4064E1801ED2D00668376 /* Flora DUmmy 4.png */; };
+		92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D8D1A2609C20048612E /* IntroCreationVC.m */; };
+		92F78D911A26176A0048612E /* ReadingCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D901A26176A0048612E /* ReadingCreationVC.m */; };
+		92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D931A261AFD0048612E /* MathCreationVC.m */; };
+		92F78D9D1A2628A30048612E /* MathPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D9B1A2628A30048612E /* MathPopOverVC.m */; };
+		92F78D9E1A2628A30048612E /* MathPopOverVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F78D9C1A2628A30048612E /* MathPopOverVC.xib */; };
+		92F78DA21A2630940048612E /* QuickQuizCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78DA11A2630940048612E /* QuickQuizCreationVC.m */; };
+		92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78DA41A263D0B0048612E /* QuickQuizCreationPopOverVC.m */; };
+		92F78DA71A263D0B0048612E /* QuickQuizCreationPopOverVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F78DA51A263D0B0048612E /* QuickQuizCreationPopOverVC.xib */; };
+		92F78DAA1A2664E10048612E /* VocabCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78DA91A2664E10048612E /* VocabCreationVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -338,6 +347,22 @@
 		92F406481801E19A00668376 /* UIOutlinedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIOutlinedLabel.h; sourceTree = "<group>"; };
 		92F406491801E19A00668376 /* UIOutlinedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIOutlinedLabel.m; sourceTree = "<group>"; };
 		92F4064E1801ED2D00668376 /* Flora DUmmy 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Flora DUmmy 4.png"; sourceTree = "<group>"; };
+		92F78D8C1A2609C20048612E /* IntroCreationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroCreationVC.h; sourceTree = "<group>"; };
+		92F78D8D1A2609C20048612E /* IntroCreationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroCreationVC.m; sourceTree = "<group>"; };
+		92F78D8F1A26176A0048612E /* ReadingCreationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingCreationVC.h; sourceTree = "<group>"; };
+		92F78D901A26176A0048612E /* ReadingCreationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingCreationVC.m; sourceTree = "<group>"; };
+		92F78D921A261AFD0048612E /* MathCreationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathCreationVC.h; sourceTree = "<group>"; };
+		92F78D931A261AFD0048612E /* MathCreationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathCreationVC.m; sourceTree = "<group>"; };
+		92F78D9A1A2628A30048612E /* MathPopOverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathPopOverVC.h; sourceTree = "<group>"; };
+		92F78D9B1A2628A30048612E /* MathPopOverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathPopOverVC.m; sourceTree = "<group>"; };
+		92F78D9C1A2628A30048612E /* MathPopOverVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MathPopOverVC.xib; sourceTree = "<group>"; };
+		92F78DA01A2630940048612E /* QuickQuizCreationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickQuizCreationVC.h; sourceTree = "<group>"; };
+		92F78DA11A2630940048612E /* QuickQuizCreationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickQuizCreationVC.m; sourceTree = "<group>"; };
+		92F78DA31A263D0B0048612E /* QuickQuizCreationPopOverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickQuizCreationPopOverVC.h; sourceTree = "<group>"; };
+		92F78DA41A263D0B0048612E /* QuickQuizCreationPopOverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickQuizCreationPopOverVC.m; sourceTree = "<group>"; };
+		92F78DA51A263D0B0048612E /* QuickQuizCreationPopOverVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickQuizCreationPopOverVC.xib; sourceTree = "<group>"; };
+		92F78DA81A2664E10048612E /* VocabCreationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabCreationVC.h; sourceTree = "<group>"; };
+		92F78DA91A2664E10048612E /* VocabCreationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabCreationVC.m; sourceTree = "<group>"; };
 		92FFDB5418C01D6D00C3294A /* UIButton_Typical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButton_Typical.h; sourceTree = "<group>"; };
 		92FFDB5518C01D6D00C3294A /* UIButton_Typical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButton_Typical.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -710,11 +735,12 @@
 		92C1177D1A22A14F003506DB /* Content Creation */ = {
 			isa = PBXGroup;
 			children = (
-				92C117701A223BF0003506DB /* ContentCreationVC.h */,
-				92C117711A223BF0003506DB /* ContentCreationVC.m */,
-				92C117761A225F99003506DB /* ContentPopOverVC.h */,
-				92C117771A225F99003506DB /* ContentPopOverVC.m */,
-				92C117781A225F99003506DB /* ContentPopOverVC.xib */,
+				92F78DAF1A2671330048612E /* SandboxCreation */,
+				92F78DAD1A2671210048612E /* IntroCreation */,
+				92F78DAE1A2671290048612E /* ReadingCreation */,
+				92F78D9F1A262DEE0048612E /* MathCreation */,
+				92F78DAC1A2671160048612E /* QuickQuizCreation */,
+				92F78DAB1A26710D0048612E /* VocabCreation */,
 			);
 			name = "Content Creation";
 			sourceTree = "<group>";
@@ -897,6 +923,69 @@
 			name = Page_GardenData;
 			sourceTree = "<group>";
 		};
+		92F78D9F1A262DEE0048612E /* MathCreation */ = {
+			isa = PBXGroup;
+			children = (
+				92F78D921A261AFD0048612E /* MathCreationVC.h */,
+				92F78D931A261AFD0048612E /* MathCreationVC.m */,
+				92F78D9A1A2628A30048612E /* MathPopOverVC.h */,
+				92F78D9B1A2628A30048612E /* MathPopOverVC.m */,
+				92F78D9C1A2628A30048612E /* MathPopOverVC.xib */,
+			);
+			name = MathCreation;
+			sourceTree = "<group>";
+		};
+		92F78DAB1A26710D0048612E /* VocabCreation */ = {
+			isa = PBXGroup;
+			children = (
+				92F78DA81A2664E10048612E /* VocabCreationVC.h */,
+				92F78DA91A2664E10048612E /* VocabCreationVC.m */,
+			);
+			name = VocabCreation;
+			sourceTree = "<group>";
+		};
+		92F78DAC1A2671160048612E /* QuickQuizCreation */ = {
+			isa = PBXGroup;
+			children = (
+				92F78DA01A2630940048612E /* QuickQuizCreationVC.h */,
+				92F78DA11A2630940048612E /* QuickQuizCreationVC.m */,
+				92F78DA31A263D0B0048612E /* QuickQuizCreationPopOverVC.h */,
+				92F78DA41A263D0B0048612E /* QuickQuizCreationPopOverVC.m */,
+				92F78DA51A263D0B0048612E /* QuickQuizCreationPopOverVC.xib */,
+			);
+			name = QuickQuizCreation;
+			sourceTree = "<group>";
+		};
+		92F78DAD1A2671210048612E /* IntroCreation */ = {
+			isa = PBXGroup;
+			children = (
+				92F78D8C1A2609C20048612E /* IntroCreationVC.h */,
+				92F78D8D1A2609C20048612E /* IntroCreationVC.m */,
+			);
+			name = IntroCreation;
+			sourceTree = "<group>";
+		};
+		92F78DAE1A2671290048612E /* ReadingCreation */ = {
+			isa = PBXGroup;
+			children = (
+				92F78D8F1A26176A0048612E /* ReadingCreationVC.h */,
+				92F78D901A26176A0048612E /* ReadingCreationVC.m */,
+			);
+			name = ReadingCreation;
+			sourceTree = "<group>";
+		};
+		92F78DAF1A2671330048612E /* SandboxCreation */ = {
+			isa = PBXGroup;
+			children = (
+				92C117701A223BF0003506DB /* ContentCreationVC.h */,
+				92C117711A223BF0003506DB /* ContentCreationVC.m */,
+				92C117761A225F99003506DB /* ContentPopOverVC.h */,
+				92C117771A225F99003506DB /* ContentPopOverVC.m */,
+				92C117781A225F99003506DB /* ContentPopOverVC.xib */,
+			);
+			name = SandboxCreation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1005,10 +1094,12 @@
 				4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */,
 				926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */,
 				92C261BA1839D40800FDA09B /* barrel.png in Resources */,
+				92F78DA71A263D0B0048612E /* QuickQuizCreationPopOverVC.xib in Resources */,
 				9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */,
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				10BFE6F61A20510800E68C77 /* Weather Images.xcassets in Resources */,
+				92F78D9E1A2628A30048612E /* MathPopOverVC.xib in Resources */,
 				4C6A6C361A11669200C3A7A7 /* expoView.xib in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
@@ -1072,6 +1163,7 @@
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
 				92CB44911A203C550082C761 /* ActivityCreationTVC.m in Sources */,
 				5D03D4B11A12E2FA0008A9EA /* SpellingTestVC.m in Sources */,
+				92F78DA21A2630940048612E /* QuickQuizCreationVC.m in Sources */,
 				92C117791A225F99003506DB /* ContentPopOverVC.m in Sources */,
 				9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */,
 				9211951E19FE02CB00644054 /* ModuleVC.m in Sources */,
@@ -1085,21 +1177,27 @@
 				4CC305E819FC42C00066A53B /* VocabVC.m in Sources */,
 				10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */,
 				10BFE6F01A2046CE00E68C77 /* Reachability.m in Sources */,
+				92F78D9D1A2628A30048612E /* MathPopOverVC.m in Sources */,
 				104BA0FE1A042A30007BD9DE /* MathProblemVC_Normal.swift in Sources */,
 				10DDE8C81A00616C0079FAB9 /* HomeVC.swift in Sources */,
 				10BFE6E71A20467B00E68C77 /* WeatherManager.m in Sources */,
 				104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */,
+				92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */,
 				104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */,
+				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
+				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,
 				9211950919FE01C000644054 /* PageManager.m in Sources */,
 				92C117721A223BF0003506DB /* ContentCreationVC.m in Sources */,
 				9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */,
 				92C117861A22C8E1003506DB /* ClassConversions.m in Sources */,
 				10BFE6DC1A201E2200E68C77 /* UIButton_Typical.m in Sources */,
 				9211950B19FE01C000644054 /* PageVC.m in Sources */,
+				92F78DAA1A2664E10048612E /* VocabCreationVC.m in Sources */,
 				10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */,
 				92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */,
+				92F78D911A26176A0048612E /* ReadingCreationVC.m in Sources */,
 				92CB44971A203F140082C761 /* Page.m in Sources */,
 				10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */,
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,

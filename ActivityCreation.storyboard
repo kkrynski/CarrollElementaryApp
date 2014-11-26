@@ -4,27 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Content CreationVC-->
-        <scene sceneID="k9M-0f-OUd">
-            <objects>
-                <viewController id="xDp-jo-xGD" customClass="ContentCreationVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VPH-5q-9Db"/>
-                        <viewControllerLayoutGuide type="bottom" id="qBN-te-lac"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bkG-Bk-p1j">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="5JY-ls-FQd"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jun-dy-7UJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2140" y="573"/>
-        </scene>
         <!--Page CreationVC-->
         <scene sceneID="xr8-yL-SMk">
             <objects>
@@ -50,7 +29,7 @@
                     <navigationItem key="navigationItem" id="BLr-aA-bOe">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="JMM-FM-WNe">
                             <connections>
-                                <segue destination="xDp-jo-xGD" kind="push" identifier="GoToContentEditor" id="VdX-n1-pUn"/>
+                                <action selector="goToNext" destination="yZH-s8-2lS" id="Z1b-34-gtl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
