@@ -1,5 +1,5 @@
 //
-//  ClockBackground.swift
+//  Clock.swift
 //  FloraDummy
 //
 //  Created by Michael Schloss on 11/22/14.
@@ -8,32 +8,58 @@
 
 import UIKit
 
+protocol ClockDelegate
+{
+    func updateCurrentTimeLabel()
+}
+
 class Clock: UIView
 {
     //MARK: - Variables
     
-    /**The hours hand*/
-    var hoursHand : UIView?
-    
-    /**The minutes hand*/
-    var minutesHand : UIView?
-    private var minutesTick : UIView?
-    
-    /**The seconds hand*/
-    var secondsHand : UIView?
+    /**The Clock's delegate*/
+    var delegate : ClockDelegate?
     
     /**
     Determines whether the hands will move independently of each other
     
-    :param: YES Hands will not move in relation to an actual clock.  Moving one hand will move only that hand
-    :param: NO Hands will move in relation to an actual clock.  Moving one hand will move the others based on standard time
-    */
-    var handsMoveIndependently : Bool?
+    By default, this is set to 'YES'
     
+    :param: YES Hands will move in relation to an actual clock.  Moving one hand will move the others based on standard time
+    :param: NO Hands will not move in relation to an actual clock.  Moving one hand will move only that hand
+    */
+    var handsMoveDependently = YES
+    
+    /**
+    The current time displayed by the clock
+    
+    This property is read-only
+    */
+    var currentTime : String {
+        get
+        {
+            return _currentTime!
+        }
+    }
+    private var _currentTime : String?
+    
+    //The hours hand
+    private var hoursHand : UIView?
+    
+    //The minutes hand
+    private var minutesHand : UIView?
+    
+    //The seconds hand
+    private var secondsHand : UIView?
+    
+    //Will show seconds hand
     private var showSecondsHand : Bool?
     
-    private var startTime : String?
-    private var currentTime : String?
+    //Used for moving hands around
+    private var startMinuteAngle : Float = 0.0
+    private var oldMinute : Int = 0
+    private var startSecondAngle : Float = 0.0
+    private var oldSecond : Int = 0
     
     //MARK: - init Methods
     
@@ -41,6 +67,10 @@ class Clock: UIView
     {
         super.init(frame: frame)
         layer.borderWidth = borderWidth
+        layer.cornerRadius = frame.size.width/2.0
+        self.backgroundColor = .whiteColor()
+        self.layer.borderColor = UIColor.blackColor().CGColor
+        
         self.showSecondsHand = showSecondsHand
         
         insertHourTicks()
@@ -53,6 +83,8 @@ class Clock: UIView
         addSubview(centerPoint)
         
         makeHands()
+        
+        //self.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
     }
     
     required init(coder aDecoder: NSCoder)
@@ -128,6 +160,8 @@ class Clock: UIView
         hoursHand!.addSubview(hoursTick)
         addSubview(hoursHand!)
         
+        //hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+        
         let hoursPan = UIPanGestureRecognizer(target: self, action: "handleHoursPan:")
         hoursTick.addGestureRecognizer(hoursPan)
         
@@ -137,21 +171,23 @@ class Clock: UIView
         minutesHand!.backgroundColor = .clearColor()
         minutesHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
         
-        minutesTick = UIView(frame: CGRectMake(0, 0, minutesHand!.frame.size.width, frame.size.width/2.0 - (layer.borderWidth * 4.0) - 4))
-        minutesTick!.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(.blackColor()))
-        minutesTick!.layer.cornerRadius = 5
-        minutesTick!.center = CGPointMake(minutesHand!.frame.size.width/2.0, minutesHand!.frame.size.height/2.0 - minutesTick!.frame.size.height/2.0)
-        minutesHand!.addSubview(minutesTick!)
+        let minutesTick = UIView(frame: CGRectMake(0, 0, minutesHand!.frame.size.width, frame.size.width/2.0 - (layer.borderWidth * 4.0) - 4))
+        minutesTick.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(.blackColor()))
+        minutesTick.layer.cornerRadius = 5
+        minutesTick.center = CGPointMake(minutesHand!.frame.size.width/2.0, minutesHand!.frame.size.height/2.0 - minutesTick.frame.size.height/2.0)
+        minutesHand!.addSubview(minutesTick)
         
-        let minutesBulb = UIView(frame: CGRectMake(0, 0, 20, 20))
-        minutesBulb.backgroundColor = minutesTick!.backgroundColor
+        let minutesBulb = UIView(frame: CGRectMake(0, 0, 24, 24))
+        minutesBulb.backgroundColor = minutesTick.backgroundColor
         minutesBulb.layer.cornerRadius = 10
         minutesBulb.center = CGPointMake(minutesHand!.frame.size.width/2.0, minutesHand!.frame.size.height/2.0)
         minutesHand!.addSubview(minutesBulb)
         addSubview(minutesHand!)
         
+        //minutesHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+        
         let minutesPan = UIPanGestureRecognizer(target: self, action: "handleMinutesPan:")
-        minutesTick!.addGestureRecognizer(minutesPan)
+        minutesTick.addGestureRecognizer(minutesPan)
         
         //Seconds Hand
         
@@ -167,12 +203,17 @@ class Clock: UIView
             secondsTick.center = CGPointMake(secondsHand!.frame.size.width/2.0, secondsHand!.frame.size.height/2.0 - secondsTick.frame.size.height/2.0)
             secondsHand!.addSubview(secondsTick)
             
-            let secondsBulb = UIView(frame: CGRectMake(0, 0, 10, 10))
+            let secondsBulb = UIView(frame: CGRectMake(0, 0, 15, 15))
             secondsBulb.backgroundColor = secondsTick.backgroundColor
             secondsBulb.layer.cornerRadius = 10
             secondsBulb.center = CGPointMake(secondsHand!.frame.size.width/2.0, secondsHand!.frame.size.height/2.0)
             secondsHand!.addSubview(secondsBulb)
             addSubview(secondsHand!)
+            
+            //secondsHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+            
+            let secondsPan = UIPanGestureRecognizer(target: self, action: "handleSecondsPan:")
+            secondsTick.addGestureRecognizer(secondsPan)
         }
     }
     
@@ -196,7 +237,7 @@ class Clock: UIView
                 self.hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat((Float(M_PI) + angle) * -1.0))
                 
                 }, completion: nil)
-            
+            updateCurrentTime()
             break
             
         default:
@@ -204,15 +245,15 @@ class Clock: UIView
         }
     }
     
-    var startMinuteAngle : Float = 0.0
-    var isExpectingGreaterValue: Bool?
-    
     func handleMinutesPan(panGesture : UIPanGestureRecognizer)
     {
         switch panGesture.state
         {
         case .Began:
             startMinuteAngle = atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a))
+            
+            oldMinute = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+            oldMinute = oldMinute < 0 ? 60 - abs(oldMinute):oldMinute
             break
             
         case .Changed:
@@ -229,83 +270,104 @@ class Clock: UIView
                 
                 self.minutesHand!.transform = CGAffineTransformMakeRotation(CGFloat((Float(M_PI_2) - deltaAngle)) * -1.0)
                 
-                
-                if self.handsMoveIndependently == NO
+                if self.handsMoveDependently == YES
                 {
-                    let currentAngle = atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a))
-                    var currentMinute = Double(currentAngle) * 60.0 / (M_PI * 2.0)
+                    let timeComponents = self.currentTime.componentsSeparatedByString(":")
                     
-                    if currentMinute < 0
-                    {
-                        currentMinute = 60 - abs(currentMinute)
-                    }
+                    var minute = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+                    minute = minute < 0 ? 60 - abs(minute):minute
                     
-                    var formerMinute = Double(self.startMinuteAngle) * 60.0 / (M_PI * 2.0)
+                    let hours = self.oldMinute - minute > 30 ? (timeComponents[0] as NSString).doubleValue + 1 : (self.oldMinute - minute < -30 ? (timeComponents[0] as NSString).doubleValue - 1 : (timeComponents[0] as NSString).doubleValue)
                     
-                    if formerMinute < 0
-                    {
-                        formerMinute = 60 - abs(formerMinute)
-                    }
+                    var trueHour = CGFloat(hours)
+                    trueHour += CGFloat(Float(minute)/60.0)
+                    trueHour += CGFloat((timeComponents[2] as NSString).doubleValue/3600.0)
                     
-                    if self.isExpectingGreaterValue != nil //We've already moved beyond our initial position
-                    {
-                        print("Current - Former: \(currentMinute - formerMinute)\n")
-                        print("IsExpectingGreaterValue: \(self.isExpectingGreaterValue!)\n")
-                        if (currentMinute - formerMinute < 0 && self.isExpectingGreaterValue! == YES) || (currentMinute - formerMinute > 0 && self.isExpectingGreaterValue! == NO) //We're switching hours
-                        {
-                            let timeComponents = self.currentTime!.componentsSeparatedByString(":")
-                            
-                            var hour = timeComponents[0]
-                            print("\(hour)\n")
-                            
-                            if formerMinute > currentMinute //Going forwards
-                            {
-                                hour = String((hour as NSString).integerValue + 1)
-                                self.isExpectingGreaterValue = YES
-                            }
-                            else
-                            {
-                                hour = String((hour as NSString).integerValue - 1)
-                                self.isExpectingGreaterValue = NO
-                            }
-                            
-                            print("\((hour as NSString).integerValue % 12)\n")
-                            
-                            self.currentTime = "\((hour as NSString).integerValue % 12):\(currentMinute):\(timeComponents[2])"
-                            
-                            let newHourAngle = CGFloat((M_PI * 2.0)/12.0) * CGFloat(CGFloat((hour as NSString).integerValue) + CGFloat(currentMinute/60.0))
-                            
-                            self.hoursHand!.transform = CGAffineTransformMakeRotation(newHourAngle)
-                        }
-                        else
-                        {
-                            let newHourAngle = (currentMinute - formerMinute) * (M_PI * 2.0)/60.0/12.0
-                            self.hoursHand!.transform = CGAffineTransformRotate(self.hoursHand!.transform, CGFloat(newHourAngle))
-                            
-                            print("Current - Former: \(currentMinute - formerMinute)\n")
-                            print("Current - Former notFirstTime: \(currentMinute - formerMinute > 0)\n")
-                            if currentMinute - formerMinute != 0
-                            {
-                                self.isExpectingGreaterValue = currentMinute - formerMinute > 0
-                            }
-                        }
-                    }
-                    else
-                    {
-                        let newHourAngle = (currentMinute - formerMinute) * (M_PI * 2.0)/60.0/12.0
-                        self.hoursHand!.transform = CGAffineTransformRotate(self.hoursHand!.transform, CGFloat(newHourAngle))
-                        
-                        print("Current - Former firstTime: \(currentMinute - formerMinute > 0)\n")
-                        
-                        if currentMinute - formerMinute != 0
-                        {
-                            self.isExpectingGreaterValue = currentMinute - formerMinute > 0
-                        }
-                    }
+                    self.hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(12.0) * trueHour)
                 }
                 
                 }, completion: nil)
             startMinuteAngle = atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a))
+            
+            oldMinute = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+            oldMinute = oldMinute < 0 ? 60 - abs(oldMinute):oldMinute
+            updateCurrentTime()
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    func handleSecondsPan(panGesture : UIPanGestureRecognizer)
+    {
+        switch panGesture.state
+        {
+        case .Began:
+            startSecondAngle = atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a))
+            
+            oldSecond = Int(floor((atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+            oldSecond = oldSecond < 0 ? 60 - abs(oldSecond):oldSecond
+            
+            oldMinute = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+            oldMinute = oldMinute < 0 ? 60 - abs(oldMinute):oldMinute
+            break
+            
+        case .Changed:
+            
+            let pointOne = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
+            let pointTwo = panGesture.locationInView(self)
+            
+            var adjacent = Float(pointOne.x - pointTwo.x)
+            var opposite = Float(pointOne.y - pointTwo.y)
+            
+            let deltaAngle = atan2f(opposite, adjacent)
+            
+            UIView.animateWithDuration(0.1, delay: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
+                
+                self.secondsHand!.transform = CGAffineTransformMakeRotation(CGFloat((Float(M_PI_2) - deltaAngle)) * -1.0)
+                
+                if self.handsMoveDependently == YES
+                {
+                    let timeComponents = self.currentTime.componentsSeparatedByString(":")
+                    
+                    //Minutes
+                    
+                    var second = Int(floor((atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+                    second = second < 0 ? 60 - abs(second):second
+                    
+                    let minutes = self.oldSecond - second > 30 ? (timeComponents[1] as NSString).doubleValue + 1 : (self.oldSecond - second < -30 ? (timeComponents[1] as NSString).doubleValue - 1 : (timeComponents[1] as NSString).doubleValue)
+                    
+                    var trueMinute = CGFloat(minutes)
+                    trueMinute += CGFloat(Float(second)/60.0)
+                    
+                    self.minutesHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(60.0) * (trueMinute + 0.00000000001))
+                    
+                    //Hours
+                    
+                    var minute = Int(floor(trueMinute))
+                    minute = minute < 0 ? 60 - abs(minute):minute
+                    
+                    let hours = self.oldMinute - minute > 30 ? (timeComponents[0] as NSString).doubleValue + 1 : (self.oldMinute - minute < -30 ? (timeComponents[0] as NSString).doubleValue - 1 : (timeComponents[0] as NSString).doubleValue)
+                    
+                    var trueHour = CGFloat(hours)
+                    trueHour += CGFloat(Float(minute)/60.0)
+                    trueHour += CGFloat(Float(second)/3600.0)
+                    
+                    self.hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(12.0) * trueHour)
+                    
+                }
+                
+                }, completion: nil)
+            startSecondAngle = atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a))
+            
+            oldSecond = Int(floor((atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+            oldSecond = oldSecond < 0 ? 60 - abs(oldSecond):oldSecond
+            
+            oldMinute = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+            oldMinute = oldMinute < 0 ? 60 - abs(oldMinute):oldMinute
+            
+            updateCurrentTime()
             break
             
         default:
@@ -315,6 +377,18 @@ class Clock: UIView
     
     //MARK: - Other Methods
     
+    //Updates the current time for display
+    private func updateCurrentTime()
+    {
+        let hours = Int(floor((atan2f(Float(self.hoursHand!.transform.b), Float(self.hoursHand!.transform.a)) * 12.0)/Float(M_PI * 2.0)))
+        let minutes = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+        let seconds = Int(floor((atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+        
+        _currentTime = String(format: "%02d:%02d:%02d", (hours < 0 ? 12 - abs(hours):hours), (minutes < 0 ? 60 - abs(minutes):minutes), (seconds < 0 ? 60 - abs(seconds):seconds))
+        
+        delegate?.updateCurrentTimeLabel()
+    }
+    
     /**
     Rotates the hands to a given time using a spring animation
     
@@ -322,8 +396,7 @@ class Clock: UIView
     */
     func rotateHandsToTime(time : String)
     {
-        startTime = time
-        currentTime = time
+        _currentTime = time
         
         let timeComponents = time.componentsSeparatedByString(":")
         
