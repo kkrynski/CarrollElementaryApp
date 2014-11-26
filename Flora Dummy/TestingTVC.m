@@ -55,7 +55,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock", @"Zach - Activity Creation", @"Kyle", @"Stephen - Picture Quiz", @"Mason - Password", @"All about plants", @"Mason - Spelling Test", @"Zach - Module", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock", @"Zach - Activity Creation", @"Stephen - Picture Quiz", @"Mason - Password", @"Mason - Spelling Test", @"Zach - Module", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -169,17 +169,11 @@
         {
             // Zach - Activity Creation
             
-            [self activityCreation];
+            [self launchActivityCreation];
             
             break;
             
         }case 4:
-        {
-            // Kyle
-            
-            break;
-            
-        }case 5:
         {
             // Stephen - Picture Quiz
             
@@ -187,7 +181,7 @@
             
             break;
             
-        }case 6:
+        }case 5:
         {
             // Mason - Password
             
@@ -195,15 +189,7 @@
             
             break;
             
-        }case 7:
-        {
-            // All about plants
-            
-            [self launchPlants];
-            
-            break;
-            
-        }case 8:
+        }case 6:
         {
             // Mason - Spelling Test
             
@@ -211,7 +197,7 @@
             
             break;
             
-        }case 9:
+        }case 7:
         {
             // Zach - Module
             
@@ -608,19 +594,13 @@
     [self presentViewController:spellingTestVC animated:YES completion:nil];
 }
 
-- (void) activityCreation
+- (void) launchActivityCreation
 {
-    ActivityCreationTVC *activityCreationTVC = [[ActivityCreationTVC alloc] init];
-    //spellingTestVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
-    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityCreation" bundle:nil];
     UIViewController *vc = [sb instantiateInitialViewController];
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:vc animated:YES completion:NULL];
-    
-    //UINavigationController *navCon = [[UINavigationController alloc]initWithRootViewController:vc];
-    
-    //[self presentViewController:navCon animated:YES completion:nil];
+
 }
 
 

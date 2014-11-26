@@ -40,8 +40,31 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    if (activity.name != nil)
+    {
+        nameField.text = activity.name;
+    }
+    
+    if (activity.releaseDate != nil)
+    {
+        releasePicker.date = activity.releaseDate;
+    }
+    
+    if (activity.dueDate != nil)
+    {
+        duePicker.date = activity.dueDate;
+    }
+    
+    
+    if (activity.iconImageName != nil)
+    {
+        imageField.text = activity.iconImageName;
+    }
+    
     // Do any additional setup after loading the view from its nib.
 }
 

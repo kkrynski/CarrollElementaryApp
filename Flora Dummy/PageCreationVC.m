@@ -20,7 +20,8 @@
 @implementation PageCreationVC
 @synthesize pagePicker;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     //One column array example
@@ -29,9 +30,16 @@
     if (self.page == nil)
     {
         self.page = [[Page alloc] init];
-
+        self.page.pageVCType = (NSString *)[pageTypeArray firstObject];
+        if (_delegate != nil)
+        {
+            [_delegate updatePage:self.page];
+        }
     }
-    self.page.pageVCType = [pageTypeArray objectAtIndex:0];
+    
+    [self pickerView:pagePicker selectRowForString:self.page.pageVCType];
+
+    
     
     pagePicker.showsSelectionIndicator = TRUE;
 
@@ -48,6 +56,16 @@
     {
         _page = newPage;
         
+        if (self.page.pageVCType == nil || [self.page.pageVCType isEqualToString:@""])
+        {
+            self.page.pageVCType = (NSString *)[pageTypeArray firstObject];
+            
+            if (_delegate != nil)
+            {
+                [_delegate updatePage:self.page];
+            }
+        }
+        
         // Update the view.
         [self configureView];
     }
@@ -60,17 +78,7 @@
     {
         [pagePicker reloadAllComponents];
         
-        for (int i = 0; i < pageTypeArray.count; i++)
-        {
-            if ([(NSString *)[pageTypeArray objectAtIndex:i] isEqualToString:self.page.pageVCType])
-            {
-                [pagePicker selectRow:i inComponent:0 animated:YES];
-                
-                return;
-            }
-        }
-        
-        [pagePicker selectRow:0 inComponent:0 animated:YES];
+        [self pickerView:pagePicker selectRowForString:self.page.pageVCType];
     }
 }
 
@@ -89,10 +97,14 @@
     {
         ContentCreationVC *contentCreationVC = segue.destinationViewController;
         
-        if (self.page.contentArray && self.page.contentArray.count > 0)
+        // If sandbox, it should have a content array
+        NSArray *contentArray = (NSArray *)[self.page.variableContentDict objectForKey:@"ContentArray"];
+        if (contentArray && contentArray.count > 0)
         {
-            contentCreationVC.contentArray = self.page.contentArray.mutableCopy;
+            contentCreationVC.contentArray = contentArray.mutableCopy;
+
         }
+
         
         contentCreationVC.pageType = self.page.pageVCType;
         contentCreationVC.delegate = self;
@@ -130,10 +142,29 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     self.page.pageVCType = [pageTypeArray objectAtIndex:row];
-    self.page.pageVCType = [pageTypeArray objectAtIndex:row];
+
+    if (_delegate != nil)
+    {
+        [_delegate updatePage:self.page];
+    }
     
 }
 
+-(void)pickerView:(UIPickerView *)pickerView selectRowForString: (NSString *)string
+{
+    for (int i = 0; i < pageTypeArray.count; i++)
+    {
+        if ([string isEqualToString:(NSString *)[pageTypeArray objectAtIndex:i]])
+        {
+            [pickerView selectRow:i inComponent:0 animated:YES];
+            
+            return;
+        }
+    }
+    
+    [pickerView selectRow:0 inComponent:0 animated:YES];
+
+}
 
 
 
@@ -168,9 +199,13 @@
 
 
 #pragma mark - ContentPickerDelegate method
+// Only for sandbox
 -(void)updateContentArray:(NSArray *)cArray
 {
-    self.page.contentArray = cArray;
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] initWithDictionary:self.page.variableContentDict];
+    
+    [tempDict setValue:cArray forKey:@"ContentArray"];
+    self.page.variableContentDict = tempDict;
     [self.navigationController popToViewController:self animated:YES];
     
     if (_delegate != nil)

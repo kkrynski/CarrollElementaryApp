@@ -102,9 +102,13 @@
         currentPage = [[PageVC alloc] initWithParent: self];
         
             // Get data and save it to the page
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM dd at HH:mm ZZZ"];
+        
         currentPage.pageDictionary = pageDictionary;
         currentPage.titleString = (NSString *)[activityDict objectForKey:@"Name"];
-        currentPage.dateString = (NSString *)[activityDict objectForKey:@"Date"];
+        currentPage.dateString = [ dateFormatter stringFromDate:(NSDate *)[activityDict objectForKey:@"Date"]];
         currentPage.pageNumber = [NSNumber numberWithInt: currentIndex.row + 1];
         currentPage.pageCount = [NSNumber numberWithInt:pagesArray.count];
         

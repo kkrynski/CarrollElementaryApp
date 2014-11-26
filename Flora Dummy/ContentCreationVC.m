@@ -99,7 +99,7 @@
         if (((touchPoint.x >= x) && (touchPoint.x <= (x + w))) &&
             ((touchPoint.y >= y) && (touchPoint.y <= (y + h))))
         {
-            [self presentPopoverAtRect:CGRectMake(x, y, w, h)];
+            [self presentActionSheetAtRect:CGRectMake(x, y, w, h)];
             
             selectedContent = subview;
             
@@ -109,7 +109,7 @@
     }
 }
 
--(void)presentPopoverAtRect: (CGRect)rect
+-(void)presentActionSheetAtRect: (CGRect)rect
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"What would you like to do?"
                                                              delegate:self
@@ -122,6 +122,11 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [actionSheet dismissWithClickedButtonIndex:buttonIndex animated:NO];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == 100)
     {
@@ -224,21 +229,24 @@
 
 -(IBAction)insertNewObject:(id)sender
 {
-    if (_contentPicker == nil) {
+    if (_contentPicker == nil)
+    {
         //Create the ColorPickerViewController.
-        _contentPicker = [[ContentPopOverVC alloc] initWithPageType:pageType];
+        _contentPicker = [[ContentPopOverVC alloc] initWithPageType:pageType andMode: 0];
         
         //Set this VC as the delegate.
         _contentPicker.delegate = self;
 
     }
     
-    if (_contentPickerPopOver == nil) {
+    if (_contentPickerPopOver == nil)
+    {
         //The color picker popover is not showing. Show it.
         _contentPickerPopOver = [[UIPopoverController alloc] initWithContentViewController:_contentPicker];
         _contentPickerPopOver.popoverContentSize = CGSizeMake(self.contentPicker.view.frame.size.width, self.contentPicker.view.frame.size.height);
         [_contentPickerPopOver presentPopoverFromBarButtonItem:(UIBarButtonItem *) sender  permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    } else {
+    } else
+    {
         //The color picker popover is showing. Hide it.
         [_contentPickerPopOver dismissPopoverAnimated:YES];
         _contentPickerPopOver = nil;
@@ -262,7 +270,7 @@
     if (_contentPicker == nil)
     {
         //Create the ColorPickerViewController.
-        _contentPicker = [[ContentPopOverVC alloc] initWithContent:currentContent andPageType:pageType];
+        _contentPicker = [[ContentPopOverVC alloc] initWithContent:currentContent andPageType:pageType andMode: 1];
         
         //Set this VC as the delegate.
         _contentPicker.delegate = self;
@@ -272,13 +280,16 @@
         _contentPicker.content = currentContent;
     }
     
-    if (_contentPickerPopOver == nil) {
+    if (_contentPickerPopOver == nil)
+    {
         //The color picker popover is not showing. Show it.
         _contentPickerPopOver = [[UIPopoverController alloc] initWithContentViewController:_contentPicker];
         _contentPickerPopOver.popoverContentSize = CGSizeMake(self.contentPicker.view.frame.size.width, self.contentPicker.view.frame.size.height);
-        //[_contentPickerPopOver presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItems.firstObject permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        [_contentPickerPopOver presentPopoverFromRect:selectedContent.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    } else {
+        NSLog(@"%f\n%f", self.contentPicker.view.frame.size.width, self.contentPicker.view.frame.size.height);
+        [_contentPickerPopOver presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItems.firstObject permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        //[_contentPickerPopOver presentPopoverFromRect:selectedContent.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else
+    {
         //The color picker popover is showing. Hide it.
         [_contentPickerPopOver dismissPopoverAnimated:YES];
         _contentPickerPopOver = nil;
@@ -306,9 +317,22 @@
 
 
 #pragma mark - ContentPickerDelegate method
--(void)updatedContent:(Content *)c
+-(void)insertContent:(Content *)c
 {
     [contentArray addObject:c];
+    [_contentPickerPopOver dismissPopoverAnimated:YES];
+    _contentPickerPopOver = nil;
+    _contentPicker = nil;
+    
+    [self addContent:c withTag:contentArray.count-1];
+}
+
+-(void)updateContent:(Content *)c
+{
+    [contentArray replaceObjectAtIndex:selectedContent.tag withObject:c];
+    
+    [self editContent:c];
+    
     [_contentPickerPopOver dismissPopoverAnimated:YES];
     _contentPickerPopOver = nil;
     _contentPicker = nil;
@@ -354,5 +378,44 @@
     }
 }
 
+-(void)editContent: (Content *)c
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration: 0.25];
+    
+    selectedContent.frame = [c getFrame];
+
+    if ([c.type isEqualToString:@"Image"])
+    {
+        UIImageView *newImageView = (UIImageView *)selectedContent;
+
+        if([UIImage imageNamed:[c.variableContent objectForKey:@"Image"]])
+        {
+            newImageView.image = [UIImage imageNamed:[c.variableContent objectForKey:@"Image"]];
+            
+        }else
+        {
+            newImageView.image = [UIImage imageNamed:@"169-8ball"];
+        }
+        
+    }else if ([c.type isEqualToString:@"Text"])
+    {
+        UITextView *newTextView = (UITextView *)selectedContent;
+
+        if([c.variableContent objectForKey:@"Text"])
+        {
+            newTextView.text = (NSString *)[c.variableContent objectForKey:@"Text"];
+            
+        }else
+        {
+            newTextView.text = @"No text";
+        }
+        
+        newTextView.userInteractionEnabled = NO;
+        
+    }
+    
+    [UIView commitAnimations];
+}
 
 @end
