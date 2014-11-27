@@ -10,6 +10,11 @@
 
 #import "Page.h"
 #import "ContentCreationVC.h"
+#import "IntroCreationVC.h"
+#import "ReadingCreationVC.h"
+#import "MathCreationVC.h"
+#import "QuickQuizCreationVC.h"
+#import "VocabCreationVC.h"
 
 @interface PageCreationVC ()
 {
@@ -25,7 +30,7 @@
     [super viewDidLoad];
     
     //One column array example
-    pageTypeArray=[[NSArray alloc] initWithObjects:@"Sandbox", @"Introduction", @"Reading", @"Math", @"Quiz Type 1", @"Quiz Type 2", @"Spelling Question", nil];
+    pageTypeArray=[[NSArray alloc] initWithObjects:@"Sandbox", @"Introduction", @"Reading", @"Math", @"Quiz Type 1", @"Quiz Type 2", nil];
     
     if (self.page == nil)
     {
@@ -84,32 +89,137 @@
 
 
  #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+-(IBAction)goToNext
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
     [self hideMaster];
-    
-    if ([segue.identifier isEqualToString:@"GoToContentEditor"])
+
+    if ([self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:0]])
     {
-        ContentCreationVC *contentCreationVC = segue.destinationViewController;
+        // Launch sandbox
+        ContentCreationVC *ccVC = [[ContentCreationVC alloc] initWithPageType:self.page.pageVCType];
         
-        // If sandbox, it should have a content array
         NSArray *contentArray = (NSArray *)[self.page.variableContentDict objectForKey:@"ContentArray"];
         if (contentArray && contentArray.count > 0)
         {
-            contentCreationVC.contentArray = contentArray.mutableCopy;
-
+            [ccVC setContentArray:contentArray.mutableCopy];
         }
-
+        ccVC.delegate = self;
         
-        contentCreationVC.pageType = self.page.pageVCType;
-        contentCreationVC.delegate = self;
+        [self.navigationController pushViewController:ccVC animated:YES];
+        
+    }else if ([self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:1]])
+    {
+        // Launch introdcution
+        
+        IntroCreationVC *iVC = [[IntroCreationVC alloc] init];
+        
+        NSString *t = (NSString *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Text"];
+        
+        if (t != nil)
+        {
+            [iVC setText:t];
+        }
+        
+        iVC.delegate = self;
+
+        [self.navigationController pushViewController:iVC animated:YES];
+
+    }else if ([self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:2]])
+    {
+        // Launch reading
+        
+        ReadingCreationVC *rVC = [[ReadingCreationVC alloc] init];
+        
+        NSString *t = (NSString *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Text"];
+        
+        if (t != nil)
+        {
+            [rVC setText:t];
+        }
+        
+        rVC.delegate = self;
+        
+        [self.navigationController pushViewController:rVC animated:YES];
+        
+    }else if ([self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:3]])
+    {
+        // Launch math
+        
+        MathCreationVC *mVC = [[MathCreationVC alloc] init];
+        
+        NSString *e = (NSString *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Equation"];
+        NSString *a = (NSString *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Answer"];
+        
+        if (e != nil)
+        {
+            [mVC setEquation:e];
+        }
+        if (a != nil)
+        {
+            [mVC setAnswer:a];
+        }
+        
+        mVC.delegate = self;
+        
+        [self.navigationController pushViewController:mVC animated:YES];
+        
+    }else if ([self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:4]])
+    {
+        // Launch quick quiz 1
+        
+        QuickQuizCreationVC *qqVC = [[QuickQuizCreationVC alloc] init];
+        
+        NSArray *arr = (NSArray *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Answers"];
+        NSString *q = (NSString *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Question"];
+        NSNumber *n = (NSNumber *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"CorrectIndex"];
+        
+        if (arr != nil && arr.count > 0)
+        {
+            [qqVC setAnswers:arr.mutableCopy];
+        }
+        if (q != nil)
+        {
+            [qqVC setQuestion:q];
+        }
+        if (n != nil && arr != nil && arr.count >0 && n.intValue >= 0 && n.intValue < arr.count)
+        {
+            [qqVC setCorrectIndex:n];
+        }
+        
+        qqVC.delegate = self;
+        
+        [self.navigationController pushViewController:qqVC animated:YES];
+        
+    }else if ([self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:5]])
+    {
+        // Launch quick quiz 2
+        
+        VocabCreationVC *vcVC = [[VocabCreationVC alloc] init];
+        
+        NSArray *arr = (NSArray *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Answers"];
+        NSString *q = (NSString *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"Question"];
+        NSNumber *n = (NSNumber *)[(NSDictionary *)self.page.variableContentDict objectForKey:@"CorrectIndex"];
+        
+        if (arr != nil && arr.count > 0)
+        {
+            [vcVC setAnswers:arr.mutableCopy];
+        }
+        if (q != nil)
+        {
+            [vcVC setQuestion:q];
+        }
+        if (n != nil && arr != nil && arr.count >0 && n.intValue >= 0 && n.intValue < arr.count)
+        {
+            [vcVC setCorrectIndex:n];
+        }
+        
+        vcVC.delegate = self;
+        
+        [self.navigationController pushViewController:vcVC animated:YES];
+        
     }
- }
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -141,12 +251,20 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.page.pageVCType = [pageTypeArray objectAtIndex:row];
+    if (![self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:row]])
+    {
+        // Reset variable content dictionary if we're changing pages
+        self.page.variableContentDict = [[NSDictionary alloc] init];
+    }
+    
+    self.page.pageVCType = (NSString *)[pageTypeArray objectAtIndex:row];
 
     if (_delegate != nil)
     {
         [_delegate updatePage:self.page];
     }
+    
+    
     
 }
 
@@ -202,7 +320,7 @@
 // Only for sandbox
 -(void)updateContentArray:(NSArray *)cArray
 {
-    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] initWithDictionary:self.page.variableContentDict];
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
     
     [tempDict setValue:cArray forKey:@"ContentArray"];
     self.page.variableContentDict = tempDict;
@@ -214,5 +332,142 @@
     }
 }
 
+#pragma mark - IntroCreationVC method
+// Only for intro
+-(void)updateIntroWithText: (NSString *)t
+{
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+    
+    [tempDict setValue:t forKey:@"Text"];
+    self.page.variableContentDict = tempDict;
+    [self.navigationController popToViewController:self animated:YES];
+    
+    if (_delegate != nil)
+    {
+        [_delegate updatePage:self.page];
+    }
+}
+
+#pragma mark - ReadingCreationVC
+// Only for reading
+-(void)updateReadingVCWithText: (NSString *)t
+{
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+    
+    [tempDict setValue:t forKey:@"Text"];
+    self.page.variableContentDict = tempDict;
+    [self.navigationController popToViewController:self animated:YES];
+    
+    if (_delegate != nil)
+    {
+        [_delegate updatePage:self.page];
+    }
+}
+
+#pragma mark - MathCreationVC
+// Only for math
+-(void)updateMathVCWithEquation: (NSString *)e andAnswer: (NSString *)a
+{
+    if (e == nil)
+    {
+        e = [NSString stringWithFormat:@""];
+    }
+    if (a == nil)
+    {
+        a = [NSString stringWithFormat:@""];
+    }
+    
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+    
+    [tempDict setValue:e forKey:@"Equation"];
+    [tempDict setValue:a forKey:@"Answer"];
+
+    self.page.variableContentDict = tempDict;
+    [self.navigationController popToViewController:self animated:YES];
+    
+    if (_delegate != nil)
+    {
+        [_delegate updatePage:self.page];
+    }
+}
+
+#pragma mark - QuickQuestionCreationVC
+
+-(void)updateQuizWithAnswers: (NSArray *)array
+                 andQuestion: (NSString *)q
+             andCorrectIndex: (NSNumber *)n
+{
+    if (array == nil || array.count == 0)
+    {
+        array = [[NSMutableArray alloc] initWithObjects:
+                   [NSString stringWithFormat:@""],
+                   [NSString stringWithFormat:@""],
+                   [NSString stringWithFormat:@""],
+                   nil];    }
+    
+    if (q == nil)
+    {
+        q = [NSString stringWithFormat:@""];
+    }
+    if (n == nil)
+    {
+        n = [NSNumber numberWithInt:0];
+    }
+    
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+    
+    [tempDict setValue:array forKey:@"Answers"];
+    [tempDict setValue:q forKey:@"Question"];
+    [tempDict setValue:n forKey:@"CorrectIndex"];
+
+    self.page.variableContentDict = tempDict;
+    [self.navigationController popToViewController:self animated:YES];
+    
+    if (_delegate != nil)
+    {
+        [_delegate updatePage:self.page];
+    }
+}
+
+#pragma mark - VocabCreationDelegate
+
+-(void)updateVocabWithAnswers: (NSArray *)array
+                  andQuestion: (NSString *)q
+              andCorrectIndex: (NSNumber *)n
+{
+    if (array == nil || array.count == 0)
+    {
+        array = [[NSMutableArray alloc] initWithObjects:
+                 [NSString stringWithFormat:@""],
+                 [NSString stringWithFormat:@""],
+                 [NSString stringWithFormat:@""],
+                 [NSString stringWithFormat:@""],
+                 [NSString stringWithFormat:@""],
+                 nil];
+    }
+    
+    if (q == nil)
+    {
+        q = [NSString stringWithFormat:@""];
+    }
+    if (n == nil)
+    {
+        n = [NSNumber numberWithInt:0];
+    }
+    
+    NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+    
+    [tempDict setValue:array forKey:@"Answers"];
+    [tempDict setValue:q forKey:@"Question"];
+    [tempDict setValue:n forKey:@"CorrectIndex"];
+    
+    self.page.variableContentDict = tempDict;
+    [self.navigationController popToViewController:self animated:YES];
+    
+    if (_delegate != nil)
+    {
+        [_delegate updatePage:self.page];
+    }
+}
 
 @end

@@ -10,12 +10,17 @@
 
 #import "Page.h"
 #import "ContentCreationVC.h"
+#import "IntroCreationVC.h"
+#import "ReadingCreationVC.h"
+#import "MathCreationVC.h"
+#import "QuickQuizCreationVC.h"
+#import "VocabCreationVC.h"
 
 @protocol PageCreationDelegate <NSObject>
 -(void)updatePage: (Page *)p;
 @end
 
-@interface PageCreationVC : FormattedVC<UIPickerViewDataSource, UIPickerViewDelegate, UISplitViewControllerDelegate, ContentCreationDelegate>
+@interface PageCreationVC : FormattedVC<UIPickerViewDataSource, UIPickerViewDelegate, UISplitViewControllerDelegate, ContentCreationDelegate, IntroCreationDelegate, ReadingCreationDelegate, MathCreationDelegate, QuickQuizCreationDelegate, VocabCreationDelegate>
 
 
 @property(nonatomic, retain) Page *page;
@@ -27,5 +32,6 @@
 @property (nonatomic, weak) id<PageCreationDelegate>delegate;
 
 - (void)configureView;
+-(IBAction)goToNext;
 
 @end
