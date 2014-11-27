@@ -23,6 +23,7 @@
 		108E9B161A27A67E00120A63 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 108E9B141A27A67E00120A63 /* NSDate+InternetDateTime.m */; };
 		108E9B191A27A6C900120A63 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108E9B181A27A6C900120A63 /* NewsFeed.swift */; };
 		108E9B1C1A27A6EB00120A63 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 108E9B1B1A27A6EB00120A63 /* GTMNSString+HTML.m */; };
+		108E9B1D1A27E5C700120A63 /* MathPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D9B1A2628A30048612E /* MathPopOverVC.m */; };
 		1093A1491A212DB3002B2B0A /* ClockDragVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A1481A212DB3002B2B0A /* ClockDragVC.swift */; };
 		1093A14B1A2137A2002B2B0A /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A14A1A2137A2002B2B0A /* Clock.swift */; };
 		10A4EA3D1A2790820062D905 /* UIButton_Typical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */; };
@@ -151,7 +152,6 @@
 		92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D8D1A2609C20048612E /* IntroCreationVC.m */; };
 		92F78D911A26176A0048612E /* ReadingCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D901A26176A0048612E /* ReadingCreationVC.m */; };
 		92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D931A261AFD0048612E /* MathCreationVC.m */; };
-		92F78D9D1A2628A30048612E /* MathPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D9B1A2628A30048612E /* MathPopOverVC.m */; };
 		92F78D9E1A2628A30048612E /* MathPopOverVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F78D9C1A2628A30048612E /* MathPopOverVC.xib */; };
 		92F78DA21A2630940048612E /* QuickQuizCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78DA11A2630940048612E /* QuickQuizCreationVC.m */; };
 		92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78DA41A263D0B0048612E /* QuickQuizCreationPopOverVC.m */; };
@@ -1236,6 +1236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				108E9B1D1A27E5C700120A63 /* MathPopOverVC.m in Sources */,
 				10BFE6EC1A20468E00E68C77 /* WeatherItem.m in Sources */,
 				1078FC231A0FD83600A14836 /* MathProblemVC.swift in Sources */,
 				10BFE6E31A20466000E68C77 /* LocationManager.m in Sources */,
