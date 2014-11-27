@@ -11,6 +11,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "GardenDetailVC.h"
 
+#import "FloraDummy-Swift.h"
+
 @interface Page_GardenDataVC ()
 {        
     CGVector velocity;

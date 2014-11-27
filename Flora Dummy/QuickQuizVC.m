@@ -8,6 +8,8 @@
 
 #import "QuickQuizVC.h"
 
+#import "FloraDummy-Swift.h"
+
 @interface QuickQuizVC ()
 
 @end

@@ -13,6 +13,15 @@ protocol ClockDelegate
     func updateCurrentTimeLabel()
 }
 
+class ClockHand : UIView
+{
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView?
+    {
+        let frame = CGRectInset(bounds, -20, -10);
+        return CGRectContainsPoint(frame, point) ? self : nil;
+    }
+}
+
 class Clock: UIView
 {
     //MARK: - Variables
@@ -83,8 +92,6 @@ class Clock: UIView
         addSubview(centerPoint)
         
         makeHands()
-        
-        //self.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
     }
     
     required init(coder aDecoder: NSCoder)
@@ -152,15 +159,15 @@ class Clock: UIView
         hoursHand = UIView(frame: CGRectMake(0, 0, 14, frame.size.width))
         hoursHand!.backgroundColor = .clearColor()
         hoursHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
+        hoursHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
+        hoursHand!.layer.shouldRasterize = YES
         
-        let hoursTick = UIView(frame: CGRectMake(0, 0, hoursHand!.frame.size.width, frame.size.width/4.0))
+        let hoursTick = ClockHand(frame: CGRectMake(0, 0, hoursHand!.frame.size.width, frame.size.width/4.0))
         hoursTick.backgroundColor = .blackColor()
         hoursTick.layer.cornerRadius = 7
         hoursTick.center = CGPointMake(hoursHand!.frame.size.width/2.0, hoursHand!.frame.size.height/2.0 - hoursTick.frame.size.height/2.0)
         hoursHand!.addSubview(hoursTick)
         addSubview(hoursHand!)
-        
-        //hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
         
         let hoursPan = UIPanGestureRecognizer(target: self, action: "handleHoursPan:")
         hoursTick.addGestureRecognizer(hoursPan)
@@ -170,8 +177,10 @@ class Clock: UIView
         minutesHand = UIView(frame: CGRectMake(0, 0, 10, frame.size.width))
         minutesHand!.backgroundColor = .clearColor()
         minutesHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
+        minutesHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
+        minutesHand!.layer.shouldRasterize = YES
         
-        let minutesTick = UIView(frame: CGRectMake(0, 0, minutesHand!.frame.size.width, frame.size.width/2.0 - (layer.borderWidth * 4.0) - 4))
+        let minutesTick = ClockHand(frame: CGRectMake(0, 0, minutesHand!.frame.size.width, frame.size.width/2.0 - (layer.borderWidth * 4.0) - 4))
         minutesTick.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(.blackColor()))
         minutesTick.layer.cornerRadius = 5
         minutesTick.center = CGPointMake(minutesHand!.frame.size.width/2.0, minutesHand!.frame.size.height/2.0 - minutesTick.frame.size.height/2.0)
@@ -184,8 +193,6 @@ class Clock: UIView
         minutesHand!.addSubview(minutesBulb)
         addSubview(minutesHand!)
         
-        //minutesHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
-        
         let minutesPan = UIPanGestureRecognizer(target: self, action: "handleMinutesPan:")
         minutesTick.addGestureRecognizer(minutesPan)
         
@@ -196,8 +203,10 @@ class Clock: UIView
             secondsHand = UIView(frame: CGRectMake(0, 0, 6, frame.size.width))
             secondsHand!.backgroundColor = .clearColor()
             secondsHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
+            secondsHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
+            secondsHand!.layer.shouldRasterize = YES
             
-            let secondsTick = UIView(frame: CGRectMake(0, 0, secondsHand!.frame.size.width, frame.size.width/2.0 - (layer.borderWidth * 4.0) - 8))
+            let secondsTick = ClockHand(frame: CGRectMake(0, 0, secondsHand!.frame.size.width, frame.size.width/2.0 - (layer.borderWidth * 4.0) - 8))
             secondsTick.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(.redColor()))
             secondsTick.layer.cornerRadius = 3
             secondsTick.center = CGPointMake(secondsHand!.frame.size.width/2.0, secondsHand!.frame.size.height/2.0 - secondsTick.frame.size.height/2.0)
@@ -209,8 +218,6 @@ class Clock: UIView
             secondsBulb.center = CGPointMake(secondsHand!.frame.size.width/2.0, secondsHand!.frame.size.height/2.0)
             secondsHand!.addSubview(secondsBulb)
             addSubview(secondsHand!)
-            
-            //secondsHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
             
             let secondsPan = UIPanGestureRecognizer(target: self, action: "handleSecondsPan:")
             secondsTick.addGestureRecognizer(secondsPan)

@@ -7,7 +7,6 @@
 //
 
 #import "UIButton_Typical.h"
-#import "FloraDummy-Swift.h"
 
 @implementation UIButton_Typical
 @synthesize gradientColors;

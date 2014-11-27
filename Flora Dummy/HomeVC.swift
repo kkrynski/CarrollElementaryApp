@@ -8,36 +8,24 @@
 
 import UIKit
 
-class HomeVC: FormattedVC, WeatherManagerDelegate
+class HomeVC: FormattedVC, NewsFeedDelegate
 {
     //Elements on screen
     @IBOutlet var titleLabel : UILabel?
     @IBOutlet var subTitleLabel : UILabel?
     @IBOutlet var homeImageView : UIImageView?
+    @IBOutlet var weatherView : WeatherView?
     
-    //Weather Stuff
-    private var weatherManager : WeatherManager?
-    private var currentWeatherItem : WeatherItem?
-    private var indexOfCurrentTempString : Int32?
-    
-    @IBOutlet var weatherHumidity : UILabel?
-    @IBOutlet var weatherTemp : UILabel?
-    @IBOutlet var weatherWindSpeed : UILabel?
-    @IBOutlet var weatherForcastImage : UIImageView?
-
+    private var newsFeed : NewsFeed?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        weatherHumidity!.text = "0%"
-        weatherTemp!.text = "Updating\nWeather"
-        weatherTemp!.numberOfLines = 0
-        weatherWindSpeed!.text = "0 mph"
-        
-        weatherManager = WeatherManager.sharedManager() as WeatherManager!
-        weatherManager!.delegate = self
-        weatherManager!.startUpdatingLocation()
+        newsFeed = NewsFeed(frame: CGRectMake(0, 0, view.frame.size.width, 40), andPrimaryColor: primaryColor)
+        newsFeed!.newsFeedDelegate = self
+        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.bottomLayoutGuide.length - newsFeed!.frame.size.height/2.0)
+        view.addSubview(newsFeed!)
     }
     
     //Set the colors here for instant loading
@@ -53,26 +41,48 @@ class HomeVC: FormattedVC, WeatherManagerDelegate
         
         view.backgroundColor = backgroundColor
         
-        weatherTemp!.textColor = primaryColor
-        Definitions.outlineTextInLabel(weatherTemp!)
+        weatherView!.updateColors(primaryColor)
         
-        weatherHumidity!.textColor = primaryColor
-        Definitions.outlineTextInLabel(weatherHumidity!)
+        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 8 )
         
-        weatherWindSpeed!.textColor = primaryColor
-        Definitions.outlineTextInLabel(weatherWindSpeed!)
+        if newsFeed!.shouldMoveToNextItem == NO
+        {
+            newsFeed!.scrollNextItem()
+            newsFeed!.shouldMoveToNextItem = YES
+        }
     }
     
-    func didRecieveAndParseNewWeatherItem(item: WeatherItem!)
+    override func viewWillDisappear(animated: Bool)
     {
-        currentWeatherItem = item
-        indexOfCurrentTempString = item.indexForWeatherMap
+        super.viewWillDisappear(animated)
         
-        weatherForcastImage!.image = item.weatherCurrentTempImage
-        weatherTemp!.text = "\(item.weatherCurrentTemp)°"
-        weatherTemp!.numberOfLines = 0
-        weatherWindSpeed!.text = "\(item.weatherWindSpeed) mph"
-        weatherHumidity!.text = "\(item.weatherHumidity)%"
+        newsFeed!.shouldMoveToNextItem = NO
     }
     
+    //MARK: - News Feed Delegate
+    
+    func showBreakingNewsLabel()
+    {
+        let breakingNewsLabel = BreakingNewsLabel(frame: CGRectMake(0, 0, 200, 60))
+        breakingNewsLabel.textAlignment = .Center
+        breakingNewsLabel.text = "Breaking\nNews"
+        breakingNewsLabel.textColor = primaryColor
+        breakingNewsLabel.font = UIFont(name: "Marker Felt", size: 22)
+        breakingNewsLabel.numberOfLines = 0
+        breakingNewsLabel.center = CGPointMake(view.frame.size.width + breakingNewsLabel.frame.size.width/2.0, newsFeed!.center.y)
+        breakingNewsLabel.layer.shouldRasterize = YES
+        breakingNewsLabel.layer.rasterizationScale = UIScreen.mainScreen().scale
+        breakingNewsLabel.layer.shadowOpacity = 1.0
+        breakingNewsLabel.layer.shadowOffset = CGSizeMake(1.0, 1.0)
+        Definitions.outlineTextInLabel(breakingNewsLabel)
+        view.addSubview(breakingNewsLabel)
+        
+        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
+            
+            breakingNewsLabel.center = CGPointMake(breakingNewsLabel.frame.size.width * 0.3, breakingNewsLabel.center.y)
+            
+            }, completion: { (finished) -> Void in
+            self.newsFeed!.startFeed()
+        })
+    }
 }

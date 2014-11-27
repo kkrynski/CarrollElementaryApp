@@ -12,7 +12,6 @@
 #import "ZBarSDK.h"
 
 #import "PageVC.h"
-#import "UIButton_Typical.h"
 
 @interface Page_QRCodeVC : PageVC <ZBarReaderDelegate>
 {

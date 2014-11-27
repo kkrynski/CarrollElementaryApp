@@ -8,14 +8,6 @@
 
 #import "ModuleVC.h"
 
-@interface ModuleVC ()
-{
-    
-}
-
-@end
-
-
 @implementation ModuleVC
 @synthesize contentArray;
 
@@ -36,7 +28,7 @@
 
     contentArray = [[NSMutableArray alloc] init];
     
-    pageControl.numberOfPages = pageCount.intValue;
+    self.pageControl.numberOfPages = self.pageCount.intValue;
     
 }
 
