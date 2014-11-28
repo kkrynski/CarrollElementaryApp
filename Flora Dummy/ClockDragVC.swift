@@ -120,7 +120,7 @@ class ClockDragVC: PageVC, ClockDelegate
         clock = Clock(frame: CGRectMake(0, 0, 400, 400), andBorderWidth: 8.0, showSecondsHand: showSecondsHand)
         clock!.handsMoveDependently = handsMoveDependently
         clock!.delegate = self
-        clock!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0 + 50)
+        clock!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
         view.addSubview(clock!)
     }
     

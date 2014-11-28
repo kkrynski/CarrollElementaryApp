@@ -42,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    pageControl.numberOfPages = pageCount.intValue;
+    self.pageControl.numberOfPages = self.pageCount.intValue;
     
     backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(33, 72, 971, 602)];
     backgroundImage.image = [UIImage imageNamed:@"woods.png"];

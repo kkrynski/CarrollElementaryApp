@@ -8,8 +8,7 @@
 
 #import "GardenDetailVC.h"
 
-#import "UIButton_Typical.h"
-#import "Page_ReadVC.h"
+#import "FloraDummy-Swift.h"
 #import "PageManager.h"
 
 @interface GardenDetailVC ()

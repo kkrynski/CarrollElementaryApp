@@ -8,6 +8,8 @@
 
 #import "Page_QRCodeVC.h"
 
+#import "FloraDummy-Swift.h"
+
 @interface Page_QRCodeVC ()
 
 @end

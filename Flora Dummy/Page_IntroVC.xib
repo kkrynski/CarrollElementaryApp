@@ -36,7 +36,9 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oe-gL-7zy">
                     <rect key="frame" x="192" y="191" width="640" height="483"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <string key="text">Welcome to activity foo, where will you learn to blah and bleh by using bluh.  Press "Next" to move on or "Previous" to move back.</string>
+                    <string key="text">Welcome to activity foo, where will you learn to blah and bleh by using bluh.
+
+Press "Next" to move on or "Previous" to move back.</string>
                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="28"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>

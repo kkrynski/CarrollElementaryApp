@@ -11,3 +11,8 @@
 #import "WeatherItem+Parse.h"
 #import "WeatherManager.h"
 #import "LocationManager.h"
+
+#import "MWFeedParser.h"
+#import "NSString+HTML.h"
+
+#import "OBJ-CDefinitions.h"

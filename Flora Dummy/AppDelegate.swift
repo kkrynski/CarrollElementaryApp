@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
     
@@ -29,10 +29,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         window!.makeKeyAndVisible()
         
         return YES
-    }
-    
-    func applicationDidBecomeActive(application: UIApplication)
-    {
-        // WeatherManager.sharedManager().startUpdatingLocation()
     }
 }
