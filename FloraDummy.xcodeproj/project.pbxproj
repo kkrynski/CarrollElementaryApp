@@ -26,6 +26,9 @@
 		108E9B1D1A27E5C700120A63 /* MathPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D9B1A2628A30048612E /* MathPopOverVC.m */; };
 		1093A1491A212DB3002B2B0A /* ClockDragVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A1481A212DB3002B2B0A /* ClockDragVC.swift */; };
 		1093A14B1A2137A2002B2B0A /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A14A1A2137A2002B2B0A /* Clock.swift */; };
+		1097EBD01A28C4AC00BED924 /* TabBarTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */; };
+		1097EBD21A28C95D00BED924 /* FloraTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */; };
+		1097EBD51A28D37700BED924 /* OBJ-CDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */; };
 		10A4EA3D1A2790820062D905 /* UIButton_Typical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */; };
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
@@ -197,6 +200,10 @@
 		108E9B1B1A27A6EB00120A63 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		1093A1481A212DB3002B2B0A /* ClockDragVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockDragVC.swift; sourceTree = "<group>"; };
 		1093A14A1A2137A2002B2B0A /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTransitionManager.swift; sourceTree = "<group>"; };
+		1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloraTabBarController.swift; sourceTree = "<group>"; };
+		1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OBJ-CDefinitions.h"; sourceTree = "<group>"; };
+		1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OBJ-CDefinitions.m"; sourceTree = "<group>"; };
 		10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton_Typical.swift; sourceTree = "<group>"; };
 		10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flora Dummy-Bridging-Header.h"; sourceTree = "<group>"; };
 		10B8787819FC1B40005D9937 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -564,6 +571,27 @@
 			name = "Clock Drag VC";
 			sourceTree = "<group>";
 		};
+		1097EBC91A28C3C300BED924 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				10B8787D19FC2881005D9937 /* Definitions.swift */,
+				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
+				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		1097EBCE1A28C47100BED924 /* UITabBar Transition */ = {
+			isa = PBXGroup;
+			children = (
+				1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */,
+				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
+				1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */,
+				1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */,
+			);
+			name = "UITabBar Transition";
+			sourceTree = "<group>";
+		};
 		10B8787F19FC32F4005D9937 /* Subjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,8 +743,8 @@
 		921894E917F7752A00DFB26B /* Flora Dummy */ = {
 			isa = PBXGroup;
 			children = (
+				1097EBC91A28C3C300BED924 /* Utilities */,
 				10B8788319FC422C005D9937 /* Old Objective-C Code */,
-				10B8787D19FC2881005D9937 /* Definitions.swift */,
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				9282390518A6A39300223265 /* Main2.storyboard */,
@@ -726,7 +754,6 @@
 				92E7A12D1864E372006A712B /* Subjects */,
 				106C8BD319FED841009B0983 /* SettingsVC.swift */,
 				92E7A1281864E303006A712B /* Pages */,
-				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
 				92A648E71A0E8F0A007485C4 /* Carroll.json */,
@@ -1242,13 +1269,16 @@
 				10BFE6E31A20466000E68C77 /* LocationManager.m in Sources */,
 				108E9B0E1A27A65F00120A63 /* MWFeedInfo.m in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
+				1097EBD01A28C4AC00BED924 /* TabBarTransitionManager.swift in Sources */,
 				92CB44911A203C550082C761 /* ActivityCreationTVC.m in Sources */,
+				1097EBD51A28D37700BED924 /* OBJ-CDefinitions.m in Sources */,
 				5D03D4B11A12E2FA0008A9EA /* SpellingTestVC.m in Sources */,
 				92F78DA21A2630940048612E /* QuickQuizCreationVC.m in Sources */,
 				92C117791A225F99003506DB /* ContentPopOverVC.m in Sources */,
 				9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */,
 				9211951E19FE02CB00644054 /* ModuleVC.m in Sources */,
 				1093A1491A212DB3002B2B0A /* ClockDragVC.swift in Sources */,
+				1097EBD21A28C95D00BED924 /* FloraTabBarController.swift in Sources */,
 				92C261AB18370D1500FDA09B /* Page_DragAndDropVC.m in Sources */,
 				1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */,
 				92CB44D61A2106120082C761 /* PageCreationVC.m in Sources */,

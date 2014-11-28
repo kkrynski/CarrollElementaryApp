@@ -735,10 +735,10 @@ Science includes learning about the scientific method and even going on scavenge
             </objects>
             <point key="canvasLocation" x="3018" y="-998"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Flora Tab Bar Controller-->
         <scene sceneID="cpa-Pm-GdT">
             <objects>
-                <tabBarController id="6Ik-EQ-ANA" sceneMemberID="viewController">
+                <tabBarController id="6Ik-EQ-ANA" customClass="FloraTabBarController" customModule="FloraDummy" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="SeM-aI-qxl"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>

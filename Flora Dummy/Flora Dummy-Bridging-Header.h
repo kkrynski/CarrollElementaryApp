@@ -14,3 +14,5 @@
 
 #import "MWFeedParser.h"
 #import "NSString+HTML.h"
+
+#import "OBJ-CDefinitions.h"
