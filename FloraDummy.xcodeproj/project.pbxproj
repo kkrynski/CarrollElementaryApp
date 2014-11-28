@@ -574,6 +574,7 @@
 		1097EBC91A28C3C300BED924 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				10B8787D19FC2881005D9937 /* Definitions.swift */,
 				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
 				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
@@ -746,7 +747,6 @@
 				1097EBC91A28C3C300BED924 /* Utilities */,
 				10B8788319FC422C005D9937 /* Old Objective-C Code */,
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
-				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				9282390518A6A39300223265 /* Main2.storyboard */,
 				10BFE6E01A20465100E68C77 /* Home View Controller */,
 				9211950D19FE01CC00644054 /* TestingTVC.h */,

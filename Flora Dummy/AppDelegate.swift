@@ -30,9 +30,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         return YES
     }
-    
-    func applicationDidBecomeActive(application: UIApplication)
-    {
-        // WeatherManager.sharedManager().startUpdatingLocation()
-    }
 }

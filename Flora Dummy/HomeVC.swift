@@ -43,7 +43,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         
         weatherView!.updateColors(primaryColor)
         
-        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 8 )
+        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 11)
         
         if newsFeed!.shouldMoveToNextItem == NO
         {
@@ -63,9 +63,9 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     
     func showBreakingNewsLabel()
     {
-        let breakingNewsLabel = BreakingNewsLabel(frame: CGRectMake(0, 0, 200, 60))
+        let breakingNewsLabel = BreakingNewsLabel(frame: CGRectMake(0, 0, 150, 60))
         breakingNewsLabel.textAlignment = .Center
-        breakingNewsLabel.text = "Breaking\nNews"
+        breakingNewsLabel.text = "News"
         breakingNewsLabel.textColor = primaryColor
         breakingNewsLabel.font = UIFont(name: "Marker Felt", size: 22)
         breakingNewsLabel.numberOfLines = 0

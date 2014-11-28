@@ -21,7 +21,7 @@ class BreakingNewsLabel : UILabel
         
         CGContextSetLineWidth(context, 1.0)
         
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
         
         CGContextMoveToPoint(context, rect.size.width * 0.2, 0)
         CGContextAddLineToPoint(context, rect.size.width, 0)
@@ -29,7 +29,7 @@ class BreakingNewsLabel : UILabel
         CGContextAddLineToPoint(context, 0, rect.size.height)
         CGContextAddLineToPoint(context, rect.size.width * 0.2, 0)
         
-        CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor)
+        CGContextSetFillColorWithColor(context, UIColor.redColor().CGColor)
         CGContextFillPath(context)
         
         CGContextRestoreGState(context)
