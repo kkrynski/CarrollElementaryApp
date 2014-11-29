@@ -151,6 +151,7 @@ class ClockDragVC: PageVC, ClockDelegate
         let bufferMinutes = (bufferTimeComponents[1] as NSString).integerValue
         let bufferSeconds = (bufferTimeComponents[2] as NSString).integerValue
         
+        
         let dimView = UIView(frame: clock!.frame)
         dimView.clipsToBounds = YES
         dimView.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
