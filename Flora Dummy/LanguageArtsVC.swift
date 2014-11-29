@@ -142,6 +142,17 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let activityDictionary = activities[indexPath.row] as NSDictionary
         
         //Create a PageManager for the activity and store it in THIS view controller
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //
+        // Set this as an Activity object
+        //
+        // Use ClassConversions.h function
+        //
+        // -(Activity *)activityFromDictionary: (NSDictionary *)dict;
+        //
+        // Pass in dictionary, set the pageManager.activity = the outputed activity
+        //
         pageManager = PageManager(activity: activityDictionary, forParentViewController: self)
     }
 }

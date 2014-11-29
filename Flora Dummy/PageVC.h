@@ -1,14 +1,14 @@
 //
 //  PageVC.h
-//  Flora Dummy
+//  FloraDummy
 //
-//  Created by Zach Nichols on 11/2/13.
-//  Copyright (c) 2013 SGSC. All rights reserved.
+//  Created by Zachary Nichols on 11/29/14.
+//  Copyright (c) 2014 SGSC. All rights reserved.
 //
-
-#import <UIKit/UIKit.h>
 
 #import "FormattedVC.h"
+
+#import "Page.h"
 
 @class UIButton_Typical, PageManager;
 
@@ -19,11 +19,10 @@
 
 @property(nonatomic, retain) PageManager *parentManager; //Infinite loop fixed *Michael*
 
-@property(nonatomic, retain) NSString *titleString;
-@property(nonatomic, retain) NSString *dateString;
+@property(nonatomic, retain) Page *page;
+
 @property(nonatomic, retain) NSNumber *pageNumber;
 @property(nonatomic, retain) NSNumber *pageCount;
-@property(nonatomic, retain) NSDictionary *pageDictionary;
 
 @property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
 
@@ -32,9 +31,7 @@
 @property(nonatomic, retain) UIButton_Typical *previousButton;
 
 // Labels for displaying information at top of page
-@property(nonatomic, retain) UILabel *dateLabel;
 @property(nonatomic, retain) UILabel *otherLabel; //assign meaning to this later
-@property(nonatomic, retain) UILabel *titleLabel;
 
 // Custom initialization lets us store reference
 // to parent
@@ -49,5 +46,7 @@
 -(IBAction) goToPreviousPage;
 
 -(void) reloadView;
+
+
 
 @end

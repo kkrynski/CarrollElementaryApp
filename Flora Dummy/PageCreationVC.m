@@ -193,7 +193,7 @@
         
     }else if ([self.page.pageVCType isEqualToString:(NSString *)[pageTypeArray objectAtIndex:5]])
     {
-        // Launch quick quiz 2
+        // Launch vocab creation
         
         VocabCreationVC *vcVC = [[VocabCreationVC alloc] init];
         

@@ -1,9 +1,9 @@
 //
 //  PageVC.m
-//  Flora Dummy
+//  FloraDummy
 //
-//  Created by Zach Nichols on 11/2/13.
-//  Copyright (c) 2013 SGSC. All rights reserved.
+//  Created by Zachary Nichols on 11/29/14.
+//  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
 #import "PageVC.h"
@@ -13,18 +13,15 @@
 #import "FloraDummy-Swift.h"
 
 @interface PageVC ()
-{
-    
-}
 
 @end
 
 @implementation PageVC
 @synthesize parentManager;
-@synthesize titleString, dateString, pageNumber, pageCount, pageDictionary;
+@synthesize pageNumber, pageCount, page;
 @synthesize pageControl;
 @synthesize nextButton, previousButton;
-@synthesize dateLabel, otherLabel, titleLabel;
+@synthesize otherLabel;
 
 -(id)initWithParent:(PageManager *)parent
 {
@@ -41,42 +38,17 @@
 {
     [super viewDidLoad];
     
-    UIFont *titleFont = [UIFont fontWithName:@"MarkerFelt-Wide" size:72.0];
+    //UIFont *titleFont = [UIFont fontWithName:@"MarkerFelt-Wide" size:72.0];
     UIFont *subtitleFont = [UIFont fontWithName:@"MarkerFelt-Thin" size:36.0];
     
     // Initialize labels at top of page
-    dateLabel = [[UILabel alloc] init];
-    if (dateString == nil || [dateString isEqualToString:@""])
-        dateLabel.text = @"Date: N/A";
-    else
-        dateLabel.text = [NSString stringWithFormat:@"Date: %@", dateString];
-    dateLabel.font = subtitleFont;
-    [dateLabel sizeToFit];
-    [self.view addSubview:dateLabel];
-    
     otherLabel = [[UILabel alloc] init];
     otherLabel.text = [NSString stringWithFormat:@"Page: %i of %i", pageNumber.intValue, pageCount.intValue];
     otherLabel.font = subtitleFont;
     [otherLabel sizeToFit];
     [self.view addSubview:otherLabel];
     
-    if (titleString)    //If we don't have a title, don't display the titleLabel.
-    {
-        titleLabel = [[UILabel alloc] init];
-        titleLabel.text = titleString;
-        titleLabel.font = titleFont;
-        [titleLabel sizeToFit];
-        [titleLabel setCenter:CGPointMake(self.view.frame.size.width/2.0, 20 + self.topLayoutGuide.length + titleLabel.frame.size.height/2.0)];
-        [self.view addSubview:titleLabel];
-        
-        [dateLabel setCenter:CGPointMake(20 + dateLabel.frame.size.width/2.0, titleLabel.frame.size.height + titleLabel.frame.origin.y + 8 + dateLabel.frame.size.height/2.0)];
-        [otherLabel setCenter:CGPointMake(self.view.frame.size.width - 20 - otherLabel.frame.size.width/2.0, titleLabel.frame.size.height/2.0 + titleLabel.center.y + 8 + otherLabel.frame.size.height/2.0)];
-    }
-    else
-    {
-        [dateLabel setCenter:CGPointMake(20 + dateLabel.frame.size.width/2.0, self.topLayoutGuide.length + 20 + dateLabel.frame.size.height/2.0)];
-        [otherLabel setCenter:CGPointMake(self.view.frame.size.width - 20 - otherLabel.frame.size.width/2.0, self.topLayoutGuide.length + 20 + otherLabel.frame.size.height/2.0)];
-    }
+    [otherLabel setCenter:CGPointMake(self.view.frame.size.width - 20 - otherLabel.frame.size.width/2.0, self.topLayoutGuide.length + 20 + otherLabel.frame.size.height/2.0)];
     
     // Update the dots at the bottom of the screen
     // to reflect what page we're on.
@@ -146,40 +118,16 @@
 {
     if (self.isViewLoaded == NO) return;
     
-    // Edit labels at top of page
-    if (dateString == nil || [dateString isEqualToString:@""])
-        dateLabel.text = @"Date: N/A";
-    else
-        dateLabel.text = [NSString stringWithFormat:@"Date: %@", dateString];
-    
     otherLabel.text = [NSString stringWithFormat:@"Page: %i of %i", pageNumber.intValue, pageCount.intValue];
     
-    if (titleString && titleLabel == nil)   //We didn't orginially have a title
-    {
-        titleLabel = [[UILabel alloc] init];
-        titleLabel.text = titleString;
-        titleLabel.font = [UIFont fontWithName:@"MarkerFelt-Wide" size:72.0];
-        [titleLabel sizeToFit];
-        titleLabel.alpha = 0.0;
-        if (self.topLayoutGuide)
-            [titleLabel setCenter:CGPointMake(self.view.frame.size.width/2.0, 20 + self.topLayoutGuide.length + titleLabel.frame.size.height/2.0)];
-        else
-            [titleLabel setCenter:CGPointMake(self.view.frame.size.width/2.0, 20 + titleLabel.frame.size.height/2.0)];
-        [self.view addSubview:titleLabel];
-        
-        //Do a fancy animation on refresh
-        [UIView animateWithDuration:0.3 delay:0.0 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
-         {
-             titleLabel.alpha = 0.0;
-         } completion:nil];
-        
-        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent) animations:^
-         {
-             [dateLabel setCenter:CGPointMake(20 + dateLabel.frame.size.width/2.0, titleLabel.frame.size.height + titleLabel.frame.origin.y + 8 + dateLabel.frame.size.height/2.0)];
-             [otherLabel setCenter:CGPointMake(self.view.frame.size.width - 20 - otherLabel.frame.size.width/2.0, titleLabel.frame.size.height/2.0 + titleLabel.center.y + 8 + otherLabel.frame.size.height/2.0)];
-         } completion:nil];
-    }
-    titleLabel.text = titleString;
+    //Do a fancy animation on refresh
+    
+    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent) animations:^
+     {
+         [otherLabel setCenter:CGPointMake(
+                                           self.view.frame.size.width - 20 - otherLabel.frame.size.width/2.0,
+                                           20 + otherLabel.frame.size.height/2.0)];
+     } completion:nil];
     
     // Update the dots at the bottom of the screen
     // to reflect what page we're on.
@@ -286,17 +234,8 @@
         [previousButton setTitleColor:primaryColor forState:UIControlStateNormal];
     }
     
-    dateLabel.textColor = primaryColor;
-    [self outlineTextInLabel:dateLabel];
-    
     otherLabel.textColor = primaryColor;
     [self outlineTextInLabel:otherLabel];
-    
-    if (titleLabel)
-    {
-        titleLabel.textColor = primaryColor;
-        [self outlineTextInLabel:titleLabel];
-    }
 }
 
 @end

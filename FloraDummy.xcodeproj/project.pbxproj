@@ -64,8 +64,6 @@
 		9208CD1018F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		921194FF19FE015100644054 /* QuickQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921194FE19FE015100644054 /* QuickQuizVC.m */; };
 		9211950719FE01C000644054 /* FormattedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211950219FE01C000644054 /* FormattedVC.m */; };
-		9211950919FE01C000644054 /* PageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211950419FE01C000644054 /* PageManager.m */; };
-		9211950B19FE01C000644054 /* PageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211950619FE01C000644054 /* PageVC.m */; };
 		9211950F19FE01CC00644054 /* TestingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211950E19FE01CC00644054 /* TestingTVC.m */; };
 		9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211951219FE01DC00644054 /* GardenDetailVC.m */; };
 		9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211951419FE01DC00644054 /* Page_GardenDataVC.m */; };
@@ -80,6 +78,8 @@
 		9218950817F7752A00DFB26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921894E717F7752A00DFB26B /* UIKit.framework */; };
 		9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9218950E17F7752A00DFB26B /* InfoPlist.strings */; };
 		9218953617F776BA00DFB26B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218953517F776BA00DFB26B /* CoreData.framework */; };
+		921DD2651A2A430100C18079 /* PageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 921DD2641A2A430100C18079 /* PageManager.m */; };
+		921DD2681A2A434D00C18079 /* PageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921DD2671A2A434D00C18079 /* PageVC.m */; };
 		923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 923774531A0552A400A49D14 /* PictureQuizVC.m */; };
 		923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923774541A0552A400A49D14 /* PictureQuizVC.xib */; };
 		926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0D18E4EA69006CDB2F /* HOME1.gif */; };
@@ -249,10 +249,6 @@
 		921194FE19FE015100644054 /* QuickQuizVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickQuizVC.m; sourceTree = "<group>"; };
 		9211950119FE01C000644054 /* FormattedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattedVC.h; sourceTree = "<group>"; };
 		9211950219FE01C000644054 /* FormattedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattedVC.m; sourceTree = "<group>"; };
-		9211950319FE01C000644054 /* PageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageManager.h; sourceTree = "<group>"; };
-		9211950419FE01C000644054 /* PageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageManager.m; sourceTree = "<group>"; };
-		9211950519FE01C000644054 /* PageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageVC.h; sourceTree = "<group>"; };
-		9211950619FE01C000644054 /* PageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageVC.m; sourceTree = "<group>"; };
 		9211950D19FE01CC00644054 /* TestingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingTVC.h; sourceTree = "<group>"; };
 		9211950E19FE01CC00644054 /* TestingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingTVC.m; sourceTree = "<group>"; };
 		9211951119FE01DC00644054 /* GardenDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GardenDetailVC.h; sourceTree = "<group>"; };
@@ -292,6 +288,10 @@
 		921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathProblemVC_Normal.m; sourceTree = "<group>"; };
 		921C731B189ADE7F007DFB34 /* EquationFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquationFormatter.h; sourceTree = "<group>"; };
 		921C731C189ADE7F007DFB34 /* EquationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquationFormatter.m; sourceTree = "<group>"; };
+		921DD2631A2A430100C18079 /* PageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageManager.h; sourceTree = "<group>"; };
+		921DD2641A2A430100C18079 /* PageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageManager.m; sourceTree = "<group>"; };
+		921DD2661A2A434D00C18079 /* PageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageVC.h; sourceTree = "<group>"; };
+		921DD2671A2A434D00C18079 /* PageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageVC.m; sourceTree = "<group>"; };
 		923774521A0552A400A49D14 /* PictureQuizVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureQuizVC.h; sourceTree = "<group>"; };
 		923774531A0552A400A49D14 /* PictureQuizVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureQuizVC.m; sourceTree = "<group>"; };
 		923774541A0552A400A49D14 /* PictureQuizVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureQuizVC.xib; sourceTree = "<group>"; };
@@ -937,12 +937,12 @@
 		92E7A1281864E303006A712B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				921DD2631A2A430100C18079 /* PageManager.h */,
+				921DD2641A2A430100C18079 /* PageManager.m */,
 				9211950119FE01C000644054 /* FormattedVC.h */,
 				9211950219FE01C000644054 /* FormattedVC.m */,
-				9211950319FE01C000644054 /* PageManager.h */,
-				9211950419FE01C000644054 /* PageManager.m */,
-				9211950519FE01C000644054 /* PageVC.h */,
-				9211950619FE01C000644054 /* PageVC.m */,
+				921DD2661A2A434D00C18079 /* PageVC.h */,
+				921DD2671A2A434D00C18079 /* PageVC.m */,
 				9208482018E4F9CF00BE2F55 /* Module */,
 				92D06A0E18D13101004850C6 /* QR Code Stuff */,
 				921C73141899BB1F007DFB34 /* Math Problems */,
@@ -1300,15 +1300,14 @@
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,
-				9211950919FE01C000644054 /* PageManager.m in Sources */,
 				92C117721A223BF0003506DB /* ContentCreationVC.m in Sources */,
 				9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */,
 				108E9B0D1A27A65F00120A63 /* MWFeedParser.m in Sources */,
 				10A4EA3D1A2790820062D905 /* UIButton_Typical.swift in Sources */,
 				92C117861A22C8E1003506DB /* ClassConversions.m in Sources */,
-				9211950B19FE01C000644054 /* PageVC.m in Sources */,
 				92F78DAA1A2664E10048612E /* VocabCreationVC.m in Sources */,
 				10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */,
+				921DD2681A2A434D00C18079 /* PageVC.m in Sources */,
 				92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */,
 				92F78D911A26176A0048612E /* ReadingCreationVC.m in Sources */,
 				92CB44971A203F140082C761 /* Page.m in Sources */,
@@ -1330,6 +1329,7 @@
 				108E9B161A27A67E00120A63 /* NSDate+InternetDateTime.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
+				921DD2651A2A430100C18079 /* PageManager.m in Sources */,
 				92CB449A1A203F740082C761 /* Content.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

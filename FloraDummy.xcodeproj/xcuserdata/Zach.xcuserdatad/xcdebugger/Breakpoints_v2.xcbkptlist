@@ -204,9 +204,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "381"
-            endingLineNumber = "381"
-            landmarkName = "-launchAppropriateViewControllerForPage:inDirection:"
-            landmarkType = "5">
+            endingLineNumber = "381">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -220,9 +218,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "385"
-            endingLineNumber = "385"
-            landmarkName = "-launchAppropriateViewControllerForPage:inDirection:"
-            landmarkType = "5">
+            endingLineNumber = "385">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -236,9 +232,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "403"
-            endingLineNumber = "403"
-            landmarkName = "-launchAppropriateViewControllerForPage:inDirection:"
-            landmarkType = "5">
+            endingLineNumber = "403">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -332,9 +326,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "-goToViewControllerAtIndex:inDirection:"
-            landmarkType = "5">
+            endingLineNumber = "111">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
