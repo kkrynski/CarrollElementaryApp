@@ -77,7 +77,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         Definitions.outlineTextInLabel(breakingNewsLabel)
         view.addSubview(breakingNewsLabel)
         
-        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
+        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
             
             breakingNewsLabel.center = CGPointMake(breakingNewsLabel.frame.size.width * 0.3, breakingNewsLabel.center.y)
             
