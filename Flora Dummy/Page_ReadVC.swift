@@ -25,11 +25,6 @@ class Page_ReadVC: PageVC
         
         //Frame overrides
         
-        titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.origin.y, titleLabel.frame.size.width, dateLabel.frame.size.height)
-        titleLabel.font = dateLabel.font
-        
-        dateLabel.frame = CGRectMake(dateLabel.frame.origin.x, 20, dateLabel.frame.size.width, dateLabel.frame.size.height)
-        
         otherLabel.frame = CGRectMake(otherLabel.frame.origin.x, 20, otherLabel.frame.size.width, otherLabel.frame.size.height)
     }
 

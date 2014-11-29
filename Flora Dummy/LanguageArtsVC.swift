@@ -153,6 +153,6 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         //
         // Pass in dictionary, set the pageManager.activity = the outputed activity
         //
-        pageManager = PageManager(activity: activityDictionary, forParentViewController: self)
+        pageManager = PageManager(activity: ClassConversions().activityFromDictionary(activityDictionary), forParentViewController: self)
     }
 }

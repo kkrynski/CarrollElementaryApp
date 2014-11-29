@@ -143,7 +143,7 @@ class ScienceVC: UIViewController
         let activityDictionary = activities[indexPath.row] as NSDictionary
         
         //Create a PageManager for the activity and store it in THIS view controller
-        pageManager = PageManager(activity: activityDictionary, forParentViewController: self)
+        pageManager = PageManager(activity: ClassConversions().activityFromDictionary(activityDictionary), forParentViewController: self)
     }
     
 }

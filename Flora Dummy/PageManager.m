@@ -294,7 +294,7 @@
         }else if ([name isEqualToString:@"Math"])
         {
             // Create a math vc
-            MathProblemVC_Normal *mathVC = [[MathProblemVC_Normal alloc]init];
+            MathProblemVC *mathVC = [[MathProblemVC alloc]init];
             mathVC.parentManager = self;
             
             // Save important data to page

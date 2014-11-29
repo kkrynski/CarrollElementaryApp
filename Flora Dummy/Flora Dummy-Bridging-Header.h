@@ -16,3 +16,5 @@
 #import "NSString+HTML.h"
 
 #import "OBJ-CDefinitions.h"
+
+#import "ClassConversions.h"

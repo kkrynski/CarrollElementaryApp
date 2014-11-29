@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
-		104BA0FE1A042A30007BD9DE /* MathProblemVC_Normal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */; };
 		104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */; };
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
 		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
@@ -1290,7 +1289,6 @@
 				1093A14B1A2137A2002B2B0A /* Clock.swift in Sources */,
 				10BFE6F01A2046CE00E68C77 /* Reachability.m in Sources */,
 				108E9B1C1A27A6EB00120A63 /* GTMNSString+HTML.m in Sources */,
-				104BA0FE1A042A30007BD9DE /* MathProblemVC_Normal.swift in Sources */,
 				10DDE8C81A00616C0079FAB9 /* HomeVC.swift in Sources */,
 				10BFE6E71A20467B00E68C77 /* WeatherManager.m in Sources */,
 				104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */,

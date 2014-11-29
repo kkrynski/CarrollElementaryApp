@@ -85,8 +85,6 @@
     // Hide elements
     [super.previousButton removeFromSuperview];
     [super.nextButton removeFromSuperview];
-    [super.titleLabel removeFromSuperview];
-    [super.dateLabel removeFromSuperview];
     [super.otherLabel removeFromSuperview];
     for (UIView *v in self.view.subviews)
     {

@@ -52,10 +52,10 @@
 {
     // Question label
     
-    questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.dateLabel.frame.origin.x,
-                                                              self.dateLabel.frame.origin.y + self.dateLabel.frame.size.height + 20,
+    questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                              0 + 20,
                                                               self.view.frame.size.width - 40,
-                                                              self.dateLabel.frame.size.height + 20)];
+                                                              0 + 20)];
     
     questionLabel.text = question;
     questionLabel.textAlignment = NSTextAlignmentCenter;
