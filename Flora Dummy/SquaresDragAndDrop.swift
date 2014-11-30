@@ -20,6 +20,7 @@ class SquaresDragAndDrop: PageVC
     private var squareSize = CGSizeMake(60, 60)
     
     private var dynamicAnimator : UIDynamicAnimator?
+    private var pushBehavior : UIPushBehavior?
     
     private var arrayOfCoordinates = Array<(x: Int, y: Int)>()
     private var arrayOfSquares = NSMutableArray()
@@ -30,7 +31,7 @@ class SquaresDragAndDrop: PageVC
         
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         
-        for var i = 0; i < numberOfSquares; i++
+        for index in 0...(numberOfSquares - 1)
         {
             let square = UIView(frame: CGRectMake(0, 0, squareSize.width, squareSize.height))
             square.backgroundColor = Definitions.randomColor()
@@ -38,15 +39,44 @@ class SquaresDragAndDrop: PageVC
             square.center = CGPointMake(CGFloat(center.x), CGFloat(center.y))
             view.addSubview(square)
             arrayOfSquares.addObject(square)
+            
+            let panGesture = UIPanGestureRecognizer(target: self, action: "panSquare:")
+            square.addGestureRecognizer(panGesture)
         }
         
         let collisionBehavior = UICollisionBehavior(items: arrayOfSquares)
+        collisionBehavior.collisionMode = .Everything
         collisionBehavior.setTranslatesReferenceBoundsIntoBoundaryWithInsets(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
         collisionBehavior.translatesReferenceBoundsIntoBoundary = YES
         
         dynamicAnimator!.addBehavior(collisionBehavior)
+        
+        //let pushBehavior = U
+    }
+    
+    
+    private var lastLocation : CGPoint?
+    func panSquare(panGesture : UIPanGestureRecognizer)
+    {
+        let square = panGesture.view
+        view.bringSubviewToFront(square!)
+        
+        switch panGesture.state
+        {
+        case .Began:
+            lastLocation = square!.center
+            
+        case .Changed:
+            let translation = panGesture.translationInView(view)
+            square!.center = CGPointMake(lastLocation!.x + translation.x, lastLocation!.y + translation.y)
+            break
+            
+        default:
+            break
+        }
     }
 
+    //MARK: - Private Functions
     
     private func coordiantesForSize(size: (width: Int, height: Int)) -> (x: Int, y: Int)
     {

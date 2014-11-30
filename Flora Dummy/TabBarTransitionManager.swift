@@ -19,7 +19,7 @@ class TabBarTransitionManager: NSObject, UIViewControllerAnimatedTransitioning
     {
         self.reverse = shouldReverse
         
-        animationNumber = arc4random_uniform(5)
+        animationNumber = arc4random_uniform(0)
         
         super.init()
     }
