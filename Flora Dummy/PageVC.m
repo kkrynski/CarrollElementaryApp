@@ -210,11 +210,12 @@
 /**Go forward to the next page, or if there is none, dismiss*/
 -(IBAction) goToNextPage
 {
+    
     // If there's a page to go forward to,
     // let page manager go forward
     if (pageNumber.intValue + 1 <= pageCount.intValue)
     {
-        [(PageManager *)parentManager goToNextViewController];
+        [parentManager goToNextViewController];
     }else
     {
         // End activity because there's nowhere to go
