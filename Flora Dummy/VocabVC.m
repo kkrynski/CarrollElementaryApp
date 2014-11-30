@@ -33,30 +33,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    questionLabel.text = [NSString stringWithFormat:@"%@ %@ %@", @"Another word for", _question,@"is:"];
+    questionLabel.text = _question;
+    questionLabel.font = self.font;
+    questionLabel.textColor = primaryColor;
+
     if(![[_answers objectAtIndex:0] isEqualToString:@""])
     {
         [_butAnswer1 setTitle:[_answers objectAtIndex:0] forState:UIControlStateNormal];
+        _butAnswer1.titleLabel.font = self.font;
+        [_butAnswer1 setTitleColor:primaryColor forState:UIControlStateNormal];
         [Definitions outlineButton:_butAnswer1];
     }
     if(![[_answers objectAtIndex:1] isEqualToString:@""])
     {
         [_butAnswer2 setTitle:[_answers objectAtIndex:1] forState:UIControlStateNormal];
+        _butAnswer2.titleLabel.font = self.font;
+        [_butAnswer2 setTitleColor:primaryColor forState:UIControlStateNormal];
         [Definitions outlineButton:_butAnswer2];
     }
     if(![[_answers objectAtIndex:2] isEqualToString:@""])
     {
         [_butAnswer3 setTitle:[_answers objectAtIndex:2] forState:UIControlStateNormal];
+        _butAnswer3.titleLabel.font = self.font;
+        [_butAnswer3 setTitleColor:primaryColor forState:UIControlStateNormal];
         [Definitions outlineButton:_butAnswer3];
     }
     if(![[_answers objectAtIndex:3] isEqualToString:@""])
     {
         [_butAnswer4 setTitle:[_answers objectAtIndex:3] forState:UIControlStateNormal];
+        _butAnswer4.titleLabel.font = self.font;
+        [_butAnswer4 setTitleColor:primaryColor forState:UIControlStateNormal];
         [Definitions outlineButton:_butAnswer4];
     }
     if(![[_answers objectAtIndex:4] isEqualToString:@""])
     {
         [_butAnswer5 setTitle:[_answers objectAtIndex:4] forState:UIControlStateNormal];
+        _butAnswer5.titleLabel.font = self.font;
+        [_butAnswer5 setTitleColor:primaryColor forState:UIControlStateNormal];
         [Definitions outlineButton:_butAnswer5];
     }
    

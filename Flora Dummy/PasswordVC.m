@@ -15,15 +15,19 @@
 @implementation PasswordVC
 @synthesize username, password;
 @synthesize usernameInput, passwordInput;
-@synthesize submit;
+@synthesize submitButton;
+@synthesize userLabel, passwordLabel;
 
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self makeMePretty];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -38,7 +42,8 @@
 }
 */
 
-- (IBAction)submit:(id)sender {
+- (IBAction)submit:(id)sender
+{
     NSString *defaultUsername = @"qwerty";
     NSString *defaultPassword = @"qwerty";
     NSString *tempUsername = usernameInput.text;
@@ -51,5 +56,24 @@
     NSLog(@"submit");
 }
 
+-(void)makeMePretty
+{
+    userLabel.font = self.font;
+    userLabel.textColor = self.primaryColor;
+    
+    passwordLabel.font = self.font;
+    passwordLabel.textColor = self.primaryColor;
+    
+    usernameInput.font = self.font;
+    usernameInput.backgroundColor = self.secondaryColor;
+    usernameInput.textColor = self.primaryColor;
+    
+    passwordInput.font = self.font;
+    passwordInput.backgroundColor = self.secondaryColor;
+    passwordInput.textColor = self.primaryColor;
+    
+    submitButton.titleLabel.font = self.font;
+    [submitButton setTitleColor:self.primaryColor forState:UIControlStateNormal];
+}
 
 @end
