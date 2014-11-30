@@ -86,18 +86,5 @@ class UIButton_Typical: UIButton
     override func endTrackingWithTouch(touch: UITouch, withEvent event: UIEvent)
     {
         unhighlightButton()
-        
-        let boundsExtension = 5
-        let outerBounds = CGRectInset(bounds, CGFloat(0 - boundsExtension), CGFloat(0 - boundsExtension))
-        let touchedInside = CGRectContainsPoint(outerBounds, touch.locationInView(self))
-        
-        if touchedInside
-        {
-            sendActionsForControlEvents(.TouchUpInside)
-        }
-        else
-        {
-            sendActionsForControlEvents(.TouchUpOutside)
-        }
     }
 }
