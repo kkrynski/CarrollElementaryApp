@@ -38,6 +38,22 @@
 {
     [super viewDidLoad];
     
+    if (otherLabel != nil)
+    {
+        [otherLabel removeFromSuperview];
+        otherLabel = nil;
+    }
+    if (nextButton != nil)
+    {
+        [nextButton removeFromSuperview];
+        nextButton = nil;
+    }
+    if (previousButton != nil)
+    {
+        [previousButton removeFromSuperview];
+        previousButton = nil;
+    }
+    
     //UIFont *titleFont = [UIFont fontWithName:@"MarkerFelt-Wide" size:72.0];
     UIFont *subtitleFont = [UIFont fontWithName:@"MarkerFelt-Thin" size:36.0];
     

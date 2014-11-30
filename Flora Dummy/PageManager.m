@@ -21,6 +21,7 @@
 #import "ModuleVC.h"
 #import "QuickQuizVC.h"
 #import "VocabVC.h"
+//#import "MathProblemVC_Normal.swift"
 
 @interface PageManager ()
 {
@@ -301,6 +302,7 @@
             mathVC.page = pageVC.page;
             mathVC.pageNumber = pageVC.pageNumber;
             mathVC.pageCount = pageVC.pageCount;
+            mathVC.mathEquation = (NSString *)[pageVC.page.variableContentDict objectForKey:@"Equation"];
             
             [mathVC reloadView];
             
