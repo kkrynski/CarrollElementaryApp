@@ -24,6 +24,16 @@ class Definitions: NSObject
 {
     //MARK: - Color Methods
     
+    //Random Color
+    class func randomColor() -> UIColor
+    {
+        let red = Double(arc4random_uniform(255))/255.0
+        let blue = Double(arc4random_uniform(255))/255.0
+        let green = Double(arc4random_uniform(255))/255.0
+        
+        return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
+    }
+    
     //Convert a hex string to UIColor
     class func colorWithHexString(hexString : String) -> UIColor
     {
