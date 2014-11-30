@@ -55,7 +55,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock", @"Zach - Activity Creation", @"Stephen - Picture Quiz", @"Mason - Password", @"Mason - Spelling Test", @"Zach - Module", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Vocab", @"Michael - Math Problem", @"Michael - Clock", @"Michael - SquareDrag", @"Zach - Activity Creation", @"Stephen - Picture Quiz", @"Mason - Password", @"Mason - Spelling Test", @"Zach - Module", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -149,9 +149,10 @@
             
             break;
         
-        }case 1:
+        }
+        case 1:
         {
-            // Michael
+            // Michael - Math
             [self launchMathController];
             
             break;
@@ -159,7 +160,7 @@
         }
         case 2:
         {
-            // Michael
+            // Michael - Clock
             [self launchClockDrag];
             
             break;
@@ -167,13 +168,21 @@
         }
         case 3:
         {
+            // Michael - SquareDrag
+            [self launchSquareDrag];
+            
+            break;
+            
+        }
+        case 4:
+        {
             // Zach - Activity Creation
             
             [self launchActivityCreation];
             
             break;
             
-        }case 4:
+        }case 5:
         {
             // Stephen - Picture Quiz
             
@@ -181,7 +190,7 @@
             
             break;
             
-        }case 5:
+        }case 6:
         {
             // Mason - Password
             
@@ -189,7 +198,7 @@
             
             break;
             
-        }case 6:
+        }case 7:
         {
             // Mason - Spelling Test
             
@@ -197,7 +206,7 @@
             
             break;
             
-        }case 7:
+        }case 8:
         {
             // Zach - Module
             
@@ -584,6 +593,14 @@
     clockDragVC.endTime = @"08:12:34";
     
     [self presentViewController:clockDragVC animated:YES completion:nil];
+}
+
+- (void) launchSquareDrag
+{
+    SquaresDragAndDrop *squaresDragVC = [[SquaresDragAndDrop alloc] init];
+    squaresDragVC.numberOfSquares = 20;
+    
+    [self presentViewController:squaresDragVC animated:YES completion:nil];
 }
 
 - (void) launchSpellingTest
