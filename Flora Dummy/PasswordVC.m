@@ -48,8 +48,10 @@
     NSString *defaultPassword = @"qwerty";
     NSString *tempUsername = usernameInput.text;
     NSString *tempPassword = passwordInput.text;
-    if([tempUsername isEqualToString: defaultUsername]) {
-        if([tempPassword isEqualToString: defaultPassword] ){
+    if([tempUsername isEqualToString: defaultUsername])
+    {
+        if([tempPassword isEqualToString: defaultPassword] )
+        {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
@@ -67,11 +69,13 @@
     usernameInput.font = self.font;
     usernameInput.backgroundColor = self.secondaryColor;
     usernameInput.textColor = self.primaryColor;
+    usernameInput.text = @"qwerty";
     
     passwordInput.font = self.font;
     passwordInput.backgroundColor = self.secondaryColor;
     passwordInput.textColor = self.primaryColor;
-    
+    passwordInput.text = @"qwerty";
+
     submitButton.titleLabel.font = self.font;
     [submitButton setTitleColor:self.primaryColor forState:UIControlStateNormal];
 }
