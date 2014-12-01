@@ -8,6 +8,8 @@
 
 #import "ModuleVC.h"
 
+#import "Content.h" 
+
 @implementation ModuleVC
 @synthesize contentArray;
 
@@ -17,7 +19,12 @@
     if (self)
     {
         // Custom initialization
-        [self populateScreenWithObjects:content];
+        
+        if (content != nil && content.count > 0)
+        {
+            [self populateScreenWithObjects:content];
+
+        }
     }
     return self;
 }
@@ -63,31 +70,31 @@
 
 -(void)populateScreenWithObjects: (NSArray *)objects
 {
-    for (NSDictionary *view in objects)
+    for (Content *c in objects)
     {
         // Get what type of object it is
-        NSString *type = (NSString *)[view objectForKey:@"Type"];
+        NSString *type = c.type;
         
-        if ([type isEqualToString:@"TextView"])
+        if ([type isEqualToString:@"Text"])
         {
-            [self addTextView:view];
+            [self addTextView:c];
         
         }else if ([type isEqualToString:@"Image"])
         {
-            [self addImageView:view];
+            [self addImageView:c];
             
         }else if ([type isEqualToString:@"GIF"])
         {
-            [self addGIFView:view];
+            //[self addGIFView:c];
             
         }
     }
 }
 
--(void)addTextView: (NSDictionary *)dict
+-(void)addTextView: (Content *)c
 {
     // Get bounds of object
-    NSArray *boundsArray = (NSArray *)[dict objectForKey:@"Bounds"];
+    NSArray *boundsArray = [c arrayForBounds];
     
     // Declare text view
     UITextView *tV = [[UITextView alloc] initWithFrame:
@@ -97,7 +104,7 @@
                                  [(NSNumber *)[boundsArray objectAtIndex:3] floatValue])];
     
     // Get special features of object
-    NSDictionary *specials = (NSDictionary *)[dict objectForKey:@"Specials"];
+    NSDictionary *specials = c.variableContent;
     
     // Get text
     tV.text = (NSString *)[specials objectForKey:@"Text"];
@@ -116,10 +123,10 @@
 
 }
 
--(void)addImageView: (NSDictionary *)dict
+-(void)addImageView: (Content *)c
 {
     // Get bounds of object
-    NSArray *boundsArray = (NSArray *)[dict objectForKey:@"Bounds"];
+    NSArray *boundsArray = [c arrayForBounds];
     
     // Declare image view
     UIImageView *iV = [[UIImageView alloc] initWithFrame:
@@ -129,7 +136,7 @@
                                  [(NSNumber *)[boundsArray objectAtIndex:3] floatValue])];
     
     // Get special features of object
-    NSDictionary *specials = (NSDictionary *)[dict objectForKey:@"Specials"];
+    NSDictionary *specials = c.variableContent;
     
     // Get image
     if ((NSString *)[specials objectForKey:@"Image"])
