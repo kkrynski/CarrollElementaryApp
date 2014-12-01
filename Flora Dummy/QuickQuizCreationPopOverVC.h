@@ -12,7 +12,7 @@
 -(void)returnAnswers: (NSArray *)array andQuestion: (NSString *)q andCorrectIndex: (NSNumber *)n;
 @end
 
-@interface QuickQuizCreationPopOverVC : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface QuickQuizCreationPopOverVC : UIViewController
 {
     
 }
