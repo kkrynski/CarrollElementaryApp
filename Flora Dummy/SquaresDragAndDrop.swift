@@ -20,7 +20,7 @@ class SquaresDragAndDrop: PageVC
     private var squareSize = CGSizeMake(60, 60)
     
     private var dynamicAnimator : UIDynamicAnimator?
-    private var pushBehavior : UIPushBehavior?
+    private var snapBehavior : UISnapBehavior?
     
     private var arrayOfCoordinates = Array<(x: Int, y: Int)>()
     private var arrayOfSquares = NSMutableArray()
@@ -42,20 +42,12 @@ class SquaresDragAndDrop: PageVC
             
             let panGesture = UIPanGestureRecognizer(target: self, action: "panSquare:")
             square.addGestureRecognizer(panGesture)
+            
         }
-        
-        let collisionBehavior = UICollisionBehavior(items: arrayOfSquares)
-        collisionBehavior.collisionMode = .Everything
-        collisionBehavior.setTranslatesReferenceBoundsIntoBoundaryWithInsets(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
-        collisionBehavior.translatesReferenceBoundsIntoBoundary = YES
-        
-        dynamicAnimator!.addBehavior(collisionBehavior)
-        
-        //let pushBehavior = U
+        addCollisionBehavior()
     }
     
     
-    private var lastLocation : CGPoint?
     func panSquare(panGesture : UIPanGestureRecognizer)
     {
         let square = panGesture.view
@@ -64,22 +56,35 @@ class SquaresDragAndDrop: PageVC
         switch panGesture.state
         {
         case .Began:
-            if pushBehavior != nil
+            dynamicAnimator!.removeAllBehaviors()
+            addCollisionBehavior()
+            
+            for object in arrayOfSquares
             {
-                dynamicAnimator!.removeBehavior(pushBehavior!)
+                let objectSquare = object as UIView
+                
+                if objectSquare != square
+                {
+                    let snap = UISnapBehavior(item: objectSquare, snapToPoint: objectSquare.center)
+                    dynamicAnimator!.addBehavior(snap)
+                }
             }
-            pushBehavior = UIPushBehavior(items: NSMutableArray(object: square!), mode: UIPushBehaviorMode.Continuous)
-            dynamicAnimator!.addBehavior(pushBehavior)
+            
+            if snapBehavior != nil
+            {
+                dynamicAnimator!.removeBehavior(snapBehavior!)
+            }
+            snapBehavior = UISnapBehavior(item: square!, snapToPoint: panGesture.locationInView(view))
+            dynamicAnimator!.addBehavior(snapBehavior)
             
         case .Changed:
-            let offset = panGesture.translationInView(view)
-            pushBehavior!.pushDirection = CGVectorMake(offset.x, offset.y)
-            pushBehavior!.magnitude = CGFloat(sqrt(offset.x * offset.x + offset.y * offset.y) / CGFloat(50.0))
-            break
-            
-        case .Ended:
-            dynamicAnimator!.removeBehavior(pushBehavior!)
-            pushBehavior = nil
+            if snapBehavior != nil
+            {
+                dynamicAnimator!.removeBehavior(snapBehavior!)
+            }
+            snapBehavior = UISnapBehavior(item: square!, snapToPoint: panGesture.locationInView(view))
+            snapBehavior!.damping = 1.0
+            dynamicAnimator!.addBehavior(snapBehavior)
             break
             
         default:
@@ -88,6 +93,16 @@ class SquaresDragAndDrop: PageVC
     }
     
     //MARK: - Private Functions
+    
+    private func addCollisionBehavior()
+    {
+        let collisionBehavior = UICollisionBehavior(items: arrayOfSquares)
+        collisionBehavior.collisionMode = .Everything
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = YES
+        collisionBehavior.setTranslatesReferenceBoundsIntoBoundaryWithInsets(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
+        
+        dynamicAnimator!.addBehavior(collisionBehavior)
+    }
     
     private func coordiantesForSize(size: (width: Int, height: Int)) -> (x: Int, y: Int)
     {

@@ -598,7 +598,7 @@
 - (void) launchSquareDrag
 {
     SquaresDragAndDrop *squaresDragVC = [[SquaresDragAndDrop alloc] init];
-    squaresDragVC.numberOfSquares = 20;
+    squaresDragVC.numberOfSquares = 40;
     
     [self presentViewController:squaresDragVC animated:YES completion:nil];
 }

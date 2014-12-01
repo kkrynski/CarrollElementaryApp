@@ -33,6 +33,7 @@
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
 		10BF3F9F1A2BB80100B1A755 /* SquaresDragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */; };
+		10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */; };
 		10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */; };
 		10BFE6E31A20466000E68C77 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10BFE6E21A20466000E68C77 /* LocationManager.m */; };
 		10BFE6E71A20467B00E68C77 /* WeatherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10BFE6E61A20467B00E68C77 /* WeatherManager.m */; };
@@ -211,6 +212,7 @@
 		10B8787D19FC2881005D9937 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		10B8788019FC3342005D9937 /* LanguageArtsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageArtsVC.swift; sourceTree = "<group>"; };
 		10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquaresDragAndDrop.swift; sourceTree = "<group>"; };
+		10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropVC.swift; sourceTree = "<group>"; };
 		10BFE6E11A20466000E68C77 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		10BFE6E21A20466000E68C77 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				10B8787D19FC2881005D9937 /* Definitions.swift */,
 				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
 				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
+				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1199,6 +1202,7 @@
 				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
 				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
+				10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */,
 				5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */,
 				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
@@ -1457,7 +1461,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_FAST_OBJC_DISPATCH = NO;
@@ -1480,7 +1483,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_FAST_OBJC_DISPATCH = NO;
