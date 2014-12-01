@@ -1,4 +1,81 @@
 {"Courses":{"Kindergarten":{"LA":[{
+                                  "DueDate" : "2014-12-01T20:15:53.000-0500",
+                                  "ReleaseDate" : "2014-11-30T20:18:53.453-0500",
+                                  "Pages" : [
+                                             {
+                                             "VariableContentDict" : {
+                                             "Text" : "numbers 1 to 100"
+                                             },
+                                             "PageVC" : "Introduction"
+                                             },
+                                             {
+                                             "VariableContentDict" : {
+                                             "ContentArray" : [
+                                                               {
+                                                               "ContentType" : "Text",
+                                                               "Bounds" : [
+                                                                           20,
+                                                                           84,
+                                                                           984,
+                                                                           44
+                                                                           ],
+                                                               "VariableContent" : {
+                                                               "Text" : "Teachers will explain pattern"
+                                                               }
+                                                               },
+                                                               {
+                                                               "ContentType" : "Image",
+                                                               "Bounds" : [
+                                                                           244,
+                                                                           168,
+                                                                           536,
+                                                                           536
+                                                                           ],
+                                                               "VariableContent" : {
+                                                               "Image" : "K.MA.0001.Image0001"
+                                                               }
+                                                               }
+                                                               ]
+                                             },
+                                             "PageVC" : "Sandbox"
+                                             },
+                                             {
+                                             "VariableContentDict" : {
+                                             "ContentArray" : [
+                                                               {
+                                                               "ContentType" : "Image",
+                                                               "Bounds" : [
+                                                                           244,
+                                                                           168,
+                                                                           536,
+                                                                           536
+                                                                           ],
+                                                               "VariableContent" : {
+                                                               "Image" : "K.MA.0001.Image0002"
+                                                               }
+                                                               },
+                                                               {
+                                                               "ContentType" : "Text",
+                                                               "Bounds" : [
+                                                                           20,
+                                                                           84,
+                                                                           984,
+                                                                           64
+                                                                           ],
+                                                               "VariableContent" : {
+                                                               "Text" : "Teacher asks them to fill in one by one (we're working on a new screen for this)"
+                                                               }
+                                                               }
+                                                               ]
+                                             },
+                                             "PageVC" : "Sandbox"
+                                             }
+                                             ],
+                                  "ModDate" : "2014-11-30T20:36:28.837-0500",
+                                  "Icon" : "117-todo",
+                                  "ActivityID" : "",
+                                  "Name" : "Count to 100"
+                                  },{
                                   "DueDate" : "2014-12-01T19:45:55.000-0500",
                                   "ReleaseDate" : "2014-11-29T19:45:55.000-0500",
                                   "Pages" : [
