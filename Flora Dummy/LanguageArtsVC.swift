@@ -87,8 +87,15 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //Update the activities for the tableView
         gradeNumber = standardDefaults.objectForKey("gradeNumber") as? String
-        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary
-        activities = gradeDictionary.objectForKey("LA") as NSArray
+        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary?
+        if gradeDictionary != nil
+        {
+            activities = gradeDictionary!.objectForKey("LA") as NSArray
+        }
+        else
+        {
+            activities = NSArray()
+        }
         
         activitiesTable!.reloadData()
     }

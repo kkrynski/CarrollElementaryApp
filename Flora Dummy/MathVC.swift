@@ -87,8 +87,15 @@ class MathVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         //Update the activities for the tableView
         gradeNumber = standardDefaults.objectForKey("gradeNumber") as? String
-        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary
-        activities = gradeDictionary.objectForKey("Math") as NSArray
+        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary?
+        if gradeDictionary != nil
+        {
+            activities = gradeDictionary!.objectForKey("Math") as NSArray
+        }
+        else
+        {
+            activities = NSArray()
+        }
         
         activitiesTable!.reloadData()
     }

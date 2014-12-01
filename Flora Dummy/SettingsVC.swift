@@ -8,15 +8,10 @@
 
 import UIKit
 
-class SettingsVC: UIViewController
+class SettingsVC: FormattedVC
 {
     //Standard Setup
     private let borderWidth = 4.0
-    
-    private var primaryColor : UIColor?
-    private var secondaryColor : UIColor?
-    
-    private var colorSchemeDictionary : NSDictionary?
     
     private var selectedGradeButton : UIButton?
     private var selectedColorButton : UIButton?
@@ -56,23 +51,13 @@ class SettingsVC: UIViewController
     {
         super.viewDidLoad()
         
-        //Do JSON Work
         let mainDirectory = NSBundle.mainBundle().resourcePath
         let fullPath = mainDirectory?.stringByAppendingPathComponent("Carroll.json")
         let jsonFile = NSData(contentsOfFile: fullPath!)
         let jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonFile!, options: .AllowFragments, error: nil) as NSDictionary
-        
         colorSchemeDictionary = jsonDictionary["Colors"] as NSDictionary?
         
-        //Override Code until a better solution can be crafted
         let standardDefaults = NSUserDefaults.standardUserDefaults()
-        
-        primaryColor = Definitions.colorWithHexString(standardDefaults.objectForKey("primaryColor") as String)
-        secondaryColor = Definitions.colorWithHexString(standardDefaults.objectForKey("secondaryColor") as String)
-        view.backgroundColor = Definitions.colorWithHexString(standardDefaults.objectForKey("backgroundColor") as String)
-        
-        
-        primaryColor = .whiteColor()
         
         purpleButton!.setTitleColor(primaryColor, forState: .Normal)
         purpleButton!.backgroundColor = colorForName(purpleButton!.titleLabel!.text!)
@@ -371,7 +356,7 @@ class SettingsVC: UIViewController
     
     private func colorForName(name : String) -> UIColor?
     {
-        let colorDictionary = colorSchemeDictionary!.objectForKey(name) as NSDictionary
+        let colorDictionary = colorSchemeDictionary![name] as NSDictionary
         
         let colorHEXString = colorDictionary.objectForKey("Background") as String
         
