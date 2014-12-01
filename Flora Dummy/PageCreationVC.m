@@ -293,7 +293,7 @@
     self.splitViewController.delegate = nil;
     self.splitViewController.delegate = self;
     
-    [self.splitViewController willRotateToInterfaceOrientation:[UIApplication    sharedApplication].statusBarOrientation duration:0];
+    [self.splitViewController viewWillTransitionToSize:[UIApplication sharedApplication].keyWindow.bounds.size withTransitionCoordinator:self.transitionCoordinator];
     
 }
 
@@ -304,7 +304,7 @@
     self.splitViewController.delegate = nil;
     self.splitViewController.delegate = self;
     
-    [self.splitViewController willRotateToInterfaceOrientation:[UIApplication    sharedApplication].statusBarOrientation duration:0];
+    [self.splitViewController viewWillTransitionToSize:[UIApplication sharedApplication].keyWindow.bounds.size withTransitionCoordinator:self.transitionCoordinator];
 
 }
 
