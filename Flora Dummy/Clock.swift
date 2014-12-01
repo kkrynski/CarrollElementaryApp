@@ -17,8 +17,28 @@ class ClockHand : UIView
 {
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView?
     {
-        let frame = CGRectInset(bounds, -20, -10);
-        return CGRectContainsPoint(frame, point) ? self : nil;
+        let frame = CGRectInset(bounds, -20, -10)
+        return CGRectContainsPoint(frame, point) ? self : nil
+    }
+}
+
+class ClockHandView : UIView
+{
+    var clockHand : ClockHand?
+    
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView?
+    {
+        let frame = CGRectInset(bounds, -20, -10)
+        if CGRectContainsPoint(frame, point)
+        {
+            if CGRectContainsPoint(CGRectInset(clockHand!.bounds, -20, -20), point)
+            {
+                return clockHand!
+            }
+            return self
+        }
+        
+        return nil
     }
 }
 
@@ -53,13 +73,13 @@ class Clock: UIView
     private var _currentTime : String?
     
     //The hours hand
-    private var hoursHand : UIView?
+    private var hoursHand : ClockHandView?
     
     //The minutes hand
-    private var minutesHand : UIView?
+    private var minutesHand : ClockHandView?
     
     //The seconds hand
-    private var secondsHand : UIView?
+    private var secondsHand : ClockHandView?
     
     //Will show seconds hand
     private var showSecondsHand : Bool?
@@ -156,7 +176,7 @@ class Clock: UIView
     private func makeHands()
     {
         //Hours Hand
-        hoursHand = UIView(frame: CGRectMake(0, 0, 14, frame.size.width))
+        hoursHand = ClockHandView(frame: CGRectMake(0, 0, 14, frame.size.width))
         hoursHand!.backgroundColor = .clearColor()
         hoursHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
         hoursHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
@@ -168,13 +188,14 @@ class Clock: UIView
         hoursTick.center = CGPointMake(hoursHand!.frame.size.width/2.0, hoursHand!.frame.size.height/2.0 - hoursTick.frame.size.height/2.0)
         hoursHand!.addSubview(hoursTick)
         addSubview(hoursHand!)
+        hoursHand!.clockHand = hoursTick
         
         let hoursPan = UIPanGestureRecognizer(target: self, action: "handleHoursPan:")
         hoursTick.addGestureRecognizer(hoursPan)
         
         //Minutes Hand
         
-        minutesHand = UIView(frame: CGRectMake(0, 0, 10, frame.size.width))
+        minutesHand = ClockHandView(frame: CGRectMake(0, 0, 10, frame.size.width))
         minutesHand!.backgroundColor = .clearColor()
         minutesHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
         minutesHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
@@ -185,6 +206,7 @@ class Clock: UIView
         minutesTick.layer.cornerRadius = 5
         minutesTick.center = CGPointMake(minutesHand!.frame.size.width/2.0, minutesHand!.frame.size.height/2.0 - minutesTick.frame.size.height/2.0)
         minutesHand!.addSubview(minutesTick)
+        minutesHand!.clockHand = minutesTick
         
         let minutesBulb = UIView(frame: CGRectMake(0, 0, 24, 24))
         minutesBulb.backgroundColor = minutesTick.backgroundColor
@@ -200,7 +222,7 @@ class Clock: UIView
         
         if showSecondsHand == YES
         {
-            secondsHand = UIView(frame: CGRectMake(0, 0, 6, frame.size.width))
+            secondsHand = ClockHandView(frame: CGRectMake(0, 0, 6, frame.size.width))
             secondsHand!.backgroundColor = .clearColor()
             secondsHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
             secondsHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
@@ -211,6 +233,7 @@ class Clock: UIView
             secondsTick.layer.cornerRadius = 3
             secondsTick.center = CGPointMake(secondsHand!.frame.size.width/2.0, secondsHand!.frame.size.height/2.0 - secondsTick.frame.size.height/2.0)
             secondsHand!.addSubview(secondsTick)
+            secondsHand!.clockHand = secondsTick
             
             let secondsBulb = UIView(frame: CGRectMake(0, 0, 15, 15))
             secondsBulb.backgroundColor = secondsTick.backgroundColor
