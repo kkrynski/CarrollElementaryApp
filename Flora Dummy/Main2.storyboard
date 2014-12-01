@@ -192,7 +192,7 @@
             </objects>
             <point key="canvasLocation" x="4257" y="-998"/>
         </scene>
-        <!--TestingTVC-->
+        <!--Developer Portal-->
         <scene sceneID="W1L-c9-mVd">
             <objects>
                 <tableViewController id="aYi-6i-8tL" customClass="TestingTVC" sceneMemberID="viewController">
@@ -222,11 +222,30 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" selectedImage="172-pricetag" systemItem="more" id="I3O-uc-Qbc"/>
+                    <navigationItem key="navigationItem" title="Developer Portal" id="5dk-xu-sYZ"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h58-YT-Hgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018" y="3434"/>
+            <point key="canvasLocation" x="4257" y="3498"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="VtR-od-1sJ">
+            <objects>
+                <navigationController storyboardIdentifier="DevPortal" id="QHI-J8-8L2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="8i5-v3-atX"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3ac-WV-pAW">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aYi-6i-8tL" kind="relationship" relationship="rootViewController" id="fRa-MX-bHj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pBa-eg-UVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3018" y="3498"/>
         </scene>
         <!--Language Arts-->
         <scene sceneID="wg7-f3-ORb">
@@ -687,6 +706,18 @@ Science includes learning about the scientific method and even going on scavenge
                                     <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="vUh-yq-jDw"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Dev Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EU-IR-LS1">
+                                <rect key="frame" x="444" y="610" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrU-jk-Vup">
+                                <rect key="frame" x="488" y="639" width="51" height="31"/>
+                                <connections>
+                                    <action selector="toggleDevMode:" destination="aUo-zj-yvZ" eventType="valueChanged" id="rt8-ft-gce"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -696,6 +727,7 @@ Science includes learning about the scientific method and even going on scavenge
                     <connections>
                         <outlet property="blueButton" destination="pvF-x5-oSp" id="leS-Mq-y3B"/>
                         <outlet property="colorLabel" destination="Q92-mV-3KG" id="tRP-Md-9S8"/>
+                        <outlet property="devModeSwitch" destination="GrU-jk-Vup" id="vbq-26-9qI"/>
                         <outlet property="fifthButton" destination="wnZ-5B-kK0" id="8oA-jd-i4L"/>
                         <outlet property="firstButton" destination="rDc-Zf-WMA" id="GZA-yj-q8m"/>
                         <outlet property="fourthButton" destination="Lmb-ZC-5Uy" id="an6-dx-Ryd"/>
@@ -754,7 +786,7 @@ Science includes learning about the scientific method and even going on scavenge
                         <segue destination="i0L-1i-Zbm" kind="relationship" relationship="viewControllers" id="Q6e-kQ-HyM"/>
                         <segue destination="so3-MG-wac" kind="relationship" relationship="viewControllers" id="Xl1-zj-19S"/>
                         <segue destination="Qjo-mF-HfI" kind="relationship" relationship="viewControllers" id="ltQ-WS-1bQ"/>
-                        <segue destination="aYi-6i-8tL" kind="relationship" relationship="viewControllers" id="WZJ-SH-ogd"/>
+                        <segue destination="QHI-J8-8L2" kind="relationship" relationship="viewControllers" id="ToJ-zw-Uyu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1j-MD-b6m" userLabel="First Responder" sceneMemberID="firstResponder"/>

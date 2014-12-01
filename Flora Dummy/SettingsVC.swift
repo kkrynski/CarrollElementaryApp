@@ -42,6 +42,16 @@ class SettingsVC: UIViewController
     @IBOutlet private var greenButton : UIButton?
     @IBOutlet private var blueButton : UIButton?
     
+    @IBOutlet private var devModeSwitch : UISwitch?
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        let standardDefaults = NSUserDefaults.standardUserDefaults()
+        devModeSwitch!.on = standardDefaults.boolForKey("showsDevTab")
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -334,6 +344,29 @@ class SettingsVC: UIViewController
                     button.highlighted = YES
                     }, completion: nil)
         })
+    }
+    
+    @IBAction private func toggleDevMode(sender : AnyObject)
+    {
+        var showsDevTab = !NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab")
+        NSUserDefaults.standardUserDefaults().setBool((sender as UISwitch).on, forKey: "showsDevTab")
+        
+        let tabBarController = self.tabBarController!
+        
+        if (sender as UISwitch).on
+        {
+            let storyboard = self.storyboard!
+            
+            let newTabs = NSMutableArray(array: tabBarController.viewControllers!)
+            newTabs.addObject(storyboard.instantiateViewControllerWithIdentifier("DevPortal"))
+            tabBarController.setViewControllers(newTabs, animated: YES)
+        }
+        else
+        {
+            let newTabs = NSMutableArray(array: tabBarController.viewControllers!)
+            newTabs.removeLastObject()
+            tabBarController.setViewControllers(newTabs, animated: YES)
+        }
     }
     
     private func colorForName(name : String) -> UIColor?
