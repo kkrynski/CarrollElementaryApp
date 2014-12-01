@@ -28,6 +28,8 @@
 @property (nonatomic, weak) id<MathCreationDelegate>delegate;
 
 -(id)init;
--(id)initWithText: (NSString *)t;
+-(id)initWithEquation: (NSString *)e;
+-(id)initWithEquation: (NSString *)e andAnswer: (NSString *)a;
+
 
 @end

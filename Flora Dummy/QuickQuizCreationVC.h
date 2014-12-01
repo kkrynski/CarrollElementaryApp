@@ -13,7 +13,7 @@
 -(void)updateQuizWithAnswers: (NSArray *)array andQuestion: (NSString *)q andCorrectIndex: (NSNumber *)n;
 @end
 
-@interface QuickQuizCreationVC : FormattedVC
+@interface QuickQuizCreationVC : FormattedVC<QuickQuizPopOverDelegate>
 
 @property(nonatomic, retain) NSString *question;
 @property(nonatomic, retain) NSMutableArray *answers;

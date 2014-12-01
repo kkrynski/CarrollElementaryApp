@@ -12,7 +12,7 @@
 -(void)returnEquation: (NSString *)e andAnswer: (NSString *)a;
 @end
 
-@interface MathPopOverVC : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MathPopOverVC : UIViewController
 {
     
 }

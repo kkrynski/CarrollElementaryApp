@@ -268,7 +268,7 @@
 
 -(void)optionSelected:(id)sender
 {
-    UIButton *senderButton = (UIButton *)sender;
+    //UIButton *senderButton = (UIButton *)sender;
     
     
 }
