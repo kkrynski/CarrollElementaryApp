@@ -24,7 +24,7 @@ class SquaresDragAndDrop: PageVC
     
     private var arrayOfCoordinates = Array<(x: Int, y: Int)>()
     private var arrayOfSquares = NSMutableArray()
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -64,18 +64,29 @@ class SquaresDragAndDrop: PageVC
         switch panGesture.state
         {
         case .Began:
-            lastLocation = square!.center
+            if pushBehavior != nil
+            {
+                dynamicAnimator!.removeBehavior(pushBehavior!)
+            }
+            pushBehavior = UIPushBehavior(items: NSMutableArray(object: square!), mode: UIPushBehaviorMode.Continuous)
+            dynamicAnimator!.addBehavior(pushBehavior)
             
         case .Changed:
-            let translation = panGesture.translationInView(view)
-            square!.center = CGPointMake(lastLocation!.x + translation.x, lastLocation!.y + translation.y)
+            let offset = panGesture.translationInView(view)
+            pushBehavior!.pushDirection = CGVectorMake(offset.x, offset.y)
+            pushBehavior!.magnitude = CGFloat(sqrt(offset.x * offset.x + offset.y * offset.y) / CGFloat(50.0))
+            break
+            
+        case .Ended:
+            dynamicAnimator!.removeBehavior(pushBehavior!)
+            pushBehavior = nil
             break
             
         default:
             break
         }
     }
-
+    
     //MARK: - Private Functions
     
     private func coordiantesForSize(size: (width: Int, height: Int)) -> (x: Int, y: Int)
