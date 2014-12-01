@@ -100,6 +100,8 @@ class SquaresDragAndDrop: PageVC
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.translatesReferenceBoundsIntoBoundary = YES
         collisionBehavior.setTranslatesReferenceBoundsIntoBoundaryWithInsets(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
+        collisionBehavior.addBoundaryWithIdentifier("nextLabel", forPath: UIBezierPath(rect: nextButton.frame))
+        collisionBehavior.addBoundaryWithIdentifier("pageLabel", forPath: UIBezierPath(rect: otherLabel.frame))
         
         dynamicAnimator!.addBehavior(collisionBehavior)
     }
