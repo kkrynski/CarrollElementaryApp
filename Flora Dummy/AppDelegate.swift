@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         window!.makeKeyAndVisible()
         
+        tabBarController.presentViewController(PasswordVC(nibName: "PasswordVC", bundle: nil), animated: YES, completion: nil)
+        
         return YES
     }
 }

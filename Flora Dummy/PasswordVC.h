@@ -8,7 +8,7 @@
 
 #import "PageVC.h"
 
-@interface PasswordVC : PageVC
+@interface PasswordVC : FormattedVC
 {
     
 
