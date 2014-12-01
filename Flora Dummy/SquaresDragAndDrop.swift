@@ -74,7 +74,7 @@ class SquaresDragAndDrop: PageVC
         case .Changed:
             let offset = panGesture.translationInView(view)
             pushBehavior!.pushDirection = CGVectorMake(offset.x, offset.y)
-            pushBehavior!.magnitude = sqrtf(offset.x * offset.x + offset.y * offset.y) / Float(50.0)
+            pushBehavior!.magnitude = CGFloat(sqrt(offset.x * offset.x + offset.y * offset.y) / CGFloat(50.0))
             break
             
         case .Ended:
