@@ -293,7 +293,8 @@
     self.splitViewController.delegate = nil;
     self.splitViewController.delegate = self;
     
-    [self.splitViewController viewWillTransitionToSize:[UIApplication sharedApplication].keyWindow.bounds.size withTransitionCoordinator:self.transitionCoordinator];
+    [self.splitViewController willRotateToInterfaceOrientation:UIInterfaceOrientationUnknown duration:0];
+    //[self.splitViewController viewWillTransitionToSize:[UIApplication sharedApplication].keyWindow.bounds.size withTransitionCoordinator:self.transitionCoordinator];
     
 }
 
@@ -303,8 +304,9 @@
     [self.splitViewController.view setNeedsLayout];
     self.splitViewController.delegate = nil;
     self.splitViewController.delegate = self;
-    
-    [self.splitViewController viewWillTransitionToSize:[UIApplication sharedApplication].keyWindow.bounds.size withTransitionCoordinator:self.transitionCoordinator];
+    [self.splitViewController willRotateToInterfaceOrientation:UIInterfaceOrientationUnknown duration:0];
+
+    //[self.splitViewController viewWillTransitionToSize:[UIApplication sharedApplication].keyWindow.bounds.size withTransitionCoordinator:self.transitionCoordinator];
 
 }
 

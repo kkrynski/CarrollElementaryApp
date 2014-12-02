@@ -52,6 +52,8 @@
     [self.view addSubview:textView];
     
     [self outlineTextInTextView:textView];
+    textView.backgroundColor = secondaryColor;
+    textView.font = self.font;
     
     if(!text)
     {

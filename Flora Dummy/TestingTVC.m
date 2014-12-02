@@ -440,8 +440,6 @@
 
 
 
-
-
 #pragma mark Michael's Transition Methods
 
 - (UIPresentationController *) presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source

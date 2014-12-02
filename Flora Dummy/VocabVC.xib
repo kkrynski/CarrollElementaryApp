@@ -20,11 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9Z-NA-gTx">
-                    <rect key="frame" x="401" y="333" width="223" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9Z-NA-gTx">
+                    <rect key="frame" x="401" y="173" width="615" height="64"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="mhm-Cc-pQe"/>
-                        <constraint firstAttribute="width" constant="223" id="x62-ao-aBF"/>
+                        <constraint firstAttribute="height" constant="64" id="mhm-Cc-pQe"/>
+                        <constraint firstAttribute="width" constant="615" id="x62-ao-aBF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 1">
@@ -34,10 +34,20 @@
                         <action selector="but1:" destination="-1" eventType="touchUpInside" id="S7C-H5-whR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drk-Wr-KFh">
-                    <rect key="frame" x="401" y="385" width="223" height="44"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-W2-c1U">
+                    <rect key="frame" x="8" y="64" width="1008" height="108"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="AND-SS-oRY"/>
+                        <constraint firstAttribute="width" constant="1008" id="Huf-gk-Vau"/>
+                        <constraint firstAttribute="height" constant="108" id="Rmc-13-G5T"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drk-Wr-KFh">
+                    <rect key="frame" x="401" y="265" width="615" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="AND-SS-oRY"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 2">
@@ -47,10 +57,10 @@
                         <action selector="but2:" destination="-1" eventType="touchUpInside" id="B0Q-1z-22b"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XZ-WV-g5x">
-                    <rect key="frame" x="401" y="437" width="223" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XZ-WV-g5x">
+                    <rect key="frame" x="401" y="357" width="615" height="64"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="rA1-bO-SvH"/>
+                        <constraint firstAttribute="height" constant="64" id="rA1-bO-SvH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 3">
@@ -60,23 +70,23 @@
                         <action selector="but3:" destination="-1" eventType="touchUpInside" id="mA9-aa-Wwt"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emz-Gf-5uv">
-                    <rect key="frame" x="401" y="541" width="223" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emz-Gf-5uv">
+                    <rect key="frame" x="401" y="541" width="615" height="64"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="i92-DP-WoO"/>
+                        <constraint firstAttribute="height" constant="64" id="i92-DP-WoO"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                    <state key="normal" title="Ansewr 5">
+                    <state key="normal" title="Answer 5">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="but5:" destination="-1" eventType="touchUpInside" id="ZCG-gY-qzo"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-y9-eh3">
-                    <rect key="frame" x="401" y="489" width="223" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-y9-eh3">
+                    <rect key="frame" x="401" y="449" width="615" height="64"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="0Yb-SD-HFF"/>
+                        <constraint firstAttribute="height" constant="64" id="0Yb-SD-HFF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Answer 4">
@@ -86,16 +96,6 @@
                         <action selector="but4:" destination="-1" eventType="touchUpInside" id="hgm-80-0hY"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-W2-c1U">
-                    <rect key="frame" x="187" y="224" width="651" height="66"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="651" id="Huf-gk-Vau"/>
-                        <constraint firstAttribute="height" constant="66" id="Rmc-13-G5T"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -103,18 +103,18 @@
                 <constraint firstItem="drk-Wr-KFh" firstAttribute="trailing" secondItem="P9Z-NA-gTx" secondAttribute="trailing" id="4qA-nN-TE2"/>
                 <constraint firstItem="P9Z-NA-gTx" firstAttribute="leading" secondItem="drk-Wr-KFh" secondAttribute="leading" id="C4I-pV-bhc"/>
                 <constraint firstItem="emz-Gf-5uv" firstAttribute="trailing" secondItem="K9p-y9-eh3" secondAttribute="trailing" id="CeM-CV-a4G"/>
-                <constraint firstItem="K9p-y9-eh3" firstAttribute="top" secondItem="3XZ-WV-g5x" secondAttribute="bottom" constant="8" id="G6T-eK-fFV"/>
-                <constraint firstItem="P9Z-NA-gTx" firstAttribute="top" secondItem="2Zh-W2-c1U" secondAttribute="bottom" constant="43" id="Hqe-lp-1PK"/>
+                <constraint firstItem="K9p-y9-eh3" firstAttribute="top" secondItem="3XZ-WV-g5x" secondAttribute="bottom" constant="28" id="G6T-eK-fFV"/>
+                <constraint firstItem="P9Z-NA-gTx" firstAttribute="top" secondItem="2Zh-W2-c1U" secondAttribute="bottom" constant="1" id="Hqe-lp-1PK"/>
                 <constraint firstItem="K9p-y9-eh3" firstAttribute="leading" secondItem="3XZ-WV-g5x" secondAttribute="leading" id="I52-kW-iqR"/>
                 <constraint firstItem="3XZ-WV-g5x" firstAttribute="leading" secondItem="drk-Wr-KFh" secondAttribute="leading" id="OxU-rg-MU5"/>
-                <constraint firstItem="2Zh-W2-c1U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="224" id="T9c-0E-VXc"/>
-                <constraint firstItem="P9Z-NA-gTx" firstAttribute="centerX" secondItem="2Zh-W2-c1U" secondAttribute="centerX" id="TTN-0z-XnC"/>
-                <constraint firstItem="3XZ-WV-g5x" firstAttribute="top" secondItem="drk-Wr-KFh" secondAttribute="bottom" constant="8" id="fo5-Bq-JdY"/>
+                <constraint firstItem="2Zh-W2-c1U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="T9c-0E-VXc"/>
+                <constraint firstItem="P9Z-NA-gTx" firstAttribute="centerX" secondItem="2Zh-W2-c1U" secondAttribute="centerX" constant="196.5" id="TTN-0z-XnC"/>
+                <constraint firstItem="3XZ-WV-g5x" firstAttribute="top" secondItem="drk-Wr-KFh" secondAttribute="bottom" constant="28" id="fo5-Bq-JdY"/>
                 <constraint firstItem="3XZ-WV-g5x" firstAttribute="trailing" secondItem="K9p-y9-eh3" secondAttribute="trailing" id="iHa-E9-7lE"/>
-                <constraint firstItem="emz-Gf-5uv" firstAttribute="top" secondItem="K9p-y9-eh3" secondAttribute="bottom" constant="8" id="lkz-w1-ps9"/>
-                <constraint firstItem="K9p-y9-eh3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qke-Kp-CzS"/>
+                <constraint firstItem="emz-Gf-5uv" firstAttribute="top" secondItem="K9p-y9-eh3" secondAttribute="bottom" constant="28" id="lkz-w1-ps9"/>
+                <constraint firstItem="K9p-y9-eh3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="196.5" id="qke-Kp-CzS"/>
                 <constraint firstItem="emz-Gf-5uv" firstAttribute="leading" secondItem="K9p-y9-eh3" secondAttribute="leading" id="sOC-ML-Fhs"/>
-                <constraint firstItem="drk-Wr-KFh" firstAttribute="top" secondItem="P9Z-NA-gTx" secondAttribute="bottom" constant="8" id="tjB-jC-dtm"/>
+                <constraint firstItem="drk-Wr-KFh" firstAttribute="top" secondItem="P9Z-NA-gTx" secondAttribute="bottom" constant="28" id="tjB-jC-dtm"/>
             </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>

@@ -52,6 +52,8 @@
     // Draw textview
     summaryTextView = [[UITextView alloc] initWithFrame:CGRectMake(192, 191, 640, 483)];
     [self.view addSubview:summaryTextView];
+    summaryTextView.backgroundColor = secondaryColor;
+    summaryTextView.font = self.font;
     
     [self outlineTextInTextView:summaryTextView];
     

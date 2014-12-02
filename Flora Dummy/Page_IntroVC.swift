@@ -20,6 +20,7 @@ class Page_IntroVC: PageVC
         
         pageControl?.numberOfPages = pageCount.integerValue
         
+        summaryTextView!.text = summary
         Definitions.outlineTextInTextView(summaryTextView!, forFont: summaryTextView!.font)
         summaryTextView!.textColor = primaryColor
         summaryTextView!.backgroundColor = secondaryColor

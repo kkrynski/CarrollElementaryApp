@@ -176,6 +176,7 @@
             introVC.page = pageVC.page;
             introVC.pageNumber = pageVC.pageNumber;
             introVC.pageCount = pageVC.pageCount;
+            introVC.summary = (NSString *)[pageVC.page.variableContentDict objectForKey:@"Text"];
             
             [introVC reloadView];
             
@@ -405,9 +406,23 @@
             
             [pageViewController setViewControllers:[NSArray arrayWithObjects:vVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
             
+        }else if ([name isEqualToString:@"Counting Tool"])
+        {
+            SquaresDragAndDrop *squaresDragVC = [[SquaresDragAndDrop alloc] init];
+            squaresDragVC.parentManager = self;
+            
+            // Save important data to page
+            squaresDragVC.page = pageVC.page;
+            squaresDragVC.pageNumber = pageVC.pageNumber;
+            squaresDragVC.pageCount = pageVC.pageCount;
+           
+            squaresDragVC.numberOfSquares = [(NSNumber *)[squaresDragVC.page.variableContentDict objectForKey:@"Count"] intValue];
+ 
+            [squaresDragVC reloadView];
+            
+            [pageViewController setViewControllers:[NSArray arrayWithObjects:squaresDragVC, nil] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+            
         }
-        
-        
         
     }
 }
