@@ -458,6 +458,8 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
                     break
                     
                 default:
+                    finalResult = currentNumber
+                    currentNumber = 0.0
                     break
                 }
             }

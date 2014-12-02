@@ -88,8 +88,15 @@ class ScienceVC: UIViewController
         
         //Update the activities for the tableView
         gradeNumber = standardDefaults.objectForKey("gradeNumber") as? String
-        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary
-        activities = gradeDictionary.objectForKey("Science") as NSArray
+        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary?
+        if gradeDictionary != nil
+        {
+            activities = gradeDictionary!.objectForKey("Science") as NSArray
+        }
+        else
+        {
+            activities = NSArray()
+        }
         
         activitiesTable!.reloadData()
     }
