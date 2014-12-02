@@ -345,7 +345,7 @@
     
     // Save to JSON here
     NSError *error;
-    NSLog(@"\nDictionary:\n%@\n", [cc dictionaryForActivity:activity]);
+    //NSLog(@"\nDictionary:\n%@\n", [cc dictionaryForActivity:activity]);
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[cc dictionaryForActivity: activity]
                                                        options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
                                                          error:&error];
