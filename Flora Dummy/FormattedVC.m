@@ -101,6 +101,8 @@
 -(void)updateColors
 {
     // Get the stored data before the view loads
+    
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // Get Colors

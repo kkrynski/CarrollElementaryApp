@@ -8,6 +8,8 @@
 
 #import "QuickQuizVC.h"
 
+#import "FloraDummy-Swift.h"
+
 @interface QuickQuizVC ()
 
 @end
@@ -50,10 +52,12 @@
 {
     // Question label
     
-    questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.dateLabel.frame.origin.x,
-                                                              self.dateLabel.frame.origin.y + self.dateLabel.frame.size.height + 20,
+    
+    
+    questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,
+                                                              self.otherLabel.frame.origin.y + self.otherLabel.frame.size.height + 20,
                                                               self.view.frame.size.width - 40,
-                                                              self.dateLabel.frame.size.height + 20)];
+                                                              self.otherLabel.frame.size.height + 20)];
     
     questionLabel.text = question;
     questionLabel.textAlignment = NSTextAlignmentCenter;

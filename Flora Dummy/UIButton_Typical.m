@@ -17,51 +17,18 @@
     if (self)
     {
         [self addTarget: self action: @selector(clickedDown:) forControlEvents: UIControlEventTouchDown];
+        [self addTarget: self action: @selector(clickedDown:) forControlEvents: UIControlEventTouchDragEnter];
         [self addTarget: self action: @selector(clickReleased:) forControlEvents: UIControlEventTouchUpInside];
-        
-        //gradientColors = [[NSMutableArray alloc] initWithObjects:(id)[UIColor whiteColor], (id)[UIColor lightGrayColor], nil];
-        //self.backgroundColor = [UIColor greenColor];
+        [self addTarget: self action: @selector(clickReleased:) forControlEvents: UIControlEventTouchDragExit];
     }
     return self;
 }
 
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void) setTitle:(NSString *)title forState:(UIControlState)state
 {
-    /*
-     // Super LBTQI+ code: Creates rainbow gradient
-     // Draw a custom gradient
-     CAGradientLayer *btnGradient = [CAGradientLayer layer];
-     btnGradient.frame = readMoreButton.bounds;
-     btnGradient.colors = [NSArray arrayWithObjects:
-     (id)[[UIColor redColor] CGColor],
-     (id)[[UIColor orangeColor] CGColor],
-     (id)[[UIColor yellowColor] CGColor],
-     (id)[[UIColor greenColor] CGColor],
-     (id)[[UIColor blueColor] CGColor],
-     (id)[[UIColor purpleColor] CGColor],
-     nil];
-     [readMoreButton.layer insertSublayer:btnGradient atIndex:0]; 
-     */
+    [super setTitle:title forState:state];
+    [Definitions outlineTextInLabel:self.titleLabel];
 }
-
-/*-(void)updateGradient
-{
-    CAGradientLayer *btnGradient = [CAGradientLayer layer];
-    btnGradient.frame = self.bounds;
-    btnGradient.colors = gradientColors;
-    [self.layer insertSublayer:btnGradient atIndex:0];
-}
-
--(void)updateGradientForColors: (NSArray *)colors
-{
-    gradientColors = [colors mutableCopy];
-    
-    [self updateGradient];
-}*/
-
 
 -(void)clickedDown:(id)sender
 {
@@ -69,23 +36,22 @@
     
     [b.layer removeAllAnimations];
     
-    [UIView animateWithDuration:0.20 animations:^{
-        b.alpha = 0.60;
-    }];
-
-    
+    [UIView animateWithDuration:0.20 animations:^
+     {
+         b.alpha = 0.60;
+     }];
 }
 
 -(void)clickReleased:(id)sender
 {
-    UIButton *b = (UIButton *)sender;
+    UIButton *button = (UIButton *)sender;
     
-    [b.layer removeAllAnimations];
-
-    [UIView animateWithDuration:0.3 animations:^{
-        b.alpha = 1.0;
-    }];
-
+    [button.layer removeAllAnimations];
+    
+    [UIView animateWithDuration:0.3 animations:^
+     {
+         button.alpha = 1.0;
+     }];
 }
 
 @end

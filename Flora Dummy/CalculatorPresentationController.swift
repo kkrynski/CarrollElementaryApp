@@ -12,6 +12,7 @@ class CalculatorPresentationController: UIPresentationController
 {
     private var blurView : UIVisualEffectView?          //The background blur view
     
+    private var infoView : UIView?                      //The container view for the arrows and dismiss button
     private var rightArrow : UIButton?                  //The right-facing arrow
     private var leftArrow : UIButton?                   //The left-facing arrow
     private var dismissButton : UIButton?               //The dismiss button
@@ -44,17 +45,26 @@ class CalculatorPresentationController: UIPresentationController
     //Blur the background
     override func presentationTransitionWillBegin()
     {
+        infoView = UIView(frame: CGRectMake(0, 0, 260, 220))
+        infoView!.alpha = 0.0
+        infoView!.layer.cornerRadius = 10.0
+        infoView!.layer.shadowOpacity = 0.85
+        infoView!.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        infoView!.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
+        infoView!.center = CGPointMake(containerView.frame.size.width/2.0, containerView.frame.size.height - 20 - 200)
+        containerView.addSubview(infoView!)
+        
         rightArrow = UIButton(frame: CGRectMake(0, 0, 100, 100))
         rightArrow!.setTitle("\u{21a6}", forState: .Normal)
         rightArrow!.titleLabel!.font = UIFont(name: "Marker Felt", size: 72)
         rightArrow!.setTitleColor(UIColor.blackColor(), forState: .Normal)
         rightArrow!.titleLabel!.textAlignment = .Left
         Definitions.outlineTextInLabel(rightArrow!.titleLabel!)
-        rightArrow!.center = CGPointMake(containerView.frame.size.width/2.0 - 20 - rightArrow!.frame.size.width/2.0, containerView.frame.size.height - 20 - 200 - 10 - rightArrow!.frame.size.height/2.0)
+        rightArrow!.center = CGPointMake(infoView!.frame.size.width/2.0 - 20 - rightArrow!.frame.size.width/2.0, rightArrow!.frame.size.height/2.0 + 10)
         rightArrow!.alpha = 0.0
-        rightArrow!.userInteractionEnabled = false
+        rightArrow!.userInteractionEnabled = NO
         rightArrow!.addTarget(self, action: "moveToRight", forControlEvents: .TouchUpInside)
-        containerView.addSubview(rightArrow!)
+        infoView!.addSubview(rightArrow!)
         
         leftArrow = UIButton(frame: CGRectMake(0, 0, 100, 100))
         leftArrow!.setTitle("\u{21a4}", forState: .Normal)
@@ -62,11 +72,11 @@ class CalculatorPresentationController: UIPresentationController
         leftArrow!.setTitleColor(UIColor.blackColor(), forState: .Normal)
         leftArrow!.titleLabel!.textAlignment = .Right
         Definitions.outlineTextInLabel(leftArrow!.titleLabel!)
-        leftArrow!.center = CGPointMake(containerView.frame.size.width/2.0 + 20 + leftArrow!.frame.size.width/2.0, containerView.frame.size.height - 20 - 200 - 10 - leftArrow!.frame.size.height/2.0)
+        leftArrow!.center = CGPointMake(infoView!.frame.size.width/2.0 + 20 + leftArrow!.frame.size.width/2.0, leftArrow!.frame.size.height/2.0 + 10)
         leftArrow!.alpha = 0.0
-        leftArrow!.userInteractionEnabled = false
+        leftArrow!.userInteractionEnabled = NO
         leftArrow!.addTarget(self, action: "moveToLeft", forControlEvents: .TouchUpInside)
-        containerView.addSubview(leftArrow!)
+        infoView!.addSubview(leftArrow!)
         
         dismissButton = UIButton(frame: CGRectMake(0, 0, 240, 100))
         dismissButton!.setTitle("Dismiss Calculator", forState: .Normal)
@@ -74,10 +84,10 @@ class CalculatorPresentationController: UIPresentationController
         dismissButton!.setTitleColor(UIColor.blackColor(), forState: .Normal)
         dismissButton!.titleLabel!.textAlignment = .Center
         Definitions.outlineTextInLabel(dismissButton!.titleLabel!)
-        dismissButton!.center = CGPointMake(containerView.frame.size.width/2.0, containerView.frame.size.height - 20 - 200 + 10 + dismissButton!.frame.size.height/2.0)
+        dismissButton!.center = CGPointMake(infoView!.frame.size.width/2.0, infoView!.frame.size.height - 10 - dismissButton!.frame.size.height/2.0)
         dismissButton!.alpha = 0.0
         dismissButton!.addTarget(self, action: "dismissCalculator", forControlEvents: .TouchUpInside)
-        containerView.addSubview(dismissButton!)
+        infoView!.addSubview(dismissButton!)
         
         dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator")
         containerView!.addGestureRecognizer(dismissTap!)
@@ -89,17 +99,18 @@ class CalculatorPresentationController: UIPresentationController
         let transitionCoordinator = self.presentingViewController.transitionCoordinator()
         transitionCoordinator?.animateAlongsideTransition(
             {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+                self.infoView!.alpha = 1.0
                 self.dismissButton!.alpha = 1.0
                 
                 if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
                 {
                     self.rightArrow!.alpha = 1.0
-                    self.rightArrow!.userInteractionEnabled = true
+                    self.rightArrow!.userInteractionEnabled = YES
                 }
                 else
                 {
                     self.leftArrow!.alpha = 1.0
-                    self.leftArrow!.userInteractionEnabled = true
+                    self.leftArrow!.userInteractionEnabled = YES
                 }
             }, completion:nil)
     }
@@ -107,7 +118,7 @@ class CalculatorPresentationController: UIPresentationController
     //Clean up after presenting
     override func presentationTransitionDidEnd(completed: Bool)
     {
-        if completed == false   //If for some reason the transition was cancelled, remove everything
+        if completed == NO   //If for some reason the transition was cancelled, remove everything
         {
             rightArrow!.removeFromSuperview()
             leftArrow!.removeFromSuperview()
@@ -125,15 +136,11 @@ class CalculatorPresentationController: UIPresentationController
     //Remove the arrows and blur view
     override func dismissalTransitionWillBegin()
     {
-        rightArrow!.userInteractionEnabled = false
-        leftArrow!.userInteractionEnabled = false
-        dismissButton!.userInteractionEnabled = false
+        infoView!.userInteractionEnabled = NO
         let transitionCoordinator = self.presentingViewController.transitionCoordinator()
         transitionCoordinator?.animateAlongsideTransition(
             {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-                self.rightArrow!.alpha = 0.0
-                self.leftArrow!.alpha = 0.0
-                self.dismissButton!.alpha = 0.0
+                self.infoView!.alpha = 0.0
             }, completion:nil)
     }
     
@@ -145,6 +152,7 @@ class CalculatorPresentationController: UIPresentationController
             rightArrow!.removeFromSuperview()
             leftArrow!.removeFromSuperview()
             dismissButton!.removeFromSuperview()
+            infoView!.removeFromSuperview()
             
             NSNotificationCenter.defaultCenter().removeObserver(self)
         }
@@ -152,13 +160,13 @@ class CalculatorPresentationController: UIPresentationController
         {
             if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
             {
-                rightArrow!.userInteractionEnabled = true
+                rightArrow!.userInteractionEnabled = YES
             }
             else
             {
-                leftArrow!.userInteractionEnabled = true
+                leftArrow!.userInteractionEnabled = YES
             }
-            dismissButton!.userInteractionEnabled = true
+            dismissButton!.userInteractionEnabled = YES
         }
     }
     
@@ -190,13 +198,13 @@ class CalculatorPresentationController: UIPresentationController
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowUserInteraction | .AllowAnimatedContent, animations: { () -> Void in
             
             self.rightArrow!.alpha = 0.0
-            self.rightArrow!.userInteractionEnabled = false
+            self.rightArrow!.userInteractionEnabled = NO
             
             }, completion: nil)
         UIView.animateWithDuration(transitionLength, delay: 0.4, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowUserInteraction | .AllowAnimatedContent, animations: { () -> Void in
             
             self.leftArrow!.alpha = 1.0
-            self.leftArrow!.userInteractionEnabled = true
+            self.leftArrow!.userInteractionEnabled = YES
             
             }, completion: nil)
     }
@@ -214,13 +222,13 @@ class CalculatorPresentationController: UIPresentationController
         UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowUserInteraction | .AllowAnimatedContent, animations: { () -> Void in
             
             self.leftArrow!.alpha = 0.0
-            self.leftArrow!.userInteractionEnabled = false
+            self.leftArrow!.userInteractionEnabled = NO
             
             }, completion: nil)
         UIView.animateWithDuration(transitionLength, delay: 0.4, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowUserInteraction | .AllowAnimatedContent, animations: { () -> Void in
             
             self.rightArrow!.alpha = 1.0
-            self.rightArrow!.userInteractionEnabled = true
+            self.rightArrow!.userInteractionEnabled = YES
             
             }, completion: nil)
     }
@@ -228,7 +236,7 @@ class CalculatorPresentationController: UIPresentationController
     //Dismisses the calculator
     func dismissCalculator()
     {
-        presentedViewController.dismissViewControllerAnimated(true, completion: nil)
+        presentedViewController.dismissViewControllerAnimated(YES, completion: nil)
     }
     
     //MARK: - Calculator Size Changing
@@ -243,7 +251,7 @@ class CalculatorPresentationController: UIPresentationController
         if calculatorExtension != nil && oldCalculatorExtension != nil  //A calculator extension is already presented
         {
             calculatorHolderView!.insertSubview(calculatorExtension!, belowSubview: presentedView())
-            calculatorHolderView!.userInteractionEnabled = false
+            calculatorHolderView!.userInteractionEnabled = NO
             
             calculatorExtension!.frame = CGRectMake(0, 0, frameOfPresentedViewInContainerView().size.width - presentedView().frame.size.width, frameOfPresentedViewInContainerView().size.height)
             calculatorExtension!.backgroundColor = presentedView().backgroundColor
@@ -282,17 +290,15 @@ class CalculatorPresentationController: UIPresentationController
                     self.oldCalculatorExtension = self.calculatorExtension!
                     self.calculatorExtension = nil
                     
-                    self.calculatorHolderView!.userInteractionEnabled = true
+                    self.calculatorHolderView!.userInteractionEnabled = YES
             })
         }
         else    //We are presenting the first calculator extension
         {
-            leftArrow!.userInteractionEnabled = false
-            rightArrow!.userInteractionEnabled = false
-            dismissButton!.userInteractionEnabled = false
+            infoView!.userInteractionEnabled = NO
             
             calculatorHolderView = UIView(frame: presentedView().frame)
-            calculatorHolderView!.userInteractionEnabled = false
+            calculatorHolderView!.userInteractionEnabled = NO
             presentedView().center = CGPointMake(calculatorHolderView!.frame.size.width/2.0, calculatorHolderView!.frame.size.height/2.0)
             presentedView().layer.shadowOpacity = 0.0
             presentedView().layer.shadowRadius = 5.0
@@ -334,15 +340,13 @@ class CalculatorPresentationController: UIPresentationController
                     self.calculatorExtension!.center = CGPointMake(self.calculatorExtension!.frame.size.width/2.0 + 20, self.calculatorExtension!.center.y)
                 }
                 
-                self.leftArrow!.alpha = 0.0
-                self.rightArrow!.alpha = 0.0
-                self.dismissButton!.alpha = 0.0
+                self.infoView!.alpha = 0.0
                 }, completion: { (finished) -> Void in
                     
                     self.oldCalculatorExtension = self.calculatorExtension!
                     self.calculatorExtension = nil
                     
-                    self.calculatorHolderView!.userInteractionEnabled = true
+                    self.calculatorHolderView!.userInteractionEnabled = YES
                     
                     self.dismissTap = UITapGestureRecognizer(target: self, action: "dismissTapDecreaseSize")
                     self.containerView.addGestureRecognizer(self.dismissTap!)
@@ -360,14 +364,14 @@ class CalculatorPresentationController: UIPresentationController
     //Decrease the calculator's width to hide the special functions view
     func decreaseCalculatorSize()
     {
-        if oldCalculatorExtension == nil || calculatorHolderView!.isDescendantOfView(containerView) == false    //Alread dismissed, do nothing
+        if oldCalculatorExtension == nil || calculatorHolderView!.isDescendantOfView(containerView) == NO    //Alread dismissed, do nothing
         {
             return
         }
         
         containerView.removeGestureRecognizer(self.dismissTap!)
         
-        calculatorHolderView!.userInteractionEnabled = false
+        calculatorHolderView!.userInteractionEnabled = NO
         
         let widthDifference = calculatorHolderView!.frame.size.width - frameOfPresentedViewInContainerView().size.width
         
@@ -418,18 +422,8 @@ class CalculatorPresentationController: UIPresentationController
         
         UIView.animateWithDuration(transitionLength, delay: transitionLength, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             
-            self.dismissButton!.alpha = 1.0
-            self.dismissButton!.userInteractionEnabled = true
-            if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
-            {
-                self.rightArrow!.alpha = 1.0
-                self.rightArrow!.userInteractionEnabled = true
-            }
-            else
-            {
-                self.leftArrow!.alpha = 1.0
-                self.leftArrow!.userInteractionEnabled = true
-            }
+            self.infoView!.alpha = 1.0
+            self.infoView!.userInteractionEnabled = YES
             
             }, completion: nil)
     }

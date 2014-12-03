@@ -11,6 +11,10 @@
 @import AVFoundation;
 
 @interface SpellingTestVC ()
+{
+    AVAudioPlayer *audioPlayer;
+}
+
 
 @end
 
@@ -26,6 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   //  _audioController = [[AudioController alloc]init];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"hello" withExtension:@"wav"];
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    
     word = @"hello";
     // Do any additional setup after loading the view from its nib.
 }
@@ -33,11 +40,8 @@
 -(IBAction)PlayButtonPressed {
     //The call below uses AudioServicesPlaySystemSound to play
     //the word sound.
-    NSError *error;
-   // [_audioController playSystemSound];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"hello" withExtension:@"wav"];
-    [[[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error] play];
-    NSLog(@"%@",error);
+    
+    [audioPlayer play];
     
     NSLog(@"PlayButtonPressed");
 }

@@ -88,8 +88,15 @@ class ScienceVC: UIViewController
         
         //Update the activities for the tableView
         gradeNumber = standardDefaults.objectForKey("gradeNumber") as? String
-        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary
-        activities = gradeDictionary.objectForKey("Science") as NSArray
+        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary?
+        if gradeDictionary != nil
+        {
+            activities = gradeDictionary!.objectForKey("Science") as NSArray
+        }
+        else
+        {
+            activities = NSArray()
+        }
         
         activitiesTable!.reloadData()
     }
@@ -137,13 +144,13 @@ class ScienceVC: UIViewController
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         //Visually deselect the cell since we're moving away from the view
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: YES)
         
         //Get the information for the activity for the selected cell
         let activityDictionary = activities[indexPath.row] as NSDictionary
         
         //Create a PageManager for the activity and store it in THIS view controller
-        pageManager = PageManager(activity: activityDictionary, forParentViewController: self)
+        pageManager = PageManager(activity: ClassConversions().activityFromDictionary(activityDictionary), forParentViewController: self)
     }
     
 }
