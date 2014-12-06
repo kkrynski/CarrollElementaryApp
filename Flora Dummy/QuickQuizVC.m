@@ -82,6 +82,9 @@
                              forState:UIControlStateNormal];
     option1Button.tag = 0;
     
+    //[myButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 0.0)];
+
+    
     [option1Button addTarget:self
                       action:@selector(optionSelected:)
             forControlEvents:UIControlEventTouchUpInside];

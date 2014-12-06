@@ -176,6 +176,7 @@
             introVC.page = pageVC.page;
             introVC.pageNumber = pageVC.pageNumber;
             introVC.pageCount = pageVC.pageCount;
+            //introVC.activityTitle = activity.name;
             introVC.summary = (NSString *)[pageVC.page.variableContentDict objectForKey:@"Text"];
             
             [introVC reloadView];
