@@ -164,6 +164,8 @@ class ClockDragVC: PageVC, ClockDelegate
                 (endSeconds >= currentSeconds - bufferSeconds && endSeconds <= currentSeconds + bufferSeconds)
         {
         case YES:
+            dimView.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.4)
+            
             let correctLabel = UILabel()
             correctLabel.alpha = 0.0
             correctLabel.text = "Correct!"
@@ -196,6 +198,8 @@ class ClockDragVC: PageVC, ClockDelegate
             break
             
         case NO:
+            dimView.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.4)
+            
             let incorrectLabel = UILabel()
             incorrectLabel.alpha = 0.0
             incorrectLabel.text = "Incorrect!\nPlease try again!"

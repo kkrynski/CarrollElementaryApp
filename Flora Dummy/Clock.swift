@@ -414,7 +414,14 @@ class Clock: UIView
         let minutes = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
         let seconds = Int(floor((atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
         
+        if showSecondsHand == YES
+        {
         _currentTime = String(format: "%02d:%02d:%02d", (hours < 0 ? 12 - abs(hours):hours), (minutes < 0 ? 60 - abs(minutes):minutes), (seconds < 0 ? 60 - abs(seconds):seconds))
+        }
+        else
+        {
+            _currentTime = String(format: "%02d:%02d", (hours < 0 ? 12 - abs(hours):hours), (minutes < 0 ? 60 - abs(minutes):minutes))
+        }
         
         delegate?.updateCurrentTimeLabel()
     }
