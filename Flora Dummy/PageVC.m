@@ -150,6 +150,12 @@
     if (pageControl)
         [pageControl setCurrentPage: pageNumber.intValue - 1];
     
+    if ((![pageNumber isEqual:@1] || pageCount.intValue > 0) && previousButton == nil)   //If this is the first page and there's nothing after it, no need for a button
+    {
+        previousButton = [[UIButton_Typical alloc] init];
+        [previousButton addTarget:self action:@selector(goToPreviousPage) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     // If there are multiple pages
     if (pageCount.intValue > 0)
     {

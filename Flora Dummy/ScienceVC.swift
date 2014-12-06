@@ -127,16 +127,16 @@ class ScienceVC: UIViewController
         let activityDictionary = activities[indexPath.row] as NSDictionary
         
         //Update the titleLabel for the cell to the Activity's Name
-        cell!.textLabel.text = activityDictionary.objectForKey("Name") as String!
-        cell!.textLabel.font = font
-        cell!.textLabel.textColor = primaryColor
-        Definitions.outlineTextInLabel(cell!.textLabel)
+        cell!.textLabel!.text = activityDictionary.objectForKey("Name") as String!
+        cell!.textLabel!.font = font
+        cell!.textLabel!.textColor = primaryColor
+        Definitions.outlineTextInLabel(cell!.textLabel!)
         
         //Update the cell's colors
         cell!.backgroundColor = .clearColor()
         
         //NOTE: -  Update this line to get an image based on the activity
-        cell!.imageView.image = UIImage(named: "117-todo.png")
+        cell!.imageView!.image = UIImage(named: "117-todo.png")
         
         return cell!
     }
