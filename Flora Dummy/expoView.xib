@@ -48,7 +48,7 @@
                         <constraint firstAttribute="width" constant="60" id="egI-qk-0uk"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="36"/>
-                    <state key="normal" title="x^y">
+                    <state key="normal" title="^">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>

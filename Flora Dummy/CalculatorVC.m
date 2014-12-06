@@ -50,26 +50,27 @@ NSString *curNum = @"";
     // Dispose of any resources that can be recreated.
 }
 -(void)command:(NSString *)val{
+    NSLog(@"%d",state);
     if(state == -1){
         curNum = @"";
         [expression removeAllObjects];
         calLabel.text = @"";
+        [expression addObject:(val)];
         curNum = [NSString stringWithFormat:@"%@%@",curNum,val];
         calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , val];
+        state = 0;
     }else if(state == 0){
         NSInteger index = [expression indexOfObject:curNum];
         curNum = [NSString stringWithFormat:@"%@%@",curNum,val];
         if (index != NSNotFound)
-            [expression replaceObjectAtIndex:index withObject:curNum];
+            [expression replaceObjectAtIndex:index withObject:curNum]; // Need to fix if num - -num
         else
         {
             [expression addObject:val];
             curNum = val;
         }
-        //curNum = @"";
         calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , val];
     }else if (state == 1){
-        //[curNum isEqualToString:@""] == NO ? [expression addObject:(curNum)]:nil;
         [expression addObject:(val)];
         calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , val];
         curNum = @"";
@@ -77,13 +78,11 @@ NSString *curNum = @"";
     }
 }
 -(NSString *)calculate:(NSMutableArray *)express{
-
+    @try {
     if(state == 0){
         NSLog(@"Express array: %@", express);
-        //[express addObject:(curNum)];
-        
-        ///curNum = @"";
         NSUInteger openParenIndex = [express indexOfObject:@"("];
+         if([express count] > 1){
         int closeParenIndex = 0;
         int parencount = 0;
         if(openParenIndex != NSNotFound){
@@ -110,98 +109,209 @@ NSString *curNum = @"";
                         NSLog(@"%@", express);
                     }
                 }
+                if(i -1 == [express count]){
+                    closeParenIndex = i;
+                    NSArray *insideParenArray = [express subarrayWithRange:NSMakeRange(openParenIndex + 1, (closeParenIndex - openParenIndex) - 1)];
+                    NSLog(@"Inside Parentheses Array: %@", insideParenArray);
+                    
+                    NSString *answerInsideParens = [self calculate:[NSMutableArray arrayWithArray:insideParenArray]];
+                    
+                    [express removeObjectsInRange:NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1)];
+                    NSLog(@"Answer: %@", answerInsideParens);
+                    [express insertObject:answerInsideParens atIndex:openParenIndex];
+                    
+                    i -= NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1).length;
+                    i++;
+                    NSLog(@"%@", express);
+
+                }
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"√"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(sqrt(num1.doubleValue))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"!"]){
+                NSString *num1 = express[i-1];
+                 NSLog(@"%@", express);
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(tgamma(num1.doubleValue + 1.0))]];
+                  NSLog(@"%@", express);
+                [express removeObjectAtIndex:i-1];
+                  NSLog(@"%@", express);
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"e"]){
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",M_E]];
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"π"]){
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",M_PI]];
+                i--;
+            }
+        }
+        
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"ln"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(log(num1.doubleValue))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"log"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(log10(num1.doubleValue))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
             }
         }
 
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"sin"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(sin(num1.doubleValue))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"cos"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(cos(num1.doubleValue))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"tan"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(tan(num1.doubleValue))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
         
-       /* for(int i = 0; i < [express count]; i++){
-            if([express[i] isEqualToString:@"("]){
-                for(int j = 0; j < [express count]; j++){
-                    if(a){
-                        NSMutableArray *temp = [NSMutableArray array];
-                        
-                        
-                        
-                        
-                        for(int r = i+1; r < j; r++){
-                            [temp addObject:(express[r])];
-                            [express removeObjectAtIndex:r];
-                            r--;
-                            j--;
-                        }
-                        
-                        [express removeObjectAtIndex:i];
-                        [express removeObjectAtIndex:i];
-                        NSLog(@"%@",[self calculate:temp]);
-                        [express insertObject:[self calculate:temp] atIndex:(i)];
-                        [express removeObject:@""];
-                        NSLog(@"%@", express);
-                        break;
-                    }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"arcsin"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(180 / M_PI*(asin(num1.doubleValue)))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"arccos"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(180 / M_PI*(acos(num1.doubleValue)))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
+        for(int i = 0; i < [express count]; i++){
+            if([express[i] isEqualToString:@"arctan"]){
+                NSString *num1 = express[i+1];
+                [express replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%f",(180 / M_PI*(atan(num1.doubleValue)))]];
+                [express removeObjectAtIndex:i+1];
+                i--;
+            }
+        }
+            for(int i = 0; i < [express count]; i++){
+                if([express[i] isEqualToString:@"^"]){
+                    NSString *num1 = express[i-1];
+                    NSString *num2 = express[i+1];
+                    [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(pow(num1.doubleValue,num2.doubleValue))]];
+                    [express removeObjectAtIndex:i];
+                    [express removeObjectAtIndex:i];
+                    i--;
                 }
             }
-        }*/
-        
-        for(int i = 0; i < [express count]; i++){
-            if([express[i] isEqualToString:@"*"]){
-                NSString *num1 = express[i-1];
-                NSString *num2 = express[i+1];
-                [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue*num2.doubleValue)]];
-                [express removeObjectAtIndex:i];
-                [express removeObjectAtIndex:i];
-                i--;
-            } else if([express[i] isEqualToString:@"/"]){
-                NSString *num1 = express[i-1];
-                NSString *num2 = express[i+1];
-                [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue/num2.doubleValue)]];
-                [express removeObjectAtIndex:i];
-                [express removeObjectAtIndex:i];
-                i--;
+            
+            for(int i = 0; i < [express count]; i++){
+                if([express[i] isEqualToString:@"*"]){
+                    NSString *num1 = express[i-1];
+                    NSString *num2 = express[i+1];
+                    [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue*num2.doubleValue)]];
+                    [express removeObjectAtIndex:i];
+                    [express removeObjectAtIndex:i];
+                    i--;
+                } else if([express[i] isEqualToString:@"/"]){
+                    NSString *num1 = express[i-1];
+                    NSString *num2 = express[i+1];
+                    [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue/num2.doubleValue)]];
+                    [express removeObjectAtIndex:i];
+                    [express removeObjectAtIndex:i];
+                    i--;
+                }
             }
-        }
-        
-        for(int i = 0; i < [express count]; i++){
-            if([express[i] isEqualToString:@"+"]){
-                NSString *num1 = express[i-1];
-                NSString *num2 = express[i+1];
-                [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue+num2.doubleValue)]];
-                [express removeObjectAtIndex:i];
-                [express removeObjectAtIndex:i];
-                i--;
-            } else if([express[i] isEqualToString:@"-"]){
-                NSString *num1 = express[i-1];
-                NSString *num2 = express[i+1];
-                [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue-num2.doubleValue)]];
-                [express removeObjectAtIndex:i];
-                [express removeObjectAtIndex:i];
-                i--;
+            for(int i = 0; i < [express count]; i++){
+                if([express[i] isEqualToString:@"*"]){
+                    NSString *num1 = express[i-1];
+                    NSString *num2 = express[i+1];
+                    [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue*num2.doubleValue)]];
+                    [express removeObjectAtIndex:i];
+                    [express removeObjectAtIndex:i];
+                    i--;
+                } else if([express[i] isEqualToString:@"/"]){
+                    NSString *num1 = express[i-1];
+                    NSString *num2 = express[i+1];
+                    [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue/num2.doubleValue)]];
+                    [express removeObjectAtIndex:i];
+                    [express removeObjectAtIndex:i];
+                    i--;
+                }
             }
+            
+            for(int i = 0; i < [express count]; i++){
+                if([express[i] isEqualToString:@"+"]){
+                    NSString *num1 = express[i-1];
+                    NSString *num2 = express[i+1];
+                    [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue+num2.doubleValue)]];
+                    [express removeObjectAtIndex:i];
+                    [express removeObjectAtIndex:i];
+                    i--;
+                } else if([express[i] isEqualToString:@"-"]){
+                    NSString *num1 = express[i-1];
+                    NSString *num2 = express[i+1];
+                    [express replaceObjectAtIndex:i-1 withObject:[NSString stringWithFormat:@"%f",(num1.doubleValue-num2.doubleValue)]];
+                    [express removeObjectAtIndex:i];
+                    [express removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+        } else{
+             [expression removeAllObjects];
+            [expression addObject:@"0"];
         }
+       
         curNum = express[0];
-        calLabel.text = [[express[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0"]] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
-        //state = -1;
-        return curNum;
+        if(curNum.doubleValue < 1.0){
+            calLabel.text = [express[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0"]];
+            calLabel.text = [NSString stringWithFormat:@"0%@",calLabel.text];
+        }else{
+            calLabel.text = [[express[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0"]] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+        }
+        
     }
+    }
+        @catch (NSException *exception) {
+            curNum = @"";
+            [expression removeAllObjects];
+            calLabel.text = @"";
+        }
+        @finally {
+            
+        }
     return curNum;
-}
--(NSString *)roundem:(int)index{
-    NSString *temp = expression[0];
-    if(index == 0){
-        return [NSString stringWithFormat:@"%.0f",temp.doubleValue];
-    }else if (index == 1){
-        return [NSString stringWithFormat:@"%.1f",temp.doubleValue];
-    }else if (index == 2){
-        return [NSString stringWithFormat:@"%.2f",temp.doubleValue];
-    }else if (index == 3){
-        return [NSString stringWithFormat:@"%.3f",temp.doubleValue];
-    }else if (index == 4){
-        return [NSString stringWithFormat:@"%.4f",temp.doubleValue];
-    }else if (index == 5){
-        return [NSString stringWithFormat:@"%.5f",temp.doubleValue];
-    }else{
-        return [NSString stringWithFormat:@"%.6f",temp.doubleValue];
-    }
-    
 }
 - (IBAction)zeroBut:(id)sender {
     [self command:@"0"];
@@ -221,7 +331,6 @@ NSString *curNum = @"";
 - (IBAction)fiveBut:(id)sender {
     [self command:@"5"];
 }
-
 - (IBAction)sixBut:(id)sender {
     [self command:@"6"];
 }
@@ -272,9 +381,36 @@ NSString *curNum = @"";
     state = 1;
     [self command:@")"];
 }
-
 - (IBAction)negBut:(id)sender {
-    
+    if([curNum isEqualToString:@""] || state == -1){
+        if(state == -1){
+            curNum = @"";
+            [expression removeAllObjects];
+            calLabel.text = @"";
+            [expression addObject:(@"-")];
+            curNum = [NSString stringWithFormat:@"%@%@",curNum,@"-"];
+            calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , @"-"];
+            state = 0;
+        }else if(state == 0){
+            NSInteger index = [expression indexOfObject:curNum];
+            curNum = [NSString stringWithFormat:@"%@%@",curNum,@"-"];
+            if (index != NSNotFound)
+                [expression replaceObjectAtIndex:index withObject:curNum];
+            else
+            {
+                [expression addObject:@"-"];
+                curNum = @"-";
+            }
+            calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , @"-"];
+        }else if (state == 1){
+            [expression addObject:(@"-")];
+            calLabel.text = [NSString stringWithFormat:@"%@%@",calLabel.text , @"-"];
+            curNum = @"";
+            state = 0;
+        }
+        
+
+    }
 }
 - (IBAction)trigBut:(id)sender {
     if(trigisClicked){
@@ -323,7 +459,12 @@ NSString *curNum = @"";
     
 }
 - (IBAction)rootBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"√"];
+    state = 1;
+    [self command:@"("];
+
     
 }
 - (IBAction)expoBut:(id)sender {
@@ -347,25 +488,57 @@ NSString *curNum = @"";
         
     }
 }
-
+-(void)clearcheck {
+    if(state == -1){
+        curNum = @"";
+        [expression removeAllObjects];
+        calLabel.text = @"";
+    }
+}
 - (IBAction)sinBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"sin"];
+    state = 1;
+    [self command:@"("];
 }
 - (IBAction)cosBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"cos"];
+    state = 1;
+    [self command:@"("];
     
 }
 - (IBAction)tanBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"tan"];
+    state = 1;
+    [self command:@"("];
 }
 - (IBAction)arcsinBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"arcsin"];
+    state = 1;
+    [self command:@"("];
     
 }
 - (IBAction)arccosBut:(id)sender {
+    [self clearcheck];
+    state = 1;
+    [self command:@"arccos"];
+    state = 1;
+    [self command:@"("];
     
 }
 - (IBAction)arctanBut:(id)sender {
+    [self clearcheck];
+    state = 1;
+    [self command:@"arctan"];
+    state = 1;
+    [self command:@"("];
     
 }
 - (IBAction)extraBut:(id)sender {
@@ -391,41 +564,95 @@ NSString *curNum = @"";
     }
 }
 - (IBAction)xsquaredBut:(id)sender {
+    state = 1;
+    [self command:@"^"];
+    state = 1;
+    [self command:@"2"];
+
     
 }
 - (IBAction)xtotheyBut:(id)sender {
+    [self clearcheck];
+    state = 1;
+    [self command:@"^"];
     
 }
 - (IBAction)yrootxBut:(id)sender {
-    
+    state = 1;
+    [self command:@"*"];
+    state = 1;
+    [self command:@"√"];
+    state = 1;
+    [self command:@"("];
 }
 - (IBAction)etothexBut:(id)sender {
+    [self clearcheck];
+    state = 1;
+    [self command:@"e"];
+    state = 1;
+    [self command:@"^"];
     
 }
 - (IBAction)lnxBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"ln"];
+    state = 1;
+    [self command:@"("];
 }
 - (IBAction)tothexBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"10"];
+    state = 1;
+    [self command:@"^"];
 }
 - (IBAction)logbase10But:(id)sender {
+    [self clearcheck];
+    state = 1;
+    [self command:@"log"];
+    state = 1;
+    [self command:@"("];
     
 }
 - (IBAction)factorialBut:(id)sender {
+    state = 1;
+    [self command:@"!"];
+
     
 }
 - (IBAction)radtodegreeBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"*"];
+    state = 1;
+    [self command:@"180"];
+    state = 1;
+    [self command:@"/"];
+    state = 1;
+    [self command:@"π"];
 }
 - (IBAction)degtoradBut:(id)sender {
-    
+    [self clearcheck];
+    state = 1;
+    [self command:@"*"];
+    state = 1;
+    [self command:@"π"];
+    state = 1;
+    [self command:@"/"];
+    state = 1;
+    [self command:@"180"];
 }
 
 - (IBAction)eBut:(id)sender {
-    
+    [self clearcheck];
+    state = 0;
+    [self command:@"e"];
 }
 - (IBAction)piBut:(id)sender {
-    
+    [self clearcheck];
+    state = 0;
+    [self command:@"π"];
 }
 
 - (void)removetrigView
