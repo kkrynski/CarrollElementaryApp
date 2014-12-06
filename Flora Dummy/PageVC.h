@@ -15,6 +15,8 @@
 @interface PageVC : FormattedVC
 {
     //Only private variables go in here...
+    
+    BOOL viewIsOnScreen;
 }
 
 @property(nonatomic, retain) PageManager *parentManager; //Infinite loop fixed *Michael*
