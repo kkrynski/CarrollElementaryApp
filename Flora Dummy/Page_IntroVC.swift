@@ -19,11 +19,15 @@ class Page_IntroVC: PageVC
         set
         {
             titleLabel = UILabel()
-            titleLabel!.text = activityTitle
-            titleLabel!.font = UIFont(name: "MarkerFelt", size: 72)
+            titleLabel!.text = newValue
+            titleLabel!.font = UIFont(name: "Marker Felt", size: 72)
+            titleLabel!.adjustsFontSizeToFitWidth = YES
+            titleLabel!.minimumScaleFactor = 0.1
             titleLabel!.sizeToFit()
             if isViewLoaded() == YES
             {
+                titleLabel!.textColor = primaryColor
+                Definitions.outlineTextInLabel(titleLabel!)
                 titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8 + titleLabel!.frame.size.height/2.0)
                 self.view.addSubview(titleLabel!)
             }
@@ -49,6 +53,8 @@ class Page_IntroVC: PageVC
         
         if titleLabel != nil
         {
+            titleLabel!.textColor = primaryColor
+            Definitions.outlineTextInLabel(titleLabel!)
             titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8 + titleLabel!.frame.size.height/2.0)
             self.view.addSubview(titleLabel!)
         }
