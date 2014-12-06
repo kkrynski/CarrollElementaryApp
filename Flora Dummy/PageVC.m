@@ -30,6 +30,7 @@
     {
         // Save reference to parent.
         parentManager = parent;
+        viewIsOnScreen = NO;
     }
     return self;
 }
@@ -129,16 +130,24 @@
     [self updateColors];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    viewIsOnScreen = YES;
+}
+
 /**Refreshes the view if information changes*/
 -(void) reloadView
 {
     if (self.isViewLoaded == NO) return;
     
     otherLabel.text = [NSString stringWithFormat:@"Page: %i of %i", pageNumber.intValue, pageCount.intValue];
+    [otherLabel sizeToFit];
     
     //Do a fancy animation on refresh
     
-    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent) animations:^
+    [UIView animateWithDuration:viewIsOnScreen ? 0.5:0.0 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent) animations:^
      {
          [otherLabel setCenter:CGPointMake(
                                            self.view.frame.size.width - 20 - otherLabel.frame.size.width/2.0,
@@ -184,7 +193,7 @@
         [nextButton sizeToFit];
         
         //Do a fancy animation
-        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
+        [UIView animateWithDuration:viewIsOnScreen ? 0.5:0.0 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
          {
              [previousButton setCenter:CGPointMake(20 + previousButton.frame.size.width/2.0, self.view.frame.size.height - 20 - previousButton.frame.size.height/2.0)];
              [nextButton setCenter:CGPointMake(self.view.frame.size.width - 20 - nextButton.frame.size.width/2.0, self.view.frame.size.height - 20 - nextButton.frame.size.height/2.0)];
@@ -198,7 +207,7 @@
         [nextButton sizeToFit];
         
         //Do a fancy animation
-        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
+        [UIView animateWithDuration:viewIsOnScreen ? 0.5:0.0 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.1 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
          {
              [nextButton setCenter:CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height - 20 - nextButton.frame.size.height/2.0)];
          } completion:nil];
