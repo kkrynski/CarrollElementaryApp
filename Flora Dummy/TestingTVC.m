@@ -574,7 +574,7 @@
 - (void) launchSpellingTest
 {
     SpellingTestVC *spellingTestVC = [[SpellingTestVC alloc] init];
-    //spellingTestVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    spellingTestVC.word = @"world";
     
     [self presentViewController:spellingTestVC animated:YES completion:nil];
 }
