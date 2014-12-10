@@ -18,6 +18,10 @@
 
 @implementation MicrophoneVC
 
+@synthesize recordPauseButton;
+@synthesize playButton;
+@synthesize stopButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -11,6 +11,11 @@
 @protocol AVAudioRecorderDelegate;
 #import <AVFoundation/AVFoundation.h>
 
-@interface MicrophoneVC : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface MicrophoneVC : PageVC <AVAudioRecorderDelegate, AVAudioPlayerDelegate> {
+
+}
+    @property(nonatomic,retain) IBOutlet UIButton *recordPauseButton;
+    @property(nonatomic,retain) IBOutlet UIButton *playButton;
+    @property(nonatomic,retain) IBOutlet UIButton *stopButton;
 
 @end
