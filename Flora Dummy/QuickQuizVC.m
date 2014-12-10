@@ -8,6 +8,8 @@
 
 #import "QuickQuizVC.h"
 
+#import "FloraDummy-Swift.h"
+
 @interface QuickQuizVC ()
 
 @end
@@ -50,10 +52,12 @@
 {
     // Question label
     
-    questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.dateLabel.frame.origin.x,
-                                                              self.dateLabel.frame.origin.y + self.dateLabel.frame.size.height + 20,
+    
+    
+    questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,
+                                                              self.otherLabel.frame.origin.y + self.otherLabel.frame.size.height + 20,
                                                               self.view.frame.size.width - 40,
-                                                              self.dateLabel.frame.size.height + 20)];
+                                                              self.otherLabel.frame.size.height + 20)];
     
     questionLabel.text = question;
     questionLabel.textAlignment = NSTextAlignmentCenter;
@@ -66,6 +70,8 @@
     
     
     // Buttons
+    float imageMargin = 20;
+
     
     // Option 1
     option1Button = [[UIButton alloc] initWithFrame:CGRectMake(questionLabel.frame.origin.x,
@@ -74,9 +80,10 @@
                                                                (self.view.frame.size.width - 80) / 3)];
     
     //option1Button.backgroundColor = secondaryColor;
-    [option1Button setBackgroundImage:[UIImage imageNamed:(NSString *)[answers objectAtIndex:0]]
-                             forState:UIControlStateNormal];
     option1Button.tag = 0;
+    
+    [option1Button setImageEdgeInsets:UIEdgeInsetsMake(imageMargin, imageMargin, imageMargin, imageMargin)];
+    [option1Button setImage:[UIImage imageNamed:(NSString *)[answers objectAtIndex:0]] forState:UIControlStateNormal];
     
     [option1Button addTarget:self
                       action:@selector(optionSelected:)
@@ -93,9 +100,10 @@
                                                                option1Button.frame.size.width,
                                                                option1Button.frame.size.height)];
     //option1Button.backgroundColor = secondaryColor;
-    [option2Button setBackgroundImage:[UIImage imageNamed:(NSString *)[answers objectAtIndex:1]]
-                             forState:UIControlStateNormal];
     option2Button.tag = 1;
+    
+    [option2Button setImageEdgeInsets:UIEdgeInsetsMake(imageMargin, imageMargin, imageMargin, imageMargin)];
+    [option2Button setImage:[UIImage imageNamed:(NSString *)[answers objectAtIndex:1]] forState:UIControlStateNormal];
     
     [option2Button addTarget:self
                       action:@selector(optionSelected:)
@@ -112,10 +120,10 @@
                                                                option2Button.frame.size.width,
                                                                option2Button.frame.size.height)];
     
-    //option1Button.backgroundColor = secondaryColor;
-    [option3Button setBackgroundImage:[UIImage imageNamed:(NSString *)[answers objectAtIndex:2]]
-                             forState:UIControlStateNormal];
     option3Button.tag = 2;
+    
+    [option3Button setImageEdgeInsets:UIEdgeInsetsMake(imageMargin, imageMargin, imageMargin, imageMargin)];
+    [option3Button setImage:[UIImage imageNamed:(NSString *)[answers objectAtIndex:2]] forState:UIControlStateNormal];
     
     [option3Button addTarget:self
                       action:@selector(optionSelected:)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14C68k" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -26,11 +26,47 @@
                         <action selector="factorialBut:" destination="-1" eventType="touchUpInside" id="F7f-3c-dKa"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGp-e3-H9A">
+                    <rect key="frame" x="0.0" y="224" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="0sB-qW-T5n"/>
+                        <constraint firstAttribute="height" constant="60" id="1Bh-s9-YXv"/>
+                        <constraint firstAttribute="width" constant="60" id="af5-jB-mBc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="25"/>
+                    <state key="normal" title="(">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="openBut:" destination="-1" eventType="touchUpInside" id="Y2E-w7-Zm6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg5-FL-1SX">
+                    <rect key="frame" x="0.0" y="292" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="0Hp-F5-yCZ"/>
+                        <constraint firstAttribute="width" constant="60" id="27T-6T-wCh"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="GbJ-kh-gTP"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="25"/>
+                    <state key="normal" title=")">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="closeBut:" destination="-1" eventType="touchUpInside" id="Twc-vs-RR1"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="zGp-e3-H9A" firstAttribute="leading" secondItem="1mu-9J-CUV" secondAttribute="leading" id="Ll9-2Y-TcR"/>
                 <constraint firstItem="1mu-9J-CUV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="156" id="Lux-fS-yiu"/>
                 <constraint firstItem="1mu-9J-CUV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UA8-Ad-wIM"/>
+                <constraint firstItem="zGp-e3-H9A" firstAttribute="top" secondItem="1mu-9J-CUV" secondAttribute="bottom" constant="8" symbolic="YES" id="g39-eF-w73"/>
+                <constraint firstItem="Mg5-FL-1SX" firstAttribute="top" secondItem="zGp-e3-H9A" secondAttribute="bottom" constant="8" symbolic="YES" id="iFY-wD-rvh"/>
+                <constraint firstItem="zGp-e3-H9A" firstAttribute="leading" secondItem="Mg5-FL-1SX" secondAttribute="leading" id="wuB-Jj-B86"/>
             </constraints>
         </view>
     </objects>

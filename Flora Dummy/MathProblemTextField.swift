@@ -50,7 +50,7 @@ class MathProblemTextField: UITextField
         textAlignment = .Center
         font = UIFont(name: "Marker Felt", size: 68)
         minimumFontSize = 10.0
-        adjustsFontSizeToFitWidth = true
+        adjustsFontSizeToFitWidth = YES
         
         Definitions.outlineView(self)
     }

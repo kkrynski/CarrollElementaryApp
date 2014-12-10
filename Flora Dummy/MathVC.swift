@@ -87,8 +87,15 @@ class MathVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         //Update the activities for the tableView
         gradeNumber = standardDefaults.objectForKey("gradeNumber") as? String
-        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary
-        activities = gradeDictionary.objectForKey("Math") as NSArray
+        let gradeDictionary = courseDictionary!.objectForKey(gradeNumber!) as NSDictionary?
+        if gradeDictionary != nil
+        {
+            activities = gradeDictionary!.objectForKey("Math") as NSArray
+        }
+        else
+        {
+            activities = NSArray()
+        }
         
         activitiesTable!.reloadData()
     }
@@ -119,16 +126,16 @@ class MathVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         let activityDictionary = activities[indexPath.row] as NSDictionary
         
         //Update the titleLabel for the cell to the Activity's Name
-        cell!.textLabel.text = activityDictionary.objectForKey("Name") as String!
-        cell!.textLabel.font = font
-        cell!.textLabel.textColor = primaryColor
-        Definitions.outlineTextInLabel(cell!.textLabel)
+        cell!.textLabel!.text = activityDictionary.objectForKey("Name") as String!
+        cell!.textLabel!.font = font
+        cell!.textLabel!.textColor = primaryColor
+        Definitions.outlineTextInLabel(cell!.textLabel!)
         
         //Update the cell's colors
         cell!.backgroundColor = .clearColor()
         
         //NOTE: -  Update this line to get an image based on the activity
-        cell!.imageView.image = UIImage(named: "117-todo.png")
+        cell!.imageView!.image = UIImage(named: "117-todo.png")
         
         return cell!
     }
@@ -136,12 +143,12 @@ class MathVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         //Visually deselect the cell since we're moving away from the view
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: YES)
         
         //Get the information for the activity for the selected cell
         let activityDictionary = activities[indexPath.row] as NSDictionary
         
         //Create a PageManager for the activity and store it in THIS view controller
-        pageManager = PageManager(activity: activityDictionary, forParentViewController: self)
+        pageManager = PageManager(activity: ClassConversions().activityFromDictionary(activityDictionary), forParentViewController: self)
     }
 }

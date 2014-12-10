@@ -8,6 +8,54 @@
 
 import UIKit
 
+class MathProblemAnswerGradiant : UIView
+{
+    private var isCorrect = NO
+    
+    init(frame: CGRect, isCorrect: Bool)
+    {
+        super.init(frame: frame)
+        
+        self.isCorrect = isCorrect
+        
+        self.backgroundColor = UIColor.whiteColor()
+    }
+
+    required init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+    }
+    
+    override func drawRect(rect: CGRect)
+    {
+        let context = UIGraphicsGetCurrentContext()
+        
+        var gradient : CGGradientRef
+        var colorSpace : CGColorSpaceRef
+        
+        let locations = [CGFloat(0.0), CGFloat(1.0)]
+        
+        var colors : Array<CGColorRef>
+        
+        if isCorrect == YES
+        {
+            colors = [UIColor.greenColor().CGColor, UIColor.whiteColor().CGColor]
+        }
+        else
+        {
+            colors = [UIColor.redColor().CGColor, UIColor.whiteColor().CGColor]
+        }
+        
+        colorSpace = CGColorSpaceCreateDeviceRGB()
+        
+        gradient = CGGradientCreateWithColors(colorSpace, colors, locations)
+        
+        var startPoint = CGPointMake(0.0, rect.size.height/2.0)
+        var endPoint = CGPointMake(rect.size.width/4.0, rect.size.height/2.0)
+        CGContextDrawRadialGradient(context, gradient, CGPointMake(rect.size.width/2.0, rect.size.height/2.0), rect.size.width, CGPointMake(rect.size.width/2.0, rect.size.height/2.0), 0, CGGradientDrawingOptions(0))
+    }
+}
+
 class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
 {
     /**
@@ -16,24 +64,24 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     Please format your math equation based the following rules:
     
     - Fractions: Use "[X,Y,Z]" to form fractions, where
-        - "X" is the whole number (This can be '0')
-        - "Y" is the numerator of the fraction
-        - "Z" is the denominator of the fraction
+    - "X" is the whole number (This can be '0')
+    - "Y" is the numerator of the fraction
+    - "Z" is the denominator of the fraction
     - Exponents: Use "X^Y" to denote an exponent, where
-        - "X" is the base
-        - "Y" is the power, or exponent
+    - "X" is the base
+    - "Y" is the power, or exponent
     - Random Numbers: Use "#rw(X,Y)#" to create a random number, where
-        - "X" is the starting number
-        - "Y" is the range of numbers
+    - "X" is the starting number
+    - "Y" is the ending range of numbers
     - Parentheses: Use "( XX )" to create paretheses, where 'XX' is an equation satisfying the before-mentioned rules
-        - NOTE: Parentheses are not supported yet
+    - NOTE: Parentheses are not supported yet
     
     - Answer Spaces: Use "#X#" to denote answer spaces, where 'X' takes the following substitutions:
-        - "w" creates an answer box accepting only Whole Numbers
-        - "fr" creates an answer box for fractions accepting any acceptable character
-        - "v" creates an answer box accepting only Variables
-            - NOTE: Not supported yet
-        - "d" creates an answer box accepting decimals
+    - "w" creates an answer box accepting only Whole Numbers
+    - "fr" creates an answer box for fractions accepting any acceptable character
+    - "v" creates an answer box accepting only Variables
+    - NOTE: Not supported yet
+    - "d" creates an answer box accepting decimals
     
     Each item must be have a space on both sides, except if it is the first or last item or it is next to the '=' sign, then only spaces on the inner sides.
     
@@ -47,6 +95,8 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     //Private variables for answering
     private var randomNumber : UInt32?
     private var textBoxes : NSMutableArray?
+    
+    private var equationView : UIView?
     
     //Checks to make sure it's a valid equation
     func convertStringIntoEquation(equationString : String) -> Array<String>
@@ -74,11 +124,11 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         
         //Build the equation view
         //This will be where the equation is displayed
-        let equationView = UIView(frame: CGRectMake(0, 0, view.frame.size.width * 0.9, view.frame.size.height * 0.4))
-        equationView.backgroundColor = Definitions.lighterColorForColor(backgroundColor!)
-        Definitions.outlineView(equationView)
-        equationView.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
-        view.addSubview(equationView)
+        equationView = UIView(frame: CGRectMake(0, 0, view.frame.size.width * 0.9, view.frame.size.height * 0.4))
+        equationView!.backgroundColor = Definitions.lighterColorForColor(backgroundColor!)
+        Definitions.outlineView(equationView!)
+        equationView!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
+        view.addSubview(equationView!)
         
         //Creates and puts the "=" on screen
         let equalsLabel = UILabel()
@@ -87,16 +137,16 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         equalsLabel.sizeToFit()
         Definitions.outlineTextInLabel(equalsLabel)
         equalsLabel.textColor = primaryColor
-        equalsLabel.center = CGPointMake(equationView.frame.size.width * 0.7, equationView.frame.size.height/2.0)
-        equationView.addSubview(equalsLabel)
+        equalsLabel.center = CGPointMake(equationView!.frame.size.width * 0.7, equationView!.frame.size.height/2.0)
+        equationView!.addSubview(equalsLabel)
         
         //The left side of the "=" sign
-        let equationViewView = UIView(frame: CGRectMake(8, 8, equalsLabel.frame.origin.x - 8, equationView.frame.size.height - 16))
-        equationView.addSubview(equationViewView)
+        let equationViewView = UIView(frame: CGRectMake(8, 8, equalsLabel.frame.origin.x - 8, equationView!.frame.size.height - 16))
+        equationView!.addSubview(equationViewView)
         
         //The right side of the "=" sign
-        let answerView = UIView(frame: CGRectMake(equalsLabel.frame.origin.x + equalsLabel.frame.size.width + 8, 8, equationView.frame.size.width - 8 - (equalsLabel.frame.origin.x + equalsLabel.frame.size.width + 8), equationView.frame.size.height - 16))
-        equationView.addSubview(answerView)
+        let answerView = UIView(frame: CGRectMake(equalsLabel.frame.origin.x + equalsLabel.frame.size.width + 28, 8, equationView!.frame.size.width - 28 - (equalsLabel.frame.origin.x + equalsLabel.frame.size.width + 28), equationView!.frame.size.height - 16))
+        equationView!.addSubview(answerView)
         
         createEquationLabel(equation[0], inView: equationViewView)
         createAnswerSpace(equation[1], inView: answerView)
@@ -107,7 +157,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         calculatorButton.addTarget(self, action: "presentCalculator", forControlEvents: .TouchUpInside)
         view.addSubview(calculatorButton)
         calculatorButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
-        calculatorButton.center = CGPointMake(view.frame.size.width/2.0, equationView.frame.size.height/2.0 + equationView.center.y + 10 + calculatorButton.frame.size.height/2.0)
+        calculatorButton.center = CGPointMake(view.frame.size.width/2.0, equationView!.frame.size.height/2.0 + equationView!.center.y + 10 + calculatorButton.frame.size.height/2.0)
     }
     
     //Creates the left equation side
@@ -157,28 +207,28 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
                 assert(numbersInFraction.count == 3, "There needs to be three parts to the fraction.  Output of given fraction: \(numbersInFraction)")
                 
                 let numerator = UILabel()
-                numerator.setTranslatesAutoresizingMaskIntoConstraints(false)
+                numerator.setTranslatesAutoresizingMaskIntoConstraints(NO)
                 numerator.font = UIFont(name: "Marker Felt", size: 64)
                 numerator.text = numbersInFraction[1]
                 numerator.textColor = primaryColor
                 numerator.textAlignment = .Center
-                numerator.adjustsFontSizeToFitWidth = true
+                numerator.adjustsFontSizeToFitWidth = YES
                 numerator.minimumScaleFactor = 0.1
                 Definitions.outlineTextInLabel(numerator)
                 equationPartLabel.addSubview(numerator)
                 
                 let line = UIView()
-                line.setTranslatesAutoresizingMaskIntoConstraints(false)
+                line.setTranslatesAutoresizingMaskIntoConstraints(NO)
                 line.backgroundColor = primaryColor
                 equationPartLabel.addSubview(line)
                 
                 let denominator = UILabel()
-                denominator.setTranslatesAutoresizingMaskIntoConstraints(false)
+                denominator.setTranslatesAutoresizingMaskIntoConstraints(NO)
                 denominator.font = UIFont(name: "Marker Felt", size: 64)
                 denominator.text = numbersInFraction[2]
                 denominator.textColor = primaryColor
                 denominator.textAlignment = .Center
-                denominator.adjustsFontSizeToFitWidth = true
+                denominator.adjustsFontSizeToFitWidth = YES
                 denominator.minimumScaleFactor = 0.1
                 Definitions.outlineTextInLabel(denominator)
                 equationPartLabel.addSubview(denominator)
@@ -191,12 +241,12 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
                 if (numbersInFraction[0] != String(0))
                 {
                     let improperNumber = UILabel()
-                    improperNumber.setTranslatesAutoresizingMaskIntoConstraints(false)
+                    improperNumber.setTranslatesAutoresizingMaskIntoConstraints(NO)
                     improperNumber.font = UIFont(name: "Marker Felt", size: 72)
                     improperNumber.text = numbersInFraction[0]
                     improperNumber.textColor = primaryColor
                     improperNumber.textAlignment = .Center
-                    improperNumber.adjustsFontSizeToFitWidth = true
+                    improperNumber.adjustsFontSizeToFitWidth = YES
                     improperNumber.minimumScaleFactor = 0.1
                     Definitions.outlineTextInLabel(improperNumber)
                     equationPartLabel.addSubview(improperNumber)
@@ -240,7 +290,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
             {
                 let numbers = equationPart.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "#rw()")).componentsSeparatedByString(",")
                 
-                randomNumber = arc4random_uniform(UInt32((numbers[1] as NSString).integerValue)) + (numbers[0] as NSString).integerValue
+                randomNumber = arc4random_uniform(UInt32((numbers[1] as NSString).integerValue - (numbers[1] as NSString).integerValue)) + (numbers[0] as NSString).integerValue
                 
                 let equationPartLabel = UILabel()
                 equationPartLabel.font = UIFont(name: "Marker Felt", size: 85)
@@ -248,7 +298,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
                 equationPartLabel.textColor = primaryColor
                 equationPartLabel.textAlignment = .Center
                 Definitions.outlineTextInLabel(equationPartLabel)
-                equationPartLabel.adjustsFontSizeToFitWidth = true
+                equationPartLabel.adjustsFontSizeToFitWidth = YES
                 equationPartLabel.minimumScaleFactor = 0.1
                 equationPartLabel.frame = CGRectMake(0, numberOfLines > 1 ? CGFloat(0.0 + (Double(height) * currentLine)) : CGFloat(equationView.frame.size.height/2.0) - CGFloat(height/2.0), equationView.frame.size.width/5.0, height)
                 equationView.addSubview(equationPartLabel)
@@ -279,7 +329,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
                 equationPartLabel.textColor = primaryColor
                 equationPartLabel.textAlignment = .Center
                 Definitions.outlineTextInLabel(equationPartLabel)
-                equationPartLabel.adjustsFontSizeToFitWidth = true
+                equationPartLabel.adjustsFontSizeToFitWidth = YES
                 equationPartLabel.minimumScaleFactor = 0.1
                 equationView.addSubview(equationPartLabel)
                 insertedEquationParts.addObject(equationPartLabel)
@@ -292,7 +342,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
                 equationPartLabel.textColor = primaryColor
                 equationPartLabel.textAlignment = .Center
                 Definitions.outlineTextInLabel(equationPartLabel)
-                equationPartLabel.adjustsFontSizeToFitWidth = true
+                equationPartLabel.adjustsFontSizeToFitWidth = YES
                 equationPartLabel.minimumScaleFactor = 0.1
                 equationPartLabel.frame = CGRectMake(0, numberOfLines > 1 ? CGFloat(0.0 + (Double(height) * currentLine)) : CGFloat(equationView.frame.size.height/2.0) - CGFloat(height/2.0), equationView.frame.size.width/5.0, height)
                 equationView.addSubview(equationPartLabel)
@@ -458,6 +508,8 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
                     break
                     
                 default:
+                    finalResult = currentNumber
+                    currentNumber = 0.0
                     break
                 }
             }
@@ -491,15 +543,38 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         //Do checking
         if textBoxAnswer == finalResult
         {
-            let goodAlert = UIAlertController(title: "Correct!", message: "You got the answer right!", preferredStyle: .Alert)
-            goodAlert.addAction(UIAlertAction(title: "Yay!", style: .Default, handler: nil))
-            presentViewController(goodAlert, animated: true, completion: nil)
+            for object in textBoxes!
+            {
+                let textBox = object as UITextField
+                textBox.userInteractionEnabled = NO
+                
+                let correct = MathProblemAnswerGradiant(frame: textBox.frame, isCorrect: YES)
+                textBox.superview!.insertSubview(correct, belowSubview: textBox)
+                
+                UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    correct.transform = CGAffineTransformMakeScale(1.2, 1.3)
+                    }, completion: nil)
+            }
         }
         else
         {
-            let badAlert = UIAlertController(title: "Incorrect!", message: "Sorry, but you got the answer wrong!\n\nTry Again!", preferredStyle: .Alert)
-            badAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(badAlert, animated: true, completion: nil)
+            for object in textBoxes!
+            {
+                let textBox = object as UITextField
+                
+                let correct = MathProblemAnswerGradiant(frame: textBox.frame, isCorrect: NO)
+                textBox.superview!.insertSubview(correct, belowSubview: textBox)
+                
+                UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    correct.transform = CGAffineTransformMakeScale(1.2, 1.3)
+                    }, completion: { (finished) -> Void in
+                        UIView.animateWithDuration(0.3, delay: 1.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                            correct.transform = CGAffineTransformIdentity
+                        }, completion: { (finished) -> Void in
+                            correct.removeFromSuperview()
+                        })
+                })
+            }
         }
     }
     
@@ -514,7 +589,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         switch textField.type!
         {
         case "Whole Number":
-            return (string as NSString).containsString(".") == false && (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == ""
+            return (string as NSString).containsString(".") == NO && (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == ""
             
         case "Decimal", "Fraction":
             return (string as NSString).rangeOfCharacterFromSet(alphabetSet).location == NSNotFound && (string as NSString).rangeOfCharacterFromSet(numberSet).location != NSNotFound || string == "" || string == "."
@@ -537,14 +612,14 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
             (textBoxes!.objectAtIndex(textBoxes!.indexOfObject(textField) + 1) as UITextField).becomeFirstResponder()
         }
         
-        return false
+        return NO
     }
     
     //calculate answer and return good or bad
     private func finalizeEditing(textField: UITextField)
     {
         textField.resignFirstResponder()
-        textField.endEditing(true)
+        textField.endEditing(YES)
         
         var answerResult = 0.0
         
@@ -566,7 +641,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         calculator.modalPresentationStyle = .Custom
         calculator.transitioningDelegate = self
         calculator.preferredContentSize = CGSizeMake(304, 508)
-        presentViewController(calculator, animated: true, completion: nil)
+        presentViewController(calculator, animated: YES, completion: nil)
     }
     
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController) -> UIPresentationController?
@@ -582,7 +657,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     {
         if presented.classForCoder === CalculatorVC.classForCoder()
         {
-            return CalculatorTransitionManager(isPresenting: true)
+            return CalculatorTransitionManager(isPresenting: YES)
         }
         return nil
     }
@@ -591,7 +666,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     {
         if dismissed.classForCoder === CalculatorVC.classForCoder()
         {
-            return CalculatorTransitionManager(isPresenting: false)
+            return CalculatorTransitionManager(isPresenting: NO)
         }
         return nil
     }

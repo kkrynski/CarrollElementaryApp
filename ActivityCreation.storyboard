@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NP2-j7-ziB">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--Page CreationVC-->
+        <scene sceneID="xr8-yL-SMk">
+            <objects>
+                <viewController id="yZH-s8-2lS" customClass="PageCreationVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JYf-0d-PxZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="xnY-AU-78p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dQE-8y-nhp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sll-hb-gRH">
+                                <rect key="frame" x="0.0" y="72" width="600" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yZH-s8-2lS" id="77i-4d-3A1"/>
+                                    <outlet property="delegate" destination="yZH-s8-2lS" id="ZJ5-lJ-gdm"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BLr-aA-bOe">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="JMM-FM-WNe">
+                            <connections>
+                                <action selector="goToNext" destination="yZH-s8-2lS" id="Z1b-34-gtl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pagePicker" destination="sll-hb-gRH" id="h1O-xU-RPR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p6y-1P-IzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1242" y="423"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="rHB-3x-oRD">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="43G-lH-mIH" customClass="ActivityCreationTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7Oj-CW-aO8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="43G-lH-mIH" id="YUn-nr-WsE"/>
+                            <outlet property="delegate" destination="43G-lH-mIH" id="WFb-mt-ePj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Jub-Xq-z1t"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xCP-dM-gYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1242" y="-175"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jdi-E7-Kjv">
+            <objects>
+                <navigationController id="VNN-Wu-oSe" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dh3-d8-dPZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="43G-lH-mIH" kind="relationship" relationship="rootViewController" id="CFe-iz-aPD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jh6-vm-KZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="422" y="-175"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wxV-MR-yMl">
+            <objects>
+                <navigationController id="wav-jV-h3u" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FWX-b9-Dyf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yZH-s8-2lS" kind="relationship" relationship="rootViewController" id="rWq-IC-5kZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eDQ-hg-Uqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="489"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="wIS-dN-kuO">
+            <objects>
+                <splitViewController id="NP2-j7-ziB" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="VNN-Wu-oSe" kind="relationship" relationship="masterViewController" id="QiI-sY-QRu"/>
+                        <segue destination="wav-jV-h3u" kind="relationship" relationship="detailViewController" id="l7l-20-2eO"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wvr-WX-7Bw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-398" y="156"/>
+        </scene>
+    </scenes>
+</document>

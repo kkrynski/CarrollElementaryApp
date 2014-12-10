@@ -8,6 +8,8 @@
 
 #import "Page_QRCodeVC.h"
 
+#import "FloraDummy-Swift.h"
+
 @interface Page_QRCodeVC ()
 
 @end
@@ -44,10 +46,10 @@
     
     // Create camera view for QR Code reading
     float tempMargin = 20;
-    float H = super.previousButton.frame.origin.y - super.dateLabel.frame.origin.y - super.dateLabel.frame.size.height - 2 * tempMargin;
+    float H = super.previousButton.frame.origin.y - 0 - 0 - 2 * tempMargin;
     float W = H;
     CGRect tempFrame = CGRectMake(self.view.frame.size.width - W - 2 * tempMargin,
-                                 super.dateLabel.frame.origin.y + super.dateLabel.frame.size.height + tempMargin,
+                                 0 + 0 + tempMargin,
                                  W,
                                  H);
 

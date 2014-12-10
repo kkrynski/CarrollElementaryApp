@@ -15,39 +15,24 @@ import QuartzCore
 
 let transitionLength = 0.3  //All transitions in swift files should use this variable for animationDuration to keep uniform
 
+let YES = 1 as Bool
+let NO = 0 as Bool
+
 //MARK: - Definitions Class
 
 class Definitions: NSObject
 {
-    //MARK: - Calculator Position
-    
-    class func transitionDuration() -> NSTimeInterval
-    {
-        return transitionLength
-    }
-    
-    /**
-    Returns the Calculator's position on screen
-    
-    :param: calculatorVC The Calculator View Controller asking for it's position
-    
-    :returns: * nil:    The CalculatorVC is not on screen
-    :returns: * Left:   The CalculatorVC is on the left side of the screen
-    :returns: * Right:  CalculatorVC is on the right side of the screen
-      */
-    class func positionOfCalculatorOnScreen(calculatorVC : CalculatorVC?) -> String?
-    {
-        if calculatorVC != nil && calculatorVC!.isViewLoaded()
-        {
-            return NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition")
-        }
-        else
-        {
-            return nil
-        }
-    }
-    
     //MARK: - Color Methods
+    
+    //Random Color
+    class func randomColor() -> UIColor
+    {
+        let red = Double(arc4random_uniform(255))/255.0
+        let blue = Double(arc4random_uniform(255))/255.0
+        let green = Double(arc4random_uniform(255))/255.0
+        
+        return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
+    }
     
     //Convert a hex string to UIColor
     class func colorWithHexString(hexString : String) -> UIColor
