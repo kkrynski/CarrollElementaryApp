@@ -13,5 +13,4 @@
 @property (strong, retain) IBOutlet UILabel *calLabel;
 @property (strong, retain) IBOutlet UIView *trigviewer;//fatorial , degree conversion abolute value
 
-
 @end
