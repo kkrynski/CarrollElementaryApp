@@ -36,7 +36,7 @@
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self.weatherCode = [decoder decodeObjectForKey:@"weatherCode"];
-    self.indexForWeatherMap = [[decoder decodeObjectForKey:@"indexForWeatherMap"] unsignedIntegerValue];
+    self.indexForWeatherMap = [[decoder decodeObjectForKey:@"indexForWeatherMap"] intValue];
     self.weatherCurrentDay = [decoder decodeObjectForKey:@"weatherCurrentDay"];
     self.weatherCurrentTemp = [decoder decodeObjectForKey:@"weatherCurrentTemp"];
     self.weatherCurrentTempImage = [decoder decodeObjectForKey:@"weatherCurrentTempImage"];

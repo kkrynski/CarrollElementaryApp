@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
-		104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */; };
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
 		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
 		1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */; };
@@ -173,7 +172,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1009AC3A1A3BD373009B4813 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC_Normal.swift; sourceTree = "<group>"; };
@@ -465,6 +478,8 @@
 		104BA1011A042AEF007BD9DE /* Math Problems */ = {
 			isa = PBXGroup;
 			children = (
+				104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */,
+				104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */,
 				921C73111899BB1A007DFB34 /* MathProblemVC_Normal.h */,
 				921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */,
 				921C731B189ADE7F007DFB34 /* EquationFormatter.h */,
@@ -765,6 +780,7 @@
 		921894E917F7752A00DFB26B /* Flora Dummy */ = {
 			isa = PBXGroup;
 			children = (
+				1009AC0E1A3BC0DC009B4813 /* README.swift */,
 				1097EBC91A28C3C300BED924 /* Utilities */,
 				10B8788319FC422C005D9937 /* Old Objective-C Code */,
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
@@ -815,15 +831,6 @@
 				9218950E17F7752A00DFB26B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		921C73141899BB1F007DFB34 /* Math Problems */ = {
-			isa = PBXGroup;
-			children = (
-				104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */,
-				104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */,
-			);
-			name = "Math Problems";
 			sourceTree = "<group>";
 		};
 		923774511A05524100A49D14 /* Stephen's Stuff */ = {
@@ -966,7 +973,6 @@
 				921DD2671A2A434D00C18079 /* PageVC.m */,
 				9208482018E4F9CF00BE2F55 /* Module */,
 				92D06A0E18D13101004850C6 /* QR Code Stuff */,
-				921C73141899BB1F007DFB34 /* Math Problems */,
 				92E7A1331864E3DC006A712B /* Page_GardenData */,
 				92E7A1291864E30B006A712B /* Intro */,
 				92E7A12A1864E314006A712B /* Read */,
@@ -1123,6 +1129,7 @@
 				921894DC17F7752A00DFB26B /* Sources */,
 				921894DD17F7752A00DFB26B /* Frameworks */,
 				921894DE17F7752A00DFB26B /* Resources */,
+				1009AC3A1A3BD373009B4813 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1317,7 +1324,6 @@
 				10BF3F9F1A2BB80100B1A755 /* SquaresDragAndDrop.swift in Sources */,
 				104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */,
 				92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */,
-				104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */,
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
@@ -1471,6 +1477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Flora Dummy/FloraDummy-Prefix.pch";
@@ -1493,6 +1500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Flora Dummy/FloraDummy-Prefix.pch";

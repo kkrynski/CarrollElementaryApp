@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CESDatabaseFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>FloraDummy.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1009AC151A3BD0E7009B4813</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1009AC1F1A3BD0E7009B4813</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>921894DF17F7752A00DFB26B</key>
 		<dict>
 			<key>primary</key>
