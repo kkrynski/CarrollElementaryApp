@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
@@ -187,6 +188,7 @@
 
 /* Begin PBXFileReference section */
 		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
+		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC_Normal.swift; sourceTree = "<group>"; };
@@ -447,6 +449,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1009AC3B1A3BD5FC009B4813 /* CESDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				1009AC3C1A3BD712009B4813 /* CESDatabase.swift */,
+			);
+			name = CESDatabase;
+			sourceTree = "<group>";
+		};
 		104BA0F61A0424DA007BD9DE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,6 +770,7 @@
 		921894E217F7752A00DFB26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10BFE6F31A204AE900E68C77 /* MapKit.framework */,
 				10BFE6F11A204A1100E68C77 /* CoreLocation.framework */,
 				92D06A1518D137C7004850C6 /* libiconv.dylib */,
@@ -1332,6 +1343,7 @@
 				9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */,
 				108E9B0D1A27A65F00120A63 /* MWFeedParser.m in Sources */,
 				10A4EA3D1A2790820062D905 /* UIButton_Typical.swift in Sources */,
+				1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */,
 				92C117861A22C8E1003506DB /* ClassConversions.m in Sources */,
 				92F78DAA1A2664E10048612E /* VocabCreationVC.m in Sources */,
 				10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */,
