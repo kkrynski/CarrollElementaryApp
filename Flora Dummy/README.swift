@@ -8,7 +8,7 @@ Herein begins the Database Integration for the FloraDummy App
 
     This README file will detail the API as I create it.
 
-        *  This API will be built entirely in SWift, but will be fully compatible with all Objective-C files
+        *  This API will be built entirely in Swift, but will be fully compatible with all Objective-C files
         *  As of the current moment, all API calls will return an NSDictionary of data.
             *  The current layout of the NSDictionary is undecided right now,
                but I will update this file as I figure out the structure
@@ -30,5 +30,20 @@ Herein begins the Database Integration for the FloraDummy App
         *  In the interest of data protection, you will only be given access to the Activity table.  You
            will not be able to see or interact with the Subject, Teacher, Student, Class, Student_Class, or
            Activity_Session tables
+
+
+    [[ API ]]
+
+        To implement the CESDatabase API, you must store a property with the type "id<CESDatabase>"
+            (i.e.) id<CESDatabase> databaseManager;
+
+
+        To grab the active database manager for your class, call:
+
+            + (id<CESDatabase>) databaseManagerForClass:(Class)sender
+                *  You must supply this method with your class.  (i.e.) [myClass class]
+
+        
+
 
 */
