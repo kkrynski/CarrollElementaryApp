@@ -77,7 +77,7 @@ NSString *curNum = @"";
         state = 0;
     }
 }
--(NSString *)calculate:(NSMutableArray *)express{
+- (NSString *)calculate:(NSMutableArray *)express{
     @try {
     if(state == 0){
         NSLog(@"Express array: %@", express);
@@ -95,6 +95,9 @@ NSString *curNum = @"";
                     parencount--;
                     if(parencount == 0 ){
                         closeParenIndex = i;
+                         NSLog(@"close minus open: %d%lu", closeParenIndex,openParenIndex);
+                        if(closeParenIndex-openParenIndex>2){
+                        
                         NSArray *insideParenArray = [express subarrayWithRange:NSMakeRange(openParenIndex + 1, (closeParenIndex - openParenIndex) - 1)];
                         NSLog(@"Inside Parentheses Array: %@", insideParenArray);
                         
@@ -106,24 +109,26 @@ NSString *curNum = @"";
                         
                         i -= NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1).length;
                         i++;
+                        }else if(closeParenIndex-openParenIndex == 2){
+                              NSString *answerInsideParens = express[closeParenIndex-1];
+                            [express removeObjectsInRange:NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1)];
+                           
+                            [express insertObject:answerInsideParens atIndex:openParenIndex];
+                            
+                            i -= NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1).length;
+                            i++;
+
+                        }else{
+                            [express removeObjectsInRange:NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1)];
+                            i -= NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1).length;
+                            i++;
+                        }
                         NSLog(@"%@", express);
                     }
                 }
-                if(i -1 == [express count]){
-                    closeParenIndex = i;
-                    NSArray *insideParenArray = [express subarrayWithRange:NSMakeRange(openParenIndex + 1, (closeParenIndex - openParenIndex) - 1)];
-                    NSLog(@"Inside Parentheses Array: %@", insideParenArray);
-                    
-                    NSString *answerInsideParens = [self calculate:[NSMutableArray arrayWithArray:insideParenArray]];
-                    
-                    [express removeObjectsInRange:NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1)];
-                    NSLog(@"Answer: %@", answerInsideParens);
-                    [express insertObject:answerInsideParens atIndex:openParenIndex];
-                    
-                    i -= NSMakeRange(openParenIndex, (closeParenIndex - openParenIndex) + 1).length;
-                    i++;
-                    NSLog(@"%@", express);
-
+                if(i == [express count]-1 && parencount == 1){
+                    [express addObject:(@")")];
+                    [self calculate:express];
                 }
             }
         }
@@ -295,10 +300,10 @@ NSString *curNum = @"";
        
         curNum = express[0];
         if(curNum.doubleValue < 1.0){
-            calLabel.text = [express[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0"]];
-            calLabel.text = [NSString stringWithFormat:@"0%@",calLabel.text];
+            calLabel.text = [express[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0."]];
+            calLabel.text = [NSString stringWithFormat:@"%@",calLabel.text];
         }else{
-            calLabel.text = [[express[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0"]] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
+            calLabel.text = [express[0] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0."]];
         }
         
     }
