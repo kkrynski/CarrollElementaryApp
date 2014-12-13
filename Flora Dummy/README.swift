@@ -43,7 +43,7 @@ Herein begins the Database Integration for the FloraDummy App
             + (id<CESDatabase>) databaseManagerForClass:(Class)sender
                 *  You must supply this method with your class.  (i.e.) [myClass class]
 
-        
+
 
 
 */
