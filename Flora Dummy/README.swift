@@ -27,23 +27,51 @@ Herein begins the Database Integration for the FloraDummy App
         *  You will be unable to interact with the Database beyond updating specific values and downloading 
            any existing data for the activity.  This is to keep from accidental (or even purposeful)
            overwrites
-        *  In the interest of data protection, you will only be given access to the Activity_Session table.  
-           You will not be able to see or interact with the Subject, Teacher, Student, Class, Student_Class,
-           or Activity tables
+        *  In the interest of data protection, you will only be given access to the respective table your
+           activity requires
 
 
-    [[ API ]]
-
-        To implement the CESDatabase API, you must store a property with the type "id<CESDatabase>"
-            (i.e.) id<CESDatabase> databaseManager;
+----[[ API ]]----
 
 
-        To grab the active database manager for your Activity, call:
+    -- Database Manager creation
 
-            + (id<CESDatabase>) databaseManagerForActivityClass;
-                *  You must supply this method with your class.  (i.e.) [myClass class]
+        **  For Activity Creation, to implement the CESDatabase API, you must store a property with the type
+            "id<CESCreationDatabase>"
+                (i.e.) id<CESCreationDatabase> databaseManager;
+
+            Then call,
+
+                [DatabaseManager databaseManagerForCreationClass];
+
+            to be returned the proper Database Manager
 
 
+        **  For PasswordVC, to implement the CESDatabase API, you must store a property with the type
+            "id<CESUserAccountsDatabase>"
+                (i.e.) id<CESUserAccountsDatabase> databaseManager;
 
+           Then call,
+
+                [DatabaseManager databaseManagerForPasswordVCClass];
+
+           to be returned the proper Database Manager
+
+
+        **  For PasswordVC, to implement the CESDatabase API, you must store a property with the type
+            "id<CESUserAccountsDatabase>"
+                (i.e.) id<CESUserAccountsDatabase> databaseManager;
+
+            Then call,
+
+                [DatabaseManager databaseManagerForPasswordVCClass];
+
+            to be returned the proper Database Manager
+
+
+    -- API Calls
+
+        Each Database Manager has different API calls, as listed below.  Please find the correct
+        Database Manager class and follow its instructions
 
 */

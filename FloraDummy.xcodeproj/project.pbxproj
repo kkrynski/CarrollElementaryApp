@@ -236,8 +236,8 @@
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		10B8787D19FC2881005D9937 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		10B8788019FC3342005D9937 /* LanguageArtsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageArtsVC.swift; sourceTree = "<group>"; };
-		10BEC0291A3CEBB2008CBFF9 /* Classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Classes.plist; sourceTree = "<group>"; };
-		10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Activities.plist; sourceTree = "<group>"; };
+		10BEC0291A3CEBB2008CBFF9 /* Classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Classes.plist; path = "Flora Dummy/Classes.plist"; sourceTree = "<group>"; };
+		10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Activities.plist; path = "Flora Dummy/Activities.plist"; sourceTree = "<group>"; };
 		10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquaresDragAndDrop.swift; sourceTree = "<group>"; };
 		10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropVC.swift; sourceTree = "<group>"; };
@@ -465,6 +465,7 @@
 		1009AC3B1A3BD5FC009B4813 /* CESDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				109509631A3E278200030E4B /* Stored Data */,
 				1009AC3C1A3BD712009B4813 /* CESDatabase.swift */,
 				1095095C1A3E042C00030E4B /* CESEncryption.h */,
 				1095095D1A3E042C00030E4B /* CESEncryption.m */,
@@ -622,6 +623,15 @@
 				109509581A3E01F800030E4B /* LoggedInUser.plist */,
 			);
 			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		109509631A3E278200030E4B /* Stored Data */ = {
+			isa = PBXGroup;
+			children = (
+				10BEC0291A3CEBB2008CBFF9 /* Classes.plist */,
+				10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */,
+			);
+			name = "Stored Data";
 			sourceTree = "<group>";
 		};
 		1097EBC91A28C3C300BED924 /* Utilities */ = {
@@ -1075,8 +1085,6 @@
 				10B8788019FC3342005D9937 /* LanguageArtsVC.swift */,
 				106C8BD519FEE55B009B0983 /* MathVC.swift */,
 				106C8BD719FEE574009B0983 /* ScienceVC.swift */,
-				10BEC0291A3CEBB2008CBFF9 /* Classes.plist */,
-				10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */,
 			);
 			name = Subjects;
 			sourceTree = "<group>";

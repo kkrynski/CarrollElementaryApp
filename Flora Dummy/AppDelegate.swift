@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         window!.rootViewController = tabBarController!
         
         var showsDevTab = NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab")
-        println(showsDevTab)
         if showsDevTab == NO
         {
             let newTabs = NSMutableArray(array: tabBarController!.viewControllers!)

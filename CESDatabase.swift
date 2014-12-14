@@ -24,7 +24,6 @@ protocol CESDatabase
     var StudentID : String { get }
     
     */
-    var urlSession : NSURLSession { get set }
     
     //var arrayOfPrompts : Array<NSURLConnection>? { get set }
     
@@ -51,16 +50,27 @@ protocol CESCreationDatabase
     func uploadNewActivity(activityData: NSDictionary) -> String?
 }
 
+protocol CESUserAccountsDatabase
+{
+    var UserAccountsDownloaded : String { get }
+    
+    func downloadUserAccounts()
+    
+    func inputtedUserInformationIsValid(userInformation: Array<String>) -> Bool
+}
+
 private var databaseManagerInstance : DatabaseManager?
 
+//The Database Manager that manages all other databases
 class DatabaseManager : NSObject
 {
     private var activityCreationDatabaseManager : CESCreationDatabase?
     private var activityDatabaseManager : CESDatabase?
+    private var userAccountsDatabaseManager : CESUserAccountsDatabase?
     
     override init()
     {
-        fatalError("You cannot initialize this class.  Please call \"+ (id<CESDatabase>) databaseManagerForClass:(Class)sender\"")
+        fatalError("You cannot initialize this class.  Please call your specific class function to return the proper database")
     }
     
     private init(fromSharedManager: Bool)
@@ -69,6 +79,7 @@ class DatabaseManager : NSObject
         
         activityCreationDatabaseManager = ActivityCreationDatabaseManager()
         activityDatabaseManager = ActivityDatabaseManager()
+        userAccountsDatabaseManager = UserAccountsDatabaseManager()
     }
     
     private class func sharedManager() -> DatabaseManager
@@ -90,8 +101,14 @@ class DatabaseManager : NSObject
     {
         return DatabaseManager.sharedManager().activityCreationDatabaseManager!
     }
+    
+    class func databaseManagerForPasswordVCClass() -> CESUserAccountsDatabase
+    {
+        return DatabaseManager.sharedManager().userAccountsDatabaseManager!
+    }
 }
 
+//Segmented Database for Activity Creation
 private class ActivityCreationDatabaseManager : NSObject, CESCreationDatabase, NSURLSessionDelegate
 {
     var ActivityName : String { get { return "Activity_Name" } }
@@ -118,17 +135,18 @@ private class ActivityCreationDatabaseManager : NSObject, CESCreationDatabase, N
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    func uploadNewActivity(activityData: NSDictionary) -> String?
+    private func uploadNewActivity(activityData: NSDictionary) -> String?
     {
-        let activityID = arc4random_uniform(UInt32(Int.max))
+        let activityID = arc4random_uniform(UINT32_MAX)
         
         return "Success"
     }
 }
 
+//Segmented Database for individual activites
 private class ActivityDatabaseManager : NSObject, CESDatabase, NSURLSessionDelegate
 {
-    var urlSession : NSURLSession
+    private var urlSession : NSURLSession
     
     override init()
     {
@@ -145,8 +163,123 @@ private class ActivityDatabaseManager : NSObject, CESDatabase, NSURLSessionDeleg
     }
 }
 
+//Segmented Database for user account information and comparing
+private class UserAccountsDatabaseManager : NSObject, CESUserAccountsDatabase, NSURLSessionDelegate
+{
+    var UserAccountsDownloaded : String { get { return "User Accounts Downloaded Notification" } }
+    
+    //The user accounts are not stored in permenant memory for data protection
+    private var studentUserAccounts : Array<Dictionary<String, String>>?
+    private var teacherUserAccounts : Array<Dictionary<String, String>>?
+
+    private var urlSession : NSURLSession
+    private var activeSession : NSURLSessionDataTask?
+    
+    override init()
+    {
+        let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        urlSessionConfiguration.allowsCellularAccess = NO
+        urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
+        urlSessionConfiguration.timeoutIntervalForRequest = 15.0
+        
+        urlSession = NSURLSession(configuration: urlSessionConfiguration)
+        
+        super.init()
+        
+        urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
+    }
+    
+    private func downloadTeacherAccounts(completionHandler: (() -> Void))
+    {
+        let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM teacher"
+        let url = NSURL(string: databaseWebsite)!
+        
+        let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+        let postLength = String(postData!.length)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+        request.HTTPBody = postData
+        
+        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+            
+            if error != nil || databaseData == nil
+            {
+                completionHandler()
+                return
+            }
+            
+            let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+            
+            if stringData!.containsString("No Data")
+            {
+                completionHandler()
+                return
+            }
+            
+            let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+            
+            let tempUserAccounts = JSONData["Data"] as NSArray
+            
+            self.teacherUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
+            
+            completionHandler()
+            
+        })
+    }
+    
+    private func downloadUserAccounts()
+    {
+        downloadTeacherAccounts { () -> Void in
+            
+            let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM student"
+            let url = NSURL(string: databaseWebsite)!
+            
+            let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+            let postLength = String(postData!.length)
+            
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+            request.HTTPBody = postData
+            
+            self.activeSession = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+                
+                if error != nil || databaseData == nil
+                {
+                    return
+                }
+                
+                let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+                
+                if stringData!.containsString("No Data")
+                {
+                    return
+                }
+                
+                let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+                
+                let tempUserAccounts = JSONData["Data"] as NSArray
+                
+                self.teacherUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(self.UserAccountsDownloaded, object: nil)
+            })
+        }
+    }
+    
+    private func inputtedUserInformationIsValid(userInformation: Array<String>) -> Bool
+    {
+        return NO
+    }
+}
+
 private var mainActivitiesDatabaseManager : MainActivitiesDatabaseManager?
 
+//Segmented Database for the Main Activity Pages
 class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate
 {
     private var urlSession : NSURLSession?
@@ -305,40 +438,4 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
             
         }
     }
-}
-
-func >= (lhs: NSDate, rsh: NSDate) -> Bool
-{
-    let isGreaterThanOrEqualTo = NO
-    
-    
-    
-    return isGreaterThanOrEqualTo
-}
-
-func > (lhs: NSDate, rsh: NSDate) -> Bool
-{
-    let isGreaterThan = NO
-    
-    
-    
-    return isGreaterThan
-}
-
-func < (lhs: NSDate, rsh: NSDate) -> Bool
-{
-    let isLessThan = NO
-    
-    
-    
-    return isLessThan
-}
-
-func <= (lhs: NSDate, rsh: NSDate) -> Bool
-{
-    let isLessThanOrEqualTo = NO
-    
-    
-    
-    return isLessThanOrEqualTo
 }

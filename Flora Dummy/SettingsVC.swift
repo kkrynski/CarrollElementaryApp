@@ -59,47 +59,23 @@ class SettingsVC: FormattedVC
         
         let standardDefaults = NSUserDefaults.standardUserDefaults()
         
-        purpleButton!.setTitleColor(primaryColor, forState: .Normal)
-        purpleButton!.backgroundColor = colorForName(purpleButton!.titleLabel!.text!)
-        Definitions.outlineTextInLabel(purpleButton!.titleLabel!)
-        purpleButton!.layer.borderWidth = CGFloat(borderWidth)
-        purpleButton!.layer.borderColor = UIColor.whiteColor().CGColor
+        //Set up the color buttons
+        setUpColorButton(purpleButton!)
+        setUpColorButton(redButton!)
+        setUpColorButton(pinkButton!)
+        setUpColorButton(orangeButton!)
+        setUpColorButton(yellowButton!)
+        setUpColorButton(greenButton!)
+        setUpColorButton(blueButton!)
         
-        redButton!.setTitleColor(primaryColor, forState: .Normal)
-        redButton!.backgroundColor = colorForName(redButton!.titleLabel!.text!)
-        Definitions.outlineTextInLabel(redButton!.titleLabel!)
-        redButton!.layer.borderWidth = CGFloat(borderWidth)
-        redButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        pinkButton!.setTitleColor(primaryColor, forState: .Normal)
-        pinkButton!.backgroundColor = colorForName(pinkButton!.titleLabel!.text!)
-        Definitions.outlineTextInLabel(pinkButton!.titleLabel!)
-        pinkButton!.layer.borderWidth = CGFloat(borderWidth)
-        pinkButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        orangeButton!.setTitleColor(primaryColor, forState: .Normal)
-        orangeButton!.backgroundColor = colorForName(orangeButton!.titleLabel!.text!)
-        Definitions.outlineTextInLabel(orangeButton!.titleLabel!)
-        orangeButton!.layer.borderWidth = CGFloat(borderWidth)
-        orangeButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        yellowButton!.setTitleColor(primaryColor, forState: .Normal)
-        yellowButton!.backgroundColor = colorForName(yellowButton!.titleLabel!.text!)
-        Definitions.outlineTextInLabel(yellowButton!.titleLabel!)
-        yellowButton!.layer.borderWidth = CGFloat(borderWidth)
-        yellowButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        greenButton!.setTitleColor(primaryColor, forState: .Normal)
-        greenButton!.backgroundColor = colorForName(greenButton!.titleLabel!.text!)
-        Definitions.outlineTextInLabel(greenButton!.titleLabel!)
-        greenButton!.layer.borderWidth = CGFloat(borderWidth)
-        greenButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        blueButton!.setTitleColor(primaryColor, forState: .Normal)
-        blueButton!.backgroundColor = colorForName(blueButton!.titleLabel!.text!)
-        Definitions.outlineTextInLabel(blueButton!.titleLabel!)
-        blueButton!.layer.borderWidth = CGFloat(borderWidth)
-        blueButton!.layer.borderColor = UIColor.whiteColor().CGColor
+        //Set up the grade buttons
+        setUpGradeButton(kindergartenButton!)
+        setUpGradeButton(firstButton!)
+        setUpGradeButton(secondButton!)
+        setUpGradeButton(thirdButton!)
+        setUpGradeButton(fourthButton!)
+        setUpGradeButton(fifthButton!)
+        setUpGradeButton(sixthButton!)
         
         //Update Label colors
         
@@ -111,48 +87,6 @@ class SettingsVC: FormattedVC
         
         gradeLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(gradeLabel!)
-        
-        kindergartenButton!.setTitleColor(primaryColor, forState: .Normal)
-        Definitions.outlineTextInLabel(kindergartenButton!.titleLabel!)
-        kindergartenButton!.layer.borderWidth = CGFloat(borderWidth)
-        kindergartenButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        kindergartenButton!.backgroundColor = secondaryColor
-        
-        firstButton!.setTitleColor(primaryColor, forState: .Normal)
-        Definitions.outlineTextInLabel(firstButton!.titleLabel!)
-        firstButton!.layer.borderWidth = CGFloat(borderWidth)
-        firstButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        firstButton!.backgroundColor = secondaryColor
-        
-        secondButton!.setTitleColor(primaryColor, forState: .Normal)
-        Definitions.outlineTextInLabel(secondButton!.titleLabel!)
-        secondButton!.layer.borderWidth = CGFloat(borderWidth)
-        secondButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        secondButton!.backgroundColor = secondaryColor
-        
-        thirdButton!.setTitleColor(primaryColor, forState: .Normal)
-        Definitions.outlineTextInLabel(thirdButton!.titleLabel!)
-        thirdButton!.layer.borderWidth = CGFloat(borderWidth)
-        thirdButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        thirdButton!.backgroundColor = secondaryColor
-        
-        fourthButton!.setTitleColor(primaryColor, forState: .Normal)
-        Definitions.outlineTextInLabel(fourthButton!.titleLabel!)
-        fourthButton!.layer.borderWidth = CGFloat(borderWidth)
-        fourthButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        fourthButton!.backgroundColor = secondaryColor
-        
-        fifthButton!.setTitleColor(primaryColor, forState: .Normal)
-        Definitions.outlineTextInLabel(fifthButton!.titleLabel!)
-        fifthButton!.layer.borderWidth = CGFloat(borderWidth)
-        fifthButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        fifthButton!.backgroundColor = secondaryColor
-        
-        sixthButton!.setTitleColor(primaryColor, forState: .Normal)
-        Definitions.outlineTextInLabel(sixthButton!.titleLabel!)
-        sixthButton!.layer.borderWidth = CGFloat(borderWidth)
-        sixthButton!.layer.borderColor = UIColor.whiteColor().CGColor
-        sixthButton!.backgroundColor = secondaryColor
         
         //Select the buttons that already correspond with the current defaults.
         //This reduces double-loading
@@ -240,6 +174,22 @@ class SettingsVC: FormattedVC
         }
     }
     
+    private func setUpColorButton(button: UIButton)
+    {
+        button.setTitleColor(primaryColor, forState: .Normal)
+        button.backgroundColor = colorForName(button.titleLabel!.text!)
+        Definitions.outlineTextInLabel(button.titleLabel!)
+        Definitions.outlineButton(button)
+    }
+    
+    func setUpGradeButton(button: UIButton)
+    {
+        button.setTitleColor(primaryColor, forState: .Normal)
+        Definitions.outlineTextInLabel(button.titleLabel!)
+        Definitions.outlineButton(button)
+        button.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
+    }
+    
     //Update the background color
     @IBAction private func colorButtonPressed(sender : AnyObject)
     {
@@ -271,6 +221,14 @@ class SettingsVC: FormattedVC
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in
                 //self.viewDidLoad()
                 self.view.backgroundColor = Definitions.colorWithHexString(standardDefaults.objectForKey("backgroundColor") as String)
+                self.kindergartenButton!.backgroundColor = Definitions.lighterColorForColor(self.view.backgroundColor!)
+                self.firstButton!.backgroundColor = Definitions.lighterColorForColor(self.view.backgroundColor!)
+                self.secondButton!.backgroundColor = Definitions.lighterColorForColor(self.view.backgroundColor!)
+                self.thirdButton!.backgroundColor = Definitions.lighterColorForColor(self.view.backgroundColor!)
+                self.fourthButton!.backgroundColor = Definitions.lighterColorForColor(self.view.backgroundColor!)
+                self.fifthButton!.backgroundColor = Definitions.lighterColorForColor(self.view.backgroundColor!)
+                self.sixthButton!.backgroundColor = Definitions.lighterColorForColor(self.view.backgroundColor!)
+                
                 self.selectedColorButton?.highlighted = NO
                 self.selectedColorButton?.userInteractionEnabled = YES
             })
