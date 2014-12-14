@@ -58,13 +58,13 @@ Herein begins the Database Integration for the FloraDummy App
            to be returned the proper Database Manager
 
 
-        **  For PasswordVC, to implement the CESDatabase API, you must store a property with the type
-            "id<CESUserAccountsDatabase>"
-                (i.e.) id<CESUserAccountsDatabase> databaseManager;
+        **  For all other classes, to implement the CESDatabase API, you must store a property with the type
+            "id<CESDatabase>"
+                (i.e.) id<CESDatabase> databaseManager;
 
             Then call,
 
-                [DatabaseManager databaseManagerForPasswordVCClass];
+                [DatabaseManager databaseManagerForActivityClass];
 
             to be returned the proper Database Manager
 
