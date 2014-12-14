@@ -27,9 +27,9 @@ Herein begins the Database Integration for the FloraDummy App
         *  You will be unable to interact with the Database beyond updating specific values and downloading 
            any existing data for the activity.  This is to keep from accidental (or even purposeful)
            overwrites
-        *  In the interest of data protection, you will only be given access to the Activity table.  You
-           will not be able to see or interact with the Subject, Teacher, Student, Class, Student_Class, or
-           Activity_Session tables
+        *  In the interest of data protection, you will only be given access to the Activity_Session table.  
+           You will not be able to see or interact with the Subject, Teacher, Student, Class, Student_Class,
+           or Activity tables
 
 
     [[ API ]]
@@ -38,9 +38,9 @@ Herein begins the Database Integration for the FloraDummy App
             (i.e.) id<CESDatabase> databaseManager;
 
 
-        To grab the active database manager for your class, call:
+        To grab the active database manager for your Activity, call:
 
-            + (id<CESDatabase>) databaseManagerForClass:(Class)sender
+            + (id<CESDatabase>) databaseManagerForActivityClass;
                 *  You must supply this method with your class.  (i.e.) [myClass class]
 
 

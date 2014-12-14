@@ -25,6 +25,9 @@
 		108E9B1D1A27E5C700120A63 /* MathPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D9B1A2628A30048612E /* MathPopOverVC.m */; };
 		1093A1491A212DB3002B2B0A /* ClockDragVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A1481A212DB3002B2B0A /* ClockDragVC.swift */; };
 		1093A14B1A2137A2002B2B0A /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A14A1A2137A2002B2B0A /* Clock.swift */; };
+		109509591A3E01F800030E4B /* LoggedInUser.plist in Resources */ = {isa = PBXBuildFile; fileRef = 109509581A3E01F800030E4B /* LoggedInUser.plist */; };
+		1095095E1A3E042C00030E4B /* CESEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 1095095D1A3E042C00030E4B /* CESEncryption.m */; };
+		109509601A3E050100030E4B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1095095F1A3E050100030E4B /* Security.framework */; };
 		1097EBD01A28C4AC00BED924 /* TabBarTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */; };
 		1097EBD21A28C95D00BED924 /* FloraTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */; };
 		1097EBD51A28D37700BED924 /* OBJ-CDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */; };
@@ -32,6 +35,8 @@
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
+		10BEC02A1A3CEBB2008CBFF9 /* Classes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10BEC0291A3CEBB2008CBFF9 /* Classes.plist */; };
+		10BEC02C1A3CEBD7008CBFF9 /* Activities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */; };
 		10BF3F9F1A2BB80100B1A755 /* SquaresDragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */; };
 		10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */; };
 		10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */; };
@@ -216,6 +221,11 @@
 		108E9B1B1A27A6EB00120A63 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		1093A1481A212DB3002B2B0A /* ClockDragVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockDragVC.swift; sourceTree = "<group>"; };
 		1093A14A1A2137A2002B2B0A /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		109509581A3E01F800030E4B /* LoggedInUser.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoggedInUser.plist; sourceTree = "<group>"; };
+		1095095C1A3E042C00030E4B /* CESEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESEncryption.h; sourceTree = "<group>"; };
+		1095095D1A3E042C00030E4B /* CESEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESEncryption.m; sourceTree = "<group>"; };
+		1095095F1A3E050100030E4B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		109509611A3E050800030E4B /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTransitionManager.swift; sourceTree = "<group>"; };
 		1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloraTabBarController.swift; sourceTree = "<group>"; };
 		1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OBJ-CDefinitions.h"; sourceTree = "<group>"; };
@@ -226,6 +236,8 @@
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		10B8787D19FC2881005D9937 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		10B8788019FC3342005D9937 /* LanguageArtsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageArtsVC.swift; sourceTree = "<group>"; };
+		10BEC0291A3CEBB2008CBFF9 /* Classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Classes.plist; sourceTree = "<group>"; };
+		10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Activities.plist; sourceTree = "<group>"; };
 		10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquaresDragAndDrop.swift; sourceTree = "<group>"; };
 		10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropVC.swift; sourceTree = "<group>"; };
@@ -421,6 +433,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				109509601A3E050100030E4B /* Security.framework in Frameworks */,
 				10BFE6F21A204A1100E68C77 /* CoreLocation.framework in Frameworks */,
 				92D06A1618D137C7004850C6 /* libiconv.dylib in Frameworks */,
 				921894E617F7752A00DFB26B /* CoreGraphics.framework in Frameworks */,
@@ -453,6 +466,8 @@
 			isa = PBXGroup;
 			children = (
 				1009AC3C1A3BD712009B4813 /* CESDatabase.swift */,
+				1095095C1A3E042C00030E4B /* CESEncryption.h */,
+				1095095D1A3E042C00030E4B /* CESEncryption.m */,
 			);
 			name = CESDatabase;
 			sourceTree = "<group>";
@@ -598,6 +613,15 @@
 				1093A14A1A2137A2002B2B0A /* Clock.swift */,
 			);
 			name = "Clock Drag VC";
+			sourceTree = "<group>";
+		};
+		109509561A3E01E200030E4B /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
+				109509581A3E01F800030E4B /* LoggedInUser.plist */,
+			);
+			name = "App Delegate";
 			sourceTree = "<group>";
 		};
 		1097EBC91A28C3C300BED924 /* Utilities */ = {
@@ -770,6 +794,8 @@
 		921894E217F7752A00DFB26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				109509611A3E050800030E4B /* libcommonCrypto.dylib */,
+				1095095F1A3E050100030E4B /* Security.framework */,
 				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10BFE6F31A204AE900E68C77 /* MapKit.framework */,
 				10BFE6F11A204A1100E68C77 /* CoreLocation.framework */,
@@ -794,7 +820,7 @@
 				1009AC0E1A3BC0DC009B4813 /* README.swift */,
 				1097EBC91A28C3C300BED924 /* Utilities */,
 				10B8788319FC422C005D9937 /* Old Objective-C Code */,
-				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
+				109509561A3E01E200030E4B /* App Delegate */,
 				9282390518A6A39300223265 /* Main2.storyboard */,
 				10BFE6E01A20465100E68C77 /* Home View Controller */,
 				9211950D19FE01CC00644054 /* TestingTVC.h */,
@@ -1049,6 +1075,8 @@
 				10B8788019FC3342005D9937 /* LanguageArtsVC.swift */,
 				106C8BD519FEE55B009B0983 /* MathVC.swift */,
 				106C8BD719FEE574009B0983 /* ScienceVC.swift */,
+				10BEC0291A3CEBB2008CBFF9 /* Classes.plist */,
+				10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */,
 			);
 			name = Subjects;
 			sourceTree = "<group>";
@@ -1228,6 +1256,7 @@
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
 				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
 				10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */,
+				10BEC02A1A3CEBB2008CBFF9 /* Classes.plist in Resources */,
 				5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */,
 				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
@@ -1245,6 +1274,7 @@
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				10BFE6F61A20510800E68C77 /* Weather Images.xcassets in Resources */,
+				10BEC02C1A3CEBD7008CBFF9 /* Activities.plist in Resources */,
 				92F78D9E1A2628A30048612E /* MathPopOverVC.xib in Resources */,
 				4C6A6C361A11669200C3A7A7 /* expoView.xib in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
@@ -1253,6 +1283,7 @@
 				4C6A6C321A0E8C9500C3A7A7 /* trigView.xib in Resources */,
 				921894EE17F7752A00DFB26B /* InfoPlist.strings in Resources */,
 				4C6A6C381A11685200C3A7A7 /* extraView.xib in Resources */,
+				109509591A3E01F800030E4B /* LoggedInUser.plist in Resources */,
 				92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */,
 				4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */,
 				92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */,
@@ -1337,6 +1368,7 @@
 				92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */,
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
+				1095095E1A3E042C00030E4B /* CESEncryption.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,
 				92C117721A223BF0003506DB /* ContentCreationVC.m in Sources */,
@@ -1496,7 +1528,10 @@
 				INFOPLIST_FILE = "Flora Dummy/FloraDummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
@@ -1519,7 +1554,10 @@
 				INFOPLIST_FILE = "Flora Dummy/FloraDummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";

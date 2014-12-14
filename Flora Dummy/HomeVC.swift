@@ -52,6 +52,11 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         }
     }
     
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+    }
+    
     override func viewWillDisappear(animated: Bool)
     {
         super.viewWillDisappear(animated)

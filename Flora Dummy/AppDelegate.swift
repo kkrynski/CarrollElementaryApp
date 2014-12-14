@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
     
+    private var tabBarController : UITabBarController?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
     {
         let userDefaults = ["gradeNumber":"Kindergarten", "primaryColor":"000000", "secondaryColor":"EBEBEB", "backgroundColor":"7EA7D8", "selectedBackgroundButton":7, "calculatorPosition":"Left", "showsDevTab":YES]
@@ -22,23 +24,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let storyBoard = UIStoryboard(name: "Main2", bundle: nil)
-        let tabBarController = storyBoard.instantiateInitialViewController() as UITabBarController
+        tabBarController = storyBoard.instantiateInitialViewController() as? UITabBarController
         
-        window!.rootViewController = tabBarController
+        window!.rootViewController = tabBarController!
         
         var showsDevTab = NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab")
         println(showsDevTab)
         if showsDevTab == NO
         {
-            let newTabs = NSMutableArray(array: tabBarController.viewControllers!)
+            let newTabs = NSMutableArray(array: tabBarController!.viewControllers!)
             newTabs.removeLastObject()
-            tabBarController.setViewControllers(newTabs, animated: NO)
+            tabBarController!.setViewControllers(newTabs, animated: NO)
         }
         
         window!.makeKeyAndVisible()
         
-        tabBarController.presentViewController(PasswordVC(nibName: "PasswordVC", bundle: nil), animated: YES, completion: nil)
+        MainActivitiesDatabaseManager.sharedManager().loadActivitiesWithCompletionHandler { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
+        }
+        
+        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
+        let userLoginInfo = NSArray(contentsOfFile: plistPath!)
+        
+        if userLoginInfo!.count != 1
+        {
+            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentPasswordScreen", userInfo: nil, repeats: NO)
+        }
         
         return YES
+    }
+    
+    func presentPasswordScreen()
+    {
+        let passwordVC = PasswordVC(nibName: "PasswordVC", bundle: nil)
+        passwordVC.modalPresentationStyle = .FormSheet
+        
+        tabBarController!.presentViewController(passwordVC, animated: YES, completion: nil)
     }
 }

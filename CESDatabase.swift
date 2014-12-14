@@ -8,16 +8,54 @@
 
 import Foundation
 
+private let databaseWebsite = "http://floradummytest.michaelschlosstech.com/appdatabase.php"
+
+private let databasePassword = "12e45"
+
 protocol CESDatabase
 {
+    /*
+    //Constants
+    var ActivityID : String { get }
+    var ActivityStartTime : String { get }
+    var ActivityFinishTime : String { get }
+    var ActivityScore : String { get }
+    var ActivityData : String { get }
+    var StudentID : String { get }
     
+    */
+    var urlSession : NSURLSession { get set }
+    
+    //var arrayOfPrompts : Array<NSURLConnection>? { get set }
+    
+    
+}
+
+protocol CESCreationDatabase
+{
+    //Constants
+    var ActivityName : String { get }
+    var ActivityDescription : String { get }
+    var TotalPoints : String { get }
+    var ReleaseDate : String { get }
+    var DueDate : String { get }
+    var ActivityData : String { get }
+    var ClassID : String { get }
+    
+    /**
+    Uploads the activity data to the database
+    
+    :returns: ActivityID This method will return the activityID upon successful creation, or nil if the upload failed.
+    
+    */
+    func uploadNewActivity(activityData: NSDictionary) -> String?
 }
 
 private var databaseManagerInstance : DatabaseManager?
 
 class DatabaseManager : NSObject
 {
-    private var activityCreationDatabaseManager : CESDatabase?
+    private var activityCreationDatabaseManager : CESCreationDatabase?
     private var activityDatabaseManager : CESDatabase?
     
     override init()
@@ -43,22 +81,264 @@ class DatabaseManager : NSObject
         return databaseManagerInstance!
     }
     
-    class func databaseManagerForClass(sender: AnyClass) -> CESDatabase
+    class func databaseManagerForActivityClass() -> CESDatabase
     {
-        if sender === PageCreationVC.classForCoder()
-        {
-            return DatabaseManager.sharedManager().activityCreationDatabaseManager!
-        }
         return DatabaseManager.sharedManager().activityDatabaseManager!
+    }
+    
+    class func databaseManagerForCreationClass() -> CESCreationDatabase
+    {
+        return DatabaseManager.sharedManager().activityCreationDatabaseManager!
     }
 }
 
-private class ActivityCreationDatabaseManager : NSObject, CESDatabase
+private class ActivityCreationDatabaseManager : NSObject, CESCreationDatabase, NSURLSessionDelegate
 {
+    var ActivityName : String { get { return "Activity_Name" } }
+    var ActivityDescription : String { get { return "Activity_Description" } }
+    var TotalPoints : String { get { return "Activity_Total_Points" } }
+    var ReleaseDate : String { get { return "Release_Date" } }
+    var DueDate : String { get { return "Due_Date" } }
+    var ActivityData : String { get { return "Activity_Data" } }
+    var ClassID : String { get { return "Class_ID" } }
     
+    var urlSession : NSURLSession
+    
+    override init()
+    {
+        let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        urlSessionConfiguration.allowsCellularAccess = NO
+        urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
+        urlSessionConfiguration.timeoutIntervalForRequest = 15.0
+        
+        urlSession = NSURLSession(configuration: urlSessionConfiguration)
+        
+        super.init()
+        
+        urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
+    }
+    
+    func uploadNewActivity(activityData: NSDictionary) -> String?
+    {
+        let activityID = arc4random_uniform(UInt32(Int.max))
+        
+        return "Success"
+    }
 }
 
-private class ActivityDatabaseManager : NSObject, CESDatabase
+private class ActivityDatabaseManager : NSObject, CESDatabase, NSURLSessionDelegate
 {
+    var urlSession : NSURLSession
     
+    override init()
+    {
+        let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        urlSessionConfiguration.allowsCellularAccess = NO
+        urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
+        urlSessionConfiguration.timeoutIntervalForRequest = 15.0
+        
+        urlSession = NSURLSession(configuration: urlSessionConfiguration)
+        
+        super.init()
+        
+        urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
+    }
+}
+
+private var mainActivitiesDatabaseManager : MainActivitiesDatabaseManager?
+
+class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate
+{
+    private var urlSession : NSURLSession?
+    
+    private var activeSession : NSURLSessionDataTask?
+    
+    var activitiesLoaded = NO
+    
+    override init()
+    {
+        super.init()
+        
+        let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        urlSessionConfiguration.allowsCellularAccess = NO
+        urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
+        urlSessionConfiguration.timeoutIntervalForRequest = 15.0
+        
+        urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.currentQueue())
+    }
+    
+    class func sharedManager() -> MainActivitiesDatabaseManager
+    {
+        if mainActivitiesDatabaseManager == nil
+        {
+            mainActivitiesDatabaseManager = MainActivitiesDatabaseManager()
+        }
+        
+        return mainActivitiesDatabaseManager!
+    }
+    
+    func loadClassesWithCompletionHandler(completionHandler: ((classes: NSArray) -> Void))
+    {
+        var gradeNumber = NSUserDefaults.standardUserDefaults().objectForKey("gradeNumber") as String
+        if gradeNumber == "Kindergarten"
+        {
+            gradeNumber = "0"
+        }
+        
+        let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM class WHERE Grade=\(gradeNumber)"
+        let url = NSURL(string: databaseWebsite)!
+        
+        let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+        let postLength = String(postData!.length)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+        request.HTTPBody = postData
+        
+        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+            
+            if error != nil || databaseData == nil
+            {
+                completionHandler(classes: ["No Data"])
+                return
+            }
+            
+            let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+            
+            if stringData!.containsString("No Data")
+            {
+                completionHandler(classes: ["No Data"])
+                return
+            }
+            
+            let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+            
+            completionHandler(classes: JSONData["Data"] as NSArray)
+        })
+        activeSession!.resume()
+    }
+    
+    func loadActivitiesWithCompletionHandler(completionHandler:  (() -> Void) )
+    {
+        loadClassesWithCompletionHandler { (classes) -> Void in
+            
+            if classes[0].isKindOfClass(NSDictionary.classForCoder()) == NO
+            {
+                completionHandler()
+                return
+            }
+            
+            let plistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
+            classes.writeToFile(plistPath!, atomically: YES)
+            
+            let firstCourseID = classes[0]["Class_ID"] as String
+            
+            var post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM activity WHERE Class_ID=\(firstCourseID)"
+            
+            if classes.count > 1
+            {
+                for index in 1...Int(classes.count - 1)
+                {
+                    let courseID = classes[index]["Class_ID"] as String
+                    
+                    post += "&Class_ID=\(courseID)"
+                }
+            }
+            
+            let url = NSURL(string: databaseWebsite)!
+            
+            let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+            let postLength = String(postData!.length)
+            
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+            request.HTTPBody = postData
+            
+            self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+                
+                self.activitiesLoaded = YES
+                
+                if error != nil || databaseData == nil
+                {
+                    completionHandler()
+                    return
+                }
+                
+                let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+                
+                if stringData!.containsString("No Data")
+                {
+                    completionHandler()
+                    return
+                }
+                
+                let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+                let activities = JSONData["Data"] as NSArray
+                let newActivities = NSMutableArray(array: activities)
+                
+                for object in newActivities
+                {
+                    let activity = object as NSDictionary
+                    
+                    let newActivity = NSMutableDictionary(dictionary: activity)
+                    
+                    for key in newActivity.allKeys as Array<String>
+                    {
+                        if newActivity[key] as NSObject == NSNull()
+                        {
+                            newActivity.setValue("", forKey: key)
+                        }
+                    }
+                    newActivities[(newActivities as NSArray).indexOfObject(activity)] = newActivity as NSDictionary
+                }
+                
+                let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
+                newActivities.writeToFile(plistPath!, atomically: YES)
+                
+                completionHandler()
+            })
+            self.activeSession!.resume()
+            
+        }
+    }
+}
+
+func >= (lhs: NSDate, rsh: NSDate) -> Bool
+{
+    let isGreaterThanOrEqualTo = NO
+    
+    
+    
+    return isGreaterThanOrEqualTo
+}
+
+func > (lhs: NSDate, rsh: NSDate) -> Bool
+{
+    let isGreaterThan = NO
+    
+    
+    
+    return isGreaterThan
+}
+
+func < (lhs: NSDate, rsh: NSDate) -> Bool
+{
+    let isLessThan = NO
+    
+    
+    
+    return isLessThan
+}
+
+func <= (lhs: NSDate, rsh: NSDate) -> Bool
+{
+    let isLessThanOrEqualTo = NO
+    
+    
+    
+    return isLessThanOrEqualTo
 }
