@@ -638,7 +638,7 @@
 		1097EBC91A28C3C300BED924 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				10BF3FA21A2BF03200B1A755 /* LaunchScreen */,
+				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				10B8787D19FC2881005D9937 /* Definitions.swift */,
 				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
@@ -694,14 +694,6 @@
 				10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */,
 			);
 			name = "Random Squares Drag and Drop";
-			sourceTree = "<group>";
-		};
-		10BF3FA21A2BF03200B1A755 /* LaunchScreen */ = {
-			isa = PBXGroup;
-			children = (
-				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
-			);
-			name = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		10BFE6DD1A20201000E68C77 /* Drag And Drop */ = {

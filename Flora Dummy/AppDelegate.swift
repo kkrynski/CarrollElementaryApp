@@ -38,9 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         window!.makeKeyAndVisible()
         
-        DatabaseManager.databaseManagerForMainActivitiesClass().loadActivitiesWithCompletionHandler { () -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
-        }
+        DatabaseManager.databaseManagerForMainActivitiesClass().loadActivities()
         
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
         let userLoginInfo = NSArray(contentsOfFile: plistPath!)

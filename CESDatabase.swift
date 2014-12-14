@@ -264,9 +264,9 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     
     :returns: This method will return one of three constants upon completion:
     :returns:
-    :returns: *  'UserStateUserIsStudent' -- If you receive this NSString constant, that means the inputted information is for a Student Account
-    :returns: *  'UserStateUserIsTeacher' -- If you receive this NSString constant, that means the inputted information is for a Teacher Account
-    :returns: *  'UserStateUserInvalid'   -- If you receive this NSString constant, that means the inputted information is invalid
+    :returns: *  'UserStateUserIsStudent' -- The inputted information is for a Student Account
+    :returns: *  'UserStateUserIsTeacher' -- The inputted information is for a Teacher Account
+    :returns: *  'UserStateUserInvalid'   -- The inputted information is invalid
     
     */
     func inputtedUserInformationIsValid(userInformation: Array<String>) -> UserState
@@ -363,13 +363,12 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
         activeSession!.resume()
     }
     
-    func loadActivitiesWithCompletionHandler(completionHandler:  (() -> Void))
+    func loadActivities()
     {
         loadClassesWithCompletionHandler { (classes) -> Void in
             
             if classes[0].isKindOfClass(NSDictionary.classForCoder()) == NO
             {
-                completionHandler()
                 return
             }
             
@@ -407,7 +406,6 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
                 
                 if error != nil || databaseData == nil
                 {
-                    completionHandler()
                     return
                 }
                 
@@ -415,7 +413,6 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
                 
                 if stringData!.containsString("No Data")
                 {
-                    completionHandler()
                     return
                 }
                 
@@ -442,7 +439,7 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
                 let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
                 newActivities.writeToFile(plistPath!, atomically: YES)
                 
-                completionHandler()
+                NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
             })
             self.activeSession!.resume()
             
