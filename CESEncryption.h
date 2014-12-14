@@ -10,6 +10,13 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonHMAC.h>
 
+typedef NS_ENUM(NSInteger, UserState)
+{
+    UserStateUserIsStudent,
+    UserStateUserIsTeacher,
+    UserStateUserInvalid
+};
+
 @interface NSError (CommonCryptoErrorDomain)
 + (NSError *) errorWithCCCryptorStatus: (CCCryptorStatus) status;
 @end

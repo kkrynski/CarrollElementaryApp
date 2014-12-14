@@ -9,64 +9,18 @@
 import Foundation
 
 private let databaseWebsite = "http://floradummytest.michaelschlosstech.com/appdatabase.php"
-
 private let databasePassword = "12e45"
-
-protocol CESDatabase
-{
-    /*
-    //Constants
-    var ActivityID : String { get }
-    var ActivityStartTime : String { get }
-    var ActivityFinishTime : String { get }
-    var ActivityScore : String { get }
-    var ActivityData : String { get }
-    var StudentID : String { get }
-    
-    */
-    
-    //var arrayOfPrompts : Array<NSURLConnection>? { get set }
-    
-    
-}
-
-protocol CESCreationDatabase
-{
-    //Constants
-    var ActivityName : String { get }
-    var ActivityDescription : String { get }
-    var TotalPoints : String { get }
-    var ReleaseDate : String { get }
-    var DueDate : String { get }
-    var ActivityData : String { get }
-    var ClassID : String { get }
-    
-    /**
-    Uploads the activity data to the database
-    
-    :returns: ActivityID This method will return the activityID upon successful creation, or nil if the upload failed.
-    
-    */
-    func uploadNewActivity(activityData: NSDictionary) -> String?
-}
-
-protocol CESUserAccountsDatabase
-{
-    var UserAccountsDownloaded : String { get }
-    
-    func downloadUserAccounts()
-    
-    func inputtedUserInformationIsValid(userInformation: Array<String>) -> Bool
-}
+private let databaseEncryptionKey = "I1rObD475i"
 
 private var databaseManagerInstance : DatabaseManager?
 
 //The Database Manager that manages all other databases
 class DatabaseManager : NSObject
 {
-    private var activityCreationDatabaseManager : CESCreationDatabase?
-    private var activityDatabaseManager : CESDatabase?
-    private var userAccountsDatabaseManager : CESUserAccountsDatabase?
+    private var activityCreationDatabaseManager : ActivityCreationDatabaseManager?
+    private var activityDatabaseManager : ActivityDatabaseManager?
+    private var userAccountsDatabaseManager : UserAccountsDatabaseManager?
+    private var mainActivitiesDatabaseManager : MainActivitiesDatabaseManager?
     
     override init()
     {
@@ -77,9 +31,10 @@ class DatabaseManager : NSObject
     {
         super.init()
         
-        activityCreationDatabaseManager = ActivityCreationDatabaseManager()
-        activityDatabaseManager = ActivityDatabaseManager()
-        userAccountsDatabaseManager = UserAccountsDatabaseManager()
+        activityCreationDatabaseManager = ActivityCreationDatabaseManager(databaseManager: YES)
+        activityDatabaseManager = ActivityDatabaseManager(databaseManager: YES)
+        userAccountsDatabaseManager = UserAccountsDatabaseManager(databaseManager: YES)
+        mainActivitiesDatabaseManager = MainActivitiesDatabaseManager(databaseManager: YES)
     }
     
     private class func sharedManager() -> DatabaseManager
@@ -92,24 +47,28 @@ class DatabaseManager : NSObject
         return databaseManagerInstance!
     }
     
-    class func databaseManagerForActivityClass() -> CESDatabase
+    class func databaseManagerForActivityClass() -> ActivityDatabaseManager
     {
         return DatabaseManager.sharedManager().activityDatabaseManager!
     }
     
-    class func databaseManagerForCreationClass() -> CESCreationDatabase
+    class func databaseManagerForCreationClass() -> ActivityCreationDatabaseManager
     {
         return DatabaseManager.sharedManager().activityCreationDatabaseManager!
     }
     
-    class func databaseManagerForPasswordVCClass() -> CESUserAccountsDatabase
+    class func databaseManagerForPasswordVCClass() -> UserAccountsDatabaseManager
     {
         return DatabaseManager.sharedManager().userAccountsDatabaseManager!
+    }
+    class func databaseManagerForMainActivitiesClass() -> MainActivitiesDatabaseManager
+    {
+        return DatabaseManager.sharedManager().mainActivitiesDatabaseManager!
     }
 }
 
 //Segmented Database for Activity Creation
-private class ActivityCreationDatabaseManager : NSObject, CESCreationDatabase, NSURLSessionDelegate
+class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
 {
     var ActivityName : String { get { return "Activity_Name" } }
     var ActivityDescription : String { get { return "Activity_Description" } }
@@ -123,6 +82,11 @@ private class ActivityCreationDatabaseManager : NSObject, CESCreationDatabase, N
     
     override init()
     {
+        fatalError("You cannot initialize this class.  Please call your specific class function to return the proper database")
+    }
+    
+    private init(databaseManager: Bool)
+    {
         let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         urlSessionConfiguration.allowsCellularAccess = NO
         urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
@@ -135,7 +99,13 @@ private class ActivityCreationDatabaseManager : NSObject, CESCreationDatabase, N
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    private func uploadNewActivity(activityData: NSDictionary) -> String?
+    /**
+    Uploads the activity data to the database
+    
+    :returns: ActivityID. This method will return the activityID upon successful creation, or nil if the upload failed.
+    
+    */
+    internal func uploadNewActivity(activityData: NSDictionary) -> String?
     {
         let activityID = arc4random_uniform(UINT32_MAX)
         
@@ -144,11 +114,16 @@ private class ActivityCreationDatabaseManager : NSObject, CESCreationDatabase, N
 }
 
 //Segmented Database for individual activites
-private class ActivityDatabaseManager : NSObject, CESDatabase, NSURLSessionDelegate
+class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
 {
     private var urlSession : NSURLSession
     
     override init()
+    {
+        fatalError("You cannot initialize this class.  Please call your specific class function to return the proper database")
+    }
+    
+    private init(databaseManager: Bool)
     {
         let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         urlSessionConfiguration.allowsCellularAccess = NO
@@ -164,7 +139,7 @@ private class ActivityDatabaseManager : NSObject, CESDatabase, NSURLSessionDeleg
 }
 
 //Segmented Database for user account information and comparing
-private class UserAccountsDatabaseManager : NSObject, CESUserAccountsDatabase, NSURLSessionDelegate
+class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
 {
     var UserAccountsDownloaded : String { get { return "User Accounts Downloaded Notification" } }
     
@@ -176,6 +151,11 @@ private class UserAccountsDatabaseManager : NSObject, CESUserAccountsDatabase, N
     private var activeSession : NSURLSessionDataTask?
     
     override init()
+    {
+        fatalError("You cannot initialize this class.  Please call your specific class function to return the proper database")
+    }
+    
+    private init(databaseManager: Bool)
     {
         let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         urlSessionConfiguration.allowsCellularAccess = NO
@@ -230,7 +210,14 @@ private class UserAccountsDatabaseManager : NSObject, CESUserAccountsDatabase, N
         })
     }
     
-    private func downloadUserAccounts()
+    /**
+    
+    Downloads the user accounts for Teachers and Students.  This method should be called immediately in 'viewDidLoad:'
+    
+    Once the accounts have downloaded, this method sends out the "UserAccountsDownloaded" notification.  Add your class as an observer to properly respond to the finished download
+    
+    */
+    func downloadUserAccounts()
     {
         downloadTeacherAccounts { () -> Void in
             
@@ -271,13 +258,41 @@ private class UserAccountsDatabaseManager : NSObject, CESUserAccountsDatabase, N
         }
     }
     
-    private func inputtedUserInformationIsValid(userInformation: Array<String>) -> Bool
+    /**
+    
+    Compares the received user account information with the downloaded information.  If no data has been downloaded, this method returns invalid.
+    
+    :returns: This method will return one of three constants upon completion:
+    :returns:
+    :returns: *  'UserStateUserIsStudent' -- If you receive this NSString constant, that means the inputted information is for a Student Account
+    :returns: *  'UserStateUserIsTeacher' -- If you receive this NSString constant, that means the inputted information is for a Teacher Account
+    :returns: *  'UserStateUserInvalid'   -- If you receive this NSString constant, that means the inputted information is invalid
+    
+    */
+    func inputtedUserInformationIsValid(userInformation: Array<String>) -> UserState
     {
-        return NO
+        let encryptedUserName = userInformation[0].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedPassword = userInformation[1].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        
+        for userAccount in studentUserAccounts!
+        {
+            if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
+            {
+                return .UserIsStudent
+            }
+        }
+        
+        for userAccount in teacherUserAccounts!
+        {
+            if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
+            {
+                return .UserIsTeacher
+            }
+        }
+        
+        return .UserInvalid
     }
 }
-
-private var mainActivitiesDatabaseManager : MainActivitiesDatabaseManager?
 
 //Segmented Database for the Main Activity Pages
 class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate
@@ -290,6 +305,11 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
     
     override init()
     {
+        fatalError("You cannot initialize this class.  Please call your specific class function to return the proper database")
+    }
+    
+    private init(databaseManager: Bool)
+    {
         super.init()
         
         let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -300,17 +320,7 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.currentQueue())
     }
     
-    class func sharedManager() -> MainActivitiesDatabaseManager
-    {
-        if mainActivitiesDatabaseManager == nil
-        {
-            mainActivitiesDatabaseManager = MainActivitiesDatabaseManager()
-        }
-        
-        return mainActivitiesDatabaseManager!
-    }
-    
-    func loadClassesWithCompletionHandler(completionHandler: ((classes: NSArray) -> Void))
+    private func loadClassesWithCompletionHandler(completionHandler: ((classes: NSArray) -> Void))
     {
         var gradeNumber = NSUserDefaults.standardUserDefaults().objectForKey("gradeNumber") as String
         if gradeNumber == "Kindergarten"
@@ -353,7 +363,7 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
         activeSession!.resume()
     }
     
-    func loadActivitiesWithCompletionHandler(completionHandler:  (() -> Void) )
+    func loadActivitiesWithCompletionHandler(completionHandler:  (() -> Void))
     {
         loadClassesWithCompletionHandler { (classes) -> Void in
             

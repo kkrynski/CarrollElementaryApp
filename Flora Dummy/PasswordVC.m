@@ -85,7 +85,6 @@
     submitButton.titleLabel.font = self.font;
     [submitButton setTitleColor:self.primaryColor forState:UIControlStateNormal];
     
-    
     [Definitions outlineTextInLabel:userLabel];
     [Definitions outlineTextInLabel:_titleLabel];
     [Definitions outlineTextInLabel:passwordLabel];

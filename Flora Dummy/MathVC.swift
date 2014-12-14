@@ -115,7 +115,7 @@ class MathVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             }
         }
         
-        if MainActivitiesDatabaseManager.sharedManager().activitiesLoaded == NO && activities.count == 0
+        if DatabaseManager.databaseManagerForMainActivitiesClass().activitiesLoaded == NO && activities.count == 0
         {
             showLoadingView()
         }

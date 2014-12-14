@@ -20,3 +20,5 @@
 
 #import "ClassConversions.h"
 #import "PageCreationVC.h"
+
+#import "CESEncryption.h"

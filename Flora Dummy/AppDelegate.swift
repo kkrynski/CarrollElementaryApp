@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         window!.makeKeyAndVisible()
         
-        MainActivitiesDatabaseManager.sharedManager().loadActivitiesWithCompletionHandler { () -> Void in
+        DatabaseManager.databaseManagerForMainActivitiesClass().loadActivitiesWithCompletionHandler { () -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
         }
         

@@ -225,7 +225,6 @@
 		1095095C1A3E042C00030E4B /* CESEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESEncryption.h; sourceTree = "<group>"; };
 		1095095D1A3E042C00030E4B /* CESEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESEncryption.m; sourceTree = "<group>"; };
 		1095095F1A3E050100030E4B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		109509611A3E050800030E4B /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTransitionManager.swift; sourceTree = "<group>"; };
 		1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloraTabBarController.swift; sourceTree = "<group>"; };
 		1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OBJ-CDefinitions.h"; sourceTree = "<group>"; };
@@ -471,6 +470,7 @@
 				1095095D1A3E042C00030E4B /* CESEncryption.m */,
 			);
 			name = CESDatabase;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		104BA0F61A0424DA007BD9DE /* Pages */ = {
@@ -517,6 +517,7 @@
 		1078FC141A0E944500A14836 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
+				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10BF3F9D1A2BB71C00B1A755 /* Random Squares Drag and Drop */,
 				1093A1471A212CBB002B2B0A /* Clock Drag VC */,
 				10BFE6DD1A20201000E68C77 /* Drag And Drop */,
@@ -804,9 +805,7 @@
 		921894E217F7752A00DFB26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				109509611A3E050800030E4B /* libcommonCrypto.dylib */,
 				1095095F1A3E050100030E4B /* Security.framework */,
-				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10BFE6F31A204AE900E68C77 /* MapKit.framework */,
 				10BFE6F11A204A1100E68C77 /* CoreLocation.framework */,
 				92D06A1518D137C7004850C6 /* libiconv.dylib */,
