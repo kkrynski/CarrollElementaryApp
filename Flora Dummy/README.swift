@@ -77,7 +77,7 @@ Herein begins the Database Integration for the FloraDummy App
 
 
         ---------------------------------
-        -- UserAccountsDatabaseManager --
+        -- UserAccountsDatabaseManager --   -- FINAL API
         ---------------------------------
 
 
@@ -86,7 +86,7 @@ Herein begins the Database Integration for the FloraDummy App
             --------------------
 
 
-            NSString *UserAccountsDownloaded
+            NSString *UserAccountsDownloaded ([UserAccountsDatabaseManager UserAccountsDownloaded])
                 *  Use this constant to listen for the notification when user accounts finish
                    downloading
 

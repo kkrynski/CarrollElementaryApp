@@ -118,15 +118,24 @@ class ScienceVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         if DatabaseManager.databaseManagerForMainActivitiesClass().activitiesLoaded == NO && activities.count == 0
         {
-            showLoadingView()
+            if loadingView == nil
+            {
+                showLoadingView()
+            }
         }
         else if activities.count == 0
         {
-            showNoActivites()
+            if noActivitiesView == nil
+            {
+                showNoActivites()
+            }
         }
         else
         {
-            showLittleLoadingView()
+            if loadingView == nil
+            {
+                showLittleLoadingView()
+            }
         }
         
         activitiesTable!.reloadData()

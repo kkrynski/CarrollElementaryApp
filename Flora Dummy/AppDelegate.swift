@@ -38,17 +38,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         window!.makeKeyAndVisible()
         
-        DatabaseManager.databaseManagerForMainActivitiesClass().loadActivities()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadActivities", name: UserAccountsDatabaseManager.UserLoggedIn(), object: nil)
         
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
         let userLoginInfo = NSArray(contentsOfFile: plistPath!)
         
-        if userLoginInfo!.count != 1
+        if userLoginInfo!.count != 4
         {
             NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentPasswordScreen", userInfo: nil, repeats: NO)
         }
+        else
+        {
+            loadActivities()
+        }
         
         return YES
+    }
+    
+    func loadActivities()
+    {
+        DatabaseManager.databaseManagerForMainActivitiesClass().loadActivities()
     }
     
     func presentPasswordScreen()
