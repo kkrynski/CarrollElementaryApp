@@ -305,7 +305,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
 
     Stores the inputted Username and Password onto the device.  User information is encrypted first.
     
-    * NOTE: This method will do nothing if '- (UserState) inputtedUserInformationIsValid:' hasn't been called yet, or returned UserStateUserInvalid.
+    * NOTE: This method will immediately return 'false' if '- (UserState) inputtedUserInformationIsValid:' hasn't been called yet, or returned UserStateUserInvalid.
     
     :param: userInformation An NSArray containing the inputted Username in the first index, and the inputted Password in the second index
     
