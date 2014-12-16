@@ -6,9 +6,16 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
+//-----------------------------------------------------------------
+//-----------------------------------------------------------------
+//  Please see the README file for an expanation of the CESDatabase
+//-----------------------------------------------------------------
+//-----------------------------------------------------------------
+
 import Foundation
 
 private let databaseWebsite = "http://floradummytest.michaelschlosstech.com/appdatabase.php"
+private let databaseUploadWebsite = "http://floradummytest.michaelschlosstech.com/uploaddatabase.php"
 private let databasePassword = "12e45"
 private let databaseEncryptionKey = "I1rObD475i"
 
@@ -30,6 +37,8 @@ class DatabaseManager : NSObject
     private init(fromSharedManager: Bool)
     {
         super.init()
+        
+        databaseManagerInstance = self
         
         activityCreationDatabaseManager = ActivityCreationDatabaseManager(databaseManager: YES)
         activityDatabaseManager = ActivityDatabaseManager(databaseManager: YES)
