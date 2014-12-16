@@ -36,8 +36,8 @@ Herein begins the Database Integration for the FloraDummy App
     -------------------------------
 
 
-        **  For Activity Creation, to implement the CESDatabase API, you must store a property with the type
-            "id<CESCreationDatabase>"
+        **  For Activity Creation, to implement the CESDatabase API, you should store a property with the 
+            type "id<CESCreationDatabase>"
                 (i.e.) id<CESCreationDatabase> databaseManager;
 
             Then call,
@@ -47,20 +47,20 @@ Herein begins the Database Integration for the FloraDummy App
             to be returned the proper Database Manager
 
 
-        **  For PasswordVC, to implement the CESDatabase API, you must store a property with the type
-            "id<CESUserAccountsDatabase>"
-                (i.e.) id<CESUserAccountsDatabase> databaseManager;
+        **  For PasswordVC, to implement the CESDatabase API, you should store a property with the type
+            "UserAccountsDatabaseManager"
+                (i.e.) UserAccountsDatabaseManager *databaseManager;
 
-           Then call,
+            Then call,
 
                 [DatabaseManager databaseManagerForPasswordVCClass];
 
-           to be returned the proper Database Manager
+            to be returned the proper Database Manager
 
 
-        **  For all other classes, to implement the CESDatabase API, you must store a property with the type
-            "id<CESActivityDatabase>"
-                (i.e.) id<CESActivityDatabase> databaseManager;
+        **  For all other classes, to implement the CESDatabase API, you should store a property with the 
+            type "ActivityDatabaseManager"
+                (i.e.) ActivityDatabaseManager *databaseManager;
 
             Then call,
 
@@ -76,9 +76,9 @@ Herein begins the Database Integration for the FloraDummy App
         Database Manager class and follow its instructions
 
 
-        -----------------------------
-        -- CESUserAccountsDatabase --
-        -----------------------------
+        ---------------------------------
+        -- UserAccountsDatabaseManager --
+        ---------------------------------
 
 
             --------------------
@@ -130,6 +130,54 @@ Herein begins the Database Integration for the FloraDummy App
             NOTE:   You will not have access to the downloaded user accounts.  This is due in part because
                     they are not stored on the device's memory, and in part because they are stored as Swift
                     objects.  They are unreadable to all but the database manager, and are never decrypted.
+
+
+        -----------------------------
+        -- ActivityDatabaseManager --
+        -----------------------------
+
+
+            --------------------
+            -- [[ Contants ]] --
+            --------------------
+
+
+            NSString *ActivityID
+                *  Used for specifying the activityID in the activitySession Dictionary (see below)
+
+            NSString *ActivityGrade
+                *  Used for specifying the Grade in the activitySession Dictionary (see below)
+
+            NSString *ActivityData
+                *  Used for specifying the Data in the activitySession Dictionary (see below)
+                    *  This should be an NSDictionary formatted however you like
+
+            NSString *ActivityStartDate
+                *  Used for specifying the Start Date in the activitySession Dictionary (see below)
+
+            NSString *ActivityEndDate
+                *  Used for specifying the End Date in the activitySession Dictionary (see below)
+
+            NSString *ActivityStatus
+                *  Used for specifying the status of the activity in the activitySession Dictionary
+                   (see below)
+
+
+            -------------------
+            -- [[ Methods ]] --
+            -------------------
+
+            
+            - (NSDictionary *) activityInformationForActivityID:(NSString *)activityID
+                *  Returns the Activity Data for the activity with the specified activityID
+                *  Returns nil if the activityID is invalid
+
+
+
+
+
+
+
 
 */
 

@@ -109,7 +109,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     {
         let activityID = arc4random_uniform(UINT32_MAX)
         
-        return "Success"
+        return String(activityID)
     }
 }
 
@@ -117,6 +117,13 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
 class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
 {
     private var urlSession : NSURLSession
+    
+    var ActivityID : String         { get { return "Activity ID" } }
+    var ActivityGrade : String      { get { return "Activity Grade" } }
+    var ActivityData : String       { get { return "Activity Data" } }
+    var ActivityStartDate : String  { get { return "Activity Start Date" } }
+    var ActivityEndDate : String    { get { return "Activity End Data" } }
+    var ActivityStatus : String     { get { return "Activity Status" } }
     
     override init()
     {
@@ -135,6 +142,47 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
         super.init()
         
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
+    }
+    
+    /**
+    
+    Returns the Activity Data for the activity with the specified activityID
+    
+    :param: activityID The activityID of the activity requesting its data
+    
+    :returns: The Dictionary of data that the activity had previously stored
+    
+    */
+    func activityInformationForActivityID(activityID: String) -> NSDictionary?
+    {
+        let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")!
+        let activities = NSArray(contentsOfFile: plistPath) as Array<Dictionary<String, AnyObject>>
+        
+        for activity in activities
+        {
+            if activity["Activity_ID"] as String == activityID
+            {
+                return activity["Activity_Data"]! as? NSDictionary
+            }
+        }
+        
+        return nil
+    }
+    
+    /**
+
+    Uploads a new activity session, or updates it if it already exists
+    
+    :param: activitySession A Dictionary of values corresponding to the constants listed for this class.  They may be in any order
+    
+    :returns: A Bool indicating wether the data could be uploaded or not
+    
+    */
+    func uploadActivitySession(activitySession: Dictionary<String, AnyObject>) -> Bool
+    {
+        
+        
+        return NO
     }
 }
 
@@ -253,7 +301,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
                 
                 let tempUserAccounts = JSONData["Data"] as NSArray
                 
-                self.teacherUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
+                self.studentUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(self.UserAccountsDownloaded, object: nil)
             })
@@ -298,7 +346,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     }
     
     /**
-
+    
     Stores the inputted Username and Password onto the device.  User information is encrypted first.
     
     * NOTE: This method will immediately return 'false' if '- (UserState) inputtedUserInformationIsValid:' hasn't been called yet, or returned UserStateUserInvalid.
@@ -322,7 +370,26 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         let encryptedUserName = userInformation[0].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         let encryptedPassword = userInformation[1].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         
-        return NSArray(objects: encryptedUserName, encryptedPassword).writeToFile(plistPath, atomically: YES)
+        if inputtedUserInformationIsValid(userInformation) != .UserInvalid
+        {
+            for student in studentUserAccounts!
+            {
+                if student["Username"] == encryptedUserName && student["Password"] == encryptedPassword
+                {
+                    return NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student").writeToFile(plistPath, atomically: YES)
+                }
+            }
+            
+            for teacher in teacherUserAccounts!
+            {
+                if teacher["Username"] == encryptedUserName && teacher["Password"] == encryptedPassword
+                {
+                    return NSArray(objects: encryptedUserName, encryptedPassword, teacher["Teacher_ID"]!, "Teacher").writeToFile(plistPath, atomically: YES)
+                }
+            }
+        }
+        
+        return NO
     }
 }
 
@@ -462,7 +529,14 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
                     {
                         if newActivity[key] as NSObject == NSNull()
                         {
-                            newActivity.setValue("", forKey: key)
+                            if key != "Activity_Data"
+                            {
+                                newActivity.setValue("", forKey: key)
+                            }
+                            else
+                            {
+                                newActivity.setValue(NSDictionary(), forKey: key)
+                            }
                         }
                     }
                     newActivities[(newActivities as NSArray).indexOfObject(activity)] = newActivity as NSDictionary
