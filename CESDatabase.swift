@@ -146,9 +146,11 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     //The user accounts are not stored in permenant memory for data protection
     private var studentUserAccounts : Array<Dictionary<String, String>>?
     private var teacherUserAccounts : Array<Dictionary<String, String>>?
-
+    
     private var urlSession : NSURLSession
     private var activeSession : NSURLSessionDataTask?
+    
+    private var inputtedInfoIsValid = NO
     
     override init()
     {
@@ -274,10 +276,14 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         let encryptedUserName = userInformation[0].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         let encryptedPassword = userInformation[1].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         
+        println(encryptedUserName)
+        println(encryptedPassword)
+        
         for userAccount in studentUserAccounts!
         {
             if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
             {
+                inputtedInfoIsValid = YES
                 return .UserIsStudent
             }
         }
@@ -286,11 +292,41 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         {
             if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
             {
+                inputtedInfoIsValid = YES
                 return .UserIsTeacher
             }
         }
         
+        inputtedInfoIsValid = NO
         return .UserInvalid
+    }
+    
+    /**
+
+    Stores the inputted Username and Password onto the device.  User information is encrypted first.
+    
+    * NOTE: This method will do nothing if '- (UserState) inputtedUserInformationIsValid:' hasn't been called yet, or returned UserStateUserInvalid.
+    
+    :param: userInformation An NSArray containing the inputted Username in the first index, and the inputted Password in the second index
+    
+    :returns: If returned 'true', the information was successfuly stored onto the device.
+    :returns: If returned 'false' the information was not successfully stored onto the device.
+    :returns: You should use this Bool to determine whether or not you can/should dismiss the PasswordVC.
+    
+    */
+    func storeInputtedUserInformation(userInformation: Array<String>) -> Bool
+    {
+        if inputtedInfoIsValid == NO
+        {
+            return NO
+        }
+        
+        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
+        
+        let encryptedUserName = userInformation[0].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedPassword = userInformation[1].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        
+        return NSArray(objects: encryptedUserName, encryptedPassword).writeToFile(plistPath, atomically: YES)
     }
 }
 

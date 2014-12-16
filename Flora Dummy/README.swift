@@ -26,10 +26,15 @@ Herein begins the Database Integration for the FloraDummy App
            activity requires
 
 
+-----------------
 ----[[ API ]]----
+-----------------
 
 
+    -------------------------------
     -- Database Manager Creation --
+    -------------------------------
+
 
         **  For Activity Creation, to implement the CESDatabase API, you must store a property with the type
             "id<CESCreationDatabase>"
@@ -63,14 +68,33 @@ Herein begins the Database Integration for the FloraDummy App
 
             to be returned the proper Database Manager
 
-
+    ---------------
     -- API Calls --
+    ---------------
 
         Each Database Manager has different API calls, as listed below.  Please find the correct
         Database Manager class and follow its instructions
 
 
+        -----------------------------
         -- CESUserAccountsDatabase --
+        -----------------------------
+
+
+            --------------------
+            -- [[ Contants ]] --
+            --------------------
+
+
+            NSString *UserAccountsDownloaded
+                *  Use this constant to listen for the notification when user accounts finish
+                   downloading
+
+
+            -------------------
+            -- [[ Methods ]] --
+            -------------------
+
 
             - (void) downloadUserAccounts
                 *  Downloads the user accounts for Teachers and Students.  This method should be called
@@ -78,10 +102,10 @@ Herein begins the Database Integration for the FloraDummy App
                 *  Once the accounts have downloaded, this method sends out the "UserAccountsDownloaded"
                    notification.  Add your class as an observer to properly respond to the finished download
 
-            - (NSString *) inputtedUserInformationIsValid:(NSArray *)userAccountInformation
+            - (NSString *) inputtedUserInformationIsValid:(NSArray *)userInformation
                 *  Compares the received user account information with the downloaded information.  If no
                    data has been downloaded, this method returns invalid.
-                *  userAccountInformation must follow this setup: Index 0 - Username, Index 1 - Password
+                *  userInformation must follow this setup: Index 0 - Username, Index 1 - Password
                 *  There are three NSString Constants that can be returned:
                     *  'UserStateUserIsStudent' -- If you receive this NSString constant, that means the
                        inputted information is for a Student Account
@@ -89,6 +113,19 @@ Herein begins the Database Integration for the FloraDummy App
                        inputted information is for a Teacher Account
                     *  'UserStateUserInvalid'   -- If you receive this NSString constant, that means the 
                        inputted information is invalid
+
+            - (BOOL) storeInputtedUserInformation:(NSArray *)userInformation
+                *  Stores the inputted Username and Password onto the device.  User information is encrypted
+                   first.
+                    *  NOTE: This method will do nothing if '- (UserState) inputtedUserInformationIsValid:' 
+                       hasn't been called yet, or returned UserStateUserInvalid.
+                *  'userInformation' is an NSArray containing the inputted Username in the first index, and 
+                   the inputted Password in the second index
+                *  If returned 'true', the information was successfuly stored onto the device.
+                   If returned 'false' the information was not successfully stored onto the device.
+                    *  You should use this Bool to determine whether or not you can/should dismiss the 
+                       PasswordVC.
+
 
             NOTE:   You will not have access to the downloaded user accounts.  This is due in part because
                     they are not stored on the device's memory, and in part because they are stored as Swift
