@@ -275,10 +275,6 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     {
         let encryptedUserName = userInformation[0].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         let encryptedPassword = userInformation[1].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
-        
-        println(encryptedUserName)
-        println(encryptedPassword)
-        
         for userAccount in studentUserAccounts!
         {
             if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
