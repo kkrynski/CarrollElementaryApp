@@ -37,8 +37,8 @@ Herein begins the Database Integration for the FloraDummy App
 
 
         **  For Activity Creation, to implement the CESDatabase API, you should store a property with the 
-            type "id<CESCreationDatabase>"
-                (i.e.) id<CESCreationDatabase> databaseManager;
+            type "CESCreationDatabase"
+                (i.e.) CESCreationDatabase *databaseManager;
 
             Then call,
 
@@ -67,6 +67,7 @@ Herein begins the Database Integration for the FloraDummy App
                 [DatabaseManager databaseManagerForActivityClass];
 
             to be returned the proper Database Manager
+
 
     ---------------
     -- API Calls --
@@ -102,10 +103,9 @@ Herein begins the Database Integration for the FloraDummy App
                 *  Once the accounts have downloaded, this method sends out the "UserAccountsDownloaded"
                    notification.  Add your class as an observer to properly respond to the finished download
 
-            - (NSString *) inputtedUserInformationIsValid:(NSArray *)userInformation
+            - (NSString *) inputtedUsernameIsValid:(NSString *)username andPassword:(NSString *)password
                 *  Compares the received user account information with the downloaded information.  If no
-                   data has been downloaded, this method returns invalid.
-                *  userInformation must follow this setup: Index 0 - Username, Index 1 - Password
+                   data has been downloaded, this method immediately returns 'UserStateUserInvalid'.
                 *  There are three NSString Constants that can be returned:
                     *  'UserStateUserIsStudent' -- If you receive this NSString constant, that means the
                        inputted information is for a Student Account
@@ -114,18 +114,15 @@ Herein begins the Database Integration for the FloraDummy App
                     *  'UserStateUserInvalid'   -- If you receive this NSString constant, that means the 
                        inputted information is invalid
 
-            - (BOOL) storeInputtedUserInformation:(NSArray *)userInformation
+            - (BOOL) storeInputtedUsername:(NSString *)username andPassword:(NSString *)password
                 *  Stores the inputted Username and Password onto the device.  User information is encrypted
                    first.
                     *  NOTE: This method will do nothing if '- (UserState) inputtedUserInformationIsValid:' 
                        hasn't been called yet, or returned UserStateUserInvalid.
-                *  'userInformation' is an NSArray containing the inputted Username in the first index, and 
-                   the inputted Password in the second index
                 *  If returned 'true', the information was successfuly stored onto the device.
                    If returned 'false' the information was not successfully stored onto the device.
                     *  You should use this Bool to determine whether or not you can/should dismiss the 
                        PasswordVC.
-
 
             NOTE:   You will not have access to the downloaded user accounts.  This is due in part because
                     they are not stored on the device's memory, and in part because they are stored as Swift
@@ -172,10 +169,12 @@ Herein begins the Database Integration for the FloraDummy App
                 *  Returns the Activity Data for the activity with the specified activityID
                 *  Returns nil if the activityID is invalid
 
-
-
-
-
+            - (void) uploadActivitySession:(NSDictionary *)activitySession completion:(^(Void))
+                *  Uploads a new activity session, or updates it if it already exists
+                *  activitySession is a Dictionary of values corresponding to the constants listed for this
+                   class.  They may be in any order
+                *  completion is the Completion Handler to be called when the upload finishes
+                PLEASE NOTE: This method currently has an incomplete implementation and will immediately return 'false'
 
 
 

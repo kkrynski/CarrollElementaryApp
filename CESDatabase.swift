@@ -178,20 +178,21 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
         return nil
     }
     
+    
+    
     /**
 
     Uploads a new activity session, or updates it if it already exists
     
     :param: activitySession A Dictionary of values corresponding to the constants listed for this class.  They may be in any order
-    
-    :returns: A Bool indicating wether the data could be uploaded or not
+    :param: completion The Completion Handler to be called when the upload finishes
     
     */
-    func uploadActivitySession(activitySession: Dictionary<String, AnyObject>) -> Bool
+    func uploadActivitySession(activitySession: Dictionary<String, AnyObject>, completion: ((uploadSuccess: Bool) -> Void))
     {
         
         
-        return NO
+        completion(uploadSuccess: NO)
     }
 }
 
@@ -330,6 +331,9 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     
     Compares the received user account information with the downloaded information.  If no data has been downloaded, this method returns invalid.
     
+    :param: username The inputted username to check
+    :param: password The inputted password to check
+    
     :returns: This method will return one of three constants upon completion:
     :returns:
     :returns: *  'UserStateUserIsStudent' -- The inputted information is for a Student Account
@@ -337,10 +341,10 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     :returns: *  'UserStateUserInvalid'   -- The inputted information is invalid
     
     */
-    func inputtedUserInformationIsValid(userInformation: Array<String>) -> UserState
+    func inputtedUsernameIsValid(username: String, andPassword password: String) -> UserState
     {
-        let encryptedUserName = userInformation[0].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
-        let encryptedPassword = userInformation[1].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         for userAccount in studentUserAccounts!
         {
             if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
@@ -369,14 +373,15 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     
     * NOTE: This method will immediately return 'false' if '- (UserState) inputtedUserInformationIsValid:' hasn't been called yet, or returned UserStateUserInvalid.
     
-    :param: userInformation An NSArray containing the inputted Username in the first index, and the inputted Password in the second index
+    :param: username The inputted username to store
+    :param: password The inputted password to store
     
     :returns: If returned 'true', the information was successfuly stored onto the device.
     :returns: If returned 'false' the information was not successfully stored onto the device.
     :returns: You should use this Bool to determine whether or not you can/should dismiss the PasswordVC.
     
     */
-    func storeInputtedUserInformation(userInformation: Array<String>) -> Bool
+    func storeInputtedUserInformation(username: String, andPassword password: String) -> Bool
     {
         if inputtedInfoIsValid == NO
         {
@@ -385,10 +390,10 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
         
-        let encryptedUserName = userInformation[0].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
-        let encryptedPassword = userInformation[1].dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         
-        if inputtedUserInformationIsValid(userInformation) != .UserInvalid
+        if inputtedUsernameIsValid(username, andPassword: password) != .UserInvalid
         {
             for student in studentUserAccounts!
             {
