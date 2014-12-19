@@ -87,7 +87,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     var ActivityData : String { get { return "Activity_Data" } }
     var ClassID : String { get { return "Class_ID" } }
     
-    private var urlSession : NSURLSession
+    private var urlSession : NSURLSession?
     private var activeSession : NSURLSessionDataTask?
     
     override init()
@@ -97,14 +97,12 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     
     private init(databaseManager: Bool)
     {
+        super.init()
+        
         let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         urlSessionConfiguration.allowsCellularAccess = NO
         urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
         urlSessionConfiguration.timeoutIntervalForRequest = 15.0
-        
-        urlSession = NSURLSession(configuration: urlSessionConfiguration)
-        
-        super.init()
         
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
@@ -112,7 +110,8 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     /**
     Uploads the activity data to the database
     
-    :returns: ActivityID. This method will return the activityID upon successful creation, or nil if the upload failed.
+    :param: activityData The formatted Dictionary of the activities information corresponding to the String constants provided by the class
+    :param: completion The Completion Handler to be called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or nil if the upload failed
     
     */
     func uploadNewActivity(activityData: NSDictionary, completion: ((activityID: String?) -> Void))
@@ -140,7 +139,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
         request.HTTPBody = postData
         
-        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
+        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
             
             if error != nil || returnData == nil || returnData.length == 0
             {
