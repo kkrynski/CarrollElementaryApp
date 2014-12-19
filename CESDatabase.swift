@@ -87,7 +87,8 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     var ActivityData : String { get { return "Activity_Data" } }
     var ClassID : String { get { return "Class_ID" } }
     
-    var urlSession : NSURLSession
+    private var urlSession : NSURLSession
+    private var activeSession : NSURLSessionDataTask?
     
     override init()
     {
@@ -114,11 +115,51 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     :returns: ActivityID. This method will return the activityID upon successful creation, or nil if the upload failed.
     
     */
-    internal func uploadNewActivity(activityData: NSDictionary) -> String?
+    func uploadNewActivity(activityData: NSDictionary, completion: ((activityID: String?) -> Void))
     {
         let activityID = arc4random_uniform(UINT32_MAX)
         
-        return String(activityID)
+        var SQLQuery = "INSERT INTO activity(Activity_ID, Activity_Description, Activity_Total_Points, Release_Date, Due_Date, Activity_Data, Class_ID) VALUES ("
+        SQLQuery += String(activityID) + ", "
+        SQLQuery += activityData.objectForKey(ActivityDescription) as String + ", "
+        SQLQuery += activityData.objectForKey(TotalPoints) as String + ", "
+        SQLQuery += "`" + (activityData.objectForKey(ReleaseDate) as String) + "`, "
+        SQLQuery += "`" + (activityData.objectForKey(DueDate) as String) + "`, "
+        SQLQuery += "`" + (activityData.objectForKey(ActivityData) as String) + "`, "
+        SQLQuery += activityData.objectForKey(ClassID) as String + ")"
+        
+        let post = "Password=\(databasePassword)&SQLQuery=\(SQLQuery)"
+        let url = NSURL(string: databaseWebsite)!
+        
+        let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+        let postLength = String(postData!.length)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+        request.HTTPBody = postData
+        
+        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
+            
+            if error != nil || returnData == nil || returnData.length == 0
+            {
+                completion(activityID: nil)
+                return
+            }
+            
+            let stringData = NSString(data: returnData, encoding: NSASCIIStringEncoding)
+            
+            if stringData!.containsString("Failure")
+            {
+                completion(activityID: nil)
+            }
+            else
+            {
+                completion(activityID: String(activityID))
+            }
+            
+        })
     }
 }
 
