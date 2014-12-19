@@ -108,6 +108,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     }
     
     /**
+    
     Uploads the activity data to the database
     
     :param: activityData The formatted Dictionary of the activities information corresponding to the String constants provided by the class
@@ -218,8 +219,6 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
         return nil
     }
     
-    
-    
     /**
 
     Uploads a new activity session, or updates it if it already exists
@@ -244,7 +243,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     private var studentUserAccounts : Array<Dictionary<String, String>>?
     private var teacherUserAccounts : Array<Dictionary<String, String>>?
     
-    private var urlSession : NSURLSession
+    private var urlSession : NSURLSession?
     private var activeSession : NSURLSessionDataTask?
     
     private var inputtedInfoIsValid = NO
@@ -256,14 +255,12 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     
     private init(databaseManager: Bool)
     {
+        super.init()
+        
         let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         urlSessionConfiguration.allowsCellularAccess = NO
         urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
         urlSessionConfiguration.timeoutIntervalForRequest = 15.0
-        
-        urlSession = NSURLSession(configuration: urlSessionConfiguration)
-        
-        super.init()
         
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
@@ -292,7 +289,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
         request.HTTPBody = postData
         
-        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
             
             if error != nil || databaseData == nil
             {
@@ -342,7 +339,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
             request.HTTPBody = postData
             
-            self.activeSession = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+            self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
                 
                 if error != nil || databaseData == nil
                 {
@@ -462,7 +459,6 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
 class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate
 {
     private var urlSession : NSURLSession?
-    
     private var activeSession : NSURLSessionDataTask?
     
     var activitiesLoaded = NO
