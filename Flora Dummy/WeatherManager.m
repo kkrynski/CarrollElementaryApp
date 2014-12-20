@@ -40,7 +40,7 @@
         defaultItem.indexForWeatherMap = [self indexForTemperature:defaultItem.weatherCurrentTemp];
         defaultItem.weatherWindSpeed = @"5";
         defaultItem.weatherCode = @"116";
-        defaultItem.weatherCurrentTempImage = [UIImage imageNamed:@"sun.png"];
+        defaultItem.weatherCurrentTempImage = @"sun.png";
         defaultItem.weatherHumidity = @"50";
         defaultItem.weatherPrecipitationAmount = @"0";
         

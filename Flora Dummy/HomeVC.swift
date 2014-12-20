@@ -12,7 +12,6 @@ class HomeVC: FormattedVC, NewsFeedDelegate
 {
     //Elements on screen
     @IBOutlet var titleLabel : UILabel?
-    @IBOutlet var subTitleLabel : UILabel?
     @IBOutlet var homeImageView : UIImageView?
     @IBOutlet var weatherView : WeatherView?
     
@@ -21,6 +20,9 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        weatherView?.hidden = NO
+        weatherView?.alpha = 1.0
         
         newsFeed = NewsFeed(frame: CGRectMake(0, 0, view.frame.size.width, 40), andPrimaryColor: primaryColor)
         newsFeed!.newsFeedDelegate = self
@@ -35,9 +37,6 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
-        
-        subTitleLabel!.textColor = primaryColor
-        Definitions.outlineTextInLabel(subTitleLabel!)
         
         view.backgroundColor = backgroundColor
         
@@ -82,7 +81,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         Definitions.outlineTextInLabel(breakingNewsLabel)
         view.addSubview(breakingNewsLabel)
         
-        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
+        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
             
             breakingNewsLabel.center = CGPointMake(breakingNewsLabel.frame.size.width * 0.3, breakingNewsLabel.center.y)
             

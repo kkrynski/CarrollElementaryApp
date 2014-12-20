@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         if userLoginInfo!.count != 4
         {
-            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentPasswordScreen", userInfo: nil, repeats: NO)
+            //NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentPasswordScreen", userInfo: nil, repeats: NO)
         }
         else
         {

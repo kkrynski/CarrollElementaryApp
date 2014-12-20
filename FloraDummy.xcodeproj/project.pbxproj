@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
+		104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104187D11A461DDC001C571C /* MediaPlayer.framework */; };
+		104187D61A462BBF001C571C /* Foggy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CA1A461CDE001C571C /* Foggy.mp4 */; };
+		104187D71A462BBF001C571C /* Night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CB1A461CDE001C571C /* Night.mp4 */; };
+		104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */; };
+		104187D91A462BBF001C571C /* Rain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CD1A461CDE001C571C /* Rain.mp4 */; };
+		104187DA1A462BBF001C571C /* Snow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CE1A461CDE001C571C /* Snow.mp4 */; };
+		104187DB1A462BBF001C571C /* Sunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CF1A461CDE001C571C /* Sunny.mp4 */; };
+		104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187D01A461CDE001C571C /* Thunder Storm.mp4 */; };
+		104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187DD1A46303E001C571C /* Cloudy.mp4 */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
@@ -194,6 +203,15 @@
 /* Begin PBXFileReference section */
 		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
+		104187CA1A461CDE001C571C /* Foggy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foggy.mp4; sourceTree = "<group>"; };
+		104187CB1A461CDE001C571C /* Night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Night.mp4; sourceTree = "<group>"; };
+		104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Partly Cloudy.mp4"; sourceTree = "<group>"; };
+		104187CD1A461CDE001C571C /* Rain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rain.mp4; sourceTree = "<group>"; };
+		104187CE1A461CDE001C571C /* Snow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snow.mp4; sourceTree = "<group>"; };
+		104187CF1A461CDE001C571C /* Sunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sunny.mp4; sourceTree = "<group>"; };
+		104187D01A461CDE001C571C /* Thunder Storm.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thunder Storm.mp4"; sourceTree = "<group>"; };
+		104187D11A461DDC001C571C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		104187DD1A46303E001C571C /* Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cloudy.mp4; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC_Normal.swift; sourceTree = "<group>"; };
@@ -432,11 +450,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */,
+				92D06A0918D13085004850C6 /* AVFoundation.framework in Frameworks */,
 				109509601A3E050100030E4B /* Security.framework in Frameworks */,
 				10BFE6F21A204A1100E68C77 /* CoreLocation.framework in Frameworks */,
 				92D06A1618D137C7004850C6 /* libiconv.dylib in Frameworks */,
 				921894E617F7752A00DFB26B /* CoreGraphics.framework in Frameworks */,
-				92D06A0918D13085004850C6 /* AVFoundation.framework in Frameworks */,
 				92D06A0718D1307D004850C6 /* CoreVideo.framework in Frameworks */,
 				92D06A0518D13076004850C6 /* CoreMedia.framework in Frameworks */,
 				92D06A0318D13066004850C6 /* AudioToolbox.framework in Frameworks */,
@@ -471,6 +490,21 @@
 			);
 			name = CESDatabase;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		104187C81A461CCA001C571C /* Weather Videos */ = {
+			isa = PBXGroup;
+			children = (
+				104187DD1A46303E001C571C /* Cloudy.mp4 */,
+				104187CA1A461CDE001C571C /* Foggy.mp4 */,
+				104187CB1A461CDE001C571C /* Night.mp4 */,
+				104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */,
+				104187CD1A461CDE001C571C /* Rain.mp4 */,
+				104187CE1A461CDE001C571C /* Snow.mp4 */,
+				104187CF1A461CDE001C571C /* Sunny.mp4 */,
+				104187D01A461CDE001C571C /* Thunder Storm.mp4 */,
+			);
+			name = "Weather Videos";
 			sourceTree = "<group>";
 		};
 		104BA0F61A0424DA007BD9DE /* Pages */ = {
@@ -548,6 +582,7 @@
 		108E9B021A27A44E00120A63 /* Weather Data */ = {
 			isa = PBXGroup;
 			children = (
+				104187C81A461CCA001C571C /* Weather Videos */,
 				10BFE6EE1A2046CE00E68C77 /* Reachability.h */,
 				10BFE6EF1A2046CE00E68C77 /* Reachability.m */,
 				10BFE6E81A20468E00E68C77 /* WeatherItem.h */,
@@ -789,6 +824,7 @@
 		921894E217F7752A00DFB26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				104187D11A461DDC001C571C /* MediaPlayer.framework */,
 				1095095F1A3E050100030E4B /* Security.framework */,
 				10BFE6F31A204AE900E68C77 /* MapKit.framework */,
 				10BFE6F11A204A1100E68C77 /* CoreLocation.framework */,
@@ -1239,11 +1275,13 @@
 				92F4064F1801ED2D00668376 /* Flora DUmmy 4.png in Resources */,
 				92E8CB4D18F0C4BD0025264E /* Wind1.gif in Resources */,
 				4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */,
+				104187D91A462BBF001C571C /* Rain.mp4 in Resources */,
 				92EF999418B6E6AD00288BAF /* Garden_Top.jpg in Resources */,
 				92D06A2318D140F4004850C6 /* zbar-help.html in Resources */,
 				92C261AC18370D1500FDA09B /* Page_DragAndDropVC.xib in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
 				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
+				104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */,
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
 				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
 				10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */,
@@ -1252,6 +1290,8 @@
 				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
 				926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */,
+				104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */,
+				104187D71A462BBF001C571C /* Night.mp4 in Resources */,
 				92C117831A22A1A4003506DB /* ActivityInfoVC.xib in Resources */,
 				923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */,
 				926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */,
@@ -1260,14 +1300,18 @@
 				926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */,
 				92C261BA1839D40800FDA09B /* barrel.png in Resources */,
 				92F78DA71A263D0B0048612E /* QuickQuizCreationPopOverVC.xib in Resources */,
+				104187DA1A462BBF001C571C /* Snow.mp4 in Resources */,
 				924B3C041A337AE700A18755 /* Carroll.json in Resources */,
 				9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */,
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
+				104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				10BFE6F61A20510800E68C77 /* Weather Images.xcassets in Resources */,
 				10BEC02C1A3CEBD7008CBFF9 /* Activities.plist in Resources */,
 				92F78D9E1A2628A30048612E /* MathPopOverVC.xib in Resources */,
+				104187DB1A462BBF001C571C /* Sunny.mp4 in Resources */,
 				4C6A6C361A11669200C3A7A7 /* expoView.xib in Resources */,
+				104187D61A462BBF001C571C /* Foggy.mp4 in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
 				92C1177A1A225F99003506DB /* ContentPopOverVC.xib in Resources */,
