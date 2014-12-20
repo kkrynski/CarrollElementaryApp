@@ -71,7 +71,6 @@ class WeatherView: UIView, WeatherManagerDelegate
         
         UIView.transitionWithView(self, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
             self.videoForForcastImage(item.weatherCode)
-            
             self.player!.view.alpha = 1.0
             self.weatherTemp!.text = "\(item.weatherCurrentTemp)°F"
             self.weatherTemp!.numberOfLines = 0
