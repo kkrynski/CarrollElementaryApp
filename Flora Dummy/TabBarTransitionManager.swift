@@ -49,6 +49,7 @@ class TabBarTransitionManager: NSObject, UIViewControllerAnimatedTransitioning
     {
         let presentedController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let presentedControllerView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+        let presentingController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let presentingControllerView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
         let containerView = transitionContext.containerView()
         
@@ -64,6 +65,7 @@ class TabBarTransitionManager: NSObject, UIViewControllerAnimatedTransitioning
             // Animate the presented view to it's final position
             UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations:
                 {
+                    
                     presentingControllerView.center = CGPointMake(self.reverse ? containerView.frame.size.width + presentingControllerView.frame.size.width/2.0 : -presentingControllerView.frame.size.width/2.0, presentingControllerView.center.y)
                     presentedControllerView.center = CGPointMake(containerView.frame.size.width/2.0, presentedControllerView.center.y)
                 }, completion:

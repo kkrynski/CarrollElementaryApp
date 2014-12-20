@@ -21,6 +21,9 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     {
         super.viewDidLoad()
         
+        tabBarController?.tabBar.tintColor = .whiteColor()
+        tabBarController!.tabBar.barStyle = .Black
+        
         weatherView?.hidden = NO
         weatherView?.alpha = 1.0
         
@@ -34,6 +37,11 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.tintColor = .whiteColor()
+        tabBarController?.tabBar.barStyle = .Black
+        
+        weatherView?.player?.play()
         
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
@@ -61,6 +69,16 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         super.viewWillDisappear(animated)
         
         newsFeed!.shouldMoveToNextItem = NO
+        
+        tabBarController?.tabBar.tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
+        tabBarController?.tabBar.barStyle = .Default
+    }
+    
+    override func viewDidDisappear(animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        
+        weatherView!.player!.pause()
     }
     
     //MARK: - News Feed Delegate

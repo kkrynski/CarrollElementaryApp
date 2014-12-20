@@ -8,6 +8,7 @@
 
 import UIKit
 import MediaPlayer
+import AVFoundation
 
 class WeatherView: UIView, WeatherManagerDelegate
 {
@@ -16,7 +17,7 @@ class WeatherView: UIView, WeatherManagerDelegate
     private var currentWeatherItem : WeatherItem?
     private var indexOfCurrentTempString : Int32?
     
-    private var player : MPMoviePlayerController?
+    var player : MPMoviePlayerController?
     
     @IBOutlet var weatherHumidity : UILabel?
     @IBOutlet var weatherTemp : UILabel?
@@ -29,11 +30,18 @@ class WeatherView: UIView, WeatherManagerDelegate
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateInitialText", userInfo: nil, repeats: NO)
         
+        let audioSession = AVAudioSession.sharedInstance()
+        audioSession.setCategory(AVAudioSessionCategoryAmbient, error: nil)
+        
         player = MPMoviePlayerController(contentURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Cloudy", ofType: "mp4")!))
         player!.controlStyle = .None
+        player!.allowsAirPlay = NO
+        player!.shouldAutoplay = YES
         player!.repeatMode = .One
         addSubview(player!.view)
         sendSubviewToBack(player!.view)
+        player!.view.layer.shouldRasterize = YES
+        player!.view.layer.rasterizationScale = UIScreen.mainScreen().scale
         player!.view.alpha = 0.0
         player!.view.frame = self.bounds
         player!.scalingMode = .AspectFill

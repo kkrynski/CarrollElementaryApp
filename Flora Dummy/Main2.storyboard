@@ -669,7 +669,7 @@ Science includes learning about the scientific method and even going on scavenge
                 <navigationController id="fWy-Wx-JYZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="RWO-Nj-QtG"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oaB-gD-tJk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="oaB-gD-tJk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
