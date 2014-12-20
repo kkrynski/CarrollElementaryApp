@@ -169,12 +169,62 @@ Herein begins the Database Integration for the FloraDummy App
                 *  Returns the Activity Data for the activity with the specified activityID
                 *  Returns nil if the activityID is invalid
 
-            - (void) uploadActivitySession:(NSDictionary *)activitySession completion:(^(Void))
+            - (void) uploadActivitySession:(NSDictionary *)activitySession completion:^(BOOL)completion
                 *  Uploads a new activity session, or updates it if it already exists
                 *  activitySession is a Dictionary of values corresponding to the constants listed for this
                    class.  They may be in any order
                 *  completion is the Completion Handler to be called when the upload finishes
-                PLEASE NOTE: This method currently has an incomplete implementation and will immediately return 'false'
+                PLEASE NOTE: This method currently has an incomplete implementation and will immediately
+                             return 'false'
+
+
+        -------------------------------------
+        -- ActivityCreationDatabaseManager --   -- Possibly final API
+        -------------------------------------
+
+
+            --------------------
+            -- [[ Contants ]] --
+            --------------------
+
+            
+            NSString *ActivityName
+                *  Used for specifying the activity's name in the upload dictionary
+
+            NSString *ActivityDescription
+                *  Used for specifying the activity's description in the upload dictionary
+
+            NSString *TotalPoints
+                *  Used for specifying the activity's total points in the upload dictionary
+
+            NSString *ReleaseDate
+                *  Used for specifying the activity's release date in the upload dictionary
+
+            NSString *DueDate
+                *  Used for specifying the activity's due date in the upload dictionary
+
+            NSString *ActivityData
+                *  Used for specifying the activity's activity data in the upload dictionary
+
+            NSString *ClassID
+                *  Used for specifying the activity's class ID in the upload dictionary
+
+
+            -------------------
+            -- [[ Methods ]] --
+            -------------------
+
+            - (void) uploadNewActivity:(NSDictionary *)activityData completion:^(NSString *)completion
+                *  Uploads the activity data to the database
+                *  activityData is the formatted Dictionary of the activities information corresponding to 
+                   the String constants provided by the class
+                *  completion is the Completion Handler to be called when the activity is uploaded.  
+                   Contains a string parameter that will contain the activity's ID if the upload succeeded 
+                   or nil if the upload failed
+
+
+
+
 
 
 
