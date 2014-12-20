@@ -166,7 +166,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
 //Segmented Database for individual activites
 class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
 {
-    private var urlSession : NSURLSession
+    private var urlSession : NSURLSession?
     
     var ActivityID : String         { get { return "Activity ID" } }
     var ActivityGrade : String      { get { return "Activity Grade" } }
@@ -182,14 +182,12 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
     
     private init(databaseManager: Bool)
     {
+        super.init()
+        
         let urlSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         urlSessionConfiguration.allowsCellularAccess = NO
         urlSessionConfiguration.HTTPAdditionalHeaders = ["Accept":"application/json"]
         urlSessionConfiguration.timeoutIntervalForRequest = 15.0
-        
-        urlSession = NSURLSession(configuration: urlSessionConfiguration)
-        
-        super.init()
         
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
