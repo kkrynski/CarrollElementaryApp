@@ -30,7 +30,7 @@ class TabBarTransitionManager: NSObject, UIViewControllerAnimatedTransitioning
         switch animationNumber!
         {
         case 0, 2, 3, 4:
-            return 0.5
+            return 0.6
             
         default:
             return transitionLength

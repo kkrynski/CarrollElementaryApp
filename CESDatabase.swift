@@ -160,6 +160,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
             }
             
         })
+        activeSession!.resume()
     }
 }
 
