@@ -271,6 +271,7 @@
             weatherDescription = @"Moderate or heavy snow in area with thunder";
             break;
         default:
+            NSLog(@"HI");
             break;
     }
     return weatherDescription;

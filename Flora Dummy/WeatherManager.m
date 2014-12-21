@@ -64,7 +64,7 @@
 
 - (void)didLocateNewUserLocation:(CLLocation *)location; {
     
-    //Get the locatio  zipcode using CLGeocoder
+    //Get the location zipcode using CLGeocoder
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:location completionHandler:
     ^(NSArray *placemarks, NSError *error) {
