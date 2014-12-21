@@ -24,9 +24,6 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         tabBarController?.tabBar.tintColor = .whiteColor()
         tabBarController!.tabBar.barStyle = .Black
         
-        weatherView?.hidden = NO
-        weatherView?.alpha = 1.0
-        
         newsFeed = NewsFeed(frame: CGRectMake(0, 0, view.frame.size.width, 40), andPrimaryColor: primaryColor)
         newsFeed!.newsFeedDelegate = self
         newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.bottomLayoutGuide.length - newsFeed!.frame.size.height/2.0)
