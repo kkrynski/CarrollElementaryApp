@@ -621,15 +621,27 @@ Science includes learning about the scientific method and even going on scavenge
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Dev Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EU-IR-LS1">
-                                <rect key="frame" x="444" y="610" width="136" height="21"/>
+                                <rect key="frame" x="335" y="609" width="136" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrU-jk-Vup">
-                                <rect key="frame" x="488" y="639" width="51" height="31"/>
+                                <rect key="frame" x="379" y="638" width="51" height="31"/>
                                 <connections>
                                     <action selector="toggleDevMode:" destination="aUo-zj-yvZ" eventType="valueChanged" id="rt8-ft-gce"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Animated Weather" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvb-Wh-CvU">
+                                <rect key="frame" x="496" y="596" width="193" height="35"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yIe-Kf-UOB">
+                                <rect key="frame" x="568" y="639" width="51" height="31"/>
+                                <connections>
+                                    <action selector="toggleAnimatedWeather:" destination="aUo-zj-yvZ" eventType="valueChanged" id="6FZ-L4-Tes"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -639,6 +651,8 @@ Science includes learning about the scientific method and even going on scavenge
                     <navigationItem key="navigationItem" title="Settings" id="DLz-2e-vBy"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="animatedWeatherLabel" destination="Wvb-Wh-CvU" id="Bjf-Dy-xPd"/>
+                        <outlet property="animatedWeatherSwitch" destination="yIe-Kf-UOB" id="CqJ-jY-3zZ"/>
                         <outlet property="blueButton" destination="pvF-x5-oSp" id="leS-Mq-y3B"/>
                         <outlet property="colorLabel" destination="Q92-mV-3KG" id="tRP-Md-9S8"/>
                         <outlet property="devModeSwitch" destination="GrU-jk-Vup" id="vbq-26-9qI"/>

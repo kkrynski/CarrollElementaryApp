@@ -20,6 +20,7 @@ class SettingsVC: FormattedVC
     @IBOutlet private var titleLabel : UILabel?
     @IBOutlet private var gradeLabel : UILabel?
     @IBOutlet private var colorLabel : UILabel?
+    @IBOutlet private var animatedWeatherLabel : UILabel?
     
     @IBOutlet private var kindergartenButton : UIButton?
     @IBOutlet private var firstButton : UIButton?
@@ -38,6 +39,7 @@ class SettingsVC: FormattedVC
     @IBOutlet private var blueButton : UIButton?
     
     @IBOutlet private var devModeSwitch : UISwitch?
+    @IBOutlet private var animatedWeatherSwitch : UISwitch?
     
     override func viewWillAppear(animated: Bool)
     {
@@ -45,6 +47,8 @@ class SettingsVC: FormattedVC
         
         let standardDefaults = NSUserDefaults.standardUserDefaults()
         devModeSwitch!.on = standardDefaults.boolForKey("showsDevTab")
+        
+        animatedWeatherSwitch!.on = standardDefaults.boolForKey("animatedWeather")
     }
     
     override func viewDidLoad()
@@ -87,6 +91,9 @@ class SettingsVC: FormattedVC
         
         gradeLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(gradeLabel!)
+        
+        animatedWeatherLabel!.textColor = primaryColor
+        Definitions.outlineTextInLabel(animatedWeatherLabel!)
         
         //Select the buttons that already correspond with the current defaults.
         //This reduces double-loading
@@ -309,6 +316,23 @@ class SettingsVC: FormattedVC
             let newTabs = NSMutableArray(array: tabBarController.viewControllers!)
             newTabs.removeLastObject()
             tabBarController.setViewControllers(newTabs, animated: YES)
+        }
+    }
+    
+    @IBAction private func toggleAnimatedWeather(sender : UISwitch)
+    {
+        switch sender.on
+        {
+        case YES:
+            NSUserDefaults.standardUserDefaults().setBool(YES, forKey: "animatedWeather")
+            break
+            
+        case NO:
+            NSUserDefaults.standardUserDefaults().setBool(NO, forKey: "animatedWeather")
+            break
+            
+        default:
+            break
         }
     }
     

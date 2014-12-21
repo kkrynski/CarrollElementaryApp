@@ -38,7 +38,18 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         tabBarController?.tabBar.tintColor = .whiteColor()
         tabBarController?.tabBar.barStyle = .Black
         
-        weatherView?.player?.play()
+        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
+        {
+            weatherView?.player?.view.alpha = 1.0
+            weatherView?.staticWeatherImage?.alpha = 0.0
+            weatherView?.player?.prepareToPlay()
+            weatherView?.player?.play()
+        }
+        else
+        {
+            weatherView?.player?.view.alpha = 0.0
+            weatherView?.staticWeatherImage?.alpha = 1.0
+        }
         
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
@@ -75,7 +86,10 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     {
         super.viewDidDisappear(animated)
         
-        weatherView!.player!.pause()
+        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
+        {
+            weatherView!.player?.pause()
+        }
     }
     
     //MARK: - News Feed Delegate
@@ -101,7 +115,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
             breakingNewsLabel.center = CGPointMake(breakingNewsLabel.frame.size.width * 0.3, breakingNewsLabel.center.y)
             
             }, completion: { (finished) -> Void in
-            self.newsFeed!.startFeed()
+                self.newsFeed!.startFeed()
         })
     }
 }
