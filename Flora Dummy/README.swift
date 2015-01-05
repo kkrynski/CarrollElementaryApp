@@ -179,7 +179,7 @@ Herein begins the Database Integration for the FloraDummy App
 
 
         -------------------------------------
-        -- ActivityCreationDatabaseManager --   -- Possibly final API
+        -- ActivityCreationDatabaseManager --   -- FINAL API
         -------------------------------------
 
 
@@ -216,11 +216,14 @@ Herein begins the Database Integration for the FloraDummy App
 
             - (void) uploadNewActivity:(NSDictionary *)activityData completion:^(NSString *)completion
                 *  Uploads the activity data to the database
-                *  activityData is the formatted Dictionary of the activities information corresponding to 
-                   the String constants provided by the class
+                *  activityData is the formatted Dictionary of the activities information corresponding to
+                   the String constants provided by the class.  The keys may be in any order
                 *  completion is the Completion Handler to be called when the activity is uploaded.  
                    Contains a string parameter that will contain the activity's ID if the upload succeeded 
                    or nil if the upload failed
+                *  This method immediately returns control to the application and will call the completion 
+                   handler upon completion of the upload.  If the activity failed to upload, or has an 
+                   invalid structure, the completion handler will be called with a 'nil' activityID
 
 
 

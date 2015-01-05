@@ -111,16 +111,31 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     
     Uploads the activity data to the database
     
-    :param: activityData The formatted Dictionary of the activities information corresponding to the String constants provided by the class
+    :param: activityData The formatted Dictionary of the activities information corresponding to the String constants provided by the class.  The keys may be in any order
     :param: completion The Completion Handler to be called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or nil if the upload failed
+    
+    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
     
     */
     func uploadNewActivity(activityData: NSDictionary, completion: ((activityID: String?) -> Void))
     {
-        let activityID = arc4random_uniform(UINT32_MAX)
+        if isValidActivity(activityData) == NO
+        {
+            completion(activityID: nil)
+            return
+        }
         
-        var SQLQuery = "INSERT INTO activity(Activity_ID, Activity_Description, Activity_Total_Points, Release_Date, Due_Date, Activity_Data, Class_ID) VALUES ("
+        var activityID : UInt32
+        
+        do
+        {
+            activityID = arc4random_uniform(UINT32_MAX)
+        }
+        while activityID != 1
+        
+        var SQLQuery = "INSERT INTO activity(Activity_ID, Activity_Name, Activity_Description, Activity_Total_Points, Release_Date, Due_Date, Activity_Data, Class_ID) VALUES ("
         SQLQuery += String(activityID) + ", "
+        SQLQuery += activityData.objectForKey(ActivityName) as String + ", "
         SQLQuery += activityData.objectForKey(ActivityDescription) as String + ", "
         SQLQuery += activityData.objectForKey(TotalPoints) as String + ", "
         SQLQuery += "`" + (activityData.objectForKey(ReleaseDate) as String) + "`, "
@@ -161,6 +176,11 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
             
         })
         activeSession!.resume()
+    }
+    
+    private func isValidActivity(activityInformation: NSDictionary) -> Bool
+    {
+        return activityInformation.objectForKey(ActivityName) != nil && activityInformation.objectForKey(ActivityDescription) != nil && activityInformation.objectForKey(TotalPoints) != nil && activityInformation.objectForKey(ReleaseDate) != nil && activityInformation.objectForKey(DueDate) != nil && activityInformation.objectForKey(ActivityData) != nil && activityInformation.objectForKey(ClassID) != nil
     }
 }
 
@@ -211,7 +231,7 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
         {
             if activity["Activity_ID"] as String == activityID
             {
-                return activity["Activity_Data"]! as? NSDictionary
+                return activity["Activity_Data"] as? NSDictionary
             }
         }
         
@@ -522,6 +542,8 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
                 arrayOfClassIDs.addObject(student_class["Class_ID"]!)
             }
             
+            println("Student Classes loaded")
+            
             completionHandler(classesToLoad: arrayOfClassIDs)
         })
         activeSession!.resume()
@@ -567,6 +589,8 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
                     return
                 }
                 
+                println("Classes Loaded")
+                
                 let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
                 
                 completionHandler(classes: JSONData["Data"] as NSArray)
@@ -577,6 +601,8 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
     
     func loadActivities()
     {
+        println("Loading Activities")
+        
         loadClassesWithCompletionHandler { (classes) -> Void in
             
             if classes[0].isKindOfClass(NSDictionary.classForCoder()) == NO
@@ -657,6 +683,8 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
                 
                 let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
                 newActivities.writeToFile(plistPath!, atomically: YES)
+                
+                println("Activities Loaded")
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
             })
