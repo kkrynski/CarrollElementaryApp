@@ -116,7 +116,7 @@ class LanguageArtsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         
-        if DatabaseManager.databaseManagerForMainActivitiesClass().activitiesLoaded == NO && activities.count == 0
+        if CESDatabase.databaseManagerForMainActivitiesClass().activitiesLoaded == NO && activities.count == 0
         {
             if loadingView == nil
             {

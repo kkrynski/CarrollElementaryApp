@@ -8,22 +8,25 @@ Herein begins the Database Integration for the FloraDummy App
 
     This README file will detail the API as I create it.
         *  This API will be built entirely in Swift, but will be fully compatible with all Objective-C files
-        *  As of the current moment, any download API (with the exception of activity loading) calls will 
+        *  Any download API (with the exception of activity loading) calls will
            post a notification when they're done
-            *  It is your responsibility to pull the data from the plist (this will be specified later)
+            *  It is your responsibility to pull the data from the plist.
+            *  This is only of concern for PasswordVC
         *  Uploading data will require an NSDictionary containing the necessary values
             *  You will be given constants to use as the dictionary's keys
 
 
     There are certain rules that each activity must follow, as listed below.  These rules will be constantly
       changing as I develop the API, so nothing here is final.
-        *  Each activity will be responsible for keeping track of their current ActivityID.  This ID will be
-           used to update the activity's data/grades
-        *  You will be unable to interact with the Database beyond updating specific values and downloading 
-           any existing data for the activity.  This is to keep from accidental (or even purposeful)
-           overwrites
-        *  In the interest of data protection, you will only be given access to the respective table your
-           activity requires
+        *  Activities do not need to keep track of their ActivityID.  PageManager will handle it
+        *  You will have to override a single method that will be called on your activity (I do not have the
+           name of this method yet)
+            *  This method will return an Object of any kind containing all the necessary information about
+               the activity and the data the user has filled in
+            *  Please Note: You are responsible for creating and decrypting the Object.  Plan its format
+               accordingly
+
+
 
 
 -----------------
@@ -37,12 +40,12 @@ Herein begins the Database Integration for the FloraDummy App
 
 
         **  For Activity Creation, to implement the CESDatabase API, you should store a property with the 
-            type "CESCreationDatabase"
-                (i.e.) CESCreationDatabase *databaseManager;
+            type "ActivityCreationDatabaseManager"
+                (i.e.) ActivityCreationDatabaseManager *databaseManager;
 
             Then call,
 
-                [DatabaseManager databaseManagerForCreationClass];
+                [CESDatabase databaseManagerForCreationClass];
 
             to be returned the proper Database Manager
 
@@ -53,20 +56,22 @@ Herein begins the Database Integration for the FloraDummy App
 
             Then call,
 
-                [DatabaseManager databaseManagerForPasswordVCClass];
+                [CESDatabase databaseManagerForPasswordVCClass];
 
             to be returned the proper Database Manager
 
 
-        **  For all other classes, to implement the CESDatabase API, you should store a property with the 
+        **  For PageManager, to implement the CESDatabase API, you should store a property with the
             type "ActivityDatabaseManager"
                 (i.e.) ActivityDatabaseManager *databaseManager;
 
             Then call,
 
-                [DatabaseManager databaseManagerForActivityClass];
+                [CESDatabase databaseManagerForActivityClass];
 
             to be returned the proper Database Manager
+
+
 
 
     ---------------
@@ -75,6 +80,8 @@ Herein begins the Database Integration for the FloraDummy App
 
         Each Database Manager has different API calls, as listed below.  Please find the correct
         Database Manager class and follow its instructions
+
+
 
 
         ---------------------------------
@@ -129,8 +136,10 @@ Herein begins the Database Integration for the FloraDummy App
                     objects.  They are unreadable to all but the database manager, and are never decrypted.
 
 
+
+
         -----------------------------
-        -- ActivityDatabaseManager --
+        -- ActivityDatabaseManager --   -- FINAL API
         -----------------------------
 
 
@@ -166,7 +175,7 @@ Herein begins the Database Integration for the FloraDummy App
 
             
             - (NSDictionary *) activityInformationForActivityID:(NSString *)activityID
-                *  Returns the Activity Data for the activity with the specified activityID
+                *  Returns the Dictionary of data that was initally uploaded with the activity
                 *  Returns nil if the activityID is invalid
 
             - (void) uploadActivitySession:(NSDictionary *)activitySession completion:^(BOOL)completion
@@ -174,8 +183,11 @@ Herein begins the Database Integration for the FloraDummy App
                 *  activitySession is a Dictionary of values corresponding to the constants listed for this
                    class.  They may be in any order
                 *  completion is the Completion Handler to be called when the upload finishes
-                PLEASE NOTE: This method currently has an incomplete implementation and will immediately
-                             return 'false'
+                *  This method immediately returns control to the application and will call the completion 
+                   handler upon completion of the upload.  If the activity session failed to upload, or has 
+                   an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
+
+
 
 
         -------------------------------------
@@ -224,11 +236,6 @@ Herein begins the Database Integration for the FloraDummy App
                 *  This method immediately returns control to the application and will call the completion 
                    handler upon completion of the upload.  If the activity failed to upload, or has an 
                    invalid structure, the completion handler will be called with a 'nil' activityID
-
-
-
-
-
 
 
 */

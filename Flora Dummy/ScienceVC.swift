@@ -116,7 +116,7 @@ class ScienceVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             }
         }
         
-        if DatabaseManager.databaseManagerForMainActivitiesClass().activitiesLoaded == NO && activities.count == 0
+        if CESDatabase.databaseManagerForMainActivitiesClass().activitiesLoaded == NO && activities.count == 0
         {
             if loadingView == nil
             {

@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func loadActivities()
     {
-        DatabaseManager.databaseManagerForMainActivitiesClass().loadActivities()
+        CESDatabase.databaseManagerForMainActivitiesClass().loadActivities()
     }
     
     func presentPasswordScreen()

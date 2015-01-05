@@ -19,10 +19,10 @@ private let databaseUploadWebsite = "http://floradummytest.michaelschlosstech.co
 private let databasePassword = "12e45"
 private let databaseEncryptionKey = "I1rObD475i"
 
-private var databaseManagerInstance : DatabaseManager?
+private var databaseManagerInstance : CESDatabase?
 
 //The Database Manager that manages all other databases
-class DatabaseManager : NSObject
+class CESDatabase : NSObject
 {
     private var activityCreationDatabaseManager : ActivityCreationDatabaseManager?
     private var activityDatabaseManager : ActivityDatabaseManager?
@@ -46,11 +46,11 @@ class DatabaseManager : NSObject
         mainActivitiesDatabaseManager = MainActivitiesDatabaseManager(databaseManager: YES)
     }
     
-    private class func sharedManager() -> DatabaseManager
+    private class func sharedManager() -> CESDatabase
     {
         if databaseManagerInstance == nil
         {
-            databaseManagerInstance = DatabaseManager(fromSharedManager: YES)
+            databaseManagerInstance = CESDatabase(fromSharedManager: YES)
         }
         
         return databaseManagerInstance!
@@ -58,21 +58,21 @@ class DatabaseManager : NSObject
     
     class func databaseManagerForActivityClass() -> ActivityDatabaseManager
     {
-        return DatabaseManager.sharedManager().activityDatabaseManager!
+        return CESDatabase.sharedManager().activityDatabaseManager!
     }
     
     class func databaseManagerForCreationClass() -> ActivityCreationDatabaseManager
     {
-        return DatabaseManager.sharedManager().activityCreationDatabaseManager!
+        return CESDatabase.sharedManager().activityCreationDatabaseManager!
     }
     
     class func databaseManagerForPasswordVCClass() -> UserAccountsDatabaseManager
     {
-        return DatabaseManager.sharedManager().userAccountsDatabaseManager!
+        return CESDatabase.sharedManager().userAccountsDatabaseManager!
     }
     class func databaseManagerForMainActivitiesClass() -> MainActivitiesDatabaseManager
     {
-        return DatabaseManager.sharedManager().mainActivitiesDatabaseManager!
+        return CESDatabase.sharedManager().mainActivitiesDatabaseManager!
     }
 }
 
@@ -136,7 +136,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
         var SQLQuery = "INSERT INTO activity(Activity_ID, Activity_Name, Activity_Description, Activity_Total_Points, Release_Date, Due_Date, Activity_Data, Class_ID) VALUES ("
         SQLQuery += String(activityID) + ", "
         SQLQuery += activityData.objectForKey(ActivityName) as String + ", "
-        SQLQuery += activityData.objectForKey(ActivityDescription) as String + ", "
+        SQLQuery += "`" + (activityData.objectForKey(ActivityDescription) as String) + "`, "
         SQLQuery += activityData.objectForKey(TotalPoints) as String + ", "
         SQLQuery += "`" + (activityData.objectForKey(ReleaseDate) as String) + "`, "
         SQLQuery += "`" + (activityData.objectForKey(DueDate) as String) + "`, "
@@ -144,7 +144,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
         SQLQuery += activityData.objectForKey(ClassID) as String + ")"
         
         let post = "Password=\(databasePassword)&SQLQuery=\(SQLQuery)"
-        let url = NSURL(string: databaseWebsite)!
+        let url = NSURL(string: databaseUploadWebsite)!
         
         let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
         let postLength = String(postData!.length)
@@ -188,6 +188,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
 class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
 {
     private var urlSession : NSURLSession?
+    private var activeSession : NSURLSessionDataTask?
     
     var ActivityID : String         { get { return "Activity ID" } }
     var ActivityGrade : String      { get { return "Activity Grade" } }
@@ -219,7 +220,7 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
     
     :param: activityID The activityID of the activity requesting its data
     
-    :returns: The Dictionary of data that the activity had previously stored
+    :returns: The Dictionary of data that was initally uploaded with the activity
     
     */
     func activityInformationForActivityID(activityID: String) -> NSDictionary?
@@ -245,12 +246,69 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
     :param: activitySession A Dictionary of values corresponding to the constants listed for this class.  They may be in any order
     :param: completion The Completion Handler to be called when the upload finishes
     
+    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
+    
     */
     func uploadActivitySession(activitySession: Dictionary<String, AnyObject>, completion: ((uploadSuccess: Bool) -> Void))
     {
+        if isValidActivitySession(activitySession) == NO
+        {
+            completion(uploadSuccess: NO)
+            return
+        }
         
+        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
+        let userLoginInfo = NSArray(contentsOfFile: plistPath!)
+        
+        var SQLQuery = "INSERT INTO activity(Activity_ID, Student_ID, Score, Activity_Data, Start_Date_Time, Finish_Date_Time, Status) VALUES ("
+        SQLQuery += activitySession[ActivityID] as String + ", "
+        SQLQuery += userLoginInfo!.objectAtIndex(3) as String + ", "
+        SQLQuery += activitySession[ActivityGrade] as String + ", "
+        SQLQuery += "`" + (activitySession[ActivityData] as String) + "`, "
+        SQLQuery += "`" + (activitySession[ActivityStartDate] as String) + "`, "
+        SQLQuery += "`" + (activitySession[ActivityEndDate] as String) + "`, "
+        SQLQuery += "`" + (activitySession[ActivityStatus] as String) + "`, "
+        
+        let post = "Password=\(databasePassword)&SQLQuery=\(SQLQuery)"
+        let url = NSURL(string: databaseUploadWebsite)!
+        
+        let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+        let postLength = String(postData!.length)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+        request.HTTPBody = postData
+        
+        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
+            
+            if error != nil || returnData == nil || returnData.length == 0
+            {
+                completion(uploadSuccess: NO)
+                return
+            }
+            
+            let stringData = NSString(data: returnData, encoding: NSASCIIStringEncoding)
+            
+            if stringData!.containsString("Failure")
+            {
+                completion(uploadSuccess: NO)
+            }
+            else
+            {
+                completion(uploadSuccess: YES)
+            }
+            
+        })
+        activeSession!.resume()
         
         completion(uploadSuccess: NO)
+    }
+    
+    private func isValidActivitySession(activityInformation: NSDictionary) -> Bool
+    {
+        return activityInformation.objectForKey(ActivityID) != nil && activityInformation.objectForKey(ActivityGrade) != nil && activityInformation.objectForKey(ActivityData) != nil && activityInformation.objectForKey(ActivityStartDate) != nil && activityInformation.objectForKey(ActivityEndDate) != nil && activityInformation.objectForKey(ActivityStatus) != nil
     }
 }
 
