@@ -668,6 +668,8 @@
 				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				10B8787D19FC2881005D9937 /* Definitions.swift */,
+				1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */,
+				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
 				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
 				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
 			);
@@ -677,8 +679,6 @@
 		1097EBCE1A28C47100BED924 /* UITabBar Transition */ = {
 			isa = PBXGroup;
 			children = (
-				1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */,
-				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
 				1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */,
 				1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */,
 			);

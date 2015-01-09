@@ -19,12 +19,8 @@ Herein begins the Database Integration for the FloraDummy App
     There are certain rules that each activity must follow, as listed below.  These rules will be constantly
       changing as I develop the API, so nothing here is final.
         *  Activities do not need to keep track of their ActivityID.  PageManager will handle it
-        *  You will have to override a single method that will be called on your activity (I do not have the
-           name of this method yet)
-            *  This method will return an Object of any kind containing all the necessary information about
-               the activity and the data the user has filled in
-            *  Please Note: You are responsible for creating and decrypting the Object.  Plan its format
-               accordingly
+        *  You MUST implement the CESDatabaseActivity API if you wish to use restoration.  Its API is
+           listed later.
 
 
 
@@ -40,8 +36,8 @@ Herein begins the Database Integration for the FloraDummy App
 
 
         **  For Activity Creation, to implement the CESDatabase API, you should store a property with the 
-            type "ActivityCreationDatabaseManager"
-                (i.e.) ActivityCreationDatabaseManager *databaseManager;
+            type "id<ActivityCreationDatabase>"
+                (i.e.) id<ActivityCreationDatabase> databaseManager;
 
             Then call,
 
@@ -51,8 +47,8 @@ Herein begins the Database Integration for the FloraDummy App
 
 
         **  For PasswordVC, to implement the CESDatabase API, you should store a property with the type
-            "UserAccountsDatabaseManager"
-                (i.e.) UserAccountsDatabaseManager *databaseManager;
+            "id<UserAccountsDatabase>"
+                (i.e.) id<UserAccountsDatabase> databaseManager;
 
             Then call,
 
@@ -62,8 +58,8 @@ Herein begins the Database Integration for the FloraDummy App
 
 
         **  For PageManager, to implement the CESDatabase API, you should store a property with the
-            type "ActivityDatabaseManager"
-                (i.e.) ActivityDatabaseManager *databaseManager;
+            type "id<PageManagerDatabase>"
+                (i.e.) id<PageManagerDatabase> databaseManager;
 
             Then call,
 
@@ -80,6 +76,27 @@ Herein begins the Database Integration for the FloraDummy App
 
         Each Database Manager has different API calls, as listed below.  Please find the correct
         Database Manager class and follow its instructions
+
+
+
+
+        -------------------------
+        -- CESDatabaseActivity --   -- FINAL API
+        -------------------------
+
+
+            -------------------
+            -- [[ Methods ]] --
+            -------------------
+
+            - (id) saveActivityState        [[OPTIONAL]]
+                *  Saves the activity's state.  All inputted information should be placed in an object of
+                   your choice
+                *  This method should return the object you used to store the user inputted information
+
+            - (void) restoreActivityState:(id)object
+                *  Restores the activity's state.  You should decrypt the object and update your display
+                *  object is the object you gave in 'saveActivityState'
 
 
 

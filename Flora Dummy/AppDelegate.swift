@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         window!.makeKeyAndVisible()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadActivities", name: UserAccountsDatabaseManager.UserLoggedIn(), object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadActivities", name: UserLoggedIn, object: nil)
         
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
         let userLoginInfo = NSArray(contentsOfFile: plistPath!)

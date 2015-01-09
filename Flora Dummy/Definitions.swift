@@ -18,8 +18,6 @@ let transitionLength = 0.3  //All transitions in swift files should use this var
 let YES = 1 as Bool
 let NO = 0 as Bool
 
-let ActivityDataLoaded = "ActivityDataLoaded"
-
 //MARK: - Definitions Class
 
 class Definitions: NSObject

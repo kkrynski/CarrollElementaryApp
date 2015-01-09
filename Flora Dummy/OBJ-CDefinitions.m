@@ -8,6 +8,14 @@
 
 #import "OBJ-CDefinitions.h"
 
+
+
+const NSString *ActivityDataLoaded = @"ActivityDataLoaded";
+const NSString *UserAccountsDownloaded = @"User Accounts Downloaded Notification";
+const NSString *UserLoggedIn = @"User Logged In Notification";
+
+
+
 //Private Defininitions class for UITabBar Transition
 @implementation OBJ_CDefinitions
 

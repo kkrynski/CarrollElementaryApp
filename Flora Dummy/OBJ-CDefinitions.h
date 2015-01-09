@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, UserState)
+{
+    UserStateUserIsStudent,
+    UserStateUserIsTeacher,
+    UserStateUserInvalid
+};
+
+const NSString *ActivityDataLoaded;
+
+const NSString *UserAccountsDownloaded;
+const NSString *UserLoggedIn;
+
+
+
+
 //Private Defininitions class for UITabBar Transition
 @interface OBJ_CDefinitions : NSObject
 

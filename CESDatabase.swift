@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
-//-----------------------------------------------------------------
-//-----------------------------------------------------------------
-//  Please see the README file for an expanation of the CESDatabase
-//-----------------------------------------------------------------
-//-----------------------------------------------------------------
+//-------------------------------------------------------------------\\
+//-------------------------------------------------------------------\\
+//  Please see the README file for an expanation of the CESDatabase  \\
+//-------------------------------------------------------------------\\
+//-------------------------------------------------------------------\\
 
 import Foundation
 
@@ -19,15 +19,139 @@ private let databaseUploadWebsite = "http://floradummytest.michaelschlosstech.co
 private let databasePassword = "12e45"
 private let databaseEncryptionKey = "I1rObD475i"
 
+@objc protocol CESDatabaseActivity
+{
+    /**
+    Saves the Activity's state.  All user inputted data, taps, and movements (if necessary) should be saved into an object of your choice
+    
+    :returns: An immutable copy of an object the activity used to store its information
+    */
+    optional func saveActivityState() -> AnyObject!
+    
+    /**
+    Restores the activity's state to what the user last left it as.  Any changes should be decoded from 'object' and updated on screen
+    
+    :param: object The object given in 'saveActivityState'
+    */
+    optional func restoreActivityState(object: AnyObject!)
+}
+
+@objc protocol PageManagerDatabase
+{
+    var ActivityID : String         { get }
+    var ActivityGrade : String      { get }
+    var ActivityData : String       { get }
+    var ActivityStartDate : String  { get }
+    var ActivityEndDate : String    { get }
+    var ActivityStatus : String     { get }
+    
+    /**
+    
+    Returns the Activity Data for the activity with the specified activityID
+    
+    :param: activityID The activityID of the activity requesting its data
+    
+    :returns: The Dictionary of data that was initally uploaded with the activity
+    
+    */
+    func activityInformationForActivityID(activityID: String) -> NSDictionary?
+    
+    /**
+    
+    Uploads a new activity session, or updates it if it already exists
+    
+    :param: activitySession A Dictionary of values corresponding to the constants listed for this class.  They may be in any order
+    :param: completion The Completion Handler to be called when the upload finishes
+    
+    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
+    
+    */
+    func uploadActivitySession(activitySession: Dictionary<String, AnyObject>, completion: ((uploadSuccess: Bool) -> Void))
+}
+
+@objc protocol ActivityCreationDatabase
+{
+    var ActivityName : String           { get }
+    var ActivityDescription : String    { get }
+    var TotalPoints : String            { get }
+    var ReleaseDate : String            { get }
+    var DueDate : String                { get }
+    var ActivityData : String           { get }
+    var ClassID : String                { get }
+    
+    /**
+    
+    Uploads the activity data to the database
+    
+    :param: activityData The formatted Dictionary of the activities information corresponding to the String constants provided by the class.  The keys may be in any order
+    :param: completion The Completion Handler to be called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or nil if the upload failed
+    
+    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
+    
+    */
+    func uploadNewActivity(activityData: NSDictionary, completion: ((activityID: String?) -> Void))
+}
+
+@objc protocol UserAccountsDatabase
+{
+    /**
+    
+    Downloads the user accounts for Teachers and Students.  This method should be called immediately in 'viewDidLoad:'
+    
+    Once the accounts have downloaded, this method sends out the "UserAccountsDownloaded" notification.  Add your class as an observer to properly respond to the finished download
+    
+    */
+    func downloadUserAccounts()
+    
+    /**
+    
+    Compares the received user account information with the downloaded information.  If no data has been downloaded, this method returns invalid.
+    
+    :param: username The inputted username to check
+    :param: password The inputted password to check
+    
+    :returns: This method will return one of three constants upon completion:
+    :returns:
+    :returns: *  'UserStateUserIsStudent' -- The inputted information is for a Student Account
+    :returns: *  'UserStateUserIsTeacher' -- The inputted information is for a Teacher Account
+    :returns: *  'UserStateUserInvalid'   -- The inputted information is invalid
+    
+    */
+    func inputtedUsernameIsValid(username: String, andPassword password: String) -> UserState
+    
+    /**
+    
+    Stores the inputted Username and Password onto the device.  User information is encrypted first.
+    
+    * NOTE: This method will immediately return 'false' if 'inputtedUserInformationIsValid:' hasn't been called yet, or returned UserStateUserInvalid.
+    
+    :param: username The inputted username to store
+    :param: password The inputted password to store
+    
+    :returns: If returned 'true', the information was successfuly stored onto the device.
+    :returns: If returned 'false' the information was not successfully stored onto the device.
+    :returns: You should use this Bool to determine whether or not you can/should dismiss the PasswordVC.
+    
+    */
+    func storeInputtedUserInformation(username: String, andPassword password: String) -> Bool
+}
+
+@objc protocol MainActivitiesDatabase
+{
+    func loadActivities()
+    
+    var activitiesLoaded : Bool { get }
+}
+
 private var databaseManagerInstance : CESDatabase?
 
 //The Database Manager that manages all other databases
 class CESDatabase : NSObject
 {
-    private var activityCreationDatabaseManager : ActivityCreationDatabaseManager?
-    private var activityDatabaseManager : ActivityDatabaseManager?
-    private var userAccountsDatabaseManager : UserAccountsDatabaseManager?
-    private var mainActivitiesDatabaseManager : MainActivitiesDatabaseManager?
+    private var activityCreationDatabaseManager : ActivityCreationDatabase?
+    private var pageManagerDatabaseManager : PageManagerDatabase?
+    private var userAccountsDatabaseManager : UserAccountsDatabase?
+    private var mainActivitiesDatabaseManager : MainActivitiesDatabase?
     
     override init()
     {
@@ -41,7 +165,7 @@ class CESDatabase : NSObject
         databaseManagerInstance = self
         
         activityCreationDatabaseManager = ActivityCreationDatabaseManager(databaseManager: YES)
-        activityDatabaseManager = ActivityDatabaseManager(databaseManager: YES)
+        pageManagerDatabaseManager = PageManagerDatabaseManager(databaseManager: YES)
         userAccountsDatabaseManager = UserAccountsDatabaseManager(databaseManager: YES)
         mainActivitiesDatabaseManager = MainActivitiesDatabaseManager(databaseManager: YES)
     }
@@ -56,36 +180,37 @@ class CESDatabase : NSObject
         return databaseManagerInstance!
     }
     
-    class func databaseManagerForActivityClass() -> ActivityDatabaseManager
+    class func databaseManagerForPageManagerClass() -> PageManagerDatabase
     {
-        return CESDatabase.sharedManager().activityDatabaseManager!
+        return CESDatabase.sharedManager().pageManagerDatabaseManager!
     }
     
-    class func databaseManagerForCreationClass() -> ActivityCreationDatabaseManager
+    class func databaseManagerForCreationClass() -> ActivityCreationDatabase
     {
         return CESDatabase.sharedManager().activityCreationDatabaseManager!
     }
     
-    class func databaseManagerForPasswordVCClass() -> UserAccountsDatabaseManager
+    class func databaseManagerForPasswordVCClass() -> UserAccountsDatabase
     {
         return CESDatabase.sharedManager().userAccountsDatabaseManager!
     }
-    class func databaseManagerForMainActivitiesClass() -> MainActivitiesDatabaseManager
+    
+    class func databaseManagerForMainActivitiesClass() -> MainActivitiesDatabase
     {
         return CESDatabase.sharedManager().mainActivitiesDatabaseManager!
     }
 }
 
-//Segmented Database for Activity Creation
-class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
+//Private Database for Activity Creation
+private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, ActivityCreationDatabase
 {
-    var ActivityName : String { get { return "Activity_Name" } }
-    var ActivityDescription : String { get { return "Activity_Description" } }
-    var TotalPoints : String { get { return "Activity_Total_Points" } }
-    var ReleaseDate : String { get { return "Release_Date" } }
-    var DueDate : String { get { return "Due_Date" } }
-    var ActivityData : String { get { return "Activity_Data" } }
-    var ClassID : String { get { return "Class_ID" } }
+    var ActivityName : String           { get { return "Activity_Name" } }
+    var ActivityDescription : String    { get { return "Activity_Description" } }
+    var TotalPoints : String            { get { return "Activity_Total_Points" } }
+    var ReleaseDate : String            { get { return "Release_Date" } }
+    var DueDate : String                { get { return "Due_Date" } }
+    var ActivityData : String           { get { return "Activity_Data" } }
+    var ClassID : String                { get { return "Class_ID" } }
     
     private var urlSession : NSURLSession?
     private var activeSession : NSURLSessionDataTask?
@@ -107,16 +232,6 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    /**
-    
-    Uploads the activity data to the database
-    
-    :param: activityData The formatted Dictionary of the activities information corresponding to the String constants provided by the class.  The keys may be in any order
-    :param: completion The Completion Handler to be called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or nil if the upload failed
-    
-    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
-    
-    */
     func uploadNewActivity(activityData: NSDictionary, completion: ((activityID: String?) -> Void))
     {
         if isValidActivity(activityData) == NO
@@ -131,7 +246,7 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
         {
             activityID = arc4random_uniform(UINT32_MAX)
         }
-        while activityID != 1
+            while activityID != 1
         
         var SQLQuery = "INSERT INTO activity(Activity_ID, Activity_Name, Activity_Description, Activity_Total_Points, Release_Date, Due_Date, Activity_Data, Class_ID) VALUES ("
         SQLQuery += String(activityID) + ", "
@@ -184,8 +299,8 @@ class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate
     }
 }
 
-//Segmented Database for individual activites
-class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
+//Private Database for Page Manager
+private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageManagerDatabase
 {
     private var urlSession : NSURLSession?
     private var activeSession : NSURLSessionDataTask?
@@ -214,15 +329,6 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    /**
-    
-    Returns the Activity Data for the activity with the specified activityID
-    
-    :param: activityID The activityID of the activity requesting its data
-    
-    :returns: The Dictionary of data that was initally uploaded with the activity
-    
-    */
     func activityInformationForActivityID(activityID: String) -> NSDictionary?
     {
         let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")!
@@ -239,16 +345,6 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
         return nil
     }
     
-    /**
-
-    Uploads a new activity session, or updates it if it already exists
-    
-    :param: activitySession A Dictionary of values corresponding to the constants listed for this class.  They may be in any order
-    :param: completion The Completion Handler to be called when the upload finishes
-    
-    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
-    
-    */
     func uploadActivitySession(activitySession: Dictionary<String, AnyObject>, completion: ((uploadSuccess: Bool) -> Void))
     {
         if isValidActivitySession(activitySession) == NO
@@ -312,10 +408,9 @@ class ActivityDatabaseManager : NSObject, NSURLSessionDelegate
     }
 }
 
-//Segmented Database for user account information and comparing
-class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
+//Private Database for user account information and comparing
+private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, UserAccountsDatabase
 {
-    
     //The user accounts are not stored in permenant memory for data protection
     private var studentUserAccounts : Array<Dictionary<String, String>>?
     private var teacherUserAccounts : Array<Dictionary<String, String>>?
@@ -340,16 +435,6 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         urlSessionConfiguration.timeoutIntervalForRequest = 15.0
         
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
-    }
-    
-    class func UserAccountsDownloaded() -> String
-    {
-        return "User Accounts Downloaded Notification"
-    }
-    
-    class func UserLoggedIn() -> String
-    {
-        return "User Logged In Notification"
     }
     
     private func downloadTeacherAccounts(completionHandler: (() -> Void))
@@ -393,13 +478,6 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         })
     }
     
-    /**
-    
-    Downloads the user accounts for Teachers and Students.  This method should be called immediately in 'viewDidLoad:'
-    
-    Once the accounts have downloaded, this method sends out the "UserAccountsDownloaded" notification.  Add your class as an observer to properly respond to the finished download
-    
-    */
     func downloadUserAccounts()
     {
         downloadTeacherAccounts { () -> Void in
@@ -436,25 +514,11 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
                 
                 self.studentUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(UserAccountsDatabaseManager.UserAccountsDownloaded(), object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(UserAccountsDownloaded, object: nil)
             })
         }
     }
     
-    /**
-    
-    Compares the received user account information with the downloaded information.  If no data has been downloaded, this method returns invalid.
-    
-    :param: username The inputted username to check
-    :param: password The inputted password to check
-    
-    :returns: This method will return one of three constants upon completion:
-    :returns:
-    :returns: *  'UserStateUserIsStudent' -- The inputted information is for a Student Account
-    :returns: *  'UserStateUserIsTeacher' -- The inputted information is for a Teacher Account
-    :returns: *  'UserStateUserInvalid'   -- The inputted information is invalid
-    
-    */
     func inputtedUsernameIsValid(username: String, andPassword password: String) -> UserState
     {
         let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
@@ -481,20 +545,6 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
         return .UserInvalid
     }
     
-    /**
-    
-    Stores the inputted Username and Password onto the device.  User information is encrypted first.
-    
-    * NOTE: This method will immediately return 'false' if '- (UserState) inputtedUserInformationIsValid:' hasn't been called yet, or returned UserStateUserInvalid.
-    
-    :param: username The inputted username to store
-    :param: password The inputted password to store
-    
-    :returns: If returned 'true', the information was successfuly stored onto the device.
-    :returns: If returned 'false' the information was not successfully stored onto the device.
-    :returns: You should use this Bool to determine whether or not you can/should dismiss the PasswordVC.
-    
-    */
     func storeInputtedUserInformation(username: String, andPassword password: String) -> Bool
     {
         if inputtedInfoIsValid == NO
@@ -513,7 +563,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
             {
                 if student["Username"] == encryptedUserName && student["Password"] == encryptedPassword
                 {
-                    NSNotificationCenter.defaultCenter().postNotificationName(UserAccountsDatabaseManager.UserLoggedIn(), object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
                     return NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student").writeToFile(plistPath, atomically: YES)
                 }
             }
@@ -522,7 +572,7 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
             {
                 if teacher["Username"] == encryptedUserName && teacher["Password"] == encryptedPassword
                 {
-                    NSNotificationCenter.defaultCenter().postNotificationName(UserAccountsDatabaseManager.UserLoggedIn(), object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
                     return NSArray(objects: encryptedUserName, encryptedPassword, teacher["Teacher_ID"]!, "Teacher").writeToFile(plistPath, atomically: YES)
                 }
             }
@@ -532,13 +582,14 @@ class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate
     }
 }
 
-//Segmented Database for the Main Activity Pages
-class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate
+//Private Database for the Main Activity Pages
+private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, MainActivitiesDatabase
 {
     private var urlSession : NSURLSession?
     private var activeSession : NSURLSessionDataTask?
     
-    var activitiesLoaded = NO
+    var _activitiesLoaded = NO
+    var activitiesLoaded : Bool { get { return _activitiesLoaded } }
     
     override init()
     {
@@ -698,7 +749,7 @@ class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, NSURLSessi
             
             self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
                 
-                self.activitiesLoaded = YES
+                self._activitiesLoaded = YES
                 
                 if error != nil || databaseData == nil
                 {
