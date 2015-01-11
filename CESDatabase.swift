@@ -334,6 +334,17 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")!
         let activities = NSArray(contentsOfFile: plistPath) as Array<Dictionary<String, AnyObject>>
         
+        let plistPathActivitySessions = NSBundle.mainBundle().pathForResource("ActivitySessions", ofType: "plist")!
+        let activitySessions = NSArray(contentsOfFile: plistPathActivitySessions) as Array<Dictionary<String, AnyObject>>
+        
+        for activitySession in activitySessions
+        {
+            if activitySession["Activity_ID"] as String == activityID
+            {
+                return activitySession["Activity_Data"] as? NSDictionary
+            }
+        }
+        
         for activity in activities
         {
             if activity["Activity_ID"] as String == activityID
@@ -356,7 +367,57 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
         let userLoginInfo = NSArray(contentsOfFile: plistPath!)
         
-        var SQLQuery = "INSERT INTO activity(Activity_ID, Student_ID, Score, Activity_Data, Start_Date_Time, Finish_Date_Time, Status) VALUES ("
+        let plistPathActivitySessions = NSBundle.mainBundle().pathForResource("ActivitySessions", ofType: "plist")!
+        let activitySessions = NSArray(contentsOfFile: plistPathActivitySessions) as Array<Dictionary<String, AnyObject>>
+        
+        var SQLQuery : String
+        
+        for foundActivitySession in activitySessions
+        {
+            if foundActivitySession["Activity_ID"] as String == activitySession[ActivityID] as String
+            {
+                //Update its activitySession entry
+                SQLQuery = "UPDATE `activity_session` SET `Start_Date_Time`=`\(activitySession[ActivityStartDate] as String)`,`Finish_Date_Time`=`\(activitySession[ActivityEndDate] as String)`,`Score`=`\(activitySession[ActivityGrade] as String)`,`Activity_Data`=`\(activitySession[ActivityData] as String)`,`Status`=`\(activitySession[ActivityStatus] as String)` WHERE `Student_ID`=`\(userLoginInfo!.objectAtIndex(3) as String)` AND`Activity_ID`=`\(activitySession[ActivityID] as String)`"
+                
+                let post = "Password=\(databasePassword)&SQLQuery=\(SQLQuery)"
+                let url = NSURL(string: databaseUploadWebsite)!
+                
+                let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+                let postLength = String(postData!.length)
+                
+                let request = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+                request.HTTPBody = postData
+                
+                activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
+                    
+                    if error != nil || returnData == nil || returnData.length == 0
+                    {
+                        completion(uploadSuccess: NO)
+                        return
+                    }
+                    
+                    let stringData = NSString(data: returnData, encoding: NSASCIIStringEncoding)
+                    
+                    if stringData!.containsString("Failure")
+                    {
+                        completion(uploadSuccess: NO)
+                    }
+                    else
+                    {
+                        completion(uploadSuccess: YES)
+                    }
+                    
+                })
+                activeSession!.resume()
+                return
+            }
+        }
+        
+        //We couldn't find a current activitySession
+        SQLQuery = "INSERT INTO activity_session(Activity_ID, Student_ID, Score, Activity_Data, Start_Date_Time, Finish_Date_Time, Status) VALUES ("
         SQLQuery += activitySession[ActivityID] as String + ", "
         SQLQuery += userLoginInfo!.objectAtIndex(3) as String + ", "
         SQLQuery += activitySession[ActivityGrade] as String + ", "
@@ -398,8 +459,6 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
             
         })
         activeSession!.resume()
-        
-        completion(uploadSuccess: NO)
     }
     
     private func isValidActivitySession(activityInformation: NSDictionary) -> Bool
@@ -610,52 +669,55 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
     
     private func loadStudentClassesWithCompletionHandler(completionHandler: ((classesToLoad: NSArray) -> Void))
     {
-        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
-        let studentInfo = NSArray(contentsOfFile: plistPath)!
-        
-        var studentID = studentInfo[3] as String
-        
-        let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM student_class WHERE Student_ID=\(studentID)"
-        let url = NSURL(string: databaseWebsite)!
-        
-        let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
-        let postLength = String(postData!.length)
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
-        request.HTTPBody = postData
-        
-        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+        loadActivitySessions { () -> Void in
             
-            if error != nil || databaseData == nil
-            {
-                completionHandler(classesToLoad: [])
-                return
-            }
+            let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
+            let studentInfo = NSArray(contentsOfFile: plistPath)!
             
-            let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+            var studentID = studentInfo[3] as String
             
-            if stringData!.containsString("No Data")
-            {
-                completionHandler(classesToLoad: [])
-                return
-            }
+            let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM student_class WHERE Student_ID=\(studentID)"
+            let url = NSURL(string: databaseWebsite)!
             
-            let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+            let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+            let postLength = String(postData!.length)
             
-            let arrayOfClassIDs = NSMutableArray()
-            for student_class in (JSONData["Data"] as Array<Dictionary<String, String>>)
-            {
-                arrayOfClassIDs.addObject(student_class["Class_ID"]!)
-            }
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+            request.HTTPBody = postData
             
-            println("Student Classes loaded")
-            
-            completionHandler(classesToLoad: arrayOfClassIDs)
-        })
-        activeSession!.resume()
+            self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+                
+                if error != nil || databaseData == nil
+                {
+                    completionHandler(classesToLoad: [])
+                    return
+                }
+                
+                let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+                
+                if stringData!.containsString("No Data")
+                {
+                    completionHandler(classesToLoad: [])
+                    return
+                }
+                
+                let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+                
+                let arrayOfClassIDs = NSMutableArray()
+                for student_class in (JSONData["Data"] as Array<Dictionary<String, String>>)
+                {
+                    arrayOfClassIDs.addObject(student_class["Class_ID"]!)
+                }
+                
+                println("Student Classes loaded")
+                
+                completionHandler(classesToLoad: arrayOfClassIDs)
+            })
+            self.activeSession!.resume()
+        }
     }
     
     private func loadClassesWithCompletionHandler(completionHandler: ((classes: NSArray) -> Void))
@@ -708,10 +770,77 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
         }
     }
     
+    private func loadActivitySessions(completionHandler: (() -> Void))
+    {
+        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
+        let studentInfo = NSArray(contentsOfFile: plistPath)!
+        var studentID = studentInfo[3] as String
+        
+        let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM activity_session WHERE Student_ID=\(studentID)"
+        let url = NSURL(string: databaseWebsite)!
+        
+        let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+        let postLength = String(postData!.length)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+        request.HTTPBody = postData
+        
+        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+            
+            if error != nil || databaseData == nil
+            {
+                completionHandler()
+                return
+            }
+            
+            let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+            
+            if stringData!.containsString("No Data")
+            {
+                completionHandler()
+                return
+            }
+            
+            let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+            let activitySessions = JSONData["Data"] as NSArray
+            let newActivitySessions = NSMutableArray(array: activitySessions)
+            
+            for object in newActivitySessions
+            {
+                let activitySession = object as NSDictionary
+                
+                let newActivitySession = NSMutableDictionary(dictionary: activitySession)
+                
+                for key in newActivitySession.allKeys as Array<String>
+                {
+                    if newActivitySession[key] as NSObject == NSNull()
+                    {
+                        if key != "Activity_Data"
+                        {
+                            newActivitySession.setValue("", forKey: key)
+                        }
+                        else
+                        {
+                            newActivitySession.setValue(NSDictionary(), forKey: key)
+                        }
+                    }
+                }
+                newActivitySessions[(newActivitySessions as NSArray).indexOfObject(activitySession)] = newActivitySession as NSDictionary
+            }
+            
+            let plistPath = NSBundle.mainBundle().pathForResource("ActivitySessions", ofType: "plist")
+            newActivitySessions.writeToFile(plistPath!, atomically: YES)
+            
+            completionHandler()
+        })
+        activeSession!.resume()
+    }
+    
     func loadActivities()
     {
-        println("Loading Activities")
-        
         loadClassesWithCompletionHandler { (classes) -> Void in
             
             if classes[0].isKindOfClass(NSDictionary.classForCoder()) == NO
@@ -792,8 +921,6 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
                 
                 let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
                 newActivities.writeToFile(plistPath!, atomically: YES)
-                
-                println("Activities Loaded")
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
             })

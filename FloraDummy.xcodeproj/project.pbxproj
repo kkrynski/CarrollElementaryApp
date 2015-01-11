@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
+		103265CF1A600CF800511546 /* NewPageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* NewPageManager.swift */; };
 		104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104187D11A461DDC001C571C /* MediaPlayer.framework */; };
 		104187D61A462BBF001C571C /* Foggy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CA1A461CDE001C571C /* Foggy.mp4 */; };
 		104187D71A462BBF001C571C /* Night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CB1A461CDE001C571C /* Night.mp4 */; };
@@ -19,6 +20,7 @@
 		104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187DD1A46303E001C571C /* Cloudy.mp4 */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
+		106948E51A62F59B0093F9DF /* ActivitySessions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106948E41A62F59B0093F9DF /* ActivitySessions.plist */; };
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
 		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
 		1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */; };
@@ -203,6 +205,7 @@
 /* Begin PBXFileReference section */
 		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
+		103265CD1A600CE800511546 /* NewPageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageManager.swift; sourceTree = "<group>"; };
 		104187CA1A461CDE001C571C /* Foggy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foggy.mp4; sourceTree = "<group>"; };
 		104187CB1A461CDE001C571C /* Night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Night.mp4; sourceTree = "<group>"; };
 		104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Partly Cloudy.mp4"; sourceTree = "<group>"; };
@@ -216,6 +219,7 @@
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC_Normal.swift; sourceTree = "<group>"; };
 		104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationFormatter.swift; sourceTree = "<group>"; };
+		106948E41A62F59B0093F9DF /* ActivitySessions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActivitySessions.plist; sourceTree = "<group>"; };
 		106C8BD319FED841009B0983 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		106C8BD519FEE55B009B0983 /* MathVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathVC.swift; sourceTree = "<group>"; };
 		106C8BD719FEE574009B0983 /* ScienceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScienceVC.swift; sourceTree = "<group>"; };
@@ -492,6 +496,14 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		103265CC1A600CD400511546 /* New Page Manager */ = {
+			isa = PBXGroup;
+			children = (
+				103265CD1A600CE800511546 /* NewPageManager.swift */,
+			);
+			name = "New Page Manager";
+			sourceTree = "<group>";
+		};
 		104187C81A461CCA001C571C /* Weather Videos */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +670,7 @@
 				109509581A3E01F800030E4B /* LoggedInUser.plist */,
 				10BEC0291A3CEBB2008CBFF9 /* Classes.plist */,
 				10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */,
+				106948E41A62F59B0093F9DF /* ActivitySessions.plist */,
 			);
 			name = "Stored Data";
 			sourceTree = "<group>";
@@ -1031,6 +1044,7 @@
 		92E7A1281864E303006A712B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				103265CC1A600CD400511546 /* New Page Manager */,
 				921DD2631A2A430100C18079 /* PageManager.h */,
 				921DD2641A2A430100C18079 /* PageManager.m */,
 				9211950119FE01C000644054 /* FormattedVC.h */,
@@ -1304,6 +1318,7 @@
 				924B3C041A337AE700A18755 /* Carroll.json in Resources */,
 				9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */,
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
+				106948E51A62F59B0093F9DF /* ActivitySessions.plist in Resources */,
 				104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				10BFE6F61A20510800E68C77 /* Weather Images.xcassets in Resources */,
@@ -1435,6 +1450,7 @@
 				92C117821A22A1A4003506DB /* ActivityInfoVC.m in Sources */,
 				108E9B161A27A67E00120A63 /* NSDate+InternetDateTime.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
+				103265CF1A600CF800511546 /* NewPageManager.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
 				921DD2651A2A430100C18079 /* PageManager.m in Sources */,
 				92CB449A1A203F740082C761 /* Content.m in Sources */,
