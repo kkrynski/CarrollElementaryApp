@@ -289,7 +289,7 @@ class SubjectVC: FormattedVC
         var cell = tableView.dequeueReusableCellWithIdentifier("SubjectCell") as UITableViewCell?
         
         //Update the titleLabel for the cell to the Activity's Name
-        cell!.textLabel!.text = activities[indexPath.row]["Activity_Name"] as String!
+        cell!.textLabel!.text = activities[indexPath.row]/*["Activity_Name"]*/ as? String
         cell!.textLabel!.font = font
         cell!.textLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(cell!.textLabel!)
@@ -307,12 +307,55 @@ class SubjectVC: FormattedVC
     {
         //Visually deselect the cell since we're moving away from the view
         tableView.deselectRowAtIndexPath(indexPath, animated: YES)
+        UIApplication.sharedApplication().keyWindow?.userInteractionEnabled = NO
         
-        //Get the information for the activity for the selected cell
-        let activityDictionary = activities[indexPath.row] as NSDictionary
+        let activityLoadingView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        activityLoadingView.clipsToBounds = YES
+        activityLoadingView.frame = tableView.cellForRowAtIndexPath(indexPath)!.convertRect(tableView.cellForRowAtIndexPath(indexPath)!.frame, toView: view)
+        activityLoadingView.alpha = 0.0
         
-        //Create a PageManager for the activity and store it in THIS view controller
-        pageManager = PageManager(activity: ClassConversions().activityFromDictionary(activityDictionary), forParentViewController: self)
+        let loadingWheel = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        loadingWheel.startAnimating()
+        
+        let loadingLabel = UILabel()
+        loadingLabel.textColor = primaryColor
+        loadingLabel.text = "Loading Activity..."
+        loadingLabel.numberOfLines = 0
+        loadingLabel.font = font
+        Definitions.outlineTextInLabel(loadingLabel)
+        loadingLabel.sizeToFit()
+        
+        let activityLoadingLoadingView = UIView(frame: CGRectMake(0, 0, loadingWheel.frame.size.width + loadingLabel.frame.size.width + 8, activityLoadingView.frame.size.height))
+        activityLoadingLoadingView.addSubview(loadingWheel)
+        activityLoadingLoadingView.addSubview(loadingLabel)
+        loadingWheel.center = CGPointMake(loadingWheel.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0)
+        loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width - loadingLabel.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0)
+        activityLoadingView.contentView.addSubview(activityLoadingLoadingView)
+        activityLoadingLoadingView.center = CGPointMake(activityLoadingView.frame.size.width/2.0, activityLoadingView.frame.size.height/2.0)
+        
+        view.addSubview(activityLoadingView)
+        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+            activityLoadingView.frame = CGRectMake(0, 0, self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+            activityLoadingView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+            activityLoadingView.alpha = 1.0
+            
+            activityLoadingLoadingView.frame = CGRectMake(0, 0, activityLoadingView.frame.size.width, activityLoadingView.frame.size.height)
+            loadingWheel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 - 4 - loadingWheel.frame.size.height/2.0)
+            loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
+            }, completion: { (finished) -> Void in
+                //Get the information for the activity for the selected cell
+                let activityDictionary = self.activities[indexPath.row] as NSDictionary
+                
+                //Create a PageManager for the activity and store it in THIS view controller
+                self.pageManager = PageManager(activity: ClassConversions().activityFromDictionary(activityDictionary), forParentViewController: self)
+        })
+        
+        let animation = CABasicAnimation(keyPath: "cornerRadius")
+        animation.fromValue = NSNumber(double: 0.001)
+        animation.toValue = NSNumber(double: 10.0)
+        animation.duration = 0.3
+        activityLoadingView.layer.addAnimation(animation, forKey: "cornerRadius")
+        activityLoadingView.layer.cornerRadius = 10.0
     }
     
     //MARK: - ScrollView Methods

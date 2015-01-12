@@ -96,7 +96,11 @@ class WeatherView: UIView, WeatherManagerDelegate
         indexOfCurrentTempString = item.indexForWeatherMap
         
         UIView.transitionWithView(self, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
-            self.videoForForcastImage(item.weatherCode)
+            println(item.weatherCode)
+            if item.weatherCode != nil || item.weatherCode != ""
+            {
+                self.videoForForcastImage(item.weatherCode)
+            }
             self.player?.view.alpha = 1.0
             self.weatherTemp!.text = "\(item.weatherCurrentTemp)°F"
             self.weatherTemp!.numberOfLines = 0
@@ -107,7 +111,8 @@ class WeatherView: UIView, WeatherManagerDelegate
     
     private func videoForForcastImage(weatherCode: String)
     {
-        switch (weatherCode as NSString).integerValue
+        println(weatherCode)
+        switch weatherCode.toInt()!
         {
         case 113:
             player?.contentURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Sunny", ofType: "mp4")!)
