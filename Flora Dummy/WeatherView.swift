@@ -96,7 +96,6 @@ class WeatherView: UIView, WeatherManagerDelegate
         indexOfCurrentTempString = item.indexForWeatherMap
         
         UIView.transitionWithView(self, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
-            println(item.weatherCode)
             if item.weatherCode != nil || item.weatherCode != ""
             {
                 self.videoForForcastImage(item.weatherCode)
@@ -111,7 +110,6 @@ class WeatherView: UIView, WeatherManagerDelegate
     
     private func videoForForcastImage(weatherCode: String)
     {
-        println(weatherCode)
         switch weatherCode.toInt()!
         {
         case 113:
@@ -147,22 +145,17 @@ class WeatherView: UIView, WeatherManagerDelegate
             break
         }
         
-        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather") == YES
-        {
-            player?.prepareToPlay()
-            player?.play()
-        }
-        else
-        {
-            player?.prepareToPlay()
-            player?.play()
-            player?.requestThumbnailImagesAtTimes([NSNumber(double: 2.1)], timeOption: .NearestKeyFrame)
-        }
+        player?.prepareToPlay()
+        player?.play()
+        player?.requestThumbnailImagesAtTimes([NSNumber(double: 2.1)], timeOption: .NearestKeyFrame)
     }
     
     func didReceiveThumbnailNotification(notification: NSNotification)
     {
-        player?.stop()
+        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather") == NO
+        {
+            player?.stop()
+        }
         
         let userInfo = notification.userInfo! as NSDictionary
         
