@@ -11,8 +11,11 @@ import UIKit
 class NewPageManager: FormattedVC
 {
     //MARK: - Variables
+    
+    //Database Manager
     private var databaseManager = CESDatabase.databaseManagerForPageManagerClass()
     
+    //Buttons
     private var previousButton : UIButton_Typical?
     var previousButtonFrame : CGRect?
         {
@@ -40,10 +43,12 @@ class NewPageManager: FormattedVC
         }
     }
     
+    //Button Constraints
     private var previousButtonConstraints = Array<NSLayoutConstraint>()
     private var saveButtonConstraints = Array<NSLayoutConstraint>()
     private var nextButtonConstraints = Array<NSLayoutConstraint>()
     
+    //Current Index
     private var _currentIndex = 0
     var currentIndex : Int
         {
@@ -53,12 +58,37 @@ class NewPageManager: FormattedVC
         }
     }
     
-    var activityID: String?
+    //Current Activity Information
+    private var _currentActivity : Activity?
     var currentActivity : Activity?
+        {
+        set
+        {
+            _currentActivity = newValue
+            presentNextViewController()
+        }
+        get
+        {
+            return _currentActivity
+        }
+    }
+    var activityID : String?
+        {
+        get
+        {
+            return _currentActivity?.activityID
+        }
+    }
+    
+    private var isPresented : Bool
+        {
+        get
+        {
+            return parentViewController != nil
+        }
+    }
     
     private var currentViewController : FormattedVC?
-    
-    private var isPresented = NO
     
     var subjectParent : SubjectVC?
     
@@ -111,7 +141,7 @@ class NewPageManager: FormattedVC
         saveButton!.alpha = 0.0
         view.addSubview(saveButton!)
         
-        presentNextViewController()
+        //TODO: Add Constraints
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -119,13 +149,6 @@ class NewPageManager: FormattedVC
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    override func didMoveToParentViewController(parent: UIViewController?)
-    {
-        super.didMoveToParentViewController(parent)
-        
-        isPresented = parent != nil
     }
     
     private func displayDismissAlert(customMessage: String?)
