@@ -15,13 +15,11 @@ typedef NS_ENUM(NSInteger, UserState)
     UserStateUserInvalid
 };
 
-const NSString *ActivityDataLoaded;
+#define ActivityDataLoaded @"ActivityDataLoaded"
+#define UserAccountsDownloaded @"User Accounts Downloaded Notification"
+#define UserLoggedIn @"User Logged In Notification"
 
-const NSString *UserAccountsDownloaded;
-const NSString *UserLoggedIn;
-
-
-
+#define PageManagerShouldContinuePresentation @"Page Manager Should Continue Presentation"
 
 //Private Defininitions class for UITabBar Transition
 @interface OBJ_CDefinitions : NSObject

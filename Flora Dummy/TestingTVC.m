@@ -78,7 +78,6 @@
     
     // Store the border width for the tableview.
     borderWidth = 2.0f;
-
 }
 
 - (void)didReceiveMemoryWarning {

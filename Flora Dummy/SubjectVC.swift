@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubjectVC: FormattedVC
+class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
 {
     //The current grade
     internal var gradeNumber : String?
