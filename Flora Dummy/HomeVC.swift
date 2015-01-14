@@ -54,8 +54,6 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
         
-        view.backgroundColor = backgroundColor
-        
         weatherView!.updateColors(primaryColor)
         
         newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 11)

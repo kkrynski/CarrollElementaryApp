@@ -7,11 +7,11 @@
 //
 
 #import "FormattedVC.h"
-
 #import "Page.h"
 
 @class UIButton_Typical, PageManager;
 
+NS_CLASS_DEPRECATED_IOS(8_0, 8_0)
 @interface PageVC : FormattedVC
 {
     //Only private variables go in here...

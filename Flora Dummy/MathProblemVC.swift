@@ -125,7 +125,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         //Build the equation view
         //This will be where the equation is displayed
         equationView = UIView(frame: CGRectMake(0, 0, view.frame.size.width * 0.9, view.frame.size.height * 0.4))
-        equationView!.backgroundColor = Definitions.lighterColorForColor(backgroundColor!)
+        equationView!.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
         Definitions.outlineView(equationView!)
         equationView!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
         view.addSubview(equationView!)
@@ -383,7 +383,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         case "#w#":
             let answerSpace = MathProblemTextField(frame: CGRectMake(0, 0, answerView.frame.size.width, answerView.frame.size.height * 0.5), andTextFieldType: "Whole Number")
             answerSpace.center = CGPointMake(answerView.frame.size.width/2.0, answerView.frame.size.height/2.0)
-            answerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(backgroundColor))
+            answerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(view.backgroundColor!))
             answerSpace.textColor = primaryColor
             answerSpace.delegate = self
             answerView.addSubview(answerSpace)
@@ -393,7 +393,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         case "#v#":
             let answerSpace = MathProblemTextField(frame: CGRectMake(0, 0, answerView.frame.size.width, answerView.frame.size.height * 0.5), andTextFieldType: "Variable")
             answerSpace.center = CGPointMake(answerView.frame.size.width/2.0, answerView.frame.size.height/2.0)
-            answerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(backgroundColor))
+            answerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(view.backgroundColor!))
             answerSpace.textColor = primaryColor
             answerSpace.delegate = self
             answerView.addSubview(answerSpace)
@@ -403,7 +403,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         case "#fr#":
             let topAnswerSpace = MathProblemTextField(frame: CGRectMake(0, 0, answerView.frame.size.width, answerView.frame.size.height * 0.4), andTextFieldType: "Any")
             topAnswerSpace.center = CGPointMake(answerView.frame.size.width/2.0, answerView.frame.size.height/2.0 - 3 - 8 - topAnswerSpace.frame.size.height/2.0)
-            topAnswerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(backgroundColor))
+            topAnswerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(view.backgroundColor!))
             topAnswerSpace.textColor = primaryColor
             topAnswerSpace.delegate = self
             answerView.addSubview(topAnswerSpace)
@@ -416,7 +416,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
             
             let bottomAnswerSpace = MathProblemTextField(frame: CGRectMake(0, 0, answerView.frame.size.width, answerView.frame.size.height * 0.4), andTextFieldType: "Any")
             bottomAnswerSpace.center = CGPointMake(answerView.frame.size.width/2.0, answerView.frame.size.height/2.0 + 3 + 8 + topAnswerSpace.frame.size.height/2.0)
-            bottomAnswerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(backgroundColor))
+            bottomAnswerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(view.backgroundColor!))
             bottomAnswerSpace.textColor = primaryColor
             bottomAnswerSpace.delegate = self
             answerView.addSubview(bottomAnswerSpace)
@@ -426,7 +426,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         case "#d#":
             let answerSpace = MathProblemTextField(frame: CGRectMake(0, 0, answerView.frame.size.width, answerView.frame.size.height * 0.5), andTextFieldType: "Decimal")
             answerSpace.center = CGPointMake(answerView.frame.size.width/2.0, answerView.frame.size.height/2.0)
-            answerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(backgroundColor))
+            answerSpace.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(view.backgroundColor!))
             answerSpace.textColor = primaryColor
             answerSpace.delegate = self
             answerView.addSubview(answerSpace)
