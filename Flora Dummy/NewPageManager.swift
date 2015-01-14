@@ -88,6 +88,7 @@ class NewPageManager: FormattedVC
         }
     }
     
+    private var oldViewController : FormattedVC?
     private var currentViewController : FormattedVC?
     
     var subjectParent : SubjectVC?
@@ -115,8 +116,6 @@ class NewPageManager: FormattedVC
             return
         }
         
-        let activityInfo = databaseManager.activityInformationForActivityID(activityID!)
-        
         previousButton = UIButton_Typical(frame: CGRectZero)
         previousButton!.setTranslatesAutoresizingMaskIntoConstraints(NO)
         previousButton!.setTitle("Back", forState: .Normal)
@@ -141,7 +140,7 @@ class NewPageManager: FormattedVC
         saveButton!.alpha = 0.0
         view.addSubview(saveButton!)
         
-        //TODO: Add Constraints
+        setUpButtons()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -149,6 +148,134 @@ class NewPageManager: FormattedVC
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    private func setUpButtons()
+    {
+        if currentIndex == currentActivity!.pageArray.count - 1 //Final Page
+        {
+            view.removeConstraints(previousButtonConstraints)
+            view.removeConstraints(nextButtonConstraints)
+            view.removeConstraints(saveButtonConstraints)
+            
+            previousButtonConstraints = Array<NSLayoutConstraint>()
+            saveButtonConstraints = Array<NSLayoutConstraint>()
+            nextButtonConstraints = Array<NSLayoutConstraint>()
+            
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: -4.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 4.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -8.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            view.addConstraints(previousButtonConstraints)
+            view.addConstraints(saveButtonConstraints)
+            view.addConstraints(nextButtonConstraints)
+            
+            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                
+                self.nextButton!.alpha = 0.0
+                self.nextButton!.userInteractionEnabled = NO
+                }, completion: nil)
+            
+            UIView.transitionWithView(saveButton!, duration: 0.5, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                self.saveButton!.setTitle("Finish", forState: .Normal)
+            }, completion: nil)
+        }
+        else if currentIndex == 0    //First Page
+        {
+            view.removeConstraints(previousButtonConstraints)
+            view.removeConstraints(nextButtonConstraints)
+            view.removeConstraints(saveButtonConstraints)
+            
+            previousButtonConstraints = Array<NSLayoutConstraint>()
+            saveButtonConstraints = Array<NSLayoutConstraint>()
+            nextButtonConstraints = Array<NSLayoutConstraint>()
+            
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 8.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: -4.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 4.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            view.addConstraints(previousButtonConstraints)
+            view.addConstraints(saveButtonConstraints)
+            view.addConstraints(nextButtonConstraints)
+            
+            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                
+                self.nextButton!.alpha = 1.0
+                self.nextButton!.userInteractionEnabled = YES
+                self.previousButton!.alpha = 0.0
+                self.previousButton!.userInteractionEnabled = NO
+                }, completion: nil)
+            
+            UIView.transitionWithView(saveButton!, duration: 0.5, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                self.saveButton!.setTitle("Save", forState: .Normal)
+                }, completion: nil)
+        }
+        else    //Middle Page
+        {
+            view.removeConstraints(previousButtonConstraints)
+            view.removeConstraints(nextButtonConstraints)
+            view.removeConstraints(saveButtonConstraints)
+            
+            previousButtonConstraints = Array<NSLayoutConstraint>()
+            saveButtonConstraints = Array<NSLayoutConstraint>()
+            nextButtonConstraints = Array<NSLayoutConstraint>()
+            
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 8.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -8.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
+            
+            view.addConstraints(previousButtonConstraints)
+            view.addConstraints(saveButtonConstraints)
+            view.addConstraints(nextButtonConstraints)
+            
+            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                
+                self.nextButton!.alpha = 1.0
+                self.nextButton!.userInteractionEnabled = YES
+                self.previousButton!.alpha = 1.0
+                self.previousButton!.userInteractionEnabled = YES
+            }, completion: nil)
+            
+            UIView.transitionWithView(saveButton!, duration: 0.5, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                self.saveButton!.setTitle("Save", forState: .Normal)
+                }, completion: nil)
+        }
     }
     
     private func displayDismissAlert(customMessage: String?)
@@ -167,11 +294,16 @@ class NewPageManager: FormattedVC
         dismissAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             self.dismissViewControllerAnimated(YES, completion: nil)
         }))
+        
+        presentViewController(dismissAlert, animated: YES, completion: nil)
     }
     
     func presentNextViewController()
     {
-        //currentViewController = viewControllerForPageType("ActivityData", andInformation: nil)
+        oldViewController = currentViewController
+        //TODO: Load new currentViewController
+        
+        _currentIndex = min(currentIndex + 1, currentActivity!.pageArray.count)
     }
     
     func continueWithPresentation()
@@ -180,15 +312,16 @@ class NewPageManager: FormattedVC
         {
             self.modalPresentationStyle = .Custom
             self.transitioningDelegate = subjectParent
-            subjectParent?.presentViewController(self, animated: YES, completion: nil)
+            subjectParent!.presentViewController(self, animated: YES, completion: nil)
         }
         else
         {
-            
+            setUpButtons()
+            //TODO: Place currentViewController on screen and run animation
         }
     }
     
-    private func viewControllerForPageType(pageType: String, andInformation pageInformation: NSDictionary)/* -> UIViewController*/
+    private func viewControllerForPageType(pageType: String, andInformation pageInformation: NSDictionary)/* -> FormattedVC*/
     {
         
     }
