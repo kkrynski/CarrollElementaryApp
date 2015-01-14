@@ -7,7 +7,7 @@
 //
 
 #import "ModuleVC.h"
-
+#import "FloraDummy-Swift.h"
 #import "Content.h" 
 
 @implementation ModuleVC
@@ -35,7 +35,7 @@
 
     contentArray = [[NSMutableArray alloc] init];
     
-    self.pageControl.numberOfPages = self.pageCount.intValue;
+    //self.pageControl.numberOfPages = self.pageCount.intValue;
     
 }
 
@@ -60,7 +60,7 @@
         if ([v isKindOfClass: [UITextView new].class])
         {
             UITextView *tV = (UITextView *)v;
-            [self outlineTextInTextView:tV];
+            [Definitions outlineTextInTextView:tV forFont:tV.font];
             tV.textColor = primaryColor;
             tV.backgroundColor = secondaryColor;
     
@@ -116,7 +116,7 @@
     
     // Format
     //[self outlineTextInTextView:tV];
-    [self outlineView:tV];
+    [Definitions outlineView:tV];
     tV.font = font;
     tV.textColor = primaryColor;
     tV.backgroundColor = secondaryColor;

@@ -257,17 +257,17 @@
 {
     [super updateColors];
     
-    nextButton.backgroundColor = backgroundColor;
+    nextButton.backgroundColor = self.view.backgroundColor;
     [nextButton setTitleColor:primaryColor forState:UIControlStateNormal];
     
     if (previousButton)
     {
-        previousButton.backgroundColor = backgroundColor;
+        previousButton.backgroundColor = self.view.backgroundColor;
         [previousButton setTitleColor:primaryColor forState:UIControlStateNormal];
     }
     
     otherLabel.textColor = primaryColor;
-    [self outlineTextInLabel:otherLabel];
+    [Definitions outlineTextInLabel:otherLabel];
 }
 
 @end

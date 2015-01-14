@@ -7,18 +7,15 @@
 //
 
 #import "FormattedVC.h"
-
 #import "FloraDummy-Swift.h"
 
-@interface FormattedVC ()
-
-@end
+@interface FormattedVC () <CESDatabaseActivity> @end
 
 @implementation FormattedVC
-@synthesize colorSchemeDictionary, primaryColor, secondaryColor, backgroundColor;
-@synthesize font;
 
-- (void)viewDidLoad
+@synthesize colorSchemeDictionary, primaryColor, secondaryColor, font;
+
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 
@@ -47,7 +44,7 @@
     [self updateColors];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -59,7 +56,7 @@
 ///
 /// Subclasses should override this method to perform custom color updating
 ///
-/// \note You must call [superview updateColors] first in the overridden method
+/// \note You must call [super updateColors] first in the overridden method
 -(void) updateColors
 {
     //Get Colors

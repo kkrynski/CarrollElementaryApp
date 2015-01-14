@@ -11,7 +11,7 @@
 #import "PageVC.h"
 #import "DragObject.h"
 
-@interface Page_DragAndDropVC : PageVC<UICollisionBehaviorDelegate>
+@interface Page_DragAndDropVC : FormattedVC<UICollisionBehaviorDelegate>
 {
     
 }

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CESDatabaseActivity;
+//@protocol CESDatabaseActivity;
 
-@interface FormattedVC : UIViewController <CESDatabaseActivity>
+@interface FormattedVC : UIViewController /*<CESDatabaseActivity>*/
 {
     //Holds loaded data for colors, specifically HEX code
     NSDictionary *colorSchemeDictionary;

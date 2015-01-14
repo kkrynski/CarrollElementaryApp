@@ -3,7 +3,7 @@
 //
 
 #import "PageManager.h"
-#import "PageVC.h"
+#import "FormattedVC.h"
 
 #import "CalculatorVC.h"
 #import "PasswordVC.h"

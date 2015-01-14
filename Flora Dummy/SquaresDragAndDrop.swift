@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SquaresDragAndDrop: PageVC
+class SquaresDragAndDrop: FormattedVC
 {
     /**
     The number of squares to place on the screen.
@@ -99,8 +99,8 @@ class SquaresDragAndDrop: PageVC
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.translatesReferenceBoundsIntoBoundary = YES
         collisionBehavior.setTranslatesReferenceBoundsIntoBoundaryWithInsets(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
-        collisionBehavior.addBoundaryWithIdentifier("nextLabel", forPath: UIBezierPath(rect: nextButton.frame))
-        collisionBehavior.addBoundaryWithIdentifier("pageLabel", forPath: UIBezierPath(rect: otherLabel.frame))
+        //collisionBehavior.addBoundaryWithIdentifier("nextLabel", forPath: UIBezierPath(rect: nextButton.frame))
+        //collisionBehavior.addBoundaryWithIdentifier("pageLabel", forPath: UIBezierPath(rect: otherLabel.frame))
         
         dynamicAnimator!.addBehavior(collisionBehavior)
     }
@@ -127,7 +127,7 @@ class SquaresDragAndDrop: PageVC
         let pointIsOutOfXBounds = (point.x < size.width/2 + 20 || point.x > Int(view.bounds.size.width) - size.width/2 - 20)
         let pointIsOutOfYBounds = (point.y < size.height/2 + 20 || point.y > Int(view.bounds.size.height) - size.height/2 - 20)
         
-        if pointIsOutOfXBounds || pointIsOutOfYBounds || CGRectContainsRect(CGRectInset(otherLabel.frame, -8.0, -8.0), CGRectMake(CGFloat(point.x), CGFloat(point.y), CGFloat(size.width), CGFloat(size.height))) || CGRectContainsRect(CGRectInset(nextButton.frame, -8.0, -8.0), CGRectMake(CGFloat(point.x), CGFloat(point.y), CGFloat(size.width), CGFloat(size.height)))
+        if pointIsOutOfXBounds || pointIsOutOfYBounds /*|| CGRectContainsRect(CGRectInset(otherLabel.frame, -8.0, -8.0), CGRectMake(CGFloat(point.x), CGFloat(point.y), CGFloat(size.width), CGFloat(size.height))) || CGRectContainsRect(CGRectInset(nextButton.frame, -8.0, -8.0), CGRectMake(CGFloat(point.x), CGFloat(point.y), CGFloat(size.width), CGFloat(size.height)))*/
         {
             return YES
         }
