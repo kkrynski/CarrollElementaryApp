@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SquaresDragAndDrop: FormattedVC
+class SquaresDragAndDrop: PageVC
 {
     /**
     The number of squares to place on the screen.

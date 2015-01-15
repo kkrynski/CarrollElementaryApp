@@ -149,9 +149,9 @@ private var databaseManagerInstance : CESDatabase?
 class CESDatabase : NSObject
 {
     private var activityCreationDatabaseManager : ActivityCreationDatabase?
-    private var pageManagerDatabaseManager : PageManagerDatabase?
-    private var userAccountsDatabaseManager : UserAccountsDatabase?
-    private var mainActivitiesDatabaseManager : MainActivitiesDatabase?
+    private var pageManagerDatabaseManager      : PageManagerDatabase?
+    private var userAccountsDatabaseManager     : UserAccountsDatabase?
+    private var mainActivitiesDatabaseManager   : MainActivitiesDatabase?
     
     override init()
     {

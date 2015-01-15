@@ -56,7 +56,7 @@ class MathProblemAnswerGradiant : UIView
     }
 }
 
-class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
+class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
 {
     /**
     The Math Equation to be displayed.

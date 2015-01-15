@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Page_ReadVC: FormattedVC
+class Page_ReadVC: PageVC
 {
     
     var pageText : NSString?

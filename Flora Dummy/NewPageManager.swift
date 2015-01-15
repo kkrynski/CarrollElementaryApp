@@ -326,3 +326,7 @@ class NewPageManager: FormattedVC
         
     }
 }
+
+//MARK: - For Future Renaming
+//@availability(*, unavailable, renamed="PageManager")
+//typealias NewPageManager = PageManager

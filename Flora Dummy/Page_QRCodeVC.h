@@ -13,7 +13,7 @@
 
 #import "PageVC.h"
 
-@interface Page_QRCodeVC : FormattedVC <ZBarReaderDelegate>
+@interface Page_QRCodeVC : PageVC <ZBarReaderDelegate>
 {
     
 }

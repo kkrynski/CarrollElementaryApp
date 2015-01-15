@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Page_IntroVC: FormattedVC
+class Page_IntroVC: PageVC
 {
     var summary = "Welcome to activity foo, where will you learn to blah and bleh by using bluh.\n\nPress \"Next\" to move on or \"Previous\" to move back."
     
