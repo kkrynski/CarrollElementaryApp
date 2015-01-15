@@ -22,3 +22,11 @@
 #import "PageCreationVC.h"
 
 #import "CESEncryption.h"
+
+#import "Page_GardenDataVC.h"
+#import "ModuleVC.h"
+#import "PictureQuizVC.h"
+#import "QuickQuizVC.h"
+//#import "SandboxVC.h"
+#import "SpellingTestVC.h"
+#import "VocabVC.h"

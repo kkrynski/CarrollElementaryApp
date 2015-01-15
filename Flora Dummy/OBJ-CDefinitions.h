@@ -15,6 +15,23 @@ typedef NS_ENUM(NSInteger, UserState)
     UserStateUserInvalid
 };
 
+typedef NS_ENUM(NSInteger, ActivityViewControllerType)
+{
+    ActivityViewControllerTypeIntro,
+    ActivityViewControllerTypeModule,
+    ActivityViewControllerTypeSandbox,
+    ActivityViewControllerTypeRead,
+    ActivityViewControllerTypeSquaresDragAndDrop,
+    ActivityViewControllerTypeMathProblem,
+    ActivityViewControllerTypeCalculator,
+    ActivityViewControllerTypeGarden,
+    ActivityViewControllerTypeClockDrag,
+    ActivityViewControllerTypePictureQuiz,
+    ActivityViewControllerTypeQuickQuiz,
+    ActivityViewControllerTypeVocab,
+    ActivityViewControllerTypeSpelling,
+};
+
 #define ActivityDataLoaded @"ActivityDataLoaded"
 #define UserAccountsDownloaded @"User Accounts Downloaded Notification"
 #define UserLoggedIn @"User Logged In Notification"

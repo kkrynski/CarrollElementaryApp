@@ -295,13 +295,15 @@ class NewPageManager: FormattedVC
             self.dismissViewControllerAnimated(YES, completion: nil)
         }))
         
-        presentViewController(dismissAlert, animated: YES, completion: nil)
+        UIApplication.sharedApplication().keyWindow!.rootViewController!.presentViewController(dismissAlert, animated: YES, completion: nil)
     }
     
     func presentNextViewController()
     {
         oldViewController = currentViewController
+        
         //TODO: Load new currentViewController
+        (currentViewController! as CESDatabaseActivity).restoreActivityState?(nil)
         
         _currentIndex = min(currentIndex + 1, currentActivity!.pageArray.count)
     }
@@ -310,6 +312,7 @@ class NewPageManager: FormattedVC
     {
         if isPresented == NO
         {
+            //TODO: Place currentViewController on screen with NO animation
             self.modalPresentationStyle = .Custom
             self.transitioningDelegate = subjectParent
             subjectParent!.presentViewController(self, animated: YES, completion: nil)
@@ -321,9 +324,52 @@ class NewPageManager: FormattedVC
         }
     }
     
-    private func viewControllerForPageType(pageType: String, andInformation pageInformation: NSDictionary)/* -> FormattedVC*/
+    private func viewControllerForPageType(pageType: ActivityViewControllerType, andInformation pageInformation: NSDictionary) -> FormattedVC?
     {
-        
+        switch pageType
+        {
+        case .Calculator:
+            return CalculatorVC()
+            
+        case .ClockDrag:
+            return ClockDragVC()
+            
+        case .Garden:
+            return Page_GardenDataVC()
+            
+        case .Intro:
+            return Page_IntroVC()
+            
+        case .MathProblem:
+            return MathProblemVC()
+            
+        case .Module:
+            return ModuleVC()
+            
+        case .PictureQuiz:
+            return PictureQuizVC()
+            
+        case .QuickQuiz:
+            return QuickQuizVC()
+            
+        case .Read:
+            return Page_ReadVC()
+            
+            //case .Sandbox:
+            //    return SandboxVC()
+            
+        case .Spelling:
+            return SpellingTestVC()
+            
+        case .SquaresDragAndDrop:
+            return SquaresDragAndDrop()
+            
+        case .Vocab:
+            return VocabVC()
+            
+        default:
+            return nil
+        }
     }
 }
 

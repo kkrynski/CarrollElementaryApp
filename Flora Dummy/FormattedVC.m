@@ -11,6 +11,8 @@
 
 @implementation FormattedVC
 
+@synthesize pageManagerParent;
+
 @synthesize colorSchemeDictionary, primaryColor, secondaryColor, font, backgroundColor;
 
 - (void) viewDidLoad
@@ -39,6 +41,7 @@
     // Initialize font
     font = [UIFont fontWithName:@"Marker Felt" size:32.0];
     
+    //Immediately set colors before presentation
     [self updateColors];
 }
 

@@ -43,8 +43,6 @@
 /// These functions are used to convert a hex number (in string format) to a UIColor
 ///
 /// These functions are just to condense code
-///
-/// \note This method is deprecated, please use the \b Definitions method instead
 - (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length DEPRECATED_ATTRIBUTE;
 
 /// Updates colors in view
