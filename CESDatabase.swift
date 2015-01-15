@@ -22,6 +22,13 @@ private let databaseEncryptionKey = "I1rObD475i"
 @objc protocol CESDatabaseActivity
 {
     /**
+    The reference to the PageManager instance that is holding your activity.
+    
+    \note This could be nil.  Please watch out for nil pageManagerParents
+    */
+    var pageManagerParent: NewPageManager? { get set }
+    
+    /**
     Saves the Activity's state.  All user inputted data, taps, and movements (if necessary) should be saved into an object of your choice
     
     :returns: An immutable copy of an object the activity used to store its information

@@ -17,24 +17,24 @@ NS_CLASS_DEPRECATED_IOS(8_0, 8_1)
 {
     //Only private variables go in here...
     
-    BOOL viewIsOnScreen NS_DEPRECATED_IOS(8_1, 8_1);
+    BOOL viewIsOnScreen DEPRECATED_ATTRIBUTE;
 }
 
-@property(nonatomic, retain) PageManager *parentManager NS_DEPRECATED_IOS(8_1, 8_1); //Infinite loop fixed *Michael*
+@property(nonatomic, retain) PageManager *parentManager DEPRECATED_ATTRIBUTE; //Infinite loop fixed *Michael*
 
-@property(nonatomic, retain) Page *page NS_DEPRECATED_IOS(8_1, 8_1);
+@property(nonatomic, retain) Page *page DEPRECATED_ATTRIBUTE;
 
-@property(nonatomic, retain) NSNumber *pageNumber NS_DEPRECATED_IOS(8_1, 8_1);
-@property(nonatomic, retain) NSNumber *pageCount NS_DEPRECATED_IOS(8_1, 8_1);
+@property(nonatomic, retain) NSNumber *pageNumber DEPRECATED_ATTRIBUTE;
+@property(nonatomic, retain) NSNumber *pageCount DEPRECATED_ATTRIBUTE;
 
-@property(nonatomic, retain) IBOutlet UIPageControl *pageControl NS_DEPRECATED_IOS(8_1, 8_1);
+@property(nonatomic, retain) IBOutlet UIPageControl *pageControl DEPRECATED_ATTRIBUTE;
 
 // Buttons for navigation
-@property(nonatomic, retain) UIButton_Typical *nextButton NS_DEPRECATED_IOS(8_1, 8_1);
-@property(nonatomic, retain) UIButton_Typical *previousButton NS_DEPRECATED_IOS(8_1, 8_1);
+@property(nonatomic, retain) UIButton_Typical *nextButton DEPRECATED_ATTRIBUTE;
+@property(nonatomic, retain) UIButton_Typical *previousButton DEPRECATED_ATTRIBUTE;
 
 // Labels for displaying information at top of page
-@property(nonatomic, retain) UILabel *otherLabel NS_DEPRECATED_IOS(8_1, 8_1); //assign meaning to this later
+@property(nonatomic, retain) UILabel *otherLabel DEPRECATED_ATTRIBUTE; //assign meaning to this later
 
 // Custom initialization lets us store reference
 // to parent
@@ -42,13 +42,13 @@ NS_CLASS_DEPRECATED_IOS(8_0, 8_1)
 
 // Next page moves the activity to the next page,
 // and sends signal to page manager to move forward.
--(IBAction) goToNextPage NS_DEPRECATED_IOS(8_1, 8_1);
+-(IBAction) goToNextPage DEPRECATED_ATTRIBUTE;
 
 // Previous page moves page to previous page,
 // and sends signal to page manager to move back.
--(IBAction) goToPreviousPage NS_DEPRECATED_IOS(8_1, 8_1);
+-(IBAction) goToPreviousPage DEPRECATED_ATTRIBUTE;
 
--(void) reloadView NS_DEPRECATED_IOS(8_1, 8_1);
+-(void) reloadView DEPRECATED_ATTRIBUTE;
 
 
 

@@ -55,6 +55,7 @@ class SettingsVC: FormattedVC
     {
         super.viewDidLoad()
         
+        
         let mainDirectory = NSBundle.mainBundle().resourcePath
         let fullPath = mainDirectory?.stringByAppendingPathComponent("Carroll.json")
         let jsonFile = NSData(contentsOfFile: fullPath!)

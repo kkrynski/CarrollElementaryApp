@@ -13,7 +13,7 @@
 @interface FormattedVC : UIViewController <CESDatabaseActivity>
 {
     //Holds loaded data for colors, specifically HEX code
-    NSDictionary *colorSchemeDictionary DEPRECATED_ATTRIBUTE;
+    NSDictionary *colorSchemeDictionary;
     
     //Text Color
     UIColor *primaryColor;
@@ -21,16 +21,16 @@
     //Text Background Color
     UIColor *secondaryColor;
     
-    UIColor *backgroundColor NS_DEPRECATED_IOS(8_1, 8_1);
+    UIColor *backgroundColor DEPRECATED_ATTRIBUTE;
     
     //Store font to be used
     UIFont *font;
 }
 
-@property(nonatomic, retain) NSDictionary *colorSchemeDictionary NS_DEPRECATED_IOS(8_1, 8_1);
+@property(nonatomic, retain) NSDictionary *colorSchemeDictionary;
 @property(nonatomic, retain) UIColor *primaryColor;
 @property(nonatomic, retain) UIColor *secondaryColor;
-@property(nonatomic, retain) UIColor *backgroundColor NS_DEPRECATED_IOS(8_1, 8_1);
+@property(nonatomic, retain) UIColor *backgroundColor DEPRECATED_ATTRIBUTE;
 @property(nonatomic, retain) UIFont *font;
 
 /// These functions are used to convert a hex number (in string format) to a UIColor
@@ -38,14 +38,14 @@
 /// These functions are just to condense code
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
-- (UIColor *) colorWithHexString:(NSString *)hexString NS_DEPRECATED_IOS(8_1, 8_1);
+- (UIColor *) colorWithHexString:(NSString *)hexString DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// These functions are used to convert a hex number (in string format) to a UIColor
 ///
 /// These functions are just to condense code
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
-- (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length NS_DEPRECATED_IOS(8_1, 8_1);
+- (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length DEPRECATED_ATTRIBUTE;
 
 /// Updates colors in view
 ///
@@ -59,7 +59,7 @@
 /// This presents a more "bubble" letter effect, which is more pleasant for elementary schoolers
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
--(void)outlineTextInLabel: (UILabel *)label NS_DEPRECATED_IOS(8_1, 8_1);
+-(void)outlineTextInLabel: (UILabel *)label DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// This function outlines the text in a text view, meaning it gives the text a border
 ///
@@ -68,26 +68,26 @@
 /// \note This is a little more complicated than a label
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
--(void)outlineTextInTextView: (UITextView *)textView NS_DEPRECATED_IOS(8_1, 8_1);
+-(void)outlineTextInTextView: (UITextView *)textView DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// This function outlines buttons with a border
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
--(void)outlineButton: (UIButton *)button NS_DEPRECATED_IOS(8_1, 8_1);
+-(void)outlineButton: (UIButton *)button DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// This function outlines views with a border
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
--(void)outlineView: (UIView *)view NS_DEPRECATED_IOS(8_1, 8_1);
+-(void)outlineView: (UIView *)view DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// Creates a slightly lighter color for a given color
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
-- (UIColor *)lighterColorForColor:(UIColor *)c NS_DEPRECATED_IOS(8_1, 8_1);
+- (UIColor *)lighterColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// Creates a slightly darker color for a given color
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
-- (UIColor *)darkerColorForColor:(UIColor *)c NS_DEPRECATED_IOS(8_1, 8_1);
+- (UIColor *)darkerColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 @end
