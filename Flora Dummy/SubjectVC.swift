@@ -344,11 +344,6 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
             loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
             }, completion: { (finished) -> Void in
                 //TODO: Fill this in
-                //Get the information for the activity for the selected cell
-                let activityDictionary = self.activities[indexPath.row] as NSDictionary
-                
-                //Create a PageManager for the activity and store it in THIS view controller
-                //self.pageManager = PageManager(activity: ClassConversions().activityFromDictionary(activityDictionary), forParentViewController: self)
         })
         
         let animation = CABasicAnimation(keyPath: "cornerRadius")

@@ -9,8 +9,6 @@
 #import "FormattedVC.h"
 #import "FloraDummy-Swift.h"
 
-@interface FormattedVC () <CESDatabaseActivity> @end
-
 @implementation FormattedVC
 
 @synthesize colorSchemeDictionary, primaryColor, secondaryColor, font, backgroundColor;
@@ -72,11 +70,6 @@
     return hexComponent / 255.0;
 }
 
-/// Updates colors in view
-///
-/// Subclasses should override this method to perform custom color updating
-///
-/// \note You must call [super updateColors] first in the overridden method
 -(void) updateColors
 {
     //Get Colors
