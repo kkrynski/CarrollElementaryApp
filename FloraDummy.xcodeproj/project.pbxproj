@@ -59,14 +59,12 @@
 		5D03D4B11A12E2FA0008A9EA /* SpellingTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */; };
 		5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */; };
 		5D18E9D51A1C12A900F8DB94 /* hello.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9D41A1C12A900F8DB94 /* hello.wav */; };
-		5D18E9D91A21006600F8DB94 /* definitions.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9D81A21006600F8DB94 /* definitions.wav */; };
 		5D18E9DB1A21007200F8DB94 /* okay.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9DA1A21007200F8DB94 /* okay.wav */; };
 		5D18E9DD1A21008900F8DB94 /* great.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9DC1A21008900F8DB94 /* great.wav */; };
 		5D18E9DF1A21009100F8DB94 /* have.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9DE1A21009100F8DB94 /* have.wav */; };
 		5D18E9E11A21009600F8DB94 /* hand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E01A21009600F8DB94 /* hand.wav */; };
 		5D18E9E31A21009B00F8DB94 /* life.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E21A21009B00F8DB94 /* life.wav */; };
 		5D18E9E51A2100A000F8DB94 /* long.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E41A2100A000F8DB94 /* long.wav */; };
-		5D18E9E71A2100A400F8DB94 /* make.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E61A2100A400F8DB94 /* make.wav */; };
 		5D18E9E91A2100AB00F8DB94 /* part.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E81A2100AB00F8DB94 /* part.wav */; };
 		5D18E9EB1A2100AF00F8DB94 /* person.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9EA1A2100AF00F8DB94 /* person.wav */; };
 		5D18E9ED1A2100B300F8DB94 /* place.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9EC1A2100B300F8DB94 /* place.wav */; };
@@ -75,12 +73,12 @@
 		5D18E9F31A2100C500F8DB94 /* work.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9F21A2100C500F8DB94 /* work.wav */; };
 		5D18E9F51A2100CF00F8DB94 /* world.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9F41A2100CF00F8DB94 /* world.wav */; };
 		5D18E9F71A2100D500F8DB94 /* year.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9F61A2100D500F8DB94 /* year.wav */; };
-		5D18E9FB1A2103A800F8DB94 /* MicrophoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18E9F91A2103A800F8DB94 /* MicrophoneVC.m */; };
 		5D18E9FC1A2103A800F8DB94 /* MicrophoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FA1A2103A800F8DB94 /* MicrophoneVC.xib */; };
 		5D18E9FE1A210C6A00F8DB94 /* Play_Button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */; };
 		5D18EA001A210C7500F8DB94 /* Stop_Button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FF1A210C7500F8DB94 /* Stop_Button.jpeg */; };
 		5D18EA021A210C8A00F8DB94 /* Record_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D18EA011A210C8A00F8DB94 /* Record_Button.png */; };
 		5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */; };
+		5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18E9F91A2103A800F8DB94 /* MicrophoneVC.m */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		9208CD1018F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		921194FF19FE015100644054 /* QuickQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921194FE19FE015100644054 /* QuickQuizVC.m */; };
@@ -1270,7 +1268,6 @@
 				5D18E9E31A21009B00F8DB94 /* life.wav in Resources */,
 				92D06A2318D140F4004850C6 /* zbar-help.html in Resources */,
 				92C261AC18370D1500FDA09B /* Page_DragAndDropVC.xib in Resources */,
-				92A648E81A0E8F0A007485C4 /* Carroll.json in Resources */,
 				5D18E9EF1A2100BB00F8DB94 /* week.wav in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
 				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
@@ -1398,6 +1395,7 @@
 				92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */,
 				104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */,
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
+				5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,
@@ -1423,7 +1421,6 @@
 				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
 				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				108E9B151A27A67E00120A63 /* NSString+HTML.m in Sources */,
-				5D18E9D31A1C0FEA00F8DB94 /* AudioController.m in Sources */,
 				108E9B0F1A27A65F00120A63 /* MWFeedItem.m in Sources */,
 				10BFE6ED1A20468E00E68C77 /* WeatherItem+Parse.m in Sources */,
 				92C117821A22A1A4003506DB /* ActivityInfoVC.m in Sources */,
