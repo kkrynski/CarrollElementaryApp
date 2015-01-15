@@ -146,22 +146,20 @@ private let databaseEncryptionKey = "I1rObD475i"
 private var databaseManagerInstance : CESDatabase?
 
 //The Database Manager that manages all other databases
-class CESDatabase : NSObject
+@objc class CESDatabase
 {
     private var activityCreationDatabaseManager : ActivityCreationDatabase?
     private var pageManagerDatabaseManager      : PageManagerDatabase?
     private var userAccountsDatabaseManager     : UserAccountsDatabase?
     private var mainActivitiesDatabaseManager   : MainActivitiesDatabase?
     
-    override init()
+    init()
     {
         fatalError("You cannot initialize this class.  Please call your specific class function to return the proper database")
     }
     
     private init(fromSharedManager: Bool)
     {
-        super.init()
-        
         databaseManagerInstance = self
         
         activityCreationDatabaseManager = ActivityCreationDatabaseManager(databaseManager: YES)
