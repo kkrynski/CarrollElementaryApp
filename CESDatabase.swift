@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
+
 //-------------------------------------------------------------------\\
 //-------------------------------------------------------------------\\
 //  Please see the README file for an expanation of the CESDatabase  \\
@@ -14,10 +15,10 @@
 
 import Foundation
 
-private let databaseWebsite = "http://floradummytest.michaelschlosstech.com/appdatabase.php"
-private let databaseUploadWebsite = "http://floradummytest.michaelschlosstech.com/uploaddatabase.php"
-private let databasePassword = "12e45"
-private let databaseEncryptionKey = "I1rObD475i"
+private let databaseWebsite         = "http://floradummytest.michaelschlosstech.com/appdatabase.php"
+private let databaseUploadWebsite   = "http://floradummytest.michaelschlosstech.com/uploaddatabase.php"
+private let databasePassword        = "12e45"
+private let databaseEncryptionKey   = "I1rObD475i"
 
 @objc protocol CESDatabaseActivity
 {
@@ -152,7 +153,7 @@ private let databaseEncryptionKey = "I1rObD475i"
 
 private var databaseManagerInstance : CESDatabase?
 
-//The Database Manager that manages all other databases
+///The Database Manager that manages all other databases
 @objc class CESDatabase
 {
     private var activityCreationDatabaseManager : ActivityCreationDatabase?
@@ -169,10 +170,10 @@ private var databaseManagerInstance : CESDatabase?
     {
         databaseManagerInstance = self
         
-        activityCreationDatabaseManager = ActivityCreationDatabaseManager(databaseManager: YES)
-        pageManagerDatabaseManager = PageManagerDatabaseManager(databaseManager: YES)
-        userAccountsDatabaseManager = UserAccountsDatabaseManager(databaseManager: YES)
-        mainActivitiesDatabaseManager = MainActivitiesDatabaseManager(databaseManager: YES)
+        activityCreationDatabaseManager     = ActivityCreationDatabaseManager(databaseManager: YES)
+        pageManagerDatabaseManager          = PageManagerDatabaseManager(databaseManager: YES)
+        userAccountsDatabaseManager         = UserAccountsDatabaseManager(databaseManager: YES)
+        mainActivitiesDatabaseManager       = MainActivitiesDatabaseManager(databaseManager: YES)
     }
     
     private class func sharedManager() -> CESDatabase
