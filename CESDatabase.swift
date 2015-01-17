@@ -55,14 +55,14 @@ private let databaseEncryptionKey   = "I1rObD475i"
     
     /**
     
-    Returns the Activity Data for the activity with the specified activityID
+    Returns the Activity Session for the activity with the specified activityID
     
     :param: activityID The activityID of the activity requesting its data
     
-    :returns: The Dictionary of data that was initally uploaded with the activity
+    :returns: The Session of data that was initally uploaded with the activity
     
     */
-    func activityInformationForActivityID(activityID: String) -> NSDictionary?
+    func activitySessionForActivityID(activityID: String) -> ActivitySession
     
     /**
     
@@ -74,7 +74,7 @@ private let databaseEncryptionKey   = "I1rObD475i"
     :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
     
     */
-    func uploadActivitySession(activitySession: Dictionary<String, AnyObject>, completion: ((uploadSuccess: Bool) -> Void))
+    func uploadActivitySession(activitySession: ActivitySession, completion: ((uploadSuccess: Bool) -> Void))
 }
 
 @objc protocol ActivityCreationDatabase
@@ -238,7 +238,7 @@ private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, 
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    func uploadNewActivity(activityData: NSDictionary, completion: ((activityID: String?) -> Void))
+    func uploadNewActivity(activityData: Activity, completion: ((activityID: String?) -> Void))
     {
         if isValidActivity(activityData) == NO
         {
@@ -299,7 +299,7 @@ private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, 
         activeSession!.resume()
     }
     
-    private func isValidActivity(activityInformation: NSDictionary) -> Bool
+    private func isValidActivity(activityInformation: Activity) -> Bool
     {
         return activityInformation.objectForKey(ActivityName) != nil && activityInformation.objectForKey(ActivityDescription) != nil && activityInformation.objectForKey(TotalPoints) != nil && activityInformation.objectForKey(ReleaseDate) != nil && activityInformation.objectForKey(DueDate) != nil && activityInformation.objectForKey(ActivityData) != nil && activityInformation.objectForKey(ClassID) != nil
     }
@@ -335,34 +335,56 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    func activityInformationForActivityID(activityID: String) -> NSDictionary?
+    func activitySessionForActivityID(activityID: String) -> ActivitySession
     {
-        let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")!
-        let activities = NSArray(contentsOfFile: plistPath) as Array<Dictionary<String, AnyObject>>
+        let newActivitySession = ActivitySession()
+        newActivitySession.activityID = activityID
         
         let plistPathActivitySessions = NSBundle.mainBundle().pathForResource("ActivitySessions", ofType: "plist")!
-        let activitySessions = NSArray(contentsOfFile: plistPathActivitySessions) as Array<Dictionary<String, AnyObject>>
+        let activitySessions = NSArray(contentsOfFile: plistPathActivitySessions) as Array<Dictionary<String, String>>
         
         for activitySession in activitySessions
         {
-            if activitySession["Activity_ID"] as String == activityID
+            if activitySession[ActivityID] == activityID    //Found ActivitySession
             {
-                return activitySession["Activity_Data"] as? NSDictionary
+                newActivitySession.grade = activitySession[ActivityGrade]!
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.timeZone = NSTimeZone.localTimeZone()
+                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+                newActivitySession.startDate = dateFormatter.dateFromString(activitySession[ActivityStartDate]!)!
+                newActivitySession.endDate = dateFormatter.dateFromString(activitySession[ActivityEndDate]!)!
+                
+                newActivitySession.status = activitySession[ActivityStatus]!
+                
+                let activityData = activitySession[ActivityData]!
+                let data = NSData().dataFromHexString(activityData)
+                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+                newActivitySession.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
+                unarchiver.finishDecoding()
+                
+                return newActivitySession
             }
         }
+        
+        let plistPathActivities = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")!
+        let activities = NSArray(contentsOfFile: plistPathActivities) as Array<Dictionary<String, String>>
         
         for activity in activities
         {
-            if activity["Activity_ID"] as String == activityID
+            if activity[ActivityID] == activityID    //Found Activity
             {
-                return activity["Activity_Data"] as? NSDictionary
+                let activityData = activity[ActivityData]!
+                let data = NSData().dataFromHexString(activityData)
+                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+                newActivitySession.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
             }
         }
         
-        return nil
+        return newActivitySession
     }
     
-    func uploadActivitySession(activitySession: Dictionary<String, AnyObject>, completion: ((uploadSuccess: Bool) -> Void))
+    func uploadActivitySession(activitySession: ActivitySession, completion: ((uploadSuccess: Bool) -> Void))
     {
         if isValidActivitySession(activitySession) == NO
         {
@@ -380,10 +402,21 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         
         for foundActivitySession in activitySessions
         {
-            if foundActivitySession["Activity_ID"] as String == activitySession[ActivityID] as String
+            if foundActivitySession["Activity_ID"] as String == activitySession.activityID as String
             {
                 //Update its activitySession entry
-                SQLQuery = "UPDATE `activity_session` SET `Start_Date_Time`=`\(activitySession[ActivityStartDate] as String)`,`Finish_Date_Time`=`\(activitySession[ActivityEndDate] as String)`,`Score`=`\(activitySession[ActivityGrade] as String)`,`Activity_Data`=`\(activitySession[ActivityData] as String)`,`Status`=`\(activitySession[ActivityStatus] as String)` WHERE `Student_ID`=`\(userLoginInfo!.objectAtIndex(3) as String)` AND`Activity_ID`=`\(activitySession[ActivityID] as String)`"
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.timeZone = NSTimeZone.localTimeZone()
+                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+                
+                let date = "0000-00-00 00:00:00"
+                
+                let data = NSMutableData()
+                let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+                archiver.encodeObject(activitySession.activityData, forKey: "activityData")
+                archiver.finishEncoding()
+                
+                SQLQuery = "UPDATE `activity_session` SET `Start_Date_Time`=`\(dateFormatter.stringFromDate(activitySession.startDate))`,`Finish_Date_Time`=`\(activitySession.endDate != nil ? dateFormatter.stringFromDate(activitySession.endDate!) : date)`,`Score`=`\(activitySession.grade)`,`Activity_Data`=`\(data.hexRepresentationWithSpaces(YES, capitals: NO))`,`Status`=`\(activitySession.status)` WHERE `Student_ID`=`\(userLoginInfo!.objectAtIndex(3) as String)` AND`Activity_ID`=`\(activitySession.activityID)`"
                 
                 let post = "Password=\(databasePassword)&SQLQuery=\(SQLQuery)"
                 let url = NSURL(string: databaseUploadWebsite)!
@@ -423,14 +456,25 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         }
         
         //We couldn't find a current activitySession
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        
+        let date = "0000-00-00 00:00:00"
+        
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        archiver.encodeObject(activitySession.activityData, forKey: "activityData")
+        archiver.finishEncoding()
+        
         SQLQuery = "INSERT INTO activity_session(Activity_ID, Student_ID, Score, Activity_Data, Start_Date_Time, Finish_Date_Time, Status) VALUES ("
-        SQLQuery += activitySession[ActivityID] as String + ", "
+        SQLQuery += activitySession.activityID + ", "
         SQLQuery += userLoginInfo!.objectAtIndex(3) as String + ", "
-        SQLQuery += activitySession[ActivityGrade] as String + ", "
-        SQLQuery += "`" + (activitySession[ActivityData] as String) + "`, "
-        SQLQuery += "`" + (activitySession[ActivityStartDate] as String) + "`, "
-        SQLQuery += "`" + (activitySession[ActivityEndDate] as String) + "`, "
-        SQLQuery += "`" + (activitySession[ActivityStatus] as String) + "`, "
+        SQLQuery += activitySession.grade + ", "
+        SQLQuery += "`" + (data.hexRepresentationWithSpaces(YES, capitals: NO)) + "`, "
+        SQLQuery += "`" + (dateFormatter.stringFromDate(activitySession.startDate)) + "`, "
+        SQLQuery += "`" + (activitySession.endDate != nil ? dateFormatter.stringFromDate(activitySession.endDate!) : date) + "`, "
+        SQLQuery += "`" + (activitySession.status) + "`, "
         
         let post = "Password=\(databasePassword)&SQLQuery=\(SQLQuery)"
         let url = NSURL(string: databaseUploadWebsite)!
@@ -467,9 +511,9 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         activeSession!.resume()
     }
     
-    private func isValidActivitySession(activityInformation: NSDictionary) -> Bool
+    private func isValidActivitySession(activityInformation: ActivitySession) -> Bool
     {
-        return activityInformation.objectForKey(ActivityID) != nil && activityInformation.objectForKey(ActivityGrade) != nil && activityInformation.objectForKey(ActivityData) != nil && activityInformation.objectForKey(ActivityStartDate) != nil && activityInformation.objectForKey(ActivityEndDate) != nil && activityInformation.objectForKey(ActivityStatus) != nil
+        return activityInformation.activityID != "000000" && activityInformation.grade != "000" && activityInformation.activityData.isEmpty != NO && activityInformation.startDate != NSDate() && activityInformation.endDate != NSDate() && activityInformation.status != "Not Started"
     }
 }
 
@@ -817,23 +861,8 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
             for object in newActivitySessions
             {
                 let activitySession = object as NSDictionary
-                
                 let newActivitySession = NSMutableDictionary(dictionary: activitySession)
                 
-                for key in newActivitySession.allKeys as Array<String>
-                {
-                    if newActivitySession[key] as NSObject == NSNull()
-                    {
-                        if key != "Activity_Data"
-                        {
-                            newActivitySession.setValue("", forKey: key)
-                        }
-                        else
-                        {
-                            newActivitySession.setValue(NSDictionary(), forKey: key)
-                        }
-                    }
-                }
                 newActivitySessions[(newActivitySessions as NSArray).indexOfObject(activitySession)] = newActivitySession as NSDictionary
             }
             
@@ -905,23 +934,8 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
                 for object in newActivities
                 {
                     let activity = object as NSDictionary
-                    
                     let newActivity = NSMutableDictionary(dictionary: activity)
                     
-                    for key in newActivity.allKeys as Array<String>
-                    {
-                        if newActivity[key] as NSObject == NSNull()
-                        {
-                            if key != "Activity_Data"
-                            {
-                                newActivity.setValue("", forKey: key)
-                            }
-                            else
-                            {
-                                newActivity.setValue(NSDictionary(), forKey: key)
-                            }
-                        }
-                    }
                     newActivities[(newActivities as NSArray).indexOfObject(activity)] = newActivity as NSDictionary
                 }
                 

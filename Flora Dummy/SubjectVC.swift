@@ -17,8 +17,8 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     internal let borderWidth = 2.0
     
     //List of activities come from the dictionary of courses
-    internal var courseDictionary : NSDictionary?
-    internal var activities = NSMutableArray()
+    //internal var courseDictionary : NSDictionary?
+    internal var activities = Array<Dictionary<String, String>>()
     
     //The feedback views
     internal var loadingView : UIView?
@@ -72,7 +72,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         activitiesTable!.separatorColor = primaryColor
         
         //Update the activities for the tableView
-        activities = NSMutableArray()
+        activities = Array<Dictionary<String, String>>()
         
         let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
         let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
@@ -97,7 +97,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                         
                         if activity["Class_ID"] == subjectClass["Class_ID"] && (releaseDate.compare(NSDate()) == .OrderedAscending || releaseDate.compare(NSDate()) == .OrderedSame) && (dueDate.compare(NSDate()) == .OrderedDescending || dueDate.compare(NSDate()) == .OrderedSame)
                         {
-                            activities.addObject(activity)
+                            activities.append(activity)
                         }
                     }
                 }
@@ -132,7 +132,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     //Updates the activityTable's data if we went to this screen before it was all downloaded
     func activityDataLoaded()
     {
-        activities = NSMutableArray()
+        activities = Array<Dictionary<String, String>>()
         let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
         let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
         
@@ -141,11 +141,11 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         
         if activitiesArray != nil && classesArray != nil
         {
-            for subjectClass in classesArray as Array<Dictionary<String, String>>
+            for subjectClass in (classesArray as Array<Dictionary<String, String>>)
             {
                 if subjectClass["Subject_ID"] == subjectID
                 {
-                    for activity in activitiesArray as Array<Dictionary<String, String>>
+                    for activity in (activitiesArray as Array<Dictionary<String, String>>)
                     {
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.timeZone = NSTimeZone.localTimeZone()
@@ -156,7 +156,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                         
                         if activity["Class_ID"] == subjectClass["Class_ID"] && (releaseDate.compare(NSDate()) == .OrderedAscending || releaseDate.compare(NSDate()) == .OrderedSame) && (dueDate.compare(NSDate()) == .OrderedDescending || dueDate.compare(NSDate()) == .OrderedSame)
                         {
-                            activities.addObject(activity)
+                            activities.append(activity)
                         }
                     }
                 }
@@ -289,7 +289,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         var cell = tableView.dequeueReusableCellWithIdentifier("SubjectCell") as UITableViewCell?
         
         //Update the titleLabel for the cell to the Activity's Name
-        cell!.textLabel!.text = activities[indexPath.row]/*["Activity_Name"]*/ as? String
+        cell!.textLabel!.text = activities[indexPath.row]["Activity_Name"]
         cell!.textLabel!.font = font
         cell!.textLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(cell!.textLabel!)
@@ -310,6 +310,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         UIApplication.sharedApplication().keyWindow?.userInteractionEnabled = NO
         
         let activityLoadingView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        activityLoadingView.layer.cornerRadius = 0.001
         activityLoadingView.clipsToBounds = YES
         activityLoadingView.frame = tableView.cellForRowAtIndexPath(indexPath)!.convertRect(tableView.cellForRowAtIndexPath(indexPath)!.frame, toView: view)
         activityLoadingView.alpha = 0.0
@@ -335,6 +336,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         
         view.addSubview(activityLoadingView)
         UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+            
             activityLoadingView.frame = CGRectMake(0, 0, self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
             activityLoadingView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
             activityLoadingView.alpha = 1.0
@@ -342,8 +344,12 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
             activityLoadingLoadingView.frame = CGRectMake(0, 0, activityLoadingView.frame.size.width, activityLoadingView.frame.size.height)
             loadingWheel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 - 4 - loadingWheel.frame.size.height/2.0)
             loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
+            
             }, completion: { (finished) -> Void in
-                //TODO: Fill this in
+                
+                let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row]["Activity_ID"]!)
+                let pageManager = NewPageManager()
+                pageManager.currentActivity = activitySession
         })
         
         let animation = CABasicAnimation(keyPath: "cornerRadius")

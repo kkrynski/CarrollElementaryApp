@@ -33,6 +33,17 @@ class NewPageManager: FormattedVC
             return nextButton?.frame
         }
     }
+    var nextButtonHidden : Bool
+        {
+        get
+        {
+            return nextButton!.userInteractionEnabled == NO
+        }
+        set
+        {
+            
+        }
+    }
     
     private var saveButton : UIButton_Typical?
     var saveButtonFrame : CGRect?
@@ -59,8 +70,8 @@ class NewPageManager: FormattedVC
     }
     
     //Current Activity Information
-    private var _currentActivity : Activity?
-    var currentActivity : Activity?
+    private var _currentActivity : ActivitySession?
+    var currentActivity : ActivitySession?
         {
         set
         {
@@ -88,8 +99,13 @@ class NewPageManager: FormattedVC
         }
     }
     
+    //View Controllers On Screen
     private var oldViewController : FormattedVC?
     private var currentViewController : FormattedVC?
+    
+    //View Controllers On Screen Constraints
+    private var oldViewControllerConstraints = Array<NSLayoutConstraint>()
+    private var currentViewControllerConstraints = Array<NSLayoutConstraint>()
     
     var subjectParent : SubjectVC?
     
@@ -100,21 +116,6 @@ class NewPageManager: FormattedVC
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "continueWithPresentation", name: PageManagerShouldContinuePresentation, object: nil)
-
-        //Perform some quick checks to make sure we have a valid activity
-        if currentActivity != nil && activityID != nil
-        {
-            if currentActivity!.pageArray.count == 0
-            {
-                displayDismissAlert("We're sorry|There are no Activity Pages for this activity\n\nPlease contact your teacher for assistance")
-                return
-            }
-        }
-        else
-        {
-            displayDismissAlert("We're sorry|There is no specified Activity Information for this activity\n\nPlease contact your teacher for assistance")
-            return
-        }
         
         previousButton = UIButton_Typical(frame: CGRectZero)
         previousButton!.setTranslatesAutoresizingMaskIntoConstraints(NO)
@@ -300,12 +301,29 @@ class NewPageManager: FormattedVC
     
     func presentNextViewController()
     {
+        //Perform some quick checks to make sure we have a valid activity
+        if currentActivity != nil && activityID != nil
+        {
+            if currentActivity!.activityData.count == 0
+            {
+                displayDismissAlert("We're sorry|There are no Activity Pages for this activity\n\nPlease contact your teacher for assistance")
+                return
+            }
+        }
+        else
+        {
+            displayDismissAlert("We're sorry|There is no specified Activity Information for this activity\n\nPlease contact your teacher for assistance")
+            return
+        }
+        
         oldViewController = currentViewController
         
-        //TODO: Load new currentViewController
-        (currentViewController! as CESDatabaseActivity).restoreActivityState?(nil)
+        let currentActivityPage = currentActivity!.activityData[currentIndex]
+        let currentActivityType = currentActivityPage.keys.array[0]
+        currentViewController = viewControllerForPageType(ActivityViewControllerType(rawValue: currentActivityType.integerValue)!)
+        (currentViewController! as CESDatabaseActivity).restoreActivityState?(currentActivityPage.values.array[0])
         
-        _currentIndex = min(currentIndex + 1, currentActivity!.pageArray.count)
+        _currentIndex = min(currentIndex + 1, currentActivity!.activityData.count)
     }
     
     func continueWithPresentation()
@@ -324,7 +342,7 @@ class NewPageManager: FormattedVC
         }
     }
     
-    private func viewControllerForPageType(pageType: ActivityViewControllerType, andInformation pageInformation: NSDictionary) -> FormattedVC?
+    private func viewControllerForPageType(pageType: ActivityViewControllerType) -> FormattedVC?
     {
         switch pageType
         {
