@@ -8,19 +8,23 @@
 
 #import "PageVC.h"
 
-@interface PasswordVC : FormattedVC
-{
-    
+@interface PasswordVCTextField : UITextField
 
+@end
+
+@interface PasswordVC : FormattedVC <UITextFieldDelegate>
+{
+    NSString *username;
+    NSString *password;
 }
 
-@property(nonatomic,retain) NSString *username;
-@property(nonatomic,retain) NSString *password;
-@property(nonatomic,retain) IBOutlet UIButton *submitButton;
-@property(nonatomic,retain) IBOutlet UITextField *usernameInput;
-@property(nonatomic,retain) IBOutlet UITextField *passwordInput;
-@property(nonatomic,retain) IBOutlet UILabel *userLabel;
-@property(nonatomic,retain) IBOutlet UILabel *passwordLabel;
+@property (nonatomic, retain) IBOutlet UIButton *submitButton;
 
+@property (nonatomic, retain) IBOutlet UITextField *usernameInput;
+@property (nonatomic, retain) IBOutlet UITextField *passwordInput;
+
+@property (nonatomic, retain) IBOutlet UILabel *userLabel;
+@property (nonatomic, retain) IBOutlet UILabel *passwordLabel;
+@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 
 @end

@@ -43,7 +43,7 @@
         NSArray *descriptionArray = [dict objectForKey:@"weatherDesc"];
         
         NSString *weatherCode = [dict objectForKey:@"weatherCode"];
-        UIImage *image = [self imageForWeatherCode:weatherCode];
+        NSString *image = [self imageForWeatherCode:weatherCode];
         
         NSDictionary *descriptionDict = [descriptionArray objectAtIndex:0];
         NSString *dayDescription = [descriptionDict objectForKey:@"value"];
@@ -271,158 +271,159 @@
             weatherDescription = @"Moderate or heavy snow in area with thunder";
             break;
         default:
+            NSLog(@"HI");
             break;
     }
     return weatherDescription;
 }
 
-+ (UIImage *)imageForWeatherCode:(NSString *)weatherCode {
-    UIImage *weatherImage = [[UIImage alloc] init];
++ (NSString *)imageForWeatherCode:(NSString *)weatherCode {
+    NSString *weatherImage = @"";
     
     switch (weatherCode.intValue) {
         case 113:
-            weatherImage = [UIImage imageNamed:@"sun.png"];
+            weatherImage = @"sun.png";
             break;
         case 116:
-            weatherImage = [UIImage imageNamed:@"cloud.png"];
+            weatherImage = @"cloud.png";
             break;
         case 119:
-            weatherImage = [UIImage imageNamed:@"cloud.png"];
+            weatherImage = @"cloud.png";
             break;
         case 122:
-            weatherImage = [UIImage imageNamed:@"cloud.png"];
+            weatherImage = @"cloud.png";
             break;
         case 143:
-            weatherImage = [UIImage imageNamed:@"fog.png"];
+            weatherImage = @"fog.png";
             break;
         case 176:
-            weatherImage = [UIImage imageNamed:@"drizzle.png"];
+            weatherImage = @"drizzle.png";
             break;
         case 179:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 182:
-            weatherImage = [UIImage imageNamed:@"hail.png"];
+            weatherImage = @"hail.png";
             break;
         case 185:
-            weatherImage = [UIImage imageNamed:@"drizzle.png"];
+            weatherImage = @"drizzle.png";
             break;
         case 200:
-            weatherImage = [UIImage imageNamed:@"lightning.png"];
+            weatherImage = @"lightning.png";
             break;
         case 227:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 230:
-            weatherImage = [UIImage imageNamed:@"snowAlt.png"];
+            weatherImage = @"snowAlt.png";
             break;
         case 248:
-            weatherImage = [UIImage imageNamed:@"fog.png"];
+            weatherImage = @"fog.png";
             break;
         case 260:
-            weatherImage = [UIImage imageNamed:@"fog.png"];
+            weatherImage = @"fog.png";
             break;
         case 263:
-            weatherImage = [UIImage imageNamed:@"drizzle.png"];
+            weatherImage = @"drizzle.png";
             break;
         case 266:
-            weatherImage = [UIImage imageNamed:@"drizzle.png"];
+            weatherImage = @"drizzle.png";
             break;
         case 281:
-            weatherImage = [UIImage imageNamed:@"drizzle.png"];
+            weatherImage = @"drizzle.png";
             break;
         case 284:
-            weatherImage = [UIImage imageNamed:@"drizzle.png"];
+            weatherImage = @"drizzle.png";
             break;
         case 293:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 296:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 299:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 302:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 305:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 308:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 311:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 314:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 317:
-            weatherImage = [UIImage imageNamed:@"hail.png"];
+            weatherImage = @"hail.png";
             break;
         case 320:
-            weatherImage = [UIImage imageNamed:@"hail.png"];
+            weatherImage = @"hail.png";
             break;
         case 323:
-            weatherImage = [UIImage imageNamed:@"snowAlt.png"];
+            weatherImage = @"snowAlt.png";
             break;
         case 326:
-            weatherImage = [UIImage imageNamed:@"snowAlt.png"];
+            weatherImage = @"snowAlt.png";
             break;
         case 329:
-            weatherImage = [UIImage imageNamed:@"snowAlt.png"];
+            weatherImage = @"snowAlt.png";
             break;
         case 332:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 335:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 338:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 350:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 353:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 356:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 359:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 362:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 365:
-            weatherImage = [UIImage imageNamed:@"rain.png"];
+            weatherImage = @"rain.png";
             break;
         case 368:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 371:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 374:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 377:
-            weatherImage = [UIImage imageNamed:@"snow.png"];
+            weatherImage = @"snow.png";
             break;
         case 386:
-            weatherImage = [UIImage imageNamed:@"lightning.png"];
+            weatherImage = @"lightning.png";
             break;
         case 389:
-            weatherImage = [UIImage imageNamed:@"lightning.png"];
+            weatherImage = @"lightning.png";
             break;
         case 392:
-            weatherImage = [UIImage imageNamed:@"lightning.png"];
+            weatherImage = @"lightning.png";
             break;
         case 395:
-            weatherImage = [UIImage imageNamed:@"lightning.png"];
+            weatherImage = @"lightning.png";
             break;
         default:
             break;

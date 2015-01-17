@@ -7,9 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
+		103265CF1A600CF800511546 /* NewPageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* NewPageManager.swift */; };
+		104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104187D11A461DDC001C571C /* MediaPlayer.framework */; };
+		104187D61A462BBF001C571C /* Foggy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CA1A461CDE001C571C /* Foggy.mp4 */; };
+		104187D71A462BBF001C571C /* Night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CB1A461CDE001C571C /* Night.mp4 */; };
+		104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */; };
+		104187D91A462BBF001C571C /* Rain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CD1A461CDE001C571C /* Rain.mp4 */; };
+		104187DA1A462BBF001C571C /* Snow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CE1A461CDE001C571C /* Snow.mp4 */; };
+		104187DB1A462BBF001C571C /* Sunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CF1A461CDE001C571C /* Sunny.mp4 */; };
+		104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187D01A461CDE001C571C /* Thunder Storm.mp4 */; };
+		104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187DD1A46303E001C571C /* Cloudy.mp4 */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
-		104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */; };
+		106948E51A62F59B0093F9DF /* ActivitySessions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106948E41A62F59B0093F9DF /* ActivitySessions.plist */; };
+		106948E71A6301AA0093F9DF /* SubjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106948E61A6301AA0093F9DF /* SubjectVC.swift */; };
 		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
 		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
 		1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */; };
@@ -25,6 +37,9 @@
 		108E9B1D1A27E5C700120A63 /* MathPopOverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F78D9B1A2628A30048612E /* MathPopOverVC.m */; };
 		1093A1491A212DB3002B2B0A /* ClockDragVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A1481A212DB3002B2B0A /* ClockDragVC.swift */; };
 		1093A14B1A2137A2002B2B0A /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093A14A1A2137A2002B2B0A /* Clock.swift */; };
+		109509591A3E01F800030E4B /* LoggedInUser.plist in Resources */ = {isa = PBXBuildFile; fileRef = 109509581A3E01F800030E4B /* LoggedInUser.plist */; };
+		1095095E1A3E042C00030E4B /* CESEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 1095095D1A3E042C00030E4B /* CESEncryption.m */; };
+		109509601A3E050100030E4B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1095095F1A3E050100030E4B /* Security.framework */; };
 		1097EBD01A28C4AC00BED924 /* TabBarTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */; };
 		1097EBD21A28C95D00BED924 /* FloraTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */; };
 		1097EBD51A28D37700BED924 /* OBJ-CDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */; };
@@ -32,6 +47,8 @@
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
 		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
+		10BEC02A1A3CEBB2008CBFF9 /* Classes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10BEC0291A3CEBB2008CBFF9 /* Classes.plist */; };
+		10BEC02C1A3CEBD7008CBFF9 /* Activities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */; };
 		10BF3F9F1A2BB80100B1A755 /* SquaresDragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */; };
 		10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */; };
 		10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */; };
@@ -191,11 +208,38 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1009AC3A1A3BD373009B4813 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
+		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
+		103265CD1A600CE800511546 /* NewPageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageManager.swift; sourceTree = "<group>"; };
+		104187CA1A461CDE001C571C /* Foggy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foggy.mp4; sourceTree = "<group>"; };
+		104187CB1A461CDE001C571C /* Night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Night.mp4; sourceTree = "<group>"; };
+		104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Partly Cloudy.mp4"; sourceTree = "<group>"; };
+		104187CD1A461CDE001C571C /* Rain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rain.mp4; sourceTree = "<group>"; };
+		104187CE1A461CDE001C571C /* Snow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snow.mp4; sourceTree = "<group>"; };
+		104187CF1A461CDE001C571C /* Sunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sunny.mp4; sourceTree = "<group>"; };
+		104187D01A461CDE001C571C /* Thunder Storm.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thunder Storm.mp4"; sourceTree = "<group>"; };
+		104187D11A461DDC001C571C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		104187DD1A46303E001C571C /* Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cloudy.mp4; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemVC_Normal.swift; sourceTree = "<group>"; };
 		104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationFormatter.swift; sourceTree = "<group>"; };
+		106948E41A62F59B0093F9DF /* ActivitySessions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActivitySessions.plist; sourceTree = "<group>"; };
+		106948E61A6301AA0093F9DF /* SubjectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectVC.swift; sourceTree = "<group>"; };
 		106C8BD319FED841009B0983 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		106C8BD519FEE55B009B0983 /* MathVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathVC.swift; sourceTree = "<group>"; };
 		106C8BD719FEE574009B0983 /* ScienceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScienceVC.swift; sourceTree = "<group>"; };
@@ -219,6 +263,10 @@
 		108E9B1B1A27A6EB00120A63 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		1093A1481A212DB3002B2B0A /* ClockDragVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockDragVC.swift; sourceTree = "<group>"; };
 		1093A14A1A2137A2002B2B0A /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		109509581A3E01F800030E4B /* LoggedInUser.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LoggedInUser.plist; path = "Flora Dummy/LoggedInUser.plist"; sourceTree = "<group>"; };
+		1095095C1A3E042C00030E4B /* CESEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESEncryption.h; sourceTree = "<group>"; };
+		1095095D1A3E042C00030E4B /* CESEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESEncryption.m; sourceTree = "<group>"; };
+		1095095F1A3E050100030E4B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarTransitionManager.swift; sourceTree = "<group>"; };
 		1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloraTabBarController.swift; sourceTree = "<group>"; };
 		1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OBJ-CDefinitions.h"; sourceTree = "<group>"; };
@@ -229,6 +277,8 @@
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		10B8787D19FC2881005D9937 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		10B8788019FC3342005D9937 /* LanguageArtsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageArtsVC.swift; sourceTree = "<group>"; };
+		10BEC0291A3CEBB2008CBFF9 /* Classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Classes.plist; path = "Flora Dummy/Classes.plist"; sourceTree = "<group>"; };
+		10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Activities.plist; path = "Flora Dummy/Activities.plist"; sourceTree = "<group>"; };
 		10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquaresDragAndDrop.swift; sourceTree = "<group>"; };
 		10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropVC.swift; sourceTree = "<group>"; };
@@ -444,10 +494,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */,
+				92D06A0918D13085004850C6 /* AVFoundation.framework in Frameworks */,
+				109509601A3E050100030E4B /* Security.framework in Frameworks */,
 				10BFE6F21A204A1100E68C77 /* CoreLocation.framework in Frameworks */,
 				92D06A1618D137C7004850C6 /* libiconv.dylib in Frameworks */,
 				921894E617F7752A00DFB26B /* CoreGraphics.framework in Frameworks */,
-				92D06A0918D13085004850C6 /* AVFoundation.framework in Frameworks */,
 				92D06A0718D1307D004850C6 /* CoreVideo.framework in Frameworks */,
 				92D06A0518D13076004850C6 /* CoreMedia.framework in Frameworks */,
 				92D06A0318D13066004850C6 /* AudioToolbox.framework in Frameworks */,
@@ -472,6 +524,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1009AC3B1A3BD5FC009B4813 /* CESDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				109509631A3E278200030E4B /* Stored Data */,
+				1009AC3C1A3BD712009B4813 /* CESDatabase.swift */,
+				1095095C1A3E042C00030E4B /* CESEncryption.h */,
+				1095095D1A3E042C00030E4B /* CESEncryption.m */,
+			);
+			name = CESDatabase;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		103265CC1A600CD400511546 /* New Page Manager */ = {
+			isa = PBXGroup;
+			children = (
+				103265CD1A600CE800511546 /* NewPageManager.swift */,
+			);
+			name = "New Page Manager";
+			sourceTree = "<group>";
+		};
+		104187C81A461CCA001C571C /* Weather Videos */ = {
+			isa = PBXGroup;
+			children = (
+				104187DD1A46303E001C571C /* Cloudy.mp4 */,
+				104187CA1A461CDE001C571C /* Foggy.mp4 */,
+				104187CB1A461CDE001C571C /* Night.mp4 */,
+				104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */,
+				104187CD1A461CDE001C571C /* Rain.mp4 */,
+				104187CE1A461CDE001C571C /* Snow.mp4 */,
+				104187CF1A461CDE001C571C /* Sunny.mp4 */,
+				104187D01A461CDE001C571C /* Thunder Storm.mp4 */,
+			);
+			name = "Weather Videos";
+			sourceTree = "<group>";
+		};
 		104BA0F61A0424DA007BD9DE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +590,8 @@
 		104BA1011A042AEF007BD9DE /* Math Problems */ = {
 			isa = PBXGroup;
 			children = (
+				104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */,
+				104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */,
 				921C73111899BB1A007DFB34 /* MathProblemVC_Normal.h */,
 				921C73121899BB1A007DFB34 /* MathProblemVC_Normal.m */,
 				921C731B189ADE7F007DFB34 /* EquationFormatter.h */,
@@ -514,6 +603,7 @@
 		1078FC141A0E944500A14836 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
+				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10BF3F9D1A2BB71C00B1A755 /* Random Squares Drag and Drop */,
 				1093A1471A212CBB002B2B0A /* Clock Drag VC */,
 				10BFE6DD1A20201000E68C77 /* Drag And Drop */,
@@ -544,6 +634,7 @@
 		108E9B021A27A44E00120A63 /* Weather Data */ = {
 			isa = PBXGroup;
 			children = (
+				104187C81A461CCA001C571C /* Weather Videos */,
 				10BFE6EE1A2046CE00E68C77 /* Reachability.h */,
 				10BFE6EF1A2046CE00E68C77 /* Reachability.m */,
 				10BFE6E81A20468E00E68C77 /* WeatherItem.h */,
@@ -613,12 +704,25 @@
 			name = "Clock Drag VC";
 			sourceTree = "<group>";
 		};
+		109509631A3E278200030E4B /* Stored Data */ = {
+			isa = PBXGroup;
+			children = (
+				109509581A3E01F800030E4B /* LoggedInUser.plist */,
+				10BEC0291A3CEBB2008CBFF9 /* Classes.plist */,
+				10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */,
+				106948E41A62F59B0093F9DF /* ActivitySessions.plist */,
+			);
+			name = "Stored Data";
+			sourceTree = "<group>";
+		};
 		1097EBC91A28C3C300BED924 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				10BF3FA21A2BF03200B1A755 /* LaunchScreen */,
+				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				10B8787D19FC2881005D9937 /* Definitions.swift */,
+				1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */,
+				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
 				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
 				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
 			);
@@ -628,8 +732,6 @@
 		1097EBCE1A28C47100BED924 /* UITabBar Transition */ = {
 			isa = PBXGroup;
 			children = (
-				1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */,
-				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
 				1097EBD11A28C95D00BED924 /* FloraTabBarController.swift */,
 				1097EBCF1A28C4AC00BED924 /* TabBarTransitionManager.swift */,
 			);
@@ -672,14 +774,6 @@
 				10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */,
 			);
 			name = "Random Squares Drag and Drop";
-			sourceTree = "<group>";
-		};
-		10BF3FA21A2BF03200B1A755 /* LaunchScreen */ = {
-			isa = PBXGroup;
-			children = (
-				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
-			);
-			name = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		10BFE6DD1A20201000E68C77 /* Drag And Drop */ = {
@@ -803,6 +897,8 @@
 		921894E217F7752A00DFB26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				104187D11A461DDC001C571C /* MediaPlayer.framework */,
+				1095095F1A3E050100030E4B /* Security.framework */,
 				10BFE6F31A204AE900E68C77 /* MapKit.framework */,
 				10BFE6F11A204A1100E68C77 /* CoreLocation.framework */,
 				92D06A1518D137C7004850C6 /* libiconv.dylib */,
@@ -823,6 +919,7 @@
 		921894E917F7752A00DFB26B /* Flora Dummy */ = {
 			isa = PBXGroup;
 			children = (
+				1009AC0E1A3BC0DC009B4813 /* README.swift */,
 				1097EBC91A28C3C300BED924 /* Utilities */,
 				10B8788319FC422C005D9937 /* Old Objective-C Code */,
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
@@ -873,15 +970,6 @@
 				9218950E17F7752A00DFB26B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		921C73141899BB1F007DFB34 /* Math Problems */ = {
-			isa = PBXGroup;
-			children = (
-				104BA0FD1A042A30007BD9DE /* MathProblemVC_Normal.swift */,
-				104BA0FF1A042A46007BD9DE /* EquationFormatter.swift */,
-			);
-			name = "Math Problems";
 			sourceTree = "<group>";
 		};
 		923774511A05524100A49D14 /* Stephen's Stuff */ = {
@@ -1016,6 +1104,7 @@
 		92E7A1281864E303006A712B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				103265CC1A600CD400511546 /* New Page Manager */,
 				921DD2631A2A430100C18079 /* PageManager.h */,
 				921DD2641A2A430100C18079 /* PageManager.m */,
 				9211950119FE01C000644054 /* FormattedVC.h */,
@@ -1024,7 +1113,6 @@
 				921DD2671A2A434D00C18079 /* PageVC.m */,
 				9208482018E4F9CF00BE2F55 /* Module */,
 				92D06A0E18D13101004850C6 /* QR Code Stuff */,
-				921C73141899BB1F007DFB34 /* Math Problems */,
 				92E7A1331864E3DC006A712B /* Page_GardenData */,
 				92E7A1291864E30B006A712B /* Intro */,
 				92E7A12A1864E314006A712B /* Read */,
@@ -1087,6 +1175,7 @@
 		92E7A12D1864E372006A712B /* Subjects */ = {
 			isa = PBXGroup;
 			children = (
+				106948E61A6301AA0093F9DF /* SubjectVC.swift */,
 				10B8788019FC3342005D9937 /* LanguageArtsVC.swift */,
 				106C8BD519FEE55B009B0983 /* MathVC.swift */,
 				106C8BD719FEE574009B0983 /* ScienceVC.swift */,
@@ -1181,6 +1270,7 @@
 				921894DC17F7752A00DFB26B /* Sources */,
 				921894DD17F7752A00DFB26B /* Frameworks */,
 				921894DE17F7752A00DFB26B /* Resources */,
+				1009AC3A1A3BD373009B4813 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1271,15 +1361,19 @@
 				5D18E9EF1A2100BB00F8DB94 /* week.wav in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
 				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
+				104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */,
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
 				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
 				10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */,
+				10BEC02A1A3CEBB2008CBFF9 /* Classes.plist in Resources */,
 				5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */,
 				5D18E9DD1A21008900F8DB94 /* great.wav in Resources */,
 				5D18E9E11A21009600F8DB94 /* hand.wav in Resources */,
 				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
 				926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */,
+				104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */,
+				104187D71A462BBF001C571C /* Night.mp4 in Resources */,
 				92C117831A22A1A4003506DB /* ActivityInfoVC.xib in Resources */,
 				923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */,
 				5D18E9DB1A21007200F8DB94 /* okay.wav in Resources */,
@@ -1294,13 +1388,19 @@
 				926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */,
 				92C261BA1839D40800FDA09B /* barrel.png in Resources */,
 				92F78DA71A263D0B0048612E /* QuickQuizCreationPopOverVC.xib in Resources */,
+				104187DA1A462BBF001C571C /* Snow.mp4 in Resources */,
 				924B3C041A337AE700A18755 /* Carroll.json in Resources */,
 				9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */,
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
+				106948E51A62F59B0093F9DF /* ActivitySessions.plist in Resources */,
+				104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				10BFE6F61A20510800E68C77 /* Weather Images.xcassets in Resources */,
+				10BEC02C1A3CEBD7008CBFF9 /* Activities.plist in Resources */,
 				92F78D9E1A2628A30048612E /* MathPopOverVC.xib in Resources */,
+				104187DB1A462BBF001C571C /* Sunny.mp4 in Resources */,
 				4C6A6C361A11669200C3A7A7 /* expoView.xib in Resources */,
+				104187D61A462BBF001C571C /* Foggy.mp4 in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
 				92C1177A1A225F99003506DB /* ContentPopOverVC.xib in Resources */,
@@ -1308,6 +1408,7 @@
 				5D18E9FE1A210C6A00F8DB94 /* Play_Button.jpeg in Resources */,
 				921894EE17F7752A00DFB26B /* InfoPlist.strings in Resources */,
 				4C6A6C381A11685200C3A7A7 /* extraView.xib in Resources */,
+				109509591A3E01F800030E4B /* LoggedInUser.plist in Resources */,
 				92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */,
 				4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */,
 				92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */,
@@ -1367,6 +1468,7 @@
 				10BFE6E31A20466000E68C77 /* LocationManager.m in Sources */,
 				108E9B0E1A27A65F00120A63 /* MWFeedInfo.m in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
+				106948E71A6301AA0093F9DF /* SubjectVC.swift in Sources */,
 				1097EBD01A28C4AC00BED924 /* TabBarTransitionManager.swift in Sources */,
 				92CB44911A203C550082C761 /* ActivityCreationTVC.m in Sources */,
 				1097EBD51A28D37700BED924 /* OBJ-CDefinitions.m in Sources */,
@@ -1393,16 +1495,17 @@
 				10BF3F9F1A2BB80100B1A755 /* SquaresDragAndDrop.swift in Sources */,
 				104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */,
 				92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */,
-				104BA1001A042A46007BD9DE /* EquationFormatter.swift in Sources */,
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
 				5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
+				1095095E1A3E042C00030E4B /* CESEncryption.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,
 				92C117721A223BF0003506DB /* ContentCreationVC.m in Sources */,
 				9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */,
 				108E9B0D1A27A65F00120A63 /* MWFeedParser.m in Sources */,
 				10A4EA3D1A2790820062D905 /* UIButton_Typical.swift in Sources */,
+				1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */,
 				92C117861A22C8E1003506DB /* ClassConversions.m in Sources */,
 				92F78DAA1A2664E10048612E /* VocabCreationVC.m in Sources */,
 				10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */,
@@ -1426,6 +1529,7 @@
 				92C117821A22A1A4003506DB /* ActivityInfoVC.m in Sources */,
 				108E9B161A27A67E00120A63 /* NSDate+InternetDateTime.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
+				103265CF1A600CF800511546 /* NewPageManager.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
 				921DD2651A2A430100C18079 /* PageManager.m in Sources */,
 				92CB449A1A203F740082C761 /* Content.m in Sources */,
@@ -1547,17 +1651,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Flora Dummy/FloraDummy-Prefix.pch";
 				INFOPLIST_FILE = "Flora Dummy/FloraDummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1569,17 +1677,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Flora Dummy/FloraDummy-Prefix.pch";
 				INFOPLIST_FILE = "Flora Dummy/FloraDummy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

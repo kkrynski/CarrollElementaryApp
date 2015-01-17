@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *weatherCurrentTemp;
 @property (nonatomic, strong) NSArray *nextDays;
 
-@property (nonatomic, strong) UIImage *weatherCurrentTempImage;
+@property (nonatomic, strong) NSString *weatherCurrentTempImage;
 @property (nonatomic, strong) NSString *weatherCurrentDay;
 @property (nonatomic, strong) NSArray *weatherForecast;
 @property (nonatomic, strong) NSArray *weatherForecastConditions;

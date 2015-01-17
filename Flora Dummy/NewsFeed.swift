@@ -138,6 +138,8 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
         logo.frame = CGRectMake(0, 0, 102, 40)
         
         let view = UIView(frame: CGRectMake(0, 0, logo.frame.size.width + 8 + infoLabel.frame.size.width + 8, infoLabel.frame.size.height))
+        view.layer.shouldRasterize = YES
+        view.layer.rasterizationScale = UIScreen.mainScreen().scale
         logo.center = CGPointMake(logo.frame.size.width/2.0, view.frame.size.height/2.0)
         view.addSubview(logo)
         infoLabel.center = CGPointMake(8 + logo.frame.size.width + infoLabel.frame.size.width/2.0, view.frame.size.height/2.0)

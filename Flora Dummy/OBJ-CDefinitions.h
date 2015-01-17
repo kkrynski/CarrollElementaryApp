@@ -8,6 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, UserState)
+{
+    UserStateUserIsStudent,
+    UserStateUserIsTeacher,
+    UserStateUserInvalid
+};
+
+typedef NS_ENUM(NSInteger, ActivityViewControllerType)
+{
+    ActivityViewControllerTypeIntro,
+    ActivityViewControllerTypeModule,
+    ActivityViewControllerTypeSandbox,
+    ActivityViewControllerTypeRead,
+    ActivityViewControllerTypeSquaresDragAndDrop,
+    ActivityViewControllerTypeMathProblem,
+    ActivityViewControllerTypeCalculator,
+    ActivityViewControllerTypeGarden,
+    ActivityViewControllerTypeClockDrag,
+    ActivityViewControllerTypePictureQuiz,
+    ActivityViewControllerTypeQuickQuiz,
+    ActivityViewControllerTypeVocab,
+    ActivityViewControllerTypeSpelling,
+};
+
+#define ActivityDataLoaded @"ActivityDataLoaded"
+#define UserAccountsDownloaded @"User Accounts Downloaded Notification"
+#define UserLoggedIn @"User Logged In Notification"
+
+#define PageManagerShouldContinuePresentation @"Page Manager Should Continue Presentation"
+
 //Private Defininitions class for UITabBar Transition
 @interface OBJ_CDefinitions : NSObject
 

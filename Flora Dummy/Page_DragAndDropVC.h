@@ -11,27 +11,29 @@
 #import "PageVC.h"
 #import "DragObject.h"
 
-@interface Page_DragAndDropVC : PageVC<UICollisionBehaviorDelegate>
+NS_CLASS_DEPRECATED_IOS(8_1, 8_1)
+///This class is now deprecated.  Please use \b SquareDragAndDrop instead
+@interface Page_DragAndDropVC : PageVC <UICollisionBehaviorDelegate>
 {
     
 }
 
-@property (nonatomic, strong) UIImageView *backgroundImage;
+@property (nonatomic, strong) UIImageView *backgroundImage NS_DEPRECATED_IOS(8_1, 8_1);
 
-@property (nonatomic, retain) NSMutableArray *dropTargets;
-@property (nonatomic, strong) DragObject *currentDragObject;
+@property (nonatomic, retain) NSMutableArray *dropTargets NS_DEPRECATED_IOS(8_1, 8_1);
+@property (nonatomic, strong) DragObject *currentDragObject NS_DEPRECATED_IOS(8_1, 8_1);
 //@property (nonatomic, strong) UIImageView *currentDragObject;
-@property (nonatomic, retain) NSMutableArray *dragObjects;
-@property (nonatomic, assign) CGPoint touchOffset;
-@property (nonatomic, assign) CGPoint homePosition;
+@property (nonatomic, retain) NSMutableArray *dragObjects NS_DEPRECATED_IOS(8_1, 8_1);
+@property (nonatomic, assign) CGPoint touchOffset NS_DEPRECATED_IOS(8_1, 8_1);
+@property (nonatomic, assign) CGPoint homePosition NS_DEPRECATED_IOS(8_1, 8_1);
 
 
-@property (strong, nonatomic) UIDynamicAnimator *animator;
-@property (strong, nonatomic) UIGravityBehavior *g;
-@property (strong, nonatomic) UICollisionBehavior *c;
+@property (strong, nonatomic) UIDynamicAnimator *animator NS_DEPRECATED_IOS(8_1, 8_1);
+@property (strong, nonatomic) UIGravityBehavior *g NS_DEPRECATED_IOS(8_1, 8_1);
+@property (strong, nonatomic) UICollisionBehavior *c NS_DEPRECATED_IOS(8_1, 8_1);
 
-@property(nonatomic) UITouch* previousTouch;
-@property(nonatomic) UITouch* currentTouch;
+@property(nonatomic) UITouch* previousTouch NS_DEPRECATED_IOS(8_1, 8_1);
+@property(nonatomic) UITouch* currentTouch NS_DEPRECATED_IOS(8_1, 8_1);
 
 
 @end

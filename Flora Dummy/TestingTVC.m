@@ -79,7 +79,6 @@
     
     // Store the border width for the tableview.
     borderWidth = 2.0f;
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -394,12 +393,6 @@
 -(void)launchPassword
 {
     PasswordVC *passwordVC = [[PasswordVC alloc] init];
-    
-    NSString *username = [NSString stringWithFormat:@"qwerty"];
-    NSString *password = [NSString stringWithFormat:@"qwerty"];
-    
-    passwordVC.username = username;
-    passwordVC.password = password;
     
     [self presentViewController:passwordVC animated:YES completion:nil];
     

@@ -126,8 +126,8 @@ class Definitions: NSObject
         button.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
-    // MARK: - Private Methods
-                //for Definitions.  These will NOT be able to be referenced outside the app. (They don't need to be).
+    // MARK: - Private Methods for Definitions
+    //These will NOT be able to be referenced outside this Swift file (They don't need to be).
     
     private class func colorCompenentFrom(string : String, atStartIndex start : Int, withLength length : Int) ->Float
     {

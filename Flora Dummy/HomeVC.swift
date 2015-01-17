@@ -12,7 +12,6 @@ class HomeVC: FormattedVC, NewsFeedDelegate
 {
     //Elements on screen
     @IBOutlet var titleLabel : UILabel?
-    @IBOutlet var subTitleLabel : UILabel?
     @IBOutlet var homeImageView : UIImageView?
     @IBOutlet var weatherView : WeatherView?
     
@@ -21,6 +20,9 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        tabBarController?.tabBar.tintColor = .whiteColor()
+        tabBarController!.tabBar.barStyle = .Black
         
         newsFeed = NewsFeed(frame: CGRectMake(0, 0, view.frame.size.width, 40), andPrimaryColor: primaryColor)
         newsFeed!.newsFeedDelegate = self
@@ -33,13 +35,24 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     {
         super.viewWillAppear(animated)
         
+        tabBarController?.tabBar.tintColor = .whiteColor()
+        tabBarController?.tabBar.barStyle = .Black
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
+        {
+            weatherView?.player?.view.alpha = 1.0
+            weatherView?.staticWeatherImage?.alpha = 0.0
+            weatherView?.player?.prepareToPlay()
+            weatherView?.player?.play()
+        }
+        else
+        {
+            weatherView?.player?.view.alpha = 0.0
+            weatherView?.staticWeatherImage?.alpha = 1.0
+        }
+        
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
-        
-        subTitleLabel!.textColor = primaryColor
-        Definitions.outlineTextInLabel(subTitleLabel!)
-        
-        view.backgroundColor = backgroundColor
         
         weatherView!.updateColors(primaryColor)
         
@@ -52,11 +65,29 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         }
     }
     
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+    }
+    
     override func viewWillDisappear(animated: Bool)
     {
         super.viewWillDisappear(animated)
         
         newsFeed!.shouldMoveToNextItem = NO
+        
+        tabBarController?.tabBar.tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
+        tabBarController?.tabBar.barStyle = .Default
+    }
+    
+    override func viewDidDisappear(animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
+        {
+            weatherView!.player?.pause()
+        }
     }
     
     //MARK: - News Feed Delegate
@@ -77,12 +108,12 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         Definitions.outlineTextInLabel(breakingNewsLabel)
         view.addSubview(breakingNewsLabel)
         
-        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
+        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
             
             breakingNewsLabel.center = CGPointMake(breakingNewsLabel.frame.size.width * 0.3, breakingNewsLabel.center.y)
             
             }, completion: { (finished) -> Void in
-            self.newsFeed!.startFeed()
+                self.newsFeed!.startFeed()
         })
     }
 }

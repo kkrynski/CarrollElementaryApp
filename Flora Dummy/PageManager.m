@@ -71,8 +71,8 @@
             // Save information that would be helpful to the page.
             
             currentVC.page = currentPage;
-            currentVC.pageNumber = [NSNumber numberWithInt: currentIndex.row + 1];
-            currentVC.pageCount = [NSNumber numberWithInt:activity.pageArray.count];
+            currentVC.pageNumber = [NSNumber numberWithLong: currentIndex.row + 1];
+            currentVC.pageCount = [NSNumber numberWithLong:activity.pageArray.count];
             
             // Bring the page to the screen
             [parentViewController presentViewController:pageViewController animated:YES completion:nil];
@@ -107,8 +107,8 @@
         // Get data and save it to the page
         
         currentVC.page = newPage;
-        currentVC.pageNumber = [NSNumber numberWithInt: currentIndex.row + 1];
-        currentVC.pageCount = [NSNumber numberWithInt:activity.pageArray.count];
+        currentVC.pageNumber = [NSNumber numberWithLong: currentIndex.row + 1];
+        currentVC.pageCount = [NSNumber numberWithLong:activity.pageArray.count];
         
         // Bring the page to the big screen
         [self launchAppropriateViewControllerForPage: currentVC inDirection:direction];
@@ -119,7 +119,7 @@
 // This function takes the page manager to the next page
 -(void)goToNextViewController
 {
-    NSLog(@"Moving from index: %i", currentIndex.row);
+    NSLog(@"Moving from index: %ld", (long)currentIndex.row);
     
     // Check to make sure the index is valid
     if (currentIndex.row + 1 < activity.pageArray.count)
@@ -134,7 +134,7 @@
         [self goToViewControllerAtIndex:currentIndex inDirection:[NSNumber numberWithInt:direction]];
     }
     
-    NSLog(@"Moving to index: %i", currentIndex.row);
+    NSLog(@"Moving to index: %ld", (long)currentIndex.row);
 }
 
 // This function takes the page manager to the previous page

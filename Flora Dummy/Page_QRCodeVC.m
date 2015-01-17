@@ -46,7 +46,7 @@
     
     // Create camera view for QR Code reading
     float tempMargin = 20;
-    float H = super.previousButton.frame.origin.y - 0 - 0 - 2 * tempMargin;
+    float H = /*super.previousButton.frame.origin.y - 0 - 0 - 2 * tempMargin;*/ -2 * tempMargin;
     float W = H;
     CGRect tempFrame = CGRectMake(self.view.frame.size.width - W - 2 * tempMargin,
                                  0 + 0 + tempMargin,
@@ -138,7 +138,7 @@
     
     if (hintTextView)
     {
-        [self outlineTextInTextView:hintTextView];
+        [Definitions outlineTextInTextView:hintTextView forFont:hintTextView.font];
         hintTextView.textColor = primaryColor;
         hintTextView.backgroundColor = secondaryColor;
     }
