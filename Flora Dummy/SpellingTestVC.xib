@@ -54,7 +54,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="PlayButtonPressed" destination="-1" eventType="touchUpInside" id="wMJ-d5-c2v"/>
+                        <action selector="PlayButtonPressed" destination="-1" eventType="touchUpInside" id="Ofl-Nq-94A"/>
                     </connections>
                 </button>
             </subviews>

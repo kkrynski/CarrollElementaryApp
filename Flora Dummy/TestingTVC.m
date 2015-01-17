@@ -19,6 +19,7 @@
 #import "SpellingTestVC.h"
 #import "ActivityCreationTVC.h"
 #import "ClassConversions.h"
+#import "MicrophoneVC.h"
 
     //Michael's Test Code
 #import "FloraDummy-Swift.h"
@@ -56,7 +57,7 @@
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Calculator", @"Michael - Math Problem", @"Michael - Clock", @"Michael - SquareDrag", @"Zach - Activity Creation", @"Stephen - Picture Quiz", @"Mason - Password", @"Mason - Spelling Test", @"Zach - Module", nil];
+    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Calculator", @"Michael - Math Problem", @"Michael - Clock", @"Michael - SquareDrag", @"Zach - Activity Creation", @"Stephen - Picture Quiz", @"Mason - Password", @"Mason - Spelling Test", @"Mason - Microphone", @"Zach - Module", nil];
     
     // Create our font. Later we'll want to hook this up to the
     // rest of the app for easier change.
@@ -207,6 +208,14 @@
             break;
             
         }case 8:
+        {
+            // Mason - Microphone
+            
+            [self launchMicrophone];
+            
+            break;
+            
+        }case 9:
         {
             // Zach - Module
             
@@ -417,7 +426,7 @@
 - (void) launchSpellingTest
 {
     SpellingTestVC *spellingTestVC = [[SpellingTestVC alloc] init];
-    //spellingTestVC.mathEquation = @"20 * 800 + 25 / 30 + 10 * 10=#w#";
+    spellingTestVC.word = @"world";
     
     [self presentViewController:spellingTestVC animated:YES completion:nil];
 }
@@ -429,6 +438,15 @@
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:vc animated:YES completion:NULL];
 
+}
+
+- (void) launchMicrophone
+{
+    MicrophoneVC *microphoneVC = [[MicrophoneVC alloc] init];
+    //microphoneVC.word = @"world";
+    
+    [self presentViewController:microphoneVC animated:YES completion:nil];
+    
 }
 
 
