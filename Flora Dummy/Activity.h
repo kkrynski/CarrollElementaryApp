@@ -36,6 +36,27 @@
 // Array of pages within the activity
 @property(nonatomic, retain) NSArray *pageArray;
 
+
+
+
+
+// For Michael/Database
+
+// Description of activity
+@property(nonatomic, retain) NSString *activityDescription;
+
+// Total points held in activity
+@property(nonatomic) NSInteger totalPoints;
+
+// Activity data
+//
+// For creation, just due key-nil
+@property(nonatomic, retain) NSDictionary *activityData;
+
+// Class ID
+@property(nonatomic, retain) NSString *classID;
+
+
 -(id)init;
 
 @end
