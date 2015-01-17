@@ -91,13 +91,13 @@ private let databaseEncryptionKey   = "I1rObD475i"
     
     Uploads the activity data to the database
     
-    :param: activityData The formatted Dictionary of the activities information corresponding to the String constants provided by the class.  The keys may be in any order
+    :param: activityData The Activity object you created
     :param: completion The Completion Handler to be called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or nil if the upload failed
     
     :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
     
     */
-    func uploadNewActivity(activityData: NSDictionary, completion: ((activityID: String?) -> Void))
+    func uploadNewActivity(activityData: Activity, completion: ((activityID: String?) -> Void))
 }
 
 @objc protocol UserAccountsDatabase
@@ -254,15 +254,24 @@ private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, 
         }
             while activityID != 1
         
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        archiver.encodeObject(activityData.activityData, forKey: "activityData")
+        archiver.finishEncoding()
+        
         var SQLQuery = "INSERT INTO activity(Activity_ID, Activity_Name, Activity_Description, Activity_Total_Points, Release_Date, Due_Date, Activity_Data, Class_ID) VALUES ("
         SQLQuery += String(activityID) + ", "
-        SQLQuery += activityData.objectForKey(ActivityName) as String + ", "
-        SQLQuery += "`" + (activityData.objectForKey(ActivityDescription) as String) + "`, "
-        SQLQuery += activityData.objectForKey(TotalPoints) as String + ", "
-        SQLQuery += "`" + (activityData.objectForKey(ReleaseDate) as String) + "`, "
-        SQLQuery += "`" + (activityData.objectForKey(DueDate) as String) + "`, "
-        SQLQuery += "`" + (activityData.objectForKey(ActivityData) as String) + "`, "
-        SQLQuery += activityData.objectForKey(ClassID) as String + ")"
+        SQLQuery += activityData.name + ", "
+        SQLQuery += "`\(activityData.description)`, "
+        SQLQuery += String(activityData.totalPoints) + ", "
+        SQLQuery += "`" + (dateFormatter.stringFromDate(activityData.releaseDate)) + "`, "
+        SQLQuery += "`" + (dateFormatter.stringFromDate(activityData.dueDate)) + "`, "
+        SQLQuery += "`" + (data.hexRepresentationWithSpaces(YES, capitals: NO)) + "`, "
+        SQLQuery += activityData.classID + ")"
         
         let post = "Password=\(databasePassword)&SQLQuery=\(SQLQuery)"
         let url = NSURL(string: databaseUploadWebsite)!
@@ -301,7 +310,7 @@ private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, 
     
     private func isValidActivity(activityInformation: Activity) -> Bool
     {
-        return activityInformation.objectForKey(ActivityName) != nil && activityInformation.objectForKey(ActivityDescription) != nil && activityInformation.objectForKey(TotalPoints) != nil && activityInformation.objectForKey(ReleaseDate) != nil && activityInformation.objectForKey(DueDate) != nil && activityInformation.objectForKey(ActivityData) != nil && activityInformation.objectForKey(ClassID) != nil
+        return activityInformation.name != "" && activityInformation.activityDescription != "" && activityInformation.totalPoints != -1 && activityInformation.releaseDate != NSDate() && activityInformation.dueDate != NSDate() && activityInformation.activityData != NSDictionary() && activityInformation.classID != ""
     }
 }
 
