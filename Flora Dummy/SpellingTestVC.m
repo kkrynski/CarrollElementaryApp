@@ -7,11 +7,9 @@
 //
 
 #import "SpellingTestVC.h"
-#import "AudioController.h"
 @import AVFoundation;
 
-@interface SpellingTestVC ()
-{
+@interface SpellingTestVC () {
     AVAudioPlayer *audioPlayer;
 }
 
@@ -26,20 +24,20 @@
 @synthesize submit;
 @synthesize playSound;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-  //  _audioController = [[AudioController alloc]init];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"hello" withExtension:@"wav"];
+    //word = @"hello";
+    NSURL *url = [[NSBundle mainBundle] URLForResource:word withExtension:@"wav"];
     audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     
-    word = @"hello";
+   
     // Do any additional setup after loading the view from its nib.
 }
 
 -(IBAction)PlayButtonPressed {
     //The call below uses AudioServicesPlaySystemSound to play
     //the word sound.
+   // [_audioController playSystemSound];
     
     [audioPlayer play];
     
@@ -53,7 +51,7 @@
 
 - (IBAction)submit:(id)sender {
     if([self.input.text isEqualToString: self.word]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+       // [self dismissViewControllerAnimated:YES completion:nil];
     }
     NSLog(@"submit");
 }

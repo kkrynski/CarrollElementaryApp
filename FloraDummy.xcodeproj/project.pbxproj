@@ -75,9 +75,27 @@
 		4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E719FC42C00066A53B /* VocabVC.xib */; };
 		5D03D4B11A12E2FA0008A9EA /* SpellingTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */; };
 		5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */; };
-		5D18E9D31A1C0FEA00F8DB94 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18E9D21A1C0FEA00F8DB94 /* AudioController.m */; };
 		5D18E9D51A1C12A900F8DB94 /* hello.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9D41A1C12A900F8DB94 /* hello.wav */; };
+		5D18E9DB1A21007200F8DB94 /* okay.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9DA1A21007200F8DB94 /* okay.wav */; };
+		5D18E9DD1A21008900F8DB94 /* great.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9DC1A21008900F8DB94 /* great.wav */; };
+		5D18E9DF1A21009100F8DB94 /* have.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9DE1A21009100F8DB94 /* have.wav */; };
+		5D18E9E11A21009600F8DB94 /* hand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E01A21009600F8DB94 /* hand.wav */; };
+		5D18E9E31A21009B00F8DB94 /* life.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E21A21009B00F8DB94 /* life.wav */; };
+		5D18E9E51A2100A000F8DB94 /* long.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E41A2100A000F8DB94 /* long.wav */; };
+		5D18E9E91A2100AB00F8DB94 /* part.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9E81A2100AB00F8DB94 /* part.wav */; };
+		5D18E9EB1A2100AF00F8DB94 /* person.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9EA1A2100AF00F8DB94 /* person.wav */; };
+		5D18E9ED1A2100B300F8DB94 /* place.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9EC1A2100B300F8DB94 /* place.wav */; };
+		5D18E9EF1A2100BB00F8DB94 /* week.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9EE1A2100BB00F8DB94 /* week.wav */; };
+		5D18E9F11A2100C000F8DB94 /* woman.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9F01A2100C000F8DB94 /* woman.wav */; };
+		5D18E9F31A2100C500F8DB94 /* work.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9F21A2100C500F8DB94 /* work.wav */; };
+		5D18E9F51A2100CF00F8DB94 /* world.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9F41A2100CF00F8DB94 /* world.wav */; };
+		5D18E9F71A2100D500F8DB94 /* year.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9F61A2100D500F8DB94 /* year.wav */; };
+		5D18E9FC1A2103A800F8DB94 /* MicrophoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FA1A2103A800F8DB94 /* MicrophoneVC.xib */; };
+		5D18E9FE1A210C6A00F8DB94 /* Play_Button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */; };
+		5D18EA001A210C7500F8DB94 /* Stop_Button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FF1A210C7500F8DB94 /* Stop_Button.jpeg */; };
+		5D18EA021A210C8A00F8DB94 /* Record_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D18EA011A210C8A00F8DB94 /* Record_Button.png */; };
 		5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */; };
+		5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18E9F91A2103A800F8DB94 /* MicrophoneVC.m */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		9208CD1018F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		921194FF19FE015100644054 /* QuickQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921194FE19FE015100644054 /* QuickQuizVC.m */; };
@@ -291,9 +309,29 @@
 		5D03D4AE1A12E2FA0008A9EA /* SpellingTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellingTestVC.h; sourceTree = "<group>"; };
 		5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellingTestVC.m; sourceTree = "<group>"; };
 		5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpellingTestVC.xib; sourceTree = "<group>"; };
-		5D18E9D11A1C0FEA00F8DB94 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
-		5D18E9D21A1C0FEA00F8DB94 /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
 		5D18E9D41A1C12A900F8DB94 /* hello.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hello.wav; sourceTree = "<group>"; };
+		5D18E9D81A21006600F8DB94 /* definitions.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = definitions.wav; sourceTree = "<group>"; };
+		5D18E9DA1A21007200F8DB94 /* okay.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = okay.wav; sourceTree = "<group>"; };
+		5D18E9DC1A21008900F8DB94 /* great.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = great.wav; sourceTree = "<group>"; };
+		5D18E9DE1A21009100F8DB94 /* have.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = have.wav; sourceTree = "<group>"; };
+		5D18E9E01A21009600F8DB94 /* hand.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hand.wav; sourceTree = "<group>"; };
+		5D18E9E21A21009B00F8DB94 /* life.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = life.wav; sourceTree = "<group>"; };
+		5D18E9E41A2100A000F8DB94 /* long.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = long.wav; sourceTree = "<group>"; };
+		5D18E9E61A2100A400F8DB94 /* make.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = make.wav; sourceTree = "<group>"; };
+		5D18E9E81A2100AB00F8DB94 /* part.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = part.wav; sourceTree = "<group>"; };
+		5D18E9EA1A2100AF00F8DB94 /* person.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = person.wav; sourceTree = "<group>"; };
+		5D18E9EC1A2100B300F8DB94 /* place.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = place.wav; sourceTree = "<group>"; };
+		5D18E9EE1A2100BB00F8DB94 /* week.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = week.wav; sourceTree = "<group>"; };
+		5D18E9F01A2100C000F8DB94 /* woman.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = woman.wav; sourceTree = "<group>"; };
+		5D18E9F21A2100C500F8DB94 /* work.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = work.wav; sourceTree = "<group>"; };
+		5D18E9F41A2100CF00F8DB94 /* world.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = world.wav; sourceTree = "<group>"; };
+		5D18E9F61A2100D500F8DB94 /* year.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = year.wav; sourceTree = "<group>"; };
+		5D18E9F81A2103A800F8DB94 /* MicrophoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicrophoneVC.h; sourceTree = "<group>"; };
+		5D18E9F91A2103A800F8DB94 /* MicrophoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicrophoneVC.m; sourceTree = "<group>"; };
+		5D18E9FA1A2103A800F8DB94 /* MicrophoneVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MicrophoneVC.xib; sourceTree = "<group>"; };
+		5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Play_Button.jpeg; sourceTree = "<group>"; };
+		5D18E9FF1A210C7500F8DB94 /* Stop_Button.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stop_Button.jpeg; sourceTree = "<group>"; };
+		5D18EA011A210C8A00F8DB94 /* Record_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Record_Button.png; sourceTree = "<group>"; };
 		5D709CAD1A09A2F8000F44DF /* PasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordVC.h; sourceTree = "<group>"; };
 		5D709CAE1A09A2F8000F44DF /* PasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordVC.m; sourceTree = "<group>"; };
 		5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordVC.xib; sourceTree = "<group>"; };
@@ -785,15 +823,35 @@
 		5D709CAC1A09A28A000F44DF /* Mason */ = {
 			isa = PBXGroup;
 			children = (
+				5D18E9D81A21006600F8DB94 /* definitions.wav */,
+				5D18E9D41A1C12A900F8DB94 /* hello.wav */,
+				5D18E9DC1A21008900F8DB94 /* great.wav */,
+				5D18E9E01A21009600F8DB94 /* hand.wav */,
+				5D18E9DE1A21009100F8DB94 /* have.wav */,
+				5D18E9E21A21009B00F8DB94 /* life.wav */,
+				5D18E9E41A2100A000F8DB94 /* long.wav */,
+				5D18E9E61A2100A400F8DB94 /* make.wav */,
+				5D18E9DA1A21007200F8DB94 /* okay.wav */,
+				5D18E9E81A2100AB00F8DB94 /* part.wav */,
+				5D18E9EA1A2100AF00F8DB94 /* person.wav */,
+				5D18E9EC1A2100B300F8DB94 /* place.wav */,
+				5D18E9EE1A2100BB00F8DB94 /* week.wav */,
+				5D18E9F21A2100C500F8DB94 /* work.wav */,
+				5D18E9F41A2100CF00F8DB94 /* world.wav */,
+				5D18E9F01A2100C000F8DB94 /* woman.wav */,
+				5D18E9F61A2100D500F8DB94 /* year.wav */,
 				5D03D4AE1A12E2FA0008A9EA /* SpellingTestVC.h */,
 				5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */,
 				5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */,
-				5D18E9D11A1C0FEA00F8DB94 /* AudioController.h */,
-				5D18E9D21A1C0FEA00F8DB94 /* AudioController.m */,
-				5D18E9D41A1C12A900F8DB94 /* hello.wav */,
 				5D709CAD1A09A2F8000F44DF /* PasswordVC.h */,
 				5D709CAE1A09A2F8000F44DF /* PasswordVC.m */,
 				5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */,
+				5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */,
+				5D18E9FF1A210C7500F8DB94 /* Stop_Button.jpeg */,
+				5D18EA011A210C8A00F8DB94 /* Record_Button.png */,
+				5D18E9F81A2103A800F8DB94 /* MicrophoneVC.h */,
+				5D18E9F91A2103A800F8DB94 /* MicrophoneVC.m */,
+				5D18E9FA1A2103A800F8DB94 /* MicrophoneVC.xib */,
 			);
 			name = Mason;
 			sourceTree = "<group>";
@@ -1288,14 +1346,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				92E8CB5318F0C4BD0025264E /* Wind4.gif in Resources */,
+				5D18E9FC1A2103A800F8DB94 /* MicrophoneVC.xib in Resources */,
 				92EF999B18B6F5CD00288BAF /* GardenDetailVC.xib in Resources */,
 				92F4064F1801ED2D00668376 /* Flora DUmmy 4.png in Resources */,
 				92E8CB4D18F0C4BD0025264E /* Wind1.gif in Resources */,
 				4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */,
-				104187D91A462BBF001C571C /* Rain.mp4 in Resources */,
+				5D18E9ED1A2100B300F8DB94 /* place.wav in Resources */,
 				92EF999418B6E6AD00288BAF /* Garden_Top.jpg in Resources */,
+				5D18E9F51A2100CF00F8DB94 /* world.wav in Resources */,
+				5D18E9E91A2100AB00F8DB94 /* part.wav in Resources */,
+				5D18E9E31A21009B00F8DB94 /* life.wav in Resources */,
 				92D06A2318D140F4004850C6 /* zbar-help.html in Resources */,
 				92C261AC18370D1500FDA09B /* Page_DragAndDropVC.xib in Resources */,
+				5D18E9EF1A2100BB00F8DB94 /* week.wav in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
 				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
 				104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */,
@@ -1304,6 +1367,8 @@
 				10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */,
 				10BEC02A1A3CEBB2008CBFF9 /* Classes.plist in Resources */,
 				5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */,
+				5D18E9DD1A21008900F8DB94 /* great.wav in Resources */,
+				5D18E9E11A21009600F8DB94 /* hand.wav in Resources */,
 				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
 				926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */,
@@ -1311,9 +1376,15 @@
 				104187D71A462BBF001C571C /* Night.mp4 in Resources */,
 				92C117831A22A1A4003506DB /* ActivityInfoVC.xib in Resources */,
 				923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */,
+				5D18E9DB1A21007200F8DB94 /* okay.wav in Resources */,
+				5D18E9DF1A21009100F8DB94 /* have.wav in Resources */,
 				926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */,
+				5D18E9F71A2100D500F8DB94 /* year.wav in Resources */,
 				92D06A2118D140F4004850C6 /* zbar-back.png in Resources */,
+				5D18E9E51A2100A000F8DB94 /* long.wav in Resources */,
 				4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */,
+				5D18EA021A210C8A00F8DB94 /* Record_Button.png in Resources */,
+				5D18E9EB1A2100AF00F8DB94 /* person.wav in Resources */,
 				926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */,
 				92C261BA1839D40800FDA09B /* barrel.png in Resources */,
 				92F78DA71A263D0B0048612E /* QuickQuizCreationPopOverVC.xib in Resources */,
@@ -1334,16 +1405,20 @@
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
 				92C1177A1A225F99003506DB /* ContentPopOverVC.xib in Resources */,
 				4C6A6C321A0E8C9500C3A7A7 /* trigView.xib in Resources */,
+				5D18E9FE1A210C6A00F8DB94 /* Play_Button.jpeg in Resources */,
 				921894EE17F7752A00DFB26B /* InfoPlist.strings in Resources */,
 				4C6A6C381A11685200C3A7A7 /* extraView.xib in Resources */,
 				109509591A3E01F800030E4B /* LoggedInUser.plist in Resources */,
 				92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */,
 				4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */,
 				92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */,
+				5D18EA001A210C7500F8DB94 /* Stop_Button.jpeg in Resources */,
 				5D18E9D51A1C12A900F8DB94 /* hello.wav in Resources */,
 				926C9B1718E4EA69006CDB2F /* HOME4.gif in Resources */,
 				9282390618A6A39300223265 /* Main2.storyboard in Resources */,
 				92E8CB5118F0C4BD0025264E /* Wind3.gif in Resources */,
+				5D18E9F31A2100C500F8DB94 /* work.wav in Resources */,
+				5D18E9F11A2100C000F8DB94 /* woman.wav in Resources */,
 				92C261B41839D40800FDA09B /* apple_green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1421,6 +1496,7 @@
 				104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */,
 				92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */,
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
+				5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
 				1095095E1A3E042C00030E4B /* CESEncryption.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
@@ -1448,7 +1524,6 @@
 				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
 				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				108E9B151A27A67E00120A63 /* NSString+HTML.m in Sources */,
-				5D18E9D31A1C0FEA00F8DB94 /* AudioController.m in Sources */,
 				108E9B0F1A27A65F00120A63 /* MWFeedItem.m in Sources */,
 				10BFE6ED1A20468E00E68C77 /* WeatherItem+Parse.m in Sources */,
 				92C117821A22A1A4003506DB /* ActivityInfoVC.m in Sources */,
