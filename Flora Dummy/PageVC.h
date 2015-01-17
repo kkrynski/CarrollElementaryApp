@@ -7,33 +7,34 @@
 //
 
 #import "FormattedVC.h"
-
 #import "Page.h"
 
 @class UIButton_Typical, PageManager;
 
+NS_CLASS_DEPRECATED_IOS(8_0, 8_1)
+///This class is now deprecated.  Please use \b FormattedVC instead
 @interface PageVC : FormattedVC
 {
     //Only private variables go in here...
     
-    BOOL viewIsOnScreen;
+    BOOL viewIsOnScreen DEPRECATED_ATTRIBUTE;
 }
 
-@property(nonatomic, retain) PageManager *parentManager; //Infinite loop fixed *Michael*
+@property(nonatomic, retain) PageManager *parentManager DEPRECATED_ATTRIBUTE; //Infinite loop fixed *Michael*
 
-@property(nonatomic, retain) Page *page;
+@property(nonatomic, retain) Page *page DEPRECATED_ATTRIBUTE;
 
-@property(nonatomic, retain) NSNumber *pageNumber;
-@property(nonatomic, retain) NSNumber *pageCount;
+@property(nonatomic, retain) NSNumber *pageNumber DEPRECATED_ATTRIBUTE;
+@property(nonatomic, retain) NSNumber *pageCount DEPRECATED_ATTRIBUTE;
 
-@property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property(nonatomic, retain) IBOutlet UIPageControl *pageControl DEPRECATED_ATTRIBUTE;
 
 // Buttons for navigation
-@property(nonatomic, retain) UIButton_Typical *nextButton;
-@property(nonatomic, retain) UIButton_Typical *previousButton;
+@property(nonatomic, retain) UIButton_Typical *nextButton DEPRECATED_ATTRIBUTE;
+@property(nonatomic, retain) UIButton_Typical *previousButton DEPRECATED_ATTRIBUTE;
 
 // Labels for displaying information at top of page
-@property(nonatomic, retain) UILabel *otherLabel; //assign meaning to this later
+@property(nonatomic, retain) UILabel *otherLabel DEPRECATED_ATTRIBUTE; //assign meaning to this later
 
 // Custom initialization lets us store reference
 // to parent
@@ -41,13 +42,13 @@
 
 // Next page moves the activity to the next page,
 // and sends signal to page manager to move forward.
--(IBAction) goToNextPage;
+-(IBAction) goToNextPage DEPRECATED_ATTRIBUTE;
 
 // Previous page moves page to previous page,
 // and sends signal to page manager to move back.
--(IBAction) goToPreviousPage;
+-(IBAction) goToPreviousPage DEPRECATED_ATTRIBUTE;
 
--(void) reloadView;
+-(void) reloadView DEPRECATED_ATTRIBUTE;
 
 
 

@@ -25,7 +25,7 @@ class Page_ReadVC: PageVC
         
         //Frame overrides
         
-        otherLabel.frame = CGRectMake(otherLabel.frame.origin.x, 20, otherLabel.frame.size.width, otherLabel.frame.size.height)
+        //otherLabel.frame = CGRectMake(otherLabel.frame.origin.x, 20, otherLabel.frame.size.width, otherLabel.frame.size.height)
     }
 
     //Color Theme setting

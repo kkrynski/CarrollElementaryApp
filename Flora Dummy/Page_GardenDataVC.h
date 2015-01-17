@@ -10,7 +10,7 @@
 
 #import "PageVC.h"
 
-@interface Page_GardenDataVC : PageVC<UIPopoverControllerDelegate, UIScrollViewDelegate>
+@interface Page_GardenDataVC : FormattedVC<UIPopoverControllerDelegate, UIScrollViewDelegate>
 {
     UIImage *gardenImage;
 }

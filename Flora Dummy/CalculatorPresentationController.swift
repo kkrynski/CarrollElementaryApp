@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalculatorPresentationController: UIPresentationController
+class CalculatorPresentationController: UIPresentationController, UIGestureRecognizerDelegate
 {
     private var blurView : UIVisualEffectView?          //The background blur view
     
@@ -89,7 +89,8 @@ class CalculatorPresentationController: UIPresentationController
         dismissButton!.addTarget(self, action: "dismissCalculator", forControlEvents: .TouchUpInside)
         infoView!.addSubview(dismissButton!)
         
-        dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator")
+        dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator:")
+        dismissTap!.delegate = self
         containerView!.addGestureRecognizer(dismissTap!)
         
         presentedView().layer.shadowOpacity = 1.0
@@ -234,6 +235,12 @@ class CalculatorPresentationController: UIPresentationController
     }
     
     //Dismisses the calculator
+    func dismissCalculator(tapGesture: UIGestureRecognizer)
+    {
+        println(tapGesture.view)
+        presentedViewController.dismissViewControllerAnimated(YES, completion: nil)
+    }
+    
     func dismissCalculator()
     {
         presentedViewController.dismissViewControllerAnimated(YES, completion: nil)
@@ -263,7 +270,7 @@ class CalculatorPresentationController: UIPresentationController
             }
             else
             {
-                calculatorExtension!.center = CGPointMake(calculatorExtension!.frame.size.width/2.0, oldCalculatorExtension!.center.y)
+                calculatorExtension!.center = CGPointMake(calculatorExtension!.frame.size.width/2.0 + 20, oldCalculatorExtension!.center.y)
             }
             
             UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
@@ -401,12 +408,13 @@ class CalculatorPresentationController: UIPresentationController
             }
             else
             {
-                self.oldCalculatorExtension!.center = CGPointMake(self.presentedView().frame.origin.x, self.oldCalculatorExtension!.center.y)
+                self.oldCalculatorExtension!.center = CGPointMake(self.presentedView().frame.origin.x + 20, self.oldCalculatorExtension!.center.y)
             }
             
             }, completion: { (finished) -> Void in
                 
-                self.dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator")
+                self.dismissTap = UITapGestureRecognizer(target: self, action: "dismissCalculator:")
+                self.dismissTap!.delegate = self
                 self.containerView.addGestureRecognizer(self.dismissTap!)
                 
                 self.presentedView().center = self.containerView.convertPoint(self.presentedView().center, fromView: self.calculatorHolderView!)
@@ -426,5 +434,30 @@ class CalculatorPresentationController: UIPresentationController
             self.infoView!.userInteractionEnabled = YES
             
             }, completion: nil)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool
+    {
+        if calculatorHolderView != nil
+        {
+            if CGRectContainsPoint(calculatorHolderView!.frame, touch.locationInView(containerView))
+            {
+                return NO
+            }
+        }
+        else
+        {
+            if CGRectContainsPoint(presentedView().frame, touch.locationInView(containerView))
+            {
+                return NO
+            }
+        }
+        
+        if CGRectContainsPoint(infoView!.frame, touch.locationInView(containerView))
+        {
+            return NO
+        }
+        
+        return YES
     }
 }

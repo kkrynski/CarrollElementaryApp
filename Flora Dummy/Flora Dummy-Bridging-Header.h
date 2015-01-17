@@ -3,7 +3,7 @@
 //
 
 #import "PageManager.h"
-#import "PageVC.h"
+#import "FormattedVC.h"
 
 #import "CalculatorVC.h"
 #import "PasswordVC.h"
@@ -20,3 +20,13 @@
 
 #import "ClassConversions.h"
 #import "PageCreationVC.h"
+
+#import "CESEncryption.h"
+
+#import "Page_GardenDataVC.h"
+#import "ModuleVC.h"
+#import "PictureQuizVC.h"
+#import "QuickQuizVC.h"
+//#import "SandboxVC.h"
+#import "SpellingTestVC.h"
+#import "VocabVC.h"

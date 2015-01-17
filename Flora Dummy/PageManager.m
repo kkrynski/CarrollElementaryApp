@@ -134,7 +134,7 @@
         [self goToViewControllerAtIndex:currentIndex inDirection:[NSNumber numberWithInt:direction]];
     }
     
-    NSLog(@"Moving to index: %ld", currentIndex.row);
+    NSLog(@"Moving to index: %ld", (long)currentIndex.row);
 }
 
 // This function takes the page manager to the previous page

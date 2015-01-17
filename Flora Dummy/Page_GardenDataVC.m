@@ -81,11 +81,6 @@
     
     self.view.bounds = r;
     
-    
-    // Hide elements
-    [super.previousButton removeFromSuperview];
-    [super.nextButton removeFromSuperview];
-    [super.otherLabel removeFromSuperview];
     for (UIView *v in self.view.subviews)
     {
         [v removeFromSuperview];
@@ -248,7 +243,7 @@
 
 -(void) popBack
 {
-    [super goToPreviousPage];
+    
 }
 
 -(void)toggleLayers

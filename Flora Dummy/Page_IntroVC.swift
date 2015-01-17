@@ -28,7 +28,7 @@ class Page_IntroVC: PageVC
             {
                 titleLabel!.textColor = primaryColor
                 Definitions.outlineTextInLabel(titleLabel!)
-                titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8 + titleLabel!.frame.size.height/2.0)
+                titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 10 /* self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8*/ + titleLabel!.frame.size.height/2.0)
                 self.view.addSubview(titleLabel!)
             }
         }
@@ -44,7 +44,7 @@ class Page_IntroVC: PageVC
     {
         super.viewWillAppear(animated)
         
-        pageControl?.numberOfPages = pageCount.integerValue
+        //pageControl?.numberOfPages = pageCount.integerValue
         
         summaryTextView!.text = summary
         Definitions.outlineTextInTextView(summaryTextView!, forFont: summaryTextView!.font)
@@ -55,7 +55,7 @@ class Page_IntroVC: PageVC
         {
             titleLabel!.textColor = primaryColor
             Definitions.outlineTextInLabel(titleLabel!)
-            titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8 + titleLabel!.frame.size.height/2.0)
+            titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 10 /*self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8*/ + titleLabel!.frame.size.height/2.0)
             self.view.addSubview(titleLabel!)
         }
     }

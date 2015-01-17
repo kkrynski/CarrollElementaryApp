@@ -8,58 +8,84 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FormattedVC : UIViewController
+@protocol CESDatabaseActivity;
+
+@interface FormattedVC : UIViewController <CESDatabaseActivity>
 {
-    // Holds loaded data for colors, specifically HEX code
+    //Holds loaded data for colors, specifically HEX code
     NSDictionary *colorSchemeDictionary;
     
-    // Stores UIColors for easy/quicker access
+    //Text Color
     UIColor *primaryColor;
-    UIColor *secondaryColor;
-    UIColor *backgroundColor;
     
-    // Store font to be used
+    //Text Background Color
+    UIColor *secondaryColor;
+    
+    UIColor *backgroundColor DEPRECATED_ATTRIBUTE;
+    
+    //Store font to be used
     UIFont *font;
 }
 
 @property(nonatomic, retain) NSDictionary *colorSchemeDictionary;
 @property(nonatomic, retain) UIColor *primaryColor;
 @property(nonatomic, retain) UIColor *secondaryColor;
-@property(nonatomic, retain) UIColor *backgroundColor;
+@property(nonatomic, retain) UIColor *backgroundColor DEPRECATED_ATTRIBUTE;
 @property(nonatomic, retain) UIFont *font;
 
-// These functions are used to convert a hex number (in string format) to a UIColor.
-// These functions are just to condense code.
-- (UIColor *) colorWithHexString:(NSString *)hexString;
+/// These functions are used to convert a hex number (in string format) to a UIColor
+///
+/// These functions are just to condense code
+///
+/// \note This method is deprecated, please use the \b Definitions method instead
+- (UIColor *) colorWithHexString:(NSString *)hexString DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
-- (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length;
+/// These functions are used to convert a hex number (in string format) to a UIColor
+///
+/// These functions are just to condense code
+- (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length DEPRECATED_ATTRIBUTE;
 
-// Updates colors in view
-// Subclasses should call this method and then perform additional actions
+/// Updates colors in view
+///
+/// Subclasses should override this method to perform custom color updating
+///
+/// \note You must call [super updateColors] first in the overridden method
 -(void)updateColors;
 
-// This function outlines the text in a label, meaning it gives
-// the text a border. This presents a more "bubble" letter effect,
-// which is more pleasant for elementary schoolers.
--(void)outlineTextInLabel: (UILabel *)label;
+/// This function outlines the text in a label, meaning it gives the text a border
+///
+/// This presents a more "bubble" letter effect, which is more pleasant for elementary schoolers
+///
+/// \note This method is deprecated, please use the \b Definitions method instead
+-(void)outlineTextInLabel: (UILabel *)label DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
-// This function outlines the text in a text view, meaning it gives
-// the text a border. This presents a more "bubble" letter effect,
-// which is more pleasant for elementary schoolers.
-//
-// Note: this is a little more complicated than a label
--(void)outlineTextInTextView: (UITextView *)textView;
+/// This function outlines the text in a text view, meaning it gives the text a border
+///
+/// This presents a more "bubble" letter effect, which is more pleasant for elementary schoolers
+///
+/// \note This is a little more complicated than a label
+///
+/// \note This method is deprecated, please use the \b Definitions method instead
+-(void)outlineTextInTextView: (UITextView *)textView DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
-// This function outlines buttons with a border
--(void)outlineButton: (UIButton *)button;
+/// This function outlines buttons with a border
+///
+/// \note This method is deprecated, please use the \b Definitions method instead
+-(void)outlineButton: (UIButton *)button DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
-// THis function outlines views with a border
--(void)outlineView: (UIView *)view;
+/// This function outlines views with a border
+///
+/// \note This method is deprecated, please use the \b Definitions method instead
+-(void)outlineView: (UIView *)view DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
-// Creates a slightly lighter color for a given color
-- (UIColor *)lighterColorForColor:(UIColor *)c;
+/// Creates a slightly lighter color for a given color
+///
+/// \note This method is deprecated, please use the \b Definitions method instead
+- (UIColor *)lighterColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
-// Creates a slightly darker color for a given color
-- (UIColor *)darkerColorForColor:(UIColor *)c;
+/// Creates a slightly darker color for a given color
+///
+/// \note This method is deprecated, please use the \b Definitions method instead
+- (UIColor *)darkerColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 @end
