@@ -322,7 +322,7 @@ class NewPageManager: FormattedVC
         let currentActivityType = currentActivityPage.keys.array[0]
         currentViewController = viewControllerForPageType(ActivityViewControllerType(rawValue: currentActivityType.integerValue)!)
         (currentViewController! as CESDatabaseActivity).restoreActivityState?(currentActivityPage.values.array[0])
-        9
+        
         _currentIndex = min(currentIndex + 1, currentActivity!.activityData.count)
     }
     
