@@ -349,7 +349,9 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                 
                 let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row]["Activity_ID"]!)
                 let pageManager = NewPageManager()
-                pageManager.currentActivity = activitySession
+                pageManager.currentActivitySession = activitySession
+                //TODO: Fix This
+                pageManager.currentActivity = nil
         })
         
         let animation = CABasicAnimation(keyPath: "cornerRadius")
