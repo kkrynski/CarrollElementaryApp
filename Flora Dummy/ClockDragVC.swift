@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class ClockDragVC: FormattedVC, ClockDelegate
+class ClockDragVC: PageVC, ClockDelegate
 {
     /**
     The time to initially show on the clock.

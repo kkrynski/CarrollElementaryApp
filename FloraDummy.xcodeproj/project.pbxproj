@@ -114,7 +114,6 @@
 		9218950817F7752A00DFB26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921894E717F7752A00DFB26B /* UIKit.framework */; };
 		9218951017F7752A00DFB26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9218950E17F7752A00DFB26B /* InfoPlist.strings */; };
 		9218953617F776BA00DFB26B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218953517F776BA00DFB26B /* CoreData.framework */; };
-		921DD2651A2A430100C18079 /* PageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 921DD2641A2A430100C18079 /* PageManager.m */; };
 		921DD2681A2A434D00C18079 /* PageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921DD2671A2A434D00C18079 /* PageVC.m */; };
 		923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 923774531A0552A400A49D14 /* PictureQuizVC.m */; };
 		923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923774541A0552A400A49D14 /* PictureQuizVC.xib */; };
@@ -1534,7 +1533,6 @@
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				103265CF1A600CF800511546 /* NewPageManager.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
-				921DD2651A2A430100C18079 /* PageManager.m in Sources */,
 				92CB449A1A203F740082C761 /* Content.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,11 +4,11 @@
 //
 //  Created by Zachary Nichols on 10/25/14.
 //  Copyright (c) 2014 SGSC. All rights reserved.
+//  Modified by Michael Schloss on 01/20/15.
 //
 
 #import "TestingTVC.h"
-
-#import "PageManager.h"
+#import "FloraDummy-Swift.h"
 
 #import "ModuleVC.h"
 #import "VocabVC.h"
@@ -21,219 +21,137 @@
 #import "ClassConversions.h"
 #import "MicrophoneVC.h"
 
-    //Michael's Test Code
-#import "FloraDummy-Swift.h"
-
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
-@interface TestingTVC ()
-{
-    // Store the font. Later we'll want to hook this up to the
-    // NSUserDefaults, so that it can be changed throughout the app.
-    UIFont *font;
-    
-    // Store a float for border width, which will be used to outline
-    // tableviews and textviews
-    float borderWidth;
-    
-    // Store colors for quicker/easier access
-    UIColor *primaryColor;
-    UIColor *secondaryColor;
-    UIColor *backgroundColor;
-    
-    // Load the color scheme if necessary.
-    // Consider removing this line.
-    NSDictionary *colorSchemeDictionary;
-}
-@property(nonatomic, retain) NSMutableArray *tests;
-
-
-@end
-
 @implementation TestingTVC
-@synthesize tests;
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     
-    tests = [[NSMutableArray alloc]initWithObjects:@"Riley - Calculator", @"Michael - Math Problem", @"Michael - Clock", @"Michael - SquareDrag", @"Zach - Activity Creation", @"Stephen - Picture Quiz", @"Mason - Password", @"Mason - Spelling Test", @"Mason - Microphone", @"Zach - Module", nil];
+    //Tells the tableView to clear cells when a ViewController dismisses
+    [self setClearsSelectionOnViewWillAppear:YES];
     
-    // Create our font. Later we'll want to hook this up to the
-    // rest of the app for easier change.
-    font = [[UIFont alloc]init];
-    font = [UIFont fontWithName:@"Marker Felt" size:32.0];
-    
-    
-    // Get data from json file
-    NSString *titleDirectory = [[NSBundle mainBundle] resourcePath];
-    NSString *fullPath = [titleDirectory stringByAppendingPathComponent:@"Carroll.json"]; // Name of file
-    NSData *jsonFile = [NSData dataWithContentsOfFile:fullPath options:NSDataReadingMappedIfSafe error:nil];
-    NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonFile options:kNilOptions error:nil];
-    
-    
-    // Get colors data and store it in colorSchemeDictionary
-    // The dictionary is currently unused after this point.
-    // Consider deleting or modifying
-    colorSchemeDictionary = [jsonDictionary valueForKey:@"Colors"];
-    
-    // Store the border width for the tableview.
-    borderWidth = 2.0f;
+    //Add your Activity names here
+    tests = [[NSArray alloc] initWithObjects:
+             @"Riley - Calculator",
+             @"Michael - Math Problem",
+             @"Michael - Clock",
+             @"Michael - SquareDrag",
+             @"Zach - Activity Creation",
+             @"Stephen - Picture Quiz",
+             @"Mason - Password",
+             @"Mason - Spelling Test",
+             @"Mason - Microphone",
+             @"Zach - Module",
+             nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - TableView DataSource
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    //Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //Return the number of rows in the section.
     return tests.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // For taller, more child-friendly cells.
-    // Note: the normal height is 44.0
-    return 88.0;
+    return 50.0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // The following chunk of code is pretty standard. It allows you to
-    // reuse cells, meaning that instead of making 1000 cells, it reuses
-    // cells that have long since left the screen. This saves memory and
-    // keeps the app from crashing.
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeveloperPortalCell"];
     
-    // Update and format the title label, or the primary label in the cell.
-    cell.textLabel.text = (NSString *)[tests objectAtIndex:indexPath.row];
-    cell.textLabel.font = font;
-    //cell.textLabel.textColor = primaryColor;
-    //[self outlineTextInLabel:cell.textLabel];
-    
-    // Update cell colors
-    //cell.backgroundColor = [self lighterColorForColor:backgroundColor];
-    //tableView.backgroundColor = [self lighterColorForColor:backgroundColor];
-    
-    // Changes the color of the lines in between cells.
-    //[tableView setSeparatorColor:primaryColor];
-    
+    //Update and format the title label, or the primary label in the cell.
+    cell.textLabel.text = [tests objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"MarkerFelt-Wide" size:30];
     
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // The following line keeps the cell from staying selected.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    // Begin appropriate test
-    switch (indexPath.row)
+    FormattedVC *viewControllerToPresent;
+    
+    //Begin appropriate test
+    NSString *selectedTest = [tests objectAtIndex:indexPath.row];
+    
+    if ([selectedTest isEqualToString:@"Riley - Calculator"])
     {
-        // Enter appropriate code to launch
+        viewControllerToPresent = [[CalculatorVC alloc] initWithNibName:@"CalculatorVC" bundle:nil];
+        [(CalculatorVC *)viewControllerToPresent setModalPresentationStyle:UIModalPresentationCustom];
+        [(CalculatorVC *)viewControllerToPresent setTransitioningDelegate:self];
+        [(CalculatorVC *)viewControllerToPresent setPreferredContentSize:CGSizeMake(304, 508)];
+    }
+    else if ([selectedTest isEqualToString:@"Michael - Math Problem"])
+    {
+        viewControllerToPresent = [[MathProblemVC alloc] init];
+        ((MathProblemVC *) viewControllerToPresent).mathEquation = @"3 + 2=#w#";
+    }
+    else if ([selectedTest isEqualToString:@"Michael - Clock"])
+    {
+        viewControllerToPresent = [[ClockDragVC alloc] init];
+        ((ClockDragVC *)viewControllerToPresent).startTime = @"04:15:23";
+        ((ClockDragVC *)viewControllerToPresent).endTime = @"08:12:34";
+    }
+    else if ([selectedTest isEqualToString:@"Michael - SquareDrag"])
+    {
+        viewControllerToPresent = [[SquaresDragAndDrop alloc] init];
+        ((SquaresDragAndDrop *) viewControllerToPresent).numberOfSquares = 40;
+    }
+    else if ([selectedTest isEqualToString:@"Zach - Activity Creation"])
+    {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityCreation" bundle:nil];
+        viewControllerToPresent = [sb instantiateInitialViewController];
+        viewControllerToPresent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    }
+    else if ([selectedTest isEqualToString:@"Stephen - Picture Quiz"])
+    {
+        viewControllerToPresent = [[PictureQuizVC alloc] init];
         
-        case 0:
-        {
-            // Riley - Calculator
-            
-            [self launchCalculator];
-            
-            
-            break;
+        NSString *imageName = @"65-note";
+        NSString *question = [NSString stringWithFormat:@"What animal is this?"];
+        NSArray *answers = [[NSArray alloc]initWithObjects:@"Pig", @"Banana", @"Cat", @"Dog", @"Lemur", @"Popcorn", nil];
+        NSNumber *correctIndex = [NSNumber numberWithInt:1];
         
-        }
-        case 1:
-        {
-            // Michael - Math
-            [self launchMathController];
-            
-            break;
-            
-        }
-        case 2:
-        {
-            // Michael - Clock
-            [self launchClockDrag];
-            
-            break;
-            
-        }
-        case 3:
-        {
-            // Michael - SquareDrag
-            [self launchSquareDrag];
-            
-            break;
-            
-        }
-        case 4:
-        {
-            // Zach - Activity Creation
-            
-            [self launchActivityCreation];
-            
-            break;
-            
-        }case 5:
-        {
-            // Stephen - Picture Quiz
-            
-            [self launchPictureQuiz];
-            
-            break;
-            
-        }case 6:
-        {
-            // Mason - Password
-            
-            [self launchPassword];
-            
-            break;
-            
-        }case 7:
-        {
-            // Mason - Spelling Test
-            
-            [self launchSpellingTest];
-            
-            break;
-            
-        }case 8:
-        {
-            // Mason - Microphone
-            
-            [self launchMicrophone];
-            
-            break;
-            
-        }case 9:
-        {
-            // Zach - Module
-            
-            [self launchModule];
-            
-            break;
-            
-        }default:
-            break;
+        ((PictureQuizVC *) viewControllerToPresent).imageName = imageName;
+        ((PictureQuizVC *) viewControllerToPresent).answers = answers;
+        ((PictureQuizVC *) viewControllerToPresent).correctIndex = correctIndex;
+        ((PictureQuizVC *) viewControllerToPresent).question = question;
+    }
+    else if ([selectedTest isEqualToString:@"Mason - Password"])
+    {
+        viewControllerToPresent = [[PasswordVC alloc] init];
+    }
+    else if ([selectedTest isEqualToString:@"Mason - Spelling Test"])
+    {
+        viewControllerToPresent = [[SpellingTestVC alloc] init];
+        ((SpellingTestVC *) viewControllerToPresent).word = @"world";
+    }
+    else if ([selectedTest isEqualToString:@"Mason - Microphone"])
+    {
+        viewControllerToPresent = [[MicrophoneVC alloc] init];
+    }
+    else
+    {
+        UIAlertController *error = [UIAlertController alertControllerWithTitle:@"We're Sorry" message:[NSString stringWithFormat:@"This activity is not compatible.\n\nPlease update \"%@\" for NewPageManager.\n\nAfter you've done so, implement the activity in TestingTVC", selectedTest] preferredStyle:UIAlertControllerStyleAlert];
+        [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:error animated:YES completion:nil];
+        return;
     }
     
+    [self presentViewController:viewControllerToPresent animated:YES completion:nil];
 }
 
-
-// Tests
-
-
--(void)launchModule
+-(void) launchModule
 {
     /*Page_ReadVC *prVC = [[Page_ReadVC alloc] initWithParent:self];
      prVC.titleString = self.name;
@@ -319,139 +237,12 @@
     
     // Create a PageManager for the activity and store it in THIS view controller.
     
-    ClassConversions *cc = [[ClassConversions alloc] init];
+    // ClassConversions *cc = [[ClassConversions alloc] init];
     
-    [[[PageManager alloc]initWithActivity: [cc activityFromDictionary:activityDict] forParentViewController:self] setIsAccessibilityElement:NO];
+    //[self presentViewController:[cc activityFromDictionary:activityDict] animated:YES completion:nil];
 }
 
--(void)launchCalculator
-{
-    /*
-    VocabVC *vocabVC = [[VocabVC alloc] init];
-    NSString *question = @"ambitious";
-    NSArray *answers = [NSArray arrayWithObjects:@"Lazy", @"Determined", @"Content", @"Satisfied", @"",nil]; //Add an empty string if less than 5 answers.
-    int indexOfAnswer = 1;
-    vocabVC.question = question;
-    vocabVC.answers = answers;
-    vocabVC.indexOfAnswer = &(indexOfAnswer);
-    */
-    CalculatorVC *calc = [[CalculatorVC alloc] initWithNibName:@"CalculatorVC" bundle:nil];
-    [calc setModalPresentationStyle:UIModalPresentationCustom];
-    [calc setTransitioningDelegate:self];
-    [calc setPreferredContentSize:CGSizeMake(304, 508)];
-    [self presentViewController:calc animated:YES completion:nil];
-
-}
-
--(void)launchPlants
-{
-    [self launchQuickQuiz];
-}
-
--(void)launchQuickQuiz
-{
-    QuickQuizVC *quickQuizVC = [[QuickQuizVC alloc] init];
-    
-    NSString *question = [NSString stringWithFormat:@"What does a plant NOT need?"];
-    
-    NSArray *answers = [NSArray arrayWithObjects:[NSString stringWithFormat:@"25-weather"],
-                        [NSString stringWithFormat:@"65-note"],
-                        [NSString stringWithFormat:@"61-brightness"],
-                        nil];
-    
-    NSNumber *correct = [NSNumber numberWithInt:1]; // Music
-    
-    quickQuizVC.question = question;
-    quickQuizVC.answers = answers;
-    quickQuizVC.correctIndex = correct;
-    
-    [self presentViewController:quickQuizVC animated:YES completion:nil];
-}
-
--(void)launchPictureQuiz
-{
-    PictureQuizVC *pictureQuizVC = [[PictureQuizVC alloc] init];
-    
-    
-    NSString *imageName = @"65-note";
-    NSString *question = [NSString stringWithFormat:@"What animal is this?"];
-    NSArray *answers = [[NSArray alloc]initWithObjects:@"Pig", @"Banana", @"Cat", @"Dog", @"Lemur", @"Popcorn", nil];
-    //NSArray *answers = @[ @"Pig", @"Banana", @"Cat", @"Dog", @"Lemur", @"Popcorn"];
-    NSNumber *correctIndex = [NSNumber numberWithInt:1];
-
-    
-     pictureQuizVC.imageName = imageName;
-     pictureQuizVC.answers = answers;
-     pictureQuizVC.correctIndex = correctIndex;
-     pictureQuizVC.question = question;
-    
-    
-    [self presentViewController:pictureQuizVC animated:YES completion:nil];
-
-}
-
--(void)launchPassword
-{
-    PasswordVC *passwordVC = [[PasswordVC alloc] init];
-    
-    [self presentViewController:passwordVC animated:YES completion:nil];
-    
-}
-
-- (void) launchMathController
-{
-    MathProblemVC *mathProblemVC = [[MathProblemVC alloc] init];
-    mathProblemVC.mathEquation = @"3 + 2=#w#";
-    
-    [self presentViewController:mathProblemVC animated:YES completion:nil];
-}
-
-- (void) launchClockDrag
-{
-    ClockDragVC *clockDragVC = [[ClockDragVC alloc] init];
-    clockDragVC.startTime = @"04:15:23";
-    clockDragVC.endTime = @"08:12:34";
-    
-    [self presentViewController:clockDragVC animated:YES completion:nil];
-}
-
-- (void) launchSquareDrag
-{
-    SquaresDragAndDrop *squaresDragVC = [[SquaresDragAndDrop alloc] init];
-    squaresDragVC.numberOfSquares = 40;
-    
-    [self presentViewController:squaresDragVC animated:YES completion:nil];
-}
-
-- (void) launchSpellingTest
-{
-    SpellingTestVC *spellingTestVC = [[SpellingTestVC alloc] init];
-    spellingTestVC.word = @"world";
-    
-    [self presentViewController:spellingTestVC animated:YES completion:nil];
-}
-
-- (void) launchActivityCreation
-{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityCreation" bundle:nil];
-    UIViewController *vc = [sb instantiateInitialViewController];
-    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:vc animated:YES completion:NULL];
-
-}
-
-- (void) launchMicrophone
-{
-    MicrophoneVC *microphoneVC = [[MicrophoneVC alloc] init];
-    //microphoneVC.word = @"world";
-    
-    [self presentViewController:microphoneVC animated:YES completion:nil];
-    
-}
-
-
-
-#pragma mark Michael's Transition Methods
+#pragma mark - Michael's Transition Methods
 
 - (UIPresentationController *) presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
 {

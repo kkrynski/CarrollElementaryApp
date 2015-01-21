@@ -18,24 +18,26 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    isPresented = NO;
+    
     /*
-    // Double check to make sure orientation is correct.
-    // iOS 7 introduced a bug where sometimes the VC
-    // doesn't know which orientation it's supposed to be.
-    // Thus, in landscape, it creates a landscape VC but
-    // any reference to its frame will result in portrait
-    // values.
-    CGRect r = self.view.bounds;
-    
-    if (r.size.height > r.size.width)
-    {
-        float w = r.size.width;
-        r.size.width = r.size.height;
-        r.size.height = w;
-    }
-    
-    self.view.bounds = r;
+     // Double check to make sure orientation is correct.
+     // iOS 7 introduced a bug where sometimes the VC
+     // doesn't know which orientation it's supposed to be.
+     // Thus, in landscape, it creates a landscape VC but
+     // any reference to its frame will result in portrait
+     // values.
+     CGRect r = self.view.bounds;
+     
+     if (r.size.height > r.size.width)
+     {
+     float w = r.size.width;
+     r.size.width = r.size.height;
+     r.size.height = w;
+     }
+     
+     self.view.bounds = r;
      */// -- Not an issue in iOS 8 *Michael*
     
     // Initialize font
@@ -53,9 +55,22 @@
     [self updateColors];
 }
 
-// These functions are used to convert a hex number (in string format) to a UIColor.
-// These functions are just to condense code.
-- (UIColor *) colorWithHexString:(NSString *)hexString {
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    isPresented = YES;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    isPresented = NO;
+}
+
+- (UIColor *) colorWithHexString:(NSString *)hexString
+{
     NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
     CGFloat alpha, red, blue, green;
     alpha = 1.0f;
@@ -65,7 +80,8 @@
     return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
 }
 
-- (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length {
+- (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length
+{
     NSString *substring = [string substringWithRange: NSMakeRange(start, length)];
     NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat: @"%@%@", substring, substring];
     unsigned hexComponent;
@@ -83,12 +99,18 @@
     //TODO: Fix this later
     primaryColor =[UIColor whiteColor];
     secondaryColor = [Definitions lighterColorForColor:[Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"backgroundColor"]]];
-
-    [UIView animateWithDuration:0.3 delay:0.0 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
+    
+    if (isPresented)
+    {
+        [UIView animateWithDuration:0.3 delay:0.0 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
+         {
+             self.view.backgroundColor = [Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"backgroundColor"]];
+         } completion:nil];
+    }
+    else
     {
         self.view.backgroundColor = [Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"backgroundColor"]];
-    } completion:nil];
-    
+    }
 }
 
 // This function outlines the text in a label, meaning it gives

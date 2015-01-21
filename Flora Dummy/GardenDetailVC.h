@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PageManager.h"
 #import "FormattedVC.h"
 
 @class UIButton_Typical;
@@ -31,7 +30,5 @@
 @property(nonatomic, retain) UIButton_Typical *readMoreButton;
 
 @property(nonatomic, retain) UIViewController *parent;
-
-@property(nonatomic, retain) PageManager *pageManager;
 
 @end

@@ -24,9 +24,6 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     internal var loadingView : UIView?
     internal var noActivitiesView : UIView?
     
-    //A Page Manager object
-    internal var pageManager : PageManager?
-    
     @IBOutlet var titleLabel : UILabel?
     @IBOutlet var activitiesTable : UITableView?
     @IBOutlet var notificationField : UITextView?
