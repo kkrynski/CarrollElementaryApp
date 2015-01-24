@@ -99,6 +99,8 @@
         {
             // Return
             
+            NSLog(@"invalid");
+
 #warning hi
             
             break;
@@ -113,12 +115,16 @@
             {
                 // Display another error
 #warning hi
-                
+                NSLog(@"student - no success");
+
             }else
             {
                 // Self dismiss
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
+                
+                NSLog(@"student - success");
+
             }
             
             break;
@@ -133,12 +139,17 @@
             {
                 // Display another error
 #warning hi
+                NSLog(@"teacher - no success");
+
                 
             }else
             {
                 // Self dismiss
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
+                
+                NSLog(@"teacher - success");
+
             }
             
             break;
@@ -152,7 +163,7 @@
 -(void)displayErrorWithCode: (int)e
 {
     // for e,    0 = invalid username password
-    //           1 = 
+    //           1 =
 }
 
 -(void) makeMePretty
