@@ -2,7 +2,7 @@
 
 -- Michael Schloss
 
-
+ATTENTION:::::::: THIS README IS OUTDATED
 
 Herein begins the Database Integration for the FloraDummy App
 
@@ -160,9 +160,9 @@ Herein begins the Database Integration for the FloraDummy App
         -----------------------------
 
 
-            --------------------
-            -- [[ Contants ]] --
-            --------------------
+            ---------------------
+            -- [[ Constants ]] --
+            ---------------------
 
 
             NSString *ActivityID
@@ -212,9 +212,9 @@ Herein begins the Database Integration for the FloraDummy App
         -------------------------------------
 
 
-            --------------------
-            -- [[ Contants ]] --
-            --------------------
+            ---------------------
+            -- [[ Constants ]] --
+            ---------------------
 
             
             NSString *ActivityName

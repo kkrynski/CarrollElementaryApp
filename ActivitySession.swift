@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 SGSC. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-@objc class ActivitySession
+class ActivitySession : NSObject
 {
     ///The Activity's ID
     var activityID = "000000"
@@ -27,4 +28,9 @@ import UIKit
     
     ///The Activity's Status
     var status = "Not Started"
+    
+    override init()
+    {
+        super.init()
+    }
 }

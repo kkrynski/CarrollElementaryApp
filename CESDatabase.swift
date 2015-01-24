@@ -517,7 +517,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         for userAccount in studentUserAccounts!
         {
-            if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
+            if userAccount["Student_User_Name"] == encryptedUserName && userAccount["Student_Password"] == encryptedPassword
             {
                 inputtedInfoIsValid = YES
                 return .UserIsStudent
@@ -526,7 +526,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         
         for userAccount in teacherUserAccounts!
         {
-            if userAccount["Username"] == encryptedUserName && userAccount["Password"] == encryptedPassword
+            if userAccount["Teacher_User_Name"] == encryptedUserName && userAccount["Teacher_Password"] == encryptedPassword
             {
                 inputtedInfoIsValid = YES
                 return .UserIsTeacher
@@ -553,7 +553,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         {
             for student in studentUserAccounts!
             {
-                if student["Username"] == encryptedUserName && student["Password"] == encryptedPassword
+                if student["Student_User_Name"] == encryptedUserName && student["Student_Password"] == encryptedPassword
                 {
                     NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
                     return NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student").writeToFile(plistPath, atomically: YES)
@@ -562,7 +562,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             
             for teacher in teacherUserAccounts!
             {
-                if teacher["Username"] == encryptedUserName && teacher["Password"] == encryptedPassword
+                if teacher["Teacher_User_Name"] == encryptedUserName && teacher["Teacher_Password"] == encryptedPassword
                 {
                     NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
                     return NSArray(objects: encryptedUserName, encryptedPassword, teacher["Teacher_ID"]!, "Teacher").writeToFile(plistPath, atomically: YES)
