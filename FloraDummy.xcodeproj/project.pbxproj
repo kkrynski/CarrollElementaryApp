@@ -13,7 +13,6 @@
 		104187D61A462BBF001C571C /* Foggy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CA1A461CDE001C571C /* Foggy.mp4 */; };
 		104187D71A462BBF001C571C /* Night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CB1A461CDE001C571C /* Night.mp4 */; };
 		104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */; };
-		104187D91A462BBF001C571C /* Rain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CD1A461CDE001C571C /* Rain.mp4 */; };
 		104187DA1A462BBF001C571C /* Snow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CE1A461CDE001C571C /* Snow.mp4 */; };
 		104187DB1A462BBF001C571C /* Sunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CF1A461CDE001C571C /* Sunny.mp4 */; };
 		104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187D01A461CDE001C571C /* Thunder Storm.mp4 */; };
@@ -843,15 +842,13 @@
 				5D03D4AE1A12E2FA0008A9EA /* SpellingTestVC.h */,
 				5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */,
 				5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */,
-				5D709CAD1A09A2F8000F44DF /* PasswordVC.h */,
-				5D709CAE1A09A2F8000F44DF /* PasswordVC.m */,
-				5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */,
-				5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */,
 				5D18E9FF1A210C7500F8DB94 /* Stop_Button.jpeg */,
+				5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */,
 				5D18EA011A210C8A00F8DB94 /* Record_Button.png */,
 				5D18E9F81A2103A800F8DB94 /* MicrophoneVC.h */,
 				5D18E9F91A2103A800F8DB94 /* MicrophoneVC.m */,
 				5D18E9FA1A2103A800F8DB94 /* MicrophoneVC.xib */,
+				92C02C951A7404D9007D011D /* Password */,
 			);
 			name = Mason;
 			sourceTree = "<group>";
@@ -980,6 +977,16 @@
 				923774541A0552A400A49D14 /* PictureQuizVC.xib */,
 			);
 			name = "Stephen's Stuff";
+			sourceTree = "<group>";
+		};
+		92C02C951A7404D9007D011D /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				5D709CAD1A09A2F8000F44DF /* PasswordVC.h */,
+				5D709CAE1A09A2F8000F44DF /* PasswordVC.m */,
+				5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */,
+			);
+			name = Password;
 			sourceTree = "<group>";
 		};
 		92C1177B1A22A13D003506DB /* Activity Creation */ = {

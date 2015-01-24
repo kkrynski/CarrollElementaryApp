@@ -107,7 +107,7 @@ Herein begins the Database Integration for the FloraDummy App
 
 
             --------------------
-            -- [[ Contants ]] --
+            -- [[ Constants ]] --
             --------------------
 
 
