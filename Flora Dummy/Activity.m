@@ -12,6 +12,19 @@
 
 #import "OBJ-CDefinitions.h"
 
+//PLEASE CHANGE activityData TO AN NSMutableArray
+//THIS NSMutableArray WILL HOLD DICTIONARYS OF KEY VALUE PAIRS EXACTLY AS IT USED TO.
+//i.e. [[XXActivityTypeXX:nil], [xxActivityType2XX:nil]]
+//
+//      |____________________|  |_____________________|
+//                ||                      ||
+//           NSDictionary             NSDictionary
+//     |_______________________________________________|
+//                            ||
+//                      NSMutableArray
+
+
+
 @implementation Activity
 @synthesize name, modDate, releaseDate, dueDate, iconImageName, activityID;
 @synthesize pageArray;

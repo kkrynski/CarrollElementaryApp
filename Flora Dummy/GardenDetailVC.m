@@ -9,7 +9,6 @@
 #import "GardenDetailVC.h"
 
 #import "FloraDummy-Swift.h"
-#import "PageManager.h"
 #import "ClassConversions.h"
 
 @interface GardenDetailVC ()
@@ -21,7 +20,6 @@
 @synthesize nameLabel, descriptionTextView, readMoreButton;
 @synthesize font;
 @synthesize parent;
-@synthesize pageManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -160,11 +158,6 @@
     
     
     [activityDict setObject:[NSArray arrayWithObjects:page1, page2, nil] forKey:@"PageArray"];
-    
-    // Create a PageManager for the activity and store it in THIS view controller.
-    ClassConversions *cc = [[ClassConversions alloc] init];
-    
-    pageManager = [[PageManager alloc]initWithActivity: [cc activityFromDictionary:activityDict] forParentViewController:self];
 
 }
 

@@ -25,6 +25,8 @@
     
     //Store font to be used
     UIFont *font;
+    
+    BOOL isPresented;
 }
 
 @property(nonatomic, retain) NSDictionary *colorSchemeDictionary;
