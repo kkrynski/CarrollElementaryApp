@@ -47,19 +47,123 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAccountsWereDownloaded) name: UserAccountsDownloaded object:nil];
+    
+    accountsWereDownloaded = NO;
+    userIsWaiting = NO;
+    
+    [[CESDatabase databaseManagerForPasswordVCClass] downloadUserAccounts];
+    
+    
     [self makeMePretty];
+}
+
+-(void)userAccountsWereDownloaded
+{
+    accountsWereDownloaded = YES;
+    
+    if (userIsWaiting == NO)
+    {
+        return;
+    }
 }
 
 - (IBAction)submit:(id)sender
 {
-    NSString *defaultUsername = @"qwerty";
-    NSString *defaultPassword = @"qwerty";
+    if (accountsWereDownloaded)
+    {
+        [self checkInfo];
     
+        NSLog(@"Submit: accounts were downloaded");
+
+    }else
+    {
+        userIsWaiting = YES;
+        
+        // Move on
+        
+        NSLog(@"Submit: accounts were NOT downloaded");
+    }
+}
+
+-(void)checkInfo
+{
     NSString *tempUsername = usernameInput.text;
     NSString *tempPassword = passwordInput.text;
     
-    if([tempUsername isEqualToString: defaultUsername] && [tempPassword isEqualToString: defaultPassword])
-        [self dismissViewControllerAnimated:YES completion:nil];
+    UserState userState = [[CESDatabase databaseManagerForPasswordVCClass] inputtedUsernameIsValid:tempUsername andPassword:tempPassword];
+    
+    switch (userState)
+    {
+        case UserStateUserInvalid:
+        {
+            // Return
+            
+            NSLog(@"invalid");
+
+#warning hi
+            
+            break;
+        }
+        case UserStateUserIsStudent:
+        {
+            // Student
+            
+            BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:tempUsername andPassword:tempPassword];
+            
+            if (success == NO)
+            {
+                // Display another error
+#warning hi
+                NSLog(@"student - no success");
+
+            }else
+            {
+                // Self dismiss
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                NSLog(@"student - success");
+
+            }
+            
+            break;
+        }
+        case UserStateUserIsTeacher:
+        {
+            // Teacher
+            
+            BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:tempUsername andPassword:tempPassword];
+            
+            if (success == NO)
+            {
+                // Display another error
+#warning hi
+                NSLog(@"teacher - no success");
+
+                
+            }else
+            {
+                // Self dismiss
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                NSLog(@"teacher - success");
+
+            }
+            
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+-(void)displayErrorWithCode: (int)e
+{
+    // for e,    0 = invalid username password
+    //           1 =
 }
 
 -(void) makeMePretty
@@ -118,5 +222,55 @@
     
     return NO;
 }
+
+/*
+ --------------------
+ -- [[ Constants ]] --
+ --------------------
+ 
+ 
+ NSString *UserAccountsDownloaded ([UserAccountsDatabaseManager UserAccountsDownloaded])
+ *  Use this constant to listen for the notification when user accounts finish
+ downloading
+ 
+ 
+ -------------------
+ -- [[ Methods ]] --
+ -------------------
+ 
+ 
+ - (void) downloadUserAccounts
+ *  Downloads the user accounts for Teachers and Students.  This method should be called
+ immediately in 'viewDidLoad:'
+ *  Once the accounts have downloaded, this method sends out the "UserAccountsDownloaded"
+ notification.  Add your class as an observer to properly respond to the finished download
+ 
+ - (NSString *) inputtedUsernameIsValid:(NSString *)username andPassword:(NSString *)password
+ *  Compares the received user account information with the downloaded information.  If no
+ data has been downloaded, this method immediately returns 'UserStateUserInvalid'.
+ *  There are three NSString Constants that can be returned:
+ *  'UserStateUserIsStudent' -- If you receive this NSString constant, that means the
+ inputted information is for a Student Account
+ *  'UserStateUserIsTeacher' -- If you receive this NSString constant, that means the
+ inputted information is for a Teacher Account
+ *  'UserStateUserInvalid'   -- If you receive this NSString constant, that means the
+ inputted information is invalid
+ 
+ - (BOOL) storeInputtedUsername:(NSString *)username andPassword:(NSString *)password
+ *  Stores the inputted Username and Password onto the device.  User information is encrypted
+ first.
+ *  NOTE: This method will do nothing if '- (UserState) inputtedUserInformationIsValid:'
+ hasn't been called yet, or returned UserStateUserInvalid.
+ *  If returned 'true', the information was successfuly stored onto the device.
+ If returned 'false' the information was not successfully stored onto the device.
+ *  You should use this Bool to determine whether or not you can/should dismiss the
+ PasswordVC.
+ 
+ NOTE:   You will not have access to the downloaded user accounts.  This is due in part because
+ they are not stored on the device's memory, and in part because they are stored as Swift
+ objects.  They are unreadable to all but the database manager, and are never decrypted.
+ */
+
+
 
 @end

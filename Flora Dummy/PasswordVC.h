@@ -16,6 +16,9 @@
 {
     NSString *username;
     NSString *password;
+    
+    BOOL accountsWereDownloaded;
+    BOOL userIsWaiting;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *submitButton;

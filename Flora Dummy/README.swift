@@ -106,9 +106,9 @@ Herein begins the Database Integration for the FloraDummy App
         ---------------------------------
 
 
-            ---------------------
+            --------------------
             -- [[ Constants ]] --
-            ---------------------
+            --------------------
 
 
             NSString *UserAccountsDownloaded ([UserAccountsDatabaseManager UserAccountsDownloaded])
