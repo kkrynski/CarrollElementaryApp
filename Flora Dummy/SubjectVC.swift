@@ -18,7 +18,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     
     //List of activities come from the dictionary of courses
     //internal var courseDictionary : NSDictionary?
-    internal var activities = Array<Dictionary<String, String>>()
+    internal var activities = Array<Activity>()
     
     //The feedback views
     internal var loadingView : UIView?
@@ -69,7 +69,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         activitiesTable!.separatorColor = primaryColor
         
         //Update the activities for the tableView
-        activities = Array<Dictionary<String, String>>()
+        activities = Array<Activity>()
         
         let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
         let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
@@ -94,7 +94,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                         
                         if activity["Class_ID"] == subjectClass["Class_ID"] && (releaseDate.compare(NSDate()) == .OrderedAscending || releaseDate.compare(NSDate()) == .OrderedSame) && (dueDate.compare(NSDate()) == .OrderedDescending || dueDate.compare(NSDate()) == .OrderedSame)
                         {
-                            activities.append(activity)
+                            activities.append(CESDatabase.databaseManagerForMainActivitiesClass().activityForActivityDictionary(activity))
                         }
                     }
                 }
@@ -129,7 +129,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     //Updates the activityTable's data if we went to this screen before it was all downloaded
     func activityDataLoaded()
     {
-        activities = Array<Dictionary<String, String>>()
+        activities = Array<Activity>()
         let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
         let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
         
@@ -153,7 +153,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                         
                         if activity["Class_ID"] == subjectClass["Class_ID"] && (releaseDate.compare(NSDate()) == .OrderedAscending || releaseDate.compare(NSDate()) == .OrderedSame) && (dueDate.compare(NSDate()) == .OrderedDescending || dueDate.compare(NSDate()) == .OrderedSame)
                         {
-                            activities.append(activity)
+                            activities.append(CESDatabase.databaseManagerForMainActivitiesClass().activityForActivityDictionary(activity))
                         }
                     }
                 }
@@ -286,7 +286,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         var cell = tableView.dequeueReusableCellWithIdentifier("SubjectCell") as UITableViewCell?
         
         //Update the titleLabel for the cell to the Activity's Name
-        cell!.textLabel!.text = activities[indexPath.row]["Activity_Name"]
+        cell!.textLabel!.text = activities[indexPath.row].name
         cell!.textLabel!.font = font
         cell!.textLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(cell!.textLabel!)
@@ -344,11 +344,9 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
             
             }, completion: { (finished) -> Void in
                 
-                let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row]["Activity_ID"]!)
-                let pageManager = NewPageManager()
-                pageManager.currentActivitySession = activitySession
-                //TODO: Fix This
-                pageManager.currentActivity = nil
+                let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row].name)
+                let pageManager = NewPageManager(nibName: nil, bundle: nil, activitySession: activitySession, forActivity: self.activities[indexPath.row], withParent:self)
+                pageManager.presentNextViewController()
         })
         
         let animation = CABasicAnimation(keyPath: "cornerRadius")

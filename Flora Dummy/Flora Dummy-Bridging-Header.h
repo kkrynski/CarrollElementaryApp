@@ -1,27 +1,29 @@
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
-
 #import "FormattedVC.h"
+#import "OBJ-CDefinitions.h"
+#import "CESEncryption.h"
+#import "Activity.h"
 
-#import "CalculatorVC.h"
-#import "PasswordVC.h"
+#import "TestingTVC.h"
+
+
+//[[Weather View]]\\
 
 #import "WeatherItem.h"
 #import "WeatherItem+Parse.h"
 #import "WeatherManager.h"
 #import "LocationManager.h"
 
+
+//[[News Feed]]\\
+
 #import "MWFeedParser.h"
 #import "NSString+HTML.h"
 
-#import "OBJ-CDefinitions.h"
 
-#import "ClassConversions.h"
-#import "PageCreationVC.h"
+//[[Activities]]\\
 
-#import "CESEncryption.h"
-
+#import "CalculatorVC.h"
+#import "PasswordVC.h"
 #import "Page_GardenDataVC.h"
 #import "ModuleVC.h"
 #import "PictureQuizVC.h"
@@ -29,3 +31,4 @@
 //#import "SandboxVC.h"
 #import "SpellingTestVC.h"
 #import "VocabVC.h"
+#import "PageCreationVC.h"

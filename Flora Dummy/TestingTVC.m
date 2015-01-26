@@ -79,6 +79,14 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    Activity *activity = [[Activity alloc] init];
+    activity.activityDescription = @"This is a test Activity";
+    activity.name = @"Test Activity";
+    
+    ActivitySession *testSession = [[ActivitySession alloc] init];
+    
+    NSMutableArray *testSessionData;
+    
     FormattedVC *viewControllerToPresent;
     
     //Begin appropriate test
@@ -86,32 +94,48 @@
     
     if ([selectedTest isEqualToString:@"Riley - Calculator"])
     {
-        viewControllerToPresent = [[CalculatorVC alloc] initWithNibName:@"CalculatorVC" bundle:nil];
+        FormattedVC *viewControllerToPresent = [[CalculatorVC alloc] initWithNibName:@"CalculatorVC" bundle:nil];
+        
         [(CalculatorVC *)viewControllerToPresent setModalPresentationStyle:UIModalPresentationCustom];
         [(CalculatorVC *)viewControllerToPresent setTransitioningDelegate:self];
         [(CalculatorVC *)viewControllerToPresent setPreferredContentSize:CGSizeMake(304, 508)];
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else if ([selectedTest isEqualToString:@"Michael - Math Problem"])
     {
-        viewControllerToPresent = [[MathProblemVC alloc] init];
-        ((MathProblemVC *) viewControllerToPresent).mathEquation = @"3 + 2=#w#";
+        testSessionData = [NSMutableArray arrayWithObjects:
+                           [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"3 + 2=#w#", @"Equation", nil],
+                                                                       [[NSNull alloc] init], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil], nil];
     }
     else if ([selectedTest isEqualToString:@"Michael - Clock"])
     {
         viewControllerToPresent = [[ClockDragVC alloc] init];
         ((ClockDragVC *)viewControllerToPresent).startTime = @"04:15:23";
         ((ClockDragVC *)viewControllerToPresent).endTime = @"08:12:34";
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else if ([selectedTest isEqualToString:@"Michael - SquareDrag"])
     {
         viewControllerToPresent = [[SquaresDragAndDrop alloc] init];
         ((SquaresDragAndDrop *) viewControllerToPresent).numberOfSquares = 40;
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else if ([selectedTest isEqualToString:@"Zach - Activity Creation"])
     {
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityCreation" bundle:nil];
-        viewControllerToPresent = [sb instantiateInitialViewController];
+        FormattedVC *viewControllerToPresent = [sb instantiateInitialViewController];
+        
         viewControllerToPresent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else if ([selectedTest isEqualToString:@"Stephen - Picture Quiz"])
     {
@@ -126,19 +150,31 @@
         ((PictureQuizVC *) viewControllerToPresent).answers = answers;
         ((PictureQuizVC *) viewControllerToPresent).correctIndex = correctIndex;
         ((PictureQuizVC *) viewControllerToPresent).question = question;
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else if ([selectedTest isEqualToString:@"Mason - Password"])
     {
         viewControllerToPresent = [[PasswordVC alloc] init];
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else if ([selectedTest isEqualToString:@"Mason - Spelling Test"])
     {
         viewControllerToPresent = [[SpellingTestVC alloc] init];
         ((SpellingTestVC *) viewControllerToPresent).word = @"world";
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else if ([selectedTest isEqualToString:@"Mason - Microphone"])
     {
         viewControllerToPresent = [[MicrophoneVC alloc] init];
+        
+        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+        return;
     }
     else
     {
@@ -148,7 +184,13 @@
         return;
     }
     
-    [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+    testSession.activityData = testSessionData;
+    
+    [[NewPageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
+    
+    //pageManager.currentActivitySession = testSession;
+    
+    //[self presentViewController:pageManager animated:YES completion:nil];
 }
 
 -(void) launchModule

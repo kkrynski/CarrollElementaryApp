@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CESDatabaseActivity;
+@class NewPageManager;
 
-@interface FormattedVC : UIViewController <CESDatabaseActivity>
+@interface FormattedVC : UIViewController
 {
     //Holds loaded data for colors, specifically HEX code
     NSDictionary *colorSchemeDictionary;
@@ -28,6 +28,8 @@
     
     BOOL isPresented;
 }
+
+@property (nonatomic, retain) NewPageManager *pageManagerParent;
 
 @property(nonatomic, retain) NSDictionary *colorSchemeDictionary;
 @property(nonatomic, retain) UIColor *primaryColor;
@@ -89,5 +91,9 @@
 ///
 /// \note This method is deprecated, please use the \b Definitions method instead
 - (UIColor *)darkerColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
+
+- (void) restoreActivityState:(id) object;
+
+- (id) saveActivityState;
 
 @end

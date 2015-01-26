@@ -89,26 +89,14 @@ class NewPageManager: FormattedVC
     }
     
     //Current Activity (Session) Information
-    var currentActivity : Activity?
+    var currentActivity : Activity
     
-    private var _currentActivitySession : ActivitySession?
-    var currentActivitySession : ActivitySession?
-        {
-        set
-        {
-            _currentActivitySession = newValue
-            presentNextViewController()
-        }
-        get
-        {
-            return _currentActivitySession
-        }
-    }
-    var activityID : String?
+    private var currentActivitySession : ActivitySession
+    private var activityID : String
         {
         get
         {
-            return _currentActivitySession?.activityID
+            return currentActivitySession.activityID
         }
     }
     
@@ -132,9 +120,35 @@ class NewPageManager: FormattedVC
     private var oldViewControllerConstraints = Array<NSLayoutConstraint>()
     private var currentViewControllerConstraints = Array<NSLayoutConstraint>()
     
-    var subjectParent : SubjectVC?
+    var subjectParent : UIViewController
     
     //MARK: - Methods
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        subjectParent = FormattedVC(nibName: nil, bundle: nil)
+        currentActivitySession = ActivitySession()
+        currentActivity = Activity()
+        
+        super.init(coder: aDecoder)
+    }
+    
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, activitySession: ActivitySession, forActivity activity: Activity, withParent parent: UIViewController)
+    {
+        subjectParent = parent
+        
+        currentActivitySession = activitySession
+        currentActivity = activity
+        
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        let introVC = Page_IntroVC()
+        introVC.activityTitle = activity.name
+        introVC.summary = activity.activityDescription
+        
+        currentViewController = introVC
+        continueWithPresentation()
+    }
     
     override func viewDidLoad()
     {
@@ -178,7 +192,7 @@ class NewPageManager: FormattedVC
     
     private func setUpButtons()
     {
-        if currentIndex == currentActivitySession!.activityData.count - 1 //Final Page
+        if currentIndex == currentActivitySession.activityData.count - 1 //Final Page
         {
             view.removeConstraints(previousButtonConstraints)
             view.removeConstraints(nextButtonConstraints)
@@ -348,7 +362,7 @@ class NewPageManager: FormattedVC
         
         let savedObject: AnyObject? = (currentViewController as CESDatabaseActivity).saveActivityState?()
         
-        let currentActivityPage = currentActivitySession!.activityData[currentIndex]
+        let currentActivityPage = currentActivitySession.activityData[currentIndex]
         let currentActivityType = currentActivityPage.keys.array[0]
         
         if savedObject == nil
@@ -365,25 +379,25 @@ class NewPageManager: FormattedVC
         //Update the currentActivity values with the newActivityData values
         for index in 0...(newActivityData.count - 1)
         {
-            currentActivitySession!.activityData[index].updateValue(newActivityData[index].values.array[0], forKey: currentActivitySession!.activityData[index].keys.array[0])
+            currentActivitySession.activityData[index].updateValue(newActivityData[index].values.array[0], forKey: currentActivitySession.activityData[index].keys.array[0])
         }
         
         if button.titleLabel!.text == "Finish"  //We are actually finishing
         {
-            currentActivitySession!.endDate = NSDate()
+            currentActivitySession.endDate = NSDate()
             
-            if currentActivitySession!.endDate!.compare(currentActivity!.dueDate) == .OrderedDescending
+            if currentActivitySession.endDate!.compare(currentActivity.dueDate) == .OrderedDescending
             {
-                currentActivitySession!.status = "Past Due"
+                currentActivitySession.status = "Past Due"
             }
             else
             {
-                currentActivitySession!.status = "Finished"
+                currentActivitySession.status = "Finished"
             }
         }
         else
         {
-            currentActivitySession!.status = "Started"
+            currentActivitySession.status = "Started"
         }
         
         let wheel = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -404,7 +418,7 @@ class NewPageManager: FormattedVC
             self.saveButton!.transform = CGAffineTransformMakeScale(0.7, 0.7)
             
             }, completion: { (finished) -> Void in
-                self.databaseManager.uploadActivitySession(self.currentActivitySession!, completion: { (uploadSuccess) -> Void in
+                self.databaseManager.uploadActivitySession(self.currentActivitySession, completion: { (uploadSuccess) -> Void in
                     if uploadSuccess == YES
                     {
                         self.dismissViewControllerAnimated(YES, completion: nil)
@@ -419,33 +433,19 @@ class NewPageManager: FormattedVC
     
     func presentNextViewController()
     {
-        //Perform some quick checks to make sure we have a valid activity
-        if currentActivitySession != nil && activityID != nil
-        {
-            if currentActivitySession!.activityData.count == 0
-            {
-                displayDismissAlert("We're sorry|There are no Activity Pages for this activity\n\nPlease contact your teacher for assistance")
-                return
-            }
-        }
-        else
-        {
-            displayDismissAlert("We're sorry|There is no specified Activity Information for this activity\n\nPlease contact your teacher for assistance")
-            return
-        }
-        
         //Move the viewController on screen to the oldViewController object
         oldViewController = currentViewController
         
         //If we actually have an oldActivity
-        if oldViewController != nil
+        if let oldVC = oldViewController
         {
             //Get the oldActivity's type
-            let oldActivityPage = currentActivitySession!.activityData[currentIndex - 1]
+            println(currentActivitySession.activityData)
+            let oldActivityPage = currentActivitySession.activityData[currentIndex - 1]
             let oldActivityType = oldActivityPage.keys.array[0]
             
             //Get the savedObject for the activity
-            let savedObject: AnyObject? = (oldViewController as CESDatabaseActivity).saveActivityState?()
+            let savedObject: AnyObject? = oldVC.saveActivityState()
             
             //If the activity didn't return a saved object, save a null value
             if savedObject == nil
@@ -459,13 +459,13 @@ class NewPageManager: FormattedVC
         }
         
         //Get the new activity's type
-        let currentActivityPage = currentActivitySession!.activityData[currentIndex]
+        let currentActivityPage = currentActivitySession.activityData[currentIndex]
         let currentActivityType = currentActivityPage.keys.array[0]
         
         //Initialize the new activity
         currentViewController = viewControllerForPageType(ActivityViewControllerType(rawValue: currentActivityType.integerValue)!)
         
-        currentViewController?.view.userInteractionEnabled = (currentActivitySession!.status == "Started" || currentActivitySession!.status == "Not Started")
+        currentViewController?.view.userInteractionEnabled = (currentActivitySession.status == "Started" || currentActivitySession.status == "Not Started")
         
         //Check if we have already saved data in the activity (i.e. the user is going backwards)
         if newActivityData[currentIndex].values.array[0].classForCoder !== NSNull.classForCoder()
@@ -485,18 +485,24 @@ class NewPageManager: FormattedVC
             if currentViewController != nil
             {
                 currentViewController!.willMoveToParentViewController(self)
+                currentViewController!.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
                 view.addSubview(currentViewController!.view)
                 
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+                
+                view.addConstraints(currentViewControllerConstraints)
                 
                 currentViewController!.didMoveToParentViewController(self)
             }
             self.modalPresentationStyle = .Custom
-            self.transitioningDelegate = subjectParent
-            subjectParent!.presentViewController(self, animated: YES, completion: nil)
+            if subjectParent.classForCoder !== TestingTVC.classForCoder()
+            {
+                self.transitioningDelegate = (subjectParent as SubjectVC)
+            }
+            subjectParent.presentViewController(self, animated: YES, completion: nil)
         }
         else
         {
@@ -505,12 +511,17 @@ class NewPageManager: FormattedVC
             {
                 currentViewController!.view.alpha = 0.0
                 currentViewController!.willMoveToParentViewController(self)
+                currentViewController!.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
                 view.addSubview(currentViewController!.view)
                 
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints = Array<NSLayoutConstraint>()
+                
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+                
+                view.addConstraints(currentViewControllerConstraints)
                 
                 currentViewController!.didMoveToParentViewController(self)
                 

@@ -549,6 +549,8 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
         
+        
+        
         if inputtedUsernameIsValid(username, andPassword: password) != .UserInvalid
         {
             for student in studentUserAccounts!

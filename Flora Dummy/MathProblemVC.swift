@@ -56,7 +56,7 @@ class MathProblemAnswerGradiant : UIView
     }
 }
 
-class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
+class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
 {
     /**
     The Math Equation to be displayed.
@@ -158,6 +158,16 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         view.addSubview(calculatorButton)
         calculatorButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
         calculatorButton.center = CGPointMake(view.frame.size.width/2.0, equationView!.frame.size.height/2.0 + equationView!.center.y + 10 + calculatorButton.frame.size.height/2.0)
+    }
+    
+    override func restoreActivityState(object: AnyObject!)
+    {
+        println(object)
+    }
+    
+    override func saveActivityState() -> AnyObject!
+    {
+        return nil
     }
     
     //Creates the left equation side
