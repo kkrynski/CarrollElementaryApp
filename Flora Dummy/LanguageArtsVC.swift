@@ -15,5 +15,6 @@ class LanguageArtsVC: SubjectVC, UITableViewDelegate, UITableViewDataSource, UIS
         super.init(coder: aDecoder)
         
         subjectID = "4"
+        subjectName = "Language Arts"
     }
 }

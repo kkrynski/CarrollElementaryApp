@@ -11,24 +11,26 @@ import UIKit
 class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
 {
     //The current grade
-    internal var gradeNumber : String?
+    private var gradeNumber : String?
     
     //The borderWidth for display views
-    internal let borderWidth = 2.0
+    private let borderWidth = 2.0
     
     //List of activities come from the dictionary of courses
-    //internal var courseDictionary : NSDictionary?
-    internal var activities = Array<Activity>()
+    private var activities = Array<Activity>()
     
     //The feedback views
-    internal var loadingView : UIView?
-    internal var noActivitiesView : UIView?
+    private var loadingView : UIView?
+    private var noActivitiesView : UIView?
     
     @IBOutlet var titleLabel : UILabel?
     @IBOutlet var activitiesTable : UITableView?
     @IBOutlet var notificationField : UITextView?
     
     internal var subjectID = String(-1)
+    internal var subjectName = "Nil Subject"
+    
+    private var activitiesLoaded = NO
     
     //Get all JSON data on startup
     override func viewDidLoad()
@@ -49,19 +51,14 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: ActivityDataLoaded, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: UIApplicationSignificantTimeChangeNotification, object: nil)
         
-        //Update all colors
-        primaryColor = .whiteColor()
-        
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
         
         notificationField!.textColor = primaryColor
         notificationField!.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!);
         Definitions.outlineTextInTextView(notificationField!, forFont: font!)
-        //Create the border for the textView
         notificationField!.layer.borderWidth = 2.0
         notificationField!.layer.borderColor = UIColor.whiteColor().CGColor
-        //Set the textColor
         notificationField!.textColor = primaryColor
         
         //Set colors for activitiesTable
@@ -70,6 +67,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         
         //Update the activities for the tableView
         activities = Array<Activity>()
+        activitiesLoaded = CESDatabase.databaseManagerForMainActivitiesClass().activitiesLoaded
         
         let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
         let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
@@ -87,7 +85,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                     {
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.timeZone = NSTimeZone.localTimeZone()
-                        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                         
                         let releaseDate = dateFormatter.dateFromString(activity["Release_Date"]!)!
                         let dueDate = dateFormatter.dateFromString(activity["Due_Date"]!)!
@@ -117,9 +115,20 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         }
         else
         {
-            if loadingView == nil
+            if loadingView == nil && activitiesLoaded == NO
             {
                 showLittleLoadingView()
+            }
+            else if activitiesLoaded == YES
+            {
+                UIView.animateWithDuration(transitionLength, delay: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
+                    self.loadingView?.alpha = 0.0
+                    self.noActivitiesView?.alpha = 0.0
+                    self.activitiesTable!.reloadData()
+                    }, completion: { (finished) -> Void in
+                        self.noActivitiesView?.removeFromSuperview()
+                        self.loadingView?.removeFromSuperview()
+                })
             }
         }
         
@@ -129,6 +138,8 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     //Updates the activityTable's data if we went to this screen before it was all downloaded
     func activityDataLoaded()
     {
+        activitiesLoaded = YES
+        
         activities = Array<Activity>()
         let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
         let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
@@ -146,7 +157,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                     {
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.timeZone = NSTimeZone.localTimeZone()
-                        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                         
                         let releaseDate = dateFormatter.dateFromString(activity["Release_Date"]!)!
                         let dueDate = dateFormatter.dateFromString(activity["Due_Date"]!)!
@@ -194,7 +205,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         noActivitiesLabel.font = font
         noActivitiesLabel.numberOfLines = 0
         noActivitiesLabel.textAlignment = .Center
-        noActivitiesLabel.text = "There are no activites in this class for\nLanguage Arts!"
+        noActivitiesLabel.text = "There are no activites for you in\n\(subjectName)!"
         Definitions.outlineTextInLabel(noActivitiesLabel)
         noActivitiesLabel.sizeToFit()
         noActivitiesLabel.center = CGPointMake(noActivitiesView!.frame.size.width/2.0, noActivitiesView!.frame.size.height/2.0)

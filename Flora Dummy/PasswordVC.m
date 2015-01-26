@@ -16,7 +16,7 @@
     [super drawRect:rect];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), rect.size.height - 10);
+    CGContextMoveToPoint(context, CGRectGetMinX(rect), rect.size.height - 15);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor] );
@@ -29,7 +29,7 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        [self setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 7, 10)]];
+        [self setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 10)]];
         self.leftViewMode = UITextFieldViewModeAlways;
     }
     return self;
@@ -39,26 +39,20 @@
 
 @implementation PasswordVC
 
-@synthesize usernameInput, passwordInput;
-@synthesize submitButton;
-@synthesize userLabel, passwordLabel;
-
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
+    [self makeMePretty];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAccountsWereDownloaded) name: UserAccountsDownloaded object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAccountsWereDownloaded) name:UserAccountsDownloaded object:nil];
     
     accountsWereDownloaded = NO;
     userIsWaiting = NO;
     
     [[CESDatabase databaseManagerForPasswordVCClass] downloadUserAccounts];
-    
-    
-    [self makeMePretty];
 }
 
--(void)userAccountsWereDownloaded
+-(void) userAccountsWereDownloaded
 {
     accountsWereDownloaded = YES;
     
@@ -68,88 +62,80 @@
     }
 }
 
-- (IBAction)submit:(id)sender
+- (IBAction) submit:(id)sender
 {
     if (accountsWereDownloaded)
     {
         [self checkInfo];
-    
-        NSLog(@"Submit: accounts were downloaded");
-
-    }else
+    }
+    else
     {
         userIsWaiting = YES;
-        
-        // Move on
-        
-        NSLog(@"Submit: accounts were NOT downloaded");
     }
 }
 
--(void)checkInfo
+-(void) checkInfo
 {
-    NSString *tempUsername = usernameInput.text;
-    NSString *tempPassword = passwordInput.text;
-    
-    UserState userState = [[CESDatabase databaseManagerForPasswordVCClass] inputtedUsernameIsValid:tempUsername andPassword:tempPassword];
+    UserState userState = [[CESDatabase databaseManagerForPasswordVCClass] inputtedUsernameIsValid:usernameInput.text andPassword:passwordInput.text];
     
     switch (userState)
     {
+            //The username and password combination is invalid
         case UserStateUserInvalid:
         {
-            // Return
-            
             NSLog(@"invalid");
 
-#warning hi
+            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Incorrect Information" message:@"We're sorry, but that username and password combination is incorrect.\n\nPlease try again." preferredStyle:UIAlertControllerStyleAlert];
+            [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:error animated:YES completion:nil];
             
             break;
         }
+            
+            //The username and password combination is to a student account
         case UserStateUserIsStudent:
         {
-            // Student
-            
-            BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:tempUsername andPassword:tempPassword];
+            BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:usernameInput.text andPassword:passwordInput.text];
             
             if (success == NO)
             {
                 // Display another error
-#warning hi
-                NSLog(@"student - no success");
-
-            }else
-            {
-                // Self dismiss
+                UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Unexpected Error" message:@"We're sorry, but there's been an error logging you in.\n\nPlease try again and ask your teacher for assistance." preferredStyle:UIAlertControllerStyleAlert];
+                [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:error animated:YES completion:nil];
                 
+                NSLog(@"student - no success");
+            }
+            else
+            {
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
                 NSLog(@"student - success");
-
             }
             
             break;
         }
+            
+            //The username and password combination is to a teacher account
         case UserStateUserIsTeacher:
         {
-            // Teacher
-            
-            BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:tempUsername andPassword:tempPassword];
+            BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:usernameInput.text andPassword:passwordInput.text];
             
             if (success == NO)
             {
                 // Display another error
-#warning hi
-                NSLog(@"teacher - no success");
-
+                UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Unexpected Error" message:@"We're sorry, but there's been an error logging you in.\n\nPlease try again and ask your teacher for assistance." preferredStyle:UIAlertControllerStyleAlert];
+                [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:error animated:YES completion:nil];
                 
-            }else
+                NSLog(@"teacher - no success");
+            }
+            else
             {
                 // Self dismiss
-                
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
                 NSLog(@"teacher - success");
-
             }
             
             break;
@@ -160,29 +146,16 @@
     }
 }
 
--(void)displayErrorWithCode: (int)e
-{
-    // for e,    0 = invalid username password
-    //           1 =
-}
-
 -(void) makeMePretty
 {
-    [_titleLabel setTextColor:self.primaryColor];
+    [titleLabel setTextColor:self.primaryColor];
     
-    //userLabel.font = self.font;
     userLabel.textColor = self.primaryColor;
-    
-    //passwordLabel.font = self.font;
     passwordLabel.textColor = self.primaryColor;
     
-    //usernameInput.font = self.font;
-    //usernameInput.backgroundColor = self.secondaryColor;
     usernameInput.textColor = self.primaryColor;
     usernameInput.text = @"qwerty";
     
-    //passwordInput.font = self.font;
-    //passwordInput.backgroundColor = self.secondaryColor;
     passwordInput.textColor = self.primaryColor;
     passwordInput.text = @"qwerty";
 
@@ -190,7 +163,7 @@
     [submitButton setTitleColor:self.primaryColor forState:UIControlStateNormal];
     
     [Definitions outlineTextInLabel:userLabel];
-    [Definitions outlineTextInLabel:_titleLabel];
+    [Definitions outlineTextInLabel:titleLabel];
     [Definitions outlineTextInLabel:passwordLabel];
     [Definitions outlineTextInLabel:submitButton.titleLabel];
     
