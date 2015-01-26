@@ -23,6 +23,8 @@
     IBOutlet UILabel *userLabel;
     IBOutlet UILabel *passwordLabel;
     IBOutlet UILabel *titleLabel;
+    
+    UIActivityIndicatorView *loadingWheel;
 }
 
 @end

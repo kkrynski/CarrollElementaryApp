@@ -4,6 +4,7 @@
 //
 //  Created by Mason Herhusky on 11/4/14.
 //  Copyright (c) 2014 SGSC. All rights reserved.
+//  Modified by Michael Schloss and Zack Nichols on 1/24/15 - 1/25/15
 //
 
 #import "PasswordVC.h"
@@ -44,6 +45,8 @@
     [super viewDidLoad];
     [self makeMePretty];
     
+    [self.view layoutIfNeeded];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAccountsWereDownloaded) name:UserAccountsDownloaded object:nil];
     
     accountsWereDownloaded = NO;
@@ -52,7 +55,45 @@
     [[CESDatabase databaseManagerForPasswordVCClass] downloadUserAccounts];
 }
 
--(void) userAccountsWereDownloaded
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    loadingWheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loadingWheel.center = submitButton.center;
+    [loadingWheel startAnimating];
+    loadingWheel.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    loadingWheel.alpha = 0.0;
+    [self.view addSubview:loadingWheel];
+}
+
+- (void) transitionToLoadingState
+{
+    [submitButton setUserInteractionEnabled:NO];
+    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0.7 options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent) animations:^
+    {
+        submitButton.alpha = 0.0;
+        submitButton.transform = CGAffineTransformMakeScale(0.7, 0.7);
+        
+        loadingWheel.transform = CGAffineTransformIdentity;
+        loadingWheel.alpha = 1.0;
+    } completion:nil];
+}
+
+- (void) transitionOutOfLoadingState
+{
+    [submitButton setUserInteractionEnabled:YES];
+    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0.7 options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent) animations:^
+    {
+        submitButton.alpha = 1.0;
+        submitButton.transform = CGAffineTransformIdentity;
+        
+        loadingWheel.transform = CGAffineTransformMakeScale(1.3, 1.3);
+        loadingWheel.alpha = 0.0;
+    } completion:nil];
+}
+
+- (void) userAccountsWereDownloaded
 {
     accountsWereDownloaded = YES;
     
@@ -60,10 +101,18 @@
     {
         return;
     }
+    else
+    {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        userIsWaiting = NO;
+        [self checkInfo];
+    }
 }
 
 - (IBAction) submit:(id)sender
 {
+    [self transitionToLoadingState];
+    
     if (accountsWereDownloaded)
     {
         [self checkInfo];
@@ -71,10 +120,20 @@
     else
     {
         userIsWaiting = YES;
+        [self performSelector:@selector(databaseTimeout) withObject:nil afterDelay:4];
     }
 }
 
--(void) checkInfo
+- (void) databaseTimeout
+{
+    [self transitionOutOfLoadingState];
+    
+    UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Login Timout" message:@"We're sorry, but we couldn't log you in.\n\nPlease try again or ask your teacher for assistance." preferredStyle:UIAlertControllerStyleAlert];
+    [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:error animated:YES completion:nil];
+}
+
+- (void) checkInfo
 {
     UserState userState = [[CESDatabase databaseManagerForPasswordVCClass] inputtedUsernameIsValid:usernameInput.text andPassword:passwordInput.text];
     
@@ -83,7 +142,9 @@
             //The username and password combination is invalid
         case UserStateUserInvalid:
         {
-            NSLog(@"invalid");
+            NSLog(@"User Is Invalid");
+            
+            [self transitionOutOfLoadingState];
 
             UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Incorrect Information" message:@"We're sorry, but that username and password combination is incorrect.\n\nPlease try again." preferredStyle:UIAlertControllerStyleAlert];
             [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
@@ -97,20 +158,22 @@
         {
             BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:usernameInput.text andPassword:passwordInput.text];
             
+            [self transitionOutOfLoadingState];
+            
             if (success == NO)
             {
-                // Display another error
+                NSLog(@"Student - No success storing information");
+                
+                //Display another error
                 UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Unexpected Error" message:@"We're sorry, but there's been an error logging you in.\n\nPlease try again and ask your teacher for assistance." preferredStyle:UIAlertControllerStyleAlert];
                 [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
                 [self presentViewController:error animated:YES completion:nil];
-                
-                NSLog(@"student - no success");
             }
             else
             {
-                [self dismissViewControllerAnimated:YES completion:nil];
+                NSLog(@"Student - Success storing information");
                 
-                NSLog(@"student - success");
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
             
             break;
@@ -121,21 +184,22 @@
         {
             BOOL success = [[CESDatabase databaseManagerForPasswordVCClass] storeInputtedUserInformation:usernameInput.text andPassword:passwordInput.text];
             
+            [self transitionOutOfLoadingState];
+            
             if (success == NO)
             {
-                // Display another error
+                NSLog(@"Teacher - No success storing information");
+                
+                //Display another error
                 UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Unexpected Error" message:@"We're sorry, but there's been an error logging you in.\n\nPlease try again and ask your teacher for assistance." preferredStyle:UIAlertControllerStyleAlert];
                 [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
                 [self presentViewController:error animated:YES completion:nil];
-                
-                NSLog(@"teacher - no success");
             }
             else
             {
-                // Self dismiss
-                [self dismissViewControllerAnimated:YES completion:nil];
+                NSLog(@"Teacher - Success storing information");
                 
-                NSLog(@"teacher - success");
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
             
             break;
@@ -146,7 +210,7 @@
     }
 }
 
--(void) makeMePretty
+- (void) makeMePretty
 {
     [titleLabel setTextColor:self.primaryColor];
     
@@ -167,16 +231,16 @@
     [Definitions outlineTextInLabel:passwordLabel];
     [Definitions outlineTextInLabel:submitButton.titleLabel];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-8]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:-8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-4]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:-4]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-8]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-4]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:4]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:usernameInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:usernameInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:4]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:usernameInput attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:userLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:4]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordInput attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:passwordLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
 }
 
