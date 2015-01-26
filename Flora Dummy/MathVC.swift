@@ -15,5 +15,6 @@ class MathVC: SubjectVC, UITableViewDataSource, UITableViewDelegate
         super.init(coder: aDecoder)
         
         subjectID = "1"
+        subjectName = "Math"
     }
 }

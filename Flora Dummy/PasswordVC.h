@@ -13,21 +13,18 @@
 @end
 
 @interface PasswordVC : FormattedVC <UITextFieldDelegate>
-{
-    NSString *username;
-    NSString *password;
-    
+{    
     BOOL accountsWereDownloaded;
     BOOL userIsWaiting;
+    
+    IBOutlet UIButton *submitButton;
+    IBOutlet UITextField *usernameInput;
+    IBOutlet UITextField *passwordInput;
+    IBOutlet UILabel *userLabel;
+    IBOutlet UILabel *passwordLabel;
+    IBOutlet UILabel *titleLabel;
+    
+    UIActivityIndicatorView *loadingWheel;
 }
-
-@property (nonatomic, retain) IBOutlet UIButton *submitButton;
-
-@property (nonatomic, retain) IBOutlet UITextField *usernameInput;
-@property (nonatomic, retain) IBOutlet UITextField *passwordInput;
-
-@property (nonatomic, retain) IBOutlet UILabel *userLabel;
-@property (nonatomic, retain) IBOutlet UILabel *passwordLabel;
-@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 
 @end

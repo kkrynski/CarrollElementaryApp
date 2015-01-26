@@ -15,5 +15,6 @@ class ScienceVC: SubjectVC, UITableViewDelegate, UITableViewDataSource, UIScroll
         super.init(coder: aDecoder)
         
         subjectID = "2"
+        subjectName = "Science"
     }
 }

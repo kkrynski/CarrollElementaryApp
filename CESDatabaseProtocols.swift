@@ -51,13 +51,6 @@ import UIKit
 
 @objc protocol PageManagerDatabase
 {
-    var ActivityID : String         { get }
-    var ActivityGrade : String      { get }
-    var ActivityData : String       { get }
-    var ActivityStartDate : String  { get }
-    var ActivityEndDate : String    { get }
-    var ActivityStatus : String     { get }
-    
     /**
     
     Returns the Activity Session for the activity with the specified activityID
@@ -84,14 +77,6 @@ import UIKit
 
 @objc protocol ActivityCreationDatabase
 {
-    var ActivityName : String           { get }
-    var ActivityDescription : String    { get }
-    var TotalPoints : String            { get }
-    var ReleaseDate : String            { get }
-    var DueDate : String                { get }
-    var ActivityData : String           { get }
-    var ClassID : String                { get }
-    
     /**
     
     Uploads the activity data to the database

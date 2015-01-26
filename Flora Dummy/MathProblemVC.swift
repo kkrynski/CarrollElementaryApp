@@ -160,6 +160,16 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         calculatorButton.center = CGPointMake(view.frame.size.width/2.0, equationView!.frame.size.height/2.0 + equationView!.center.y + 10 + calculatorButton.frame.size.height/2.0)
     }
     
+    override func restoreActivityState(object: AnyObject!)
+    {
+        println(object)
+    }
+    
+    override func saveActivityState() -> AnyObject!
+    {
+        return nil
+    }
+    
     //Creates the left equation side
     func createEquationLabel(equation : String, inView equationView : UIView)
     {

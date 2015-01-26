@@ -212,4 +212,16 @@
     return nil;
 }
 
+- (id) saveActivityState
+{
+    NSAssert(1 == 2, @"saveActivityState must be overriden by the activity and must not contain a super call.");
+    
+    return nil;
+}
+
+- (void) restoreActivityState:(id)object
+{
+    NSAssert(1 == 2, @"restoreActivityState must be overriden by the activity and must not contain a super call.");
+}
+
 @end

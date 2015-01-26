@@ -79,16 +79,8 @@ private var databaseManagerInstance : CESDatabase?
 //Private Database for Activity Creation
 private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, ActivityCreationDatabase
 {
-    var ActivityName : String           { get { return "Activity_Name" } }
-    var ActivityDescription : String    { get { return "Activity_Description" } }
-    var TotalPoints : String            { get { return "Activity_Total_Points" } }
-    var ReleaseDate : String            { get { return "Release_Date" } }
-    var DueDate : String                { get { return "Due_Date" } }
-    var ActivityData : String           { get { return "Activity_Data" } }
-    var ClassID : String                { get { return "Class_ID" } }
-    
-    private var urlSession : NSURLSession?
-    private var activeSession : NSURLSessionDataTask?
+    private var urlSession : NSURLSession!
+    private var activeSession : NSURLSessionDataTask!
     
     override init()
     {
@@ -154,7 +146,7 @@ private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, 
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
         request.HTTPBody = postData
         
-        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
+        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
             
             if error != nil || returnData == nil || returnData.length == 0
             {
@@ -174,7 +166,7 @@ private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, 
             }
             
         })
-        activeSession!.resume()
+        activeSession.resume()
     }
     
     private func isValidActivity(activityInformation: Activity) -> Bool
@@ -186,15 +178,8 @@ private class ActivityCreationDatabaseManager : NSObject, NSURLSessionDelegate, 
 //Private Database for Page Manager
 private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageManagerDatabase
 {
-    private var urlSession : NSURLSession?
-    private var activeSession : NSURLSessionDataTask?
-    
-    var ActivityID : String         { get { return "Activity ID" } }
-    var ActivityGrade : String      { get { return "Activity Grade" } }
-    var ActivityData : String       { get { return "Activity Data" } }
-    var ActivityStartDate : String  { get { return "Activity Start Date" } }
-    var ActivityEndDate : String    { get { return "Activity End Data" } }
-    var ActivityStatus : String     { get { return "Activity Status" } }
+    private var urlSession : NSURLSession!
+    private var activeSession : NSURLSessionDataTask!
     
     override init()
     {
@@ -223,19 +208,19 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         
         for activitySession in activitySessions
         {
-            if activitySession[ActivityID] == activityID    //Found ActivitySession
+            if activitySession["Activity_ID"] == activityID    //Found ActivitySession
             {
-                newActivitySession.grade = activitySession[ActivityGrade]!
+                newActivitySession.grade = activitySession["Score"]!
                 
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.timeZone = NSTimeZone.localTimeZone()
                 dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-                newActivitySession.startDate = dateFormatter.dateFromString(activitySession[ActivityStartDate]!)!
-                newActivitySession.endDate = dateFormatter.dateFromString(activitySession[ActivityEndDate]!)!
+                newActivitySession.startDate = dateFormatter.dateFromString(activitySession["Start_Date_Time"]!)!
+                newActivitySession.endDate = dateFormatter.dateFromString(activitySession["Finish_Date_Time"]!)!
                 
-                newActivitySession.status = activitySession[ActivityStatus]!
+                newActivitySession.status = activitySession["Status"]!
                 
-                let activityData = activitySession[ActivityData]!
+                let activityData = activitySession["Activity_Data"]!
                 let data = NSData().dataFromHexString(activityData)
                 let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
                 newActivitySession.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
@@ -250,9 +235,9 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         
         for activity in activities
         {
-            if activity[ActivityID] == activityID    //Found Activity
+            if activity["Activity_ID"] == activityID    //Found Activity
             {
-                let activityData = activity[ActivityData]!
+                let activityData = activity["Activity_Data"]!
                 let data = NSData().dataFromHexString(activityData)
                 let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
                 newActivitySession.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
@@ -309,7 +294,7 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
                 request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
                 request.HTTPBody = postData
                 
-                activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
+                activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
                     
                     if error != nil || returnData == nil || returnData.length == 0
                     {
@@ -329,7 +314,7 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
                     }
                     
                 })
-                activeSession!.resume()
+                activeSession.resume()
                 return
             }
         }
@@ -367,7 +352,7 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
         request.HTTPBody = postData
         
-        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
+        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (returnData, urlResponse, error) -> Void in
             
             if error != nil || returnData == nil || returnData.length == 0
             {
@@ -387,7 +372,7 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
             }
             
         })
-        activeSession!.resume()
+        activeSession.resume()
     }
     
     private func isValidActivitySession(activityInformation: ActivitySession) -> Bool
@@ -403,8 +388,8 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
     private var studentUserAccounts : Array<Dictionary<String, String>>?
     private var teacherUserAccounts : Array<Dictionary<String, String>>?
     
-    private var urlSession : NSURLSession?
-    private var activeSession : NSURLSessionDataTask?
+    private var urlSession : NSURLSession!
+    private var activeSession : NSURLSessionDataTask!
     
     private var inputtedInfoIsValid = NO
     
@@ -439,7 +424,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
         request.HTTPBody = postData
         
-        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
             
             if error != nil || databaseData == nil
             {
@@ -465,7 +450,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             
         })
         
-        activeSession!.resume()
+        activeSession.resume()
     }
     
     func downloadUserAccounts()
@@ -484,7 +469,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
             request.HTTPBody = postData
             
-            self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+            self.activeSession = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
                 
                 if error != nil || databaseData == nil
                 {
@@ -507,14 +492,15 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
                 NSNotificationCenter.defaultCenter().postNotificationName(UserAccountsDownloaded, object: nil)
             })
             
-            self.activeSession!.resume()
+            self.activeSession.resume()
         }
     }
     
     func inputtedUsernameIsValid(username: String, andPassword password: String) -> UserState
     {
-        let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
-        let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO).stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " "))
+        let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO).stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " "))
+        
         for userAccount in studentUserAccounts!
         {
             if userAccount["Student_User_Name"] == encryptedUserName && userAccount["Student_Password"] == encryptedPassword
@@ -546,8 +532,8 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
         
-        let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
-        let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO)
+        let encryptedUserName = username.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO).stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " "))
+        let encryptedPassword = password.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)!.AES256EncryptedDataUsingKey(databaseEncryptionKey, error: nil).hexRepresentationWithSpaces(YES, capitals: NO).stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " "))
         
         if inputtedUsernameIsValid(username, andPassword: password) != .UserInvalid
         {
@@ -555,8 +541,17 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             {
                 if student["Student_User_Name"] == encryptedUserName && student["Student_Password"] == encryptedPassword
                 {
-                    NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
-                    return NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student").writeToFile(plistPath, atomically: YES)
+                    let success = NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student").writeToFile(plistPath, atomically: YES)
+                    
+                    if success == YES
+                    {
+                        NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
+                        return success
+                    }
+                    else
+                    {
+                        return success
+                    }
                 }
             }
             
@@ -564,21 +559,35 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             {
                 if teacher["Teacher_User_Name"] == encryptedUserName && teacher["Teacher_Password"] == encryptedPassword
                 {
-                    NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
-                    return NSArray(objects: encryptedUserName, encryptedPassword, teacher["Teacher_ID"]!, "Teacher").writeToFile(plistPath, atomically: YES)
+                    let success = NSArray(objects: encryptedUserName, encryptedPassword, teacher["Teacher_ID"]!, "Teacher").writeToFile(plistPath, atomically: YES)
+                    
+                    if success == YES
+                    {
+                        NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
+                        return success
+                    }
+                    else
+                    {
+                        return success
+                    }
                 }
             }
         }
         
         return NO
     }
+    
+    private func postUserLoggedIn()
+    {
+        NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
+    }
 }
 
 //Private Database for the Main Activity Pages
 private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, MainActivitiesDatabase
 {
-    private var urlSession : NSURLSession?
-    private var activeSession : NSURLSessionDataTask?
+    private var urlSession : NSURLSession!
+    private var activeSession : NSURLSessionDataTask!
     
     var _activitiesLoaded = NO
     var activitiesLoaded : Bool { get { return _activitiesLoaded } }
@@ -604,10 +613,11 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
     {
         loadActivitySessions { () -> Void in
             
+            println("Loading Student Classes...")
+            
             let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
             let studentInfo = NSArray(contentsOfFile: plistPath)!
-            
-            var studentID = studentInfo[3] as String
+            var studentID = studentInfo[2] as String
             
             let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM student_class WHERE Student_ID=\(studentID)"
             let url = NSURL(string: databaseWebsite)!
@@ -621,7 +631,7 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
             request.HTTPBody = postData
             
-            self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+            self.activeSession = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
                 
                 if error != nil || databaseData == nil
                 {
@@ -645,17 +655,23 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
                     arrayOfClassIDs.addObject(student_class["Class_ID"]!)
                 }
                 
-                println("Student Classes loaded")
-                
                 completionHandler(classesToLoad: arrayOfClassIDs)
             })
-            self.activeSession!.resume()
+            self.activeSession.resume()
         }
     }
     
     private func loadClassesWithCompletionHandler(completionHandler: ((classes: NSArray) -> Void))
     {
         loadStudentClassesWithCompletionHandler { (classesToLoad) -> Void in
+            
+            println("Loading Classes...")
+            
+            if classesToLoad.count == 0
+            {
+                completionHandler(classes: [])
+                return
+            }
             
             var post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM class WHERE Class_ID=\(classesToLoad[0] as String)"
             if classesToLoad.count > 1
@@ -677,7 +693,7 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
             request.HTTPBody = postData
             
-            self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+            self.activeSession = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
                 
                 if error != nil || databaseData == nil
                 {
@@ -693,21 +709,21 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
                     return
                 }
                 
-                println("Classes Loaded")
-                
                 let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
                 
                 completionHandler(classes: JSONData["Data"] as NSArray)
             })
-            self.activeSession!.resume()
+            self.activeSession.resume()
         }
     }
     
     private func loadActivitySessions(completionHandler: (() -> Void))
     {
+        println("Loading Activity Sessions...")
+        
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
         let studentInfo = NSArray(contentsOfFile: plistPath)!
-        var studentID = studentInfo[3] as String
+        var studentID = studentInfo[2] as String
         
         let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM activity_session WHERE Student_ID=\(studentID)"
         let url = NSURL(string: databaseWebsite)!
@@ -721,7 +737,7 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
         request.HTTPBody = postData
         
-        activeSession = urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
             
             if error != nil || databaseData == nil
             {
@@ -754,15 +770,24 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
             
             completionHandler()
         })
-        activeSession!.resume()
+        activeSession.resume()
     }
     
     func loadActivities()
     {
         loadClassesWithCompletionHandler { (classes) -> Void in
             
+            println("Loading Activities...")
+            
+            if classes.count == 0
+            {
+                NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
+                return
+            }
+            
             if classes[0].isKindOfClass(NSDictionary.classForCoder()) == NO
             {
+                NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
                 return
             }
             
@@ -794,7 +819,7 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
             request.HTTPBody = postData
             
-            self.activeSession = self.urlSession!.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
+            self.activeSession = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlResponse, error) -> Void in
                 
                 self._activitiesLoaded = YES
                 
@@ -819,15 +844,30 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
                     let activity = object as NSDictionary
                     let newActivity = NSMutableDictionary(dictionary: activity)
                     
+                    for key in newActivity.allKeys as Array<String>
+                    {
+                        if newActivity[key] != nil
+                        {
+                            if newActivity[key]! as NSObject == NSNull()
+                            {
+                                newActivity[key] = "Null"
+                            }
+                        }
+                        else
+                        {
+                            newActivity[key] = "Null"
+                        }
+                    }
+                    
                     newActivities[(newActivities as NSArray).indexOfObject(activity)] = newActivity as NSDictionary
                 }
                 
-                let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
-                newActivities.writeToFile(plistPath!, atomically: YES)
+                let plistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist") as String!
+                newActivities.writeToFile(plistPath, atomically: YES)
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(ActivityDataLoaded, object: nil)
             })
-            self.activeSession!.resume()
+            self.activeSession.resume()
             
         }
     }
@@ -842,21 +882,23 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         activityToReturn.releaseDate = dateFormatter.dateFromString(activityDict["Release_Date"] as String)
         activityToReturn.dueDate = dateFormatter.dateFromString(activityDict["Due_Date"] as String)
         
-        let activityData = activityDict["Activity_Data"] as String
-        let data = NSData().dataFromHexString(activityData)
-        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-        //TODO: Uncomment below after Zack fixes his Activity Class
-        //activityToReturn.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
-        unarchiver.finishDecoding()
+        let activityData = activityDict["Activity_Data"] as String?
+        if activityData != "Null"
+        {
+            let data = NSData().dataFromHexString(activityData)
+            let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+            //TODO: Uncomment below after Zack fixes his Activity Class
+            //activityToReturn.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
+            unarchiver.finishDecoding()
+        }
         
         activityToReturn.classID = activityDict["Class_ID"] as String
-        
-        activityToReturn.totalPoints = (activityDict["Total_Points"] as String).toInt()!
+        activityToReturn.totalPoints = (activityDict["Activity_Total_Points"] as String).toInt()!
         
         return activityToReturn
     }
