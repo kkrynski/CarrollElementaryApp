@@ -72,10 +72,13 @@
 {
     if (accountsWereDownloaded)
     {
-        [self checkInfo];
-    
+        
         NSLog(@"Submit: accounts were downloaded");
 
+        
+        [self checkInfo];
+        
+        
     }else
     {
         userIsWaiting = YES;
@@ -101,7 +104,9 @@
             
             NSLog(@"invalid");
 
-#warning hi
+#warning for now
+            [self dismissViewControllerAnimated:YES completion:nil];
+
             
             break;
         }

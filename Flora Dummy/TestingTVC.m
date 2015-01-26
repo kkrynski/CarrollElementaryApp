@@ -105,7 +105,7 @@
     else if ([selectedTest isEqualToString:@"Michael - SquareDrag"])
     {
         viewControllerToPresent = [[SquaresDragAndDrop alloc] init];
-        ((SquaresDragAndDrop *) viewControllerToPresent).numberOfSquares = 40;
+        ((SquaresDragAndDrop *) viewControllerToPresent).numberOfSquares = 12;
     }
     else if ([selectedTest isEqualToString:@"Zach - Activity Creation"])
     {
