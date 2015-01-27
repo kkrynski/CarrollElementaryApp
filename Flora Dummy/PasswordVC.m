@@ -120,9 +120,8 @@
 
         
         [self checkInfo];
-        
-        
-    }else
+    }
+    else
     {
         userIsWaiting = YES;
         [self performSelector:@selector(databaseTimeout) withObject:nil afterDelay:4];
@@ -151,9 +150,9 @@
             
             [self transitionOutOfLoadingState];
 
-#warning for now
-            [self dismissViewControllerAnimated:YES completion:nil];
-
+            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Incorrect Information" message:@"We're sorry, but that username and password combination is incorrect.\n\nPlease try again." preferredStyle:UIAlertControllerStyleAlert];
+            [error addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:error animated:YES completion:nil];
             
             break;
         }
