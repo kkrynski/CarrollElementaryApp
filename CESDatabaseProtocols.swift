@@ -132,6 +132,9 @@ import UIKit
     
     */
     func storeInputtedUserInformation(username: String, andPassword password: String) -> Bool
+    
+    func downloadTeacherAccounts()
+    func downloadStudentAccounts()
 }
 
 @objc protocol MainActivitiesDatabase

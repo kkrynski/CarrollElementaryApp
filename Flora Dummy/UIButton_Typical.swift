@@ -9,7 +9,7 @@
 import UIKit
 
 class UIButton_Typical: UIButton
-{    
+{   
     override func setTitle(title: String?, forState state: UIControlState)
     {
         super.setTitle(title, forState: state)

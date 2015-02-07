@@ -109,12 +109,12 @@
                            [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
                                                                        [NSDictionary dictionaryWithObjectsAndKeys:@"3 + 2=#w#", @"Equation", nil],
                                                                        [[NSNull alloc] init], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil], nil];
-        
+        /*
         MathProblemVC *mathProblem = [[MathProblemVC alloc] init];
         mathProblem.mathEquation = @"3 + 2=#w#";
         
         [self presentViewController:mathProblem animated:YES completion:nil];
-        return;
+        return;*/
     }
     else if ([selectedTest isEqualToString:@"Michael - Clock"])
     {

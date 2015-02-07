@@ -389,9 +389,15 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
     private var teacherUserAccounts : Array<Dictionary<String, String>>?
     
     private var urlSession : NSURLSession!
-    private var activeSession : NSURLSessionDataTask!
+    private var activeSessionTeachers : NSURLSessionDataTask!
+    private var activeSessionStudents : NSURLSessionDataTask!
     
     private var inputtedInfoIsValid = NO
+    
+    private var startTime : CFTimeInterval!
+    private var endTime : CFTimeInterval!
+    
+    private var doneDownloadingTeachers = "Done Downloading Teachers"
     
     override init()
     {
@@ -410,8 +416,12 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    private func downloadTeacherAccounts(completionHandler: (() -> Void))
+    func downloadTeacherAccounts()
     {
+        startTime = CACurrentMediaTime()
+        
+        println("Loading Teachers")
+        
         let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM teacher"
         let url = NSURL(string: databaseWebsite)!
         
@@ -424,11 +434,11 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
         request.HTTPBody = postData
         
-        activeSession = urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+        activeSessionTeachers = urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
             
             if error != nil || databaseData == nil
             {
-                completionHandler()
+                println("There's been an error")
                 return
             }
             
@@ -436,7 +446,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             
             if stringData!.containsString("No Data")
             {
-                completionHandler()
+                println("There are no teachers")
                 return
             }
             
@@ -446,54 +456,65 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             
             self.teacherUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
             
-            completionHandler()
+            NSNotificationCenter.defaultCenter().postNotificationName(self.doneDownloadingTeachers, object: nil)
             
         })
         
-        activeSession.resume()
+        activeSessionTeachers.resume()
+    }
+    
+    func downloadStudentAccounts()
+    {
+        println("Loading Students")
+        
+        let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM student"
+        let url = NSURL(string: databaseWebsite)!
+        
+        let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
+        let postLength = String(postData!.length)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+        request.HTTPBody = postData
+        
+        self.activeSessionStudents = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
+            
+            if error != nil || databaseData == nil
+            {
+                return
+            }
+            
+            let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
+            
+            if stringData!.containsString("No Data")
+            {
+                return
+            }
+            
+            let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+            
+            let tempUserAccounts = JSONData["Data"] as NSArray
+            
+            self.studentUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
+            
+            self.endTime = CACurrentMediaTime()
+            
+            println("Time to download user accounts: \(self.endTime - self.startTime) seconds")
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(UserAccountsDownloaded, object: nil)
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+        })
+        
+        self.activeSessionStudents.resume()
     }
     
     func downloadUserAccounts()
     {
-        downloadTeacherAccounts { () -> Void in
-            
-            let post = "Password=\(databasePassword)&SQLQuery=SELECT * FROM student"
-            let url = NSURL(string: databaseWebsite)!
-            
-            let postData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: YES)
-            let postLength = String(postData!.length)
-            
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "POST"
-            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
-            request.HTTPBody = postData
-            
-            self.activeSession = self.urlSession.dataTaskWithRequest(request, completionHandler: { (databaseData, urlRespone, error) -> Void in
-                
-                if error != nil || databaseData == nil
-                {
-                    return
-                }
-                
-                let stringData = NSString(data: databaseData, encoding: NSASCIIStringEncoding)
-                
-                if stringData!.containsString("No Data")
-                {
-                    return
-                }
-                
-                let JSONData = NSJSONSerialization.JSONObjectWithData(databaseData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
-                
-                let tempUserAccounts = JSONData["Data"] as NSArray
-                
-                self.studentUserAccounts = tempUserAccounts as? Array<Dictionary<String, String>>
-                
-                NSNotificationCenter.defaultCenter().postNotificationName(UserAccountsDownloaded, object: nil)
-            })
-            
-            self.activeSession.resume()
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "downloadStudentAccounts", name: doneDownloadingTeachers, object: nil)
+        
+        downloadTeacherAccounts()
     }
     
     func inputtedUsernameIsValid(username: String, andPassword password: String) -> UserState

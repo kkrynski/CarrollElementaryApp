@@ -56,7 +56,7 @@ class MathProblemAnswerGradiant : UIView
     }
 }
 
-class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
+class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
 {
     /**
     The Math Equation to be displayed.
@@ -110,9 +110,9 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         return tempArray
     }
     
-    override func viewDidLoad()
+    override func viewWillAppear(animated: Bool)
     {
-        super.viewDidLoad()
+        super.viewWillAppear(animated)
         
         if mathEquation == nil || mathEquation == ""
         {
@@ -161,8 +161,14 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     }
     
     override func restoreActivityState(object: AnyObject!)
-    {
-        println(object)
+    {        
+        let settings = (object as Array<AnyObject>)[0] as Dictionary<String, String>
+        println("Settings: \(settings)")
+        
+        mathEquation = settings["Equation"]
+        
+        view.layoutIfNeeded()
+        NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
     }
     
     override func saveActivityState() -> AnyObject!

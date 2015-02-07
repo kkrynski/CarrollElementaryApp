@@ -79,14 +79,7 @@ class NewPageManager: FormattedVC
     private var nextButtonConstraints = Array<NSLayoutConstraint>()
     
     //Current Index
-    private var _currentIndex = 0
-    var currentIndex : Int
-        {
-        get
-        {
-            return _currentIndex
-        }
-    }
+    private var currentIndex : NSInteger = -1
     
     //Current Activity (Session) Information
     var currentActivity : Activity
@@ -104,10 +97,10 @@ class NewPageManager: FormattedVC
         {
         get
         {
-            return parentViewController != nil
+            return presentingViewController != nil
         }
     }
-    private var newActivityData = Array<Dictionary<NSNumber, AnyObject>>()
+    private var newActivityData = Array<Dictionary<NSNumber, AnyObject?>>()
     
     //Transition Direction
     private var direction = "Forward"
@@ -141,8 +134,9 @@ class NewPageManager: FormattedVC
         currentActivity = activity
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "continueWithPresentation", name: PageManagerShouldContinuePresentation, object: nil)
         
-        let introVC = Page_IntroVC()
+        let introVC = Page_IntroVC(nibName: "Page_IntroVC", bundle: nil)
         introVC.activityTitle = activity.name
         introVC.summary = activity.activityDescription
         
@@ -154,30 +148,27 @@ class NewPageManager: FormattedVC
     {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "continueWithPresentation", name: PageManagerShouldContinuePresentation, object: nil)
-        
         previousButton = UIButton_Typical(frame: CGRectZero)
         previousButton!.setTranslatesAutoresizingMaskIntoConstraints(NO)
         previousButton!.setTitle("Back", forState: .Normal)
+        previousButton!.titleLabel!.font = UIFont(name: "MarkerFelt-Thin", size: 36)
         previousButton!.addTarget(self, action: "goBackOnePage:", forControlEvents: .TouchUpInside)
         previousButton!.userInteractionEnabled = NO
-        previousButton!.alpha = 0.0
         view.addSubview(previousButton!)
         
         nextButton = UIButton_Typical(frame: CGRectZero)
         nextButton!.setTranslatesAutoresizingMaskIntoConstraints(NO)
         nextButton!.setTitle("Next", forState: .Normal)
+        nextButton!.titleLabel!.font = UIFont(name: "MarkerFelt-Thin", size: 36)
         nextButton!.addTarget(self, action: "goForwardOnePage:", forControlEvents: .TouchUpInside)
         nextButton!.userInteractionEnabled = NO
-        nextButton!.alpha = 0.0
         view.addSubview(nextButton!)
         
         saveButton = UIButton_Typical(frame: CGRectZero)
         saveButton!.setTranslatesAutoresizingMaskIntoConstraints(NO)
         saveButton!.setTitle("Save", forState: .Normal)
+        saveButton!.titleLabel!.font = UIFont(name: "MarkerFelt-Thin", size: 36)
         saveButton!.addTarget(self, action: "saveActivity:", forControlEvents: .TouchUpInside)
-        saveButton!.userInteractionEnabled = NO
-        saveButton!.alpha = 0.0
         view.addSubview(saveButton!)
         
         setUpButtons()
@@ -224,6 +215,10 @@ class NewPageManager: FormattedVC
             UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 
+                self.saveButton!.alpha = 1.0
+                self.saveButton!.userInteractionEnabled = YES
+                self.previousButton!.alpha = 1.0
+                self.previousButton!.userInteractionEnabled = YES
                 self.nextButton!.alpha = 0.0
                 self.nextButton!.userInteractionEnabled = NO
                 }, completion: nil)
@@ -232,7 +227,7 @@ class NewPageManager: FormattedVC
                 self.saveButton!.setTitle("Finish", forState: .Normal)
                 }, completion: nil)
         }
-        else if currentIndex == 0    //First Page
+        else if currentIndex == -1    //First Page
         {
             view.removeConstraints(previousButtonConstraints)
             view.removeConstraints(nextButtonConstraints)
@@ -247,12 +242,12 @@ class NewPageManager: FormattedVC
             previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
             previousButtonConstraints.append(NSLayoutConstraint(item: previousButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
             
-            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: -4.0))
+            saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
             saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
             saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
             saveButtonConstraints.append(NSLayoutConstraint(item: saveButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
             
-            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 4.0))
+            nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
             nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
             nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
             nextButtonConstraints.append(NSLayoutConstraint(item: nextButton!, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1, constant: 0.0))
@@ -264,6 +259,8 @@ class NewPageManager: FormattedVC
             UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 
+                self.saveButton!.alpha = 0.0
+                self.saveButton!.userInteractionEnabled = NO
                 self.nextButton!.alpha = 1.0
                 self.nextButton!.userInteractionEnabled = YES
                 self.previousButton!.alpha = 0.0
@@ -306,6 +303,8 @@ class NewPageManager: FormattedVC
             UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 
+                self.saveButton!.alpha = 1.0
+                self.saveButton!.userInteractionEnabled = YES
                 self.nextButton!.alpha = 1.0
                 self.nextButton!.userInteractionEnabled = YES
                 self.previousButton!.alpha = 1.0
@@ -341,33 +340,38 @@ class NewPageManager: FormattedVC
     func goBackOnePage(button: UIButton_Typical)
     {
         button.userInteractionEnabled = NO
-        _currentIndex--
+        currentIndex--
         direction = "Backward"
         
-        presentNextViewController()
+        self.presentNextViewController()
     }
     
     func goForwardOnePage(button: UIButton_Typical)
     {
         button.userInteractionEnabled = NO
-        _currentIndex++
+        currentIndex = currentIndex + 1
         direction = "Forward"
         
-        presentNextViewController()
+        self.presentNextViewController()
     }
     
     func saveActivity(button: UIButton_Typical)
     {
         view.userInteractionEnabled = NO
         
-        let savedObject: AnyObject? = (currentViewController as CESDatabaseActivity).saveActivityState?()
+        let savedObject: AnyObject? = currentViewController!.saveActivityState()
         
         let currentActivityPage = currentActivitySession.activityData[currentIndex]
         let currentActivityType = currentActivityPage.keys.array[0]
         
+        if newActivityData.count <= currentIndex
+        {
+            newActivityData.append(Dictionary<NSNumber, AnyObject?>())
+        }
+        
         if savedObject == nil
         {
-            newActivityData[currentIndex].updateValue(NSNull(), forKey: currentActivityType)
+            newActivityData[currentIndex].updateValue("<null>", forKey: currentActivityType)
         }
         else //If the activity actually returned a saved object, save it
         {
@@ -376,28 +380,30 @@ class NewPageManager: FormattedVC
         
         //CHECKS FOR CURRENT ACTIVITY
         
+        let currentActivitySessionCopy = currentActivitySession.copy() as ActivitySession
+        
         //Update the currentActivity values with the newActivityData values
         for index in 0...(newActivityData.count - 1)
         {
-            currentActivitySession.activityData[index].updateValue(newActivityData[index].values.array[0], forKey: currentActivitySession.activityData[index].keys.array[0])
+            currentActivitySessionCopy.activityData[index].updateValue(newActivityData[index].values.array[0]!, forKey: currentActivitySessionCopy.activityData[index].keys.array[0])
         }
         
         if button.titleLabel!.text == "Finish"  //We are actually finishing
         {
-            currentActivitySession.endDate = NSDate()
+            currentActivitySessionCopy.endDate = NSDate()
             
-            if currentActivitySession.endDate!.compare(currentActivity.dueDate) == .OrderedDescending
+            if currentActivitySessionCopy.endDate!.compare(currentActivity.dueDate) == .OrderedDescending
             {
-                currentActivitySession.status = "Past Due"
+                currentActivitySessionCopy.status = "Past Due"
             }
             else
             {
-                currentActivitySession.status = "Finished"
+                currentActivitySessionCopy.status = "Finished"
             }
         }
         else
         {
-            currentActivitySession.status = "Started"
+            currentActivitySessionCopy.status = "Started"
         }
         
         let wheel = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -418,68 +424,116 @@ class NewPageManager: FormattedVC
             self.saveButton!.transform = CGAffineTransformMakeScale(0.7, 0.7)
             
             }, completion: { (finished) -> Void in
-                self.databaseManager.uploadActivitySession(self.currentActivitySession, completion: { (uploadSuccess) -> Void in
+                self.databaseManager.uploadActivitySession(currentActivitySessionCopy, completion: { (uploadSuccess) -> Void in
                     if uploadSuccess == YES
                     {
                         self.dismissViewControllerAnimated(YES, completion: nil)
                     }
                     else
                     {
-                        //TODO: DISPLAY ERROR
+                        self.setUpButtons()
+                        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowUserInteraction | .AllowAnimatedContent, animations: { () -> Void in
+                            
+                            wheel.alpha = 0.0
+                            wheel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+                            
+                            self.saveButton!.transform = CGAffineTransformIdentity
+                            
+                            }, completion: { (finished) -> Void in
+                                
+                                self.view.userInteractionEnabled = YES
+                                
+                                let errorAlert = UIAlertController(title: "We're Sorry", message: "There's been an issue saving this activity\n\nPlease contact your teacher for assistance and try again.", preferredStyle: .Alert)
+                                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                                self.presentViewController(errorAlert, animated: YES, completion: nil)
+                        })
                     }
                 })
         })
     }
     
-    func presentNextViewController()
+    private func presentNextViewController()
     {
         //Move the viewController on screen to the oldViewController object
         oldViewController = currentViewController
         
-        //If we actually have an oldActivity
-        if let oldVC = oldViewController
+        let index = currentIndex
+        let direc = direction
+        
+        if index != -1
         {
-            //Get the oldActivity's type
-            println(currentActivitySession.activityData)
-            let oldActivityPage = currentActivitySession.activityData[currentIndex - 1]
-            let oldActivityType = oldActivityPage.keys.array[0]
+            let comingFromIntro = index == NSInteger(0) && (direc as NSString).isEqualToString("Forward")
             
-            //Get the savedObject for the activity
-            let savedObject: AnyObject? = oldVC.saveActivityState()
-            
-            //If the activity didn't return a saved object, save a null value
-            if savedObject == nil
+            if comingFromIntro == NO
             {
-                newActivityData[currentIndex - 1].updateValue(NSNull(), forKey: oldActivityType)
+                //If we actually have an oldActivity
+                if let oldVC = oldViewController
+                {
+                    //Get the oldActivity's type
+                    let oldActivityPage = currentActivitySession.activityData[currentIndex - 1]
+                    let oldActivityType = oldActivityPage.keys.array[0]
+                    
+                    //Get the savedObject for the activity
+                    let savedObject: AnyObject? = oldVC.saveActivityState()
+                    
+                    //If the activity didn't return a saved object, save a null value
+                    if savedObject == nil
+                    {
+                        newActivityData[currentIndex - 1].updateValue("<null>", forKey: oldActivityType)
+                    }
+                    else //If the activity actually returned a saved object, save it
+                    {
+                        newActivityData[currentIndex - 1].updateValue(savedObject!, forKey: oldActivityType)
+                    }
+                }
             }
-            else //If the activity actually returned a saved object, save it
+            
+            //Get the new activity's type
+            let currentActivityPage = currentActivitySession.activityData[currentIndex]
+            let currentActivityType = currentActivityPage.keys.array[0]
+            
+            //Initialize the new activity
+            currentViewController = viewControllerForPageType(ActivityViewControllerType(rawValue: currentActivityType.integerValue)!)
+            
+            let status = currentActivitySession.status
+            if currentViewController!.isViewLoaded() == YES
             {
-                newActivityData[currentIndex - 1].updateValue(savedObject!, forKey: oldActivityType)
+                currentViewController!.view.userInteractionEnabled = (status == "Started" || status == "Not Started")
+            }
+            
+            //Check if we have already saved data in the activity (i.e. the user is going backwards)
+            if newActivityData.count > currentIndex
+            {
+                let object : AnyObject = newActivityData[currentIndex].values.array[0]!
+                
+                if object as String != "<null>"
+                {
+                    currentViewController!.restoreActivityState(newActivityData[currentIndex].values.array[0])
+                }
+                else
+                {
+                    currentViewController!.restoreActivityState(currentActivityPage.values.array[0])
+                }
+            }
+            else    //There isn't any saved session data for this activity, so load the old session data
+            {
+                currentViewController!.restoreActivityState(currentActivityPage.values.array[0])
             }
         }
-        
-        //Get the new activity's type
-        let currentActivityPage = currentActivitySession.activityData[currentIndex]
-        let currentActivityType = currentActivityPage.keys.array[0]
-        
-        //Initialize the new activity
-        currentViewController = viewControllerForPageType(ActivityViewControllerType(rawValue: currentActivityType.integerValue)!)
-        
-        currentViewController?.view.userInteractionEnabled = (currentActivitySession.status == "Started" || currentActivitySession.status == "Not Started")
-        
-        //Check if we have already saved data in the activity (i.e. the user is going backwards)
-        if newActivityData[currentIndex].values.array[0].classForCoder !== NSNull.classForCoder()
+        else
         {
-            (currentViewController! as CESDatabaseActivity).restoreActivityState?(newActivityData[currentIndex].values.array[0])
-        }
-        else if currentActivityPage.values.array[0].classForCoder !== NSNull.classForCoder()    //There isn't any saved session data for this activity, so load the old session data
-        {
-            (currentViewController! as CESDatabaseActivity).restoreActivityState?(currentActivityPage.values.array[0])
+            let introVC = Page_IntroVC(nibName: "Page_IntroVC", bundle: nil)
+            introVC.activityTitle = currentActivity.name
+            introVC.summary = currentActivity.activityDescription
+            
+            currentViewController = introVC
+            continueWithPresentation()
         }
     }
     
     func continueWithPresentation()
     {
+        
         if isPresented == NO
         {
             if currentViewController != nil
@@ -487,6 +541,7 @@ class NewPageManager: FormattedVC
                 currentViewController!.willMoveToParentViewController(self)
                 currentViewController!.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
                 view.addSubview(currentViewController!.view)
+                view.sendSubviewToBack(currentViewController!.view)
                 
                 currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
                 currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
@@ -509,10 +564,9 @@ class NewPageManager: FormattedVC
             setUpButtons()
             if currentViewController != nil
             {
-                currentViewController!.view.alpha = 0.0
                 currentViewController!.willMoveToParentViewController(self)
                 currentViewController!.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
-                view.addSubview(currentViewController!.view)
+                view.insertSubview(currentViewController!.view, aboveSubview: oldViewController!.view)
                 
                 currentViewControllerConstraints = Array<NSLayoutConstraint>()
                 

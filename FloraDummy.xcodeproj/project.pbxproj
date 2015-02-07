@@ -1678,7 +1678,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1704,7 +1704,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = FloraDummy;
 				SWIFT_OBJC_BRIDGING_HEADER = "Flora Dummy/Flora Dummy-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

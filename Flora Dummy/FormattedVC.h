@@ -92,7 +92,7 @@
 /// \note This method is deprecated, please use the \b Definitions method instead
 - (UIColor *)darkerColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
-- (void) restoreActivityState:(id) object;
+- (void) restoreActivityState:(id)object;
 
 - (id) saveActivityState;
 
