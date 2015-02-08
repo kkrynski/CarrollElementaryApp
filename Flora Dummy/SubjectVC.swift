@@ -343,22 +343,46 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         activityLoadingLoadingView.center = CGPointMake(activityLoadingView.frame.size.width/2.0, activityLoadingView.frame.size.height/2.0)
         
         view.addSubview(activityLoadingView)
-        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
-            
-            activityLoadingView.frame = CGRectMake(0, 0, self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
-            activityLoadingView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
             activityLoadingView.alpha = 1.0
-            
-            activityLoadingLoadingView.frame = CGRectMake(0, 0, activityLoadingView.frame.size.width, activityLoadingView.frame.size.height)
-            loadingWheel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 - 4 - loadingWheel.frame.size.height/2.0)
-            loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
-            
             }, completion: { (finished) -> Void in
                 
-                let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row].name)
-                let pageManager = NewPageManager(nibName: nil, bundle: nil, activitySession: activitySession, forActivity: self.activities[indexPath.row], withParent:self)
+                self.setCornerRadius(activityLoadingView)
+                UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                    
+                    activityLoadingView.frame = CGRectMake(0, 0, self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+                    activityLoadingView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+                    
+                    activityLoadingLoadingView.frame = CGRectMake(0, 0, activityLoadingView.frame.size.width, activityLoadingView.frame.size.height)
+                    loadingWheel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 - 4 - loadingWheel.frame.size.height/2.0)
+                    loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
+                    
+                    }, completion: { (finished) -> Void in
+                        
+                        //TODO: Uncomment after legit activites on database
+                        
+                        //let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row].name, activity: self.activities[indexPath.row])
+                        //let pageManager = NewPageManager(nibName: nil, bundle: nil, activitySession: activitySession, forActivity: self.activities[indexPath.row], withParent:self)
+                        
+                        //Debug code
+                        UIView.animateWithDuration(1.5, delay: 1.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                            
+                            activityLoadingView.transform = CGAffineTransformMakeScale(self.view.frame.size.width/activityLoadingView.frame.size.width, self.view.frame.size.height/activityLoadingView.frame.size.height)
+                            activityLoadingView.alpha = 0.0
+                            
+                            }, completion: { (finished) -> Void in
+                                
+                                activityLoadingView.removeFromSuperview()
+                                UIApplication.sharedApplication().keyWindow?.userInteractionEnabled = YES
+                        })
+                })
         })
         
+        
+    }
+    
+    func setCornerRadius(activityLoadingView: UIVisualEffectView)
+    {
         let animation = CABasicAnimation(keyPath: "cornerRadius")
         animation.fromValue = NSNumber(double: 0.001)
         animation.toValue = NSNumber(double: 10.0)

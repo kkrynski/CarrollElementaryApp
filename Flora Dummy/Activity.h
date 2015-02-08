@@ -51,7 +51,10 @@
 // Activity data
 //
 // For creation, just due key-nil
-@property(nonatomic, retain) NSDictionary *activityData;
+@property(nonatomic, retain) NSArray *activityData;
+
+// Quiz Mode
+@property(nonatomic) BOOL quizMode;
 
 // Class ID
 @property(nonatomic, retain) NSString *classID;

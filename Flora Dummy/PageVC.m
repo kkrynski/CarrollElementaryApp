@@ -8,8 +8,6 @@
 
 #import "PageVC.h"
 
-#import "PageManager.h"
-
 #import "FloraDummy-Swift.h"
 
 @interface PageVC ()
@@ -230,7 +228,7 @@
     // let page manager go forward
     if (pageNumber.intValue + 1 <= pageCount.intValue)
     {
-        [parentManager goToNextViewController];
+        //[parentManager goToNextViewController];
     }else
     {
         // End activity because there's nowhere to go
@@ -242,8 +240,8 @@
 -(IBAction) goToPreviousPage
 {
     //If there is a previous page, signal to go back
-    if (pageNumber.intValue -1 > 0)
-        [parentManager goToPreviousViewController];
+    if (pageNumber.intValue -1 > 0);
+        //[parentManager goToPreviousViewController];
     else
         //This shouldn't ever be called, but it's a good failsafe
         [self dismissViewControllerAnimated:YES completion:nil];

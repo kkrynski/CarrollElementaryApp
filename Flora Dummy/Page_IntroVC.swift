@@ -44,7 +44,7 @@ class Page_IntroVC: FormattedVC
     {
         super.viewWillAppear(animated)
         
-        summaryTextView?.text = summary
+        summaryTextView!.text = summary
         Definitions.outlineTextInTextView(summaryTextView!, forFont: summaryTextView!.font)
         summaryTextView!.textColor = primaryColor
         summaryTextView!.backgroundColor = secondaryColor
@@ -53,7 +53,7 @@ class Page_IntroVC: FormattedVC
         {
             titleLabel!.textColor = primaryColor
             Definitions.outlineTextInLabel(titleLabel!)
-            titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 20 + (summaryTextView!.frame.origin.y - 20)/2.0)
+            titleLabel!.center = CGPointMake(summaryTextView!.center.x, 20 + (summaryTextView!.frame.origin.y - 20)/2.0)
             self.view.addSubview(titleLabel!)
         }
     }

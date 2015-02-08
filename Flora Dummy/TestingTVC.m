@@ -192,7 +192,7 @@
     
     testSession.activityData = testSessionData;
     
-    [[NewPageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
+    [[PageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
     
     //pageManager.currentActivitySession = testSession;
     

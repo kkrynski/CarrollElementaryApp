@@ -32,7 +32,7 @@ import UIKit
     
     \note This could be nil.  Please watch out for nil pageManagerParents
     */
-    var pageManagerParent: NewPageManager? { get set }
+    var pageManagerParent: PageManager? { get set }
     
     /**
     Saves the Activity's state.  All user inputted data, taps, and movements (if necessary) should be saved into an object of your choice
@@ -60,7 +60,7 @@ import UIKit
     :returns: The Session of data that was initally uploaded with the activity
     
     */
-    func activitySessionForActivityID(activityID: String) -> ActivitySession
+    func activitySessionForActivityID(activityID: String, activity: Activity) -> ActivitySession
     
     /**
     

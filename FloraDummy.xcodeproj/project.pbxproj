@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
-		103265CF1A600CF800511546 /* NewPageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* NewPageManager.swift */; };
+		103265CF1A600CF800511546 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* PageManager.swift */; };
 		104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104187D11A461DDC001C571C /* MediaPlayer.framework */; };
 		104187D61A462BBF001C571C /* Foggy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CA1A461CDE001C571C /* Foggy.mp4 */; };
 		104187D71A462BBF001C571C /* Night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CB1A461CDE001C571C /* Night.mp4 */; };
@@ -66,6 +66,7 @@
 		10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD519FEE55B009B0983 /* MathVC.swift */; };
 		10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD719FEE574009B0983 /* ScienceVC.swift */; };
 		10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD319FED841009B0983 /* SettingsVC.swift */; };
+		10E76B241A86D4F600D9BD83 /* CESCometUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */; };
 		4C6A6C321A0E8C9500C3A7A7 /* trigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C311A0E8C9500C3A7A7 /* trigView.xib */; };
 		4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C331A11613800C3A7A7 /* constView.xib */; };
 		4C6A6C361A11669200C3A7A7 /* expoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C351A11669200C3A7A7 /* expoView.xib */; };
@@ -224,7 +225,7 @@
 /* Begin PBXFileReference section */
 		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
-		103265CD1A600CE800511546 /* NewPageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageManager.swift; sourceTree = "<group>"; };
+		103265CD1A600CE800511546 /* PageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
 		104187CA1A461CDE001C571C /* Foggy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foggy.mp4; sourceTree = "<group>"; };
 		104187CB1A461CDE001C571C /* Night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Night.mp4; sourceTree = "<group>"; };
 		104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Partly Cloudy.mp4"; sourceTree = "<group>"; };
@@ -298,6 +299,7 @@
 		10BFE6F31A204AE900E68C77 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		10BFE6F51A20510800E68C77 /* Weather Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Weather Images.xcassets"; sourceTree = "<group>"; };
 		10DD07D11A1661350026B0DA /* MathProblemTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemTextField.swift; sourceTree = "<group>"; };
+		10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESCometUIImageView.swift; sourceTree = "<group>"; };
 		4C6A6C311A0E8C9500C3A7A7 /* trigView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = trigView.xib; sourceTree = "<group>"; };
 		4C6A6C331A11613800C3A7A7 /* constView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = constView.xib; sourceTree = "<group>"; };
 		4C6A6C351A11669200C3A7A7 /* expoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = expoView.xib; sourceTree = "<group>"; };
@@ -540,14 +542,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		103265CC1A600CD400511546 /* New Page Manager */ = {
-			isa = PBXGroup;
-			children = (
-				103265CD1A600CE800511546 /* NewPageManager.swift */,
-			);
-			name = "New Page Manager";
-			sourceTree = "<group>";
-		};
 		104187C81A461CCA001C571C /* Weather Videos */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +560,8 @@
 		104BA0F61A0424DA007BD9DE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				921DD2631A2A430100C18079 /* PageManager.h */,
+				921DD2641A2A430100C18079 /* PageManager.m */,
 				104BA1011A042AEF007BD9DE /* Math Problems */,
 				104BA0FA1A0428BD007BD9DE /* Intro */,
 				104BA0F71A0424E1007BD9DE /* Read */,
@@ -729,6 +725,7 @@
 				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
 				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
 				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
+				10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1116,9 +1113,7 @@
 		92E7A1281864E303006A712B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				103265CC1A600CD400511546 /* New Page Manager */,
-				921DD2631A2A430100C18079 /* PageManager.h */,
-				921DD2641A2A430100C18079 /* PageManager.m */,
+				103265CD1A600CE800511546 /* PageManager.swift */,
 				9211950119FE01C000644054 /* FormattedVC.h */,
 				9211950219FE01C000644054 /* FormattedVC.m */,
 				921DD2661A2A434D00C18079 /* PageVC.h */,
@@ -1510,6 +1505,7 @@
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
 				5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
+				10E76B241A86D4F600D9BD83 /* CESCometUIImageView.swift in Sources */,
 				1095095E1A3E042C00030E4B /* CESEncryption.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,
@@ -1543,7 +1539,7 @@
 				107363C31A702F2D000D13A6 /* CESDatabaseProtocols.swift in Sources */,
 				108E9B161A27A67E00120A63 /* NSDate+InternetDateTime.m in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
-				103265CF1A600CF800511546 /* NewPageManager.swift in Sources */,
+				103265CF1A600CF800511546 /* PageManager.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
 				92CB449A1A203F740082C761 /* Content.m in Sources */,
 			);

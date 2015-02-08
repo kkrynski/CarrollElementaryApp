@@ -7,15 +7,16 @@
 //
 
 #import "PageVC.h"
-@protocol AVAudioPlayerDelegate;
-@protocol AVAudioRecorderDelegate;
-#import <AVFoundation/AVFoundation.h>
+@import AVFoundation;
 
-@interface MicrophoneVC : PageVC <AVAudioRecorderDelegate, AVAudioPlayerDelegate> {
-
+@interface MicrophoneVC : FormattedVC <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+{
+    IBOutlet UIButton *recordPauseButton;
+    IBOutlet UIButton *playButton;
+    IBOutlet UIButton *stopButton;
+    
+    AVAudioRecorder *recorder;
+    AVAudioPlayer *player;
 }
-    @property(nonatomic,retain) IBOutlet UIButton *recordPauseButton;
-    @property(nonatomic,retain) IBOutlet UIButton *playButton;
-    @property(nonatomic,retain) IBOutlet UIButton *stopButton;
 
 @end

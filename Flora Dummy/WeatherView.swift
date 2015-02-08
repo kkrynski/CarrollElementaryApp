@@ -95,16 +95,20 @@ class WeatherView: UIView, WeatherManagerDelegate
         currentWeatherItem = item
         indexOfCurrentTempString = item.indexForWeatherMap
         
+        println(item.weatherCurrentTemp)
+        
+        let unknown = "ERR"
+        
         UIView.transitionWithView(self, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
-            if item.weatherCode != nil || item.weatherCode != ""
+            if let code = item.weatherCode
             {
-                //self.videoForForcastImage(item.weatherCode)
+                self.videoForForcastImage(code)
             }
             self.player?.view.alpha = 1.0
-            self.weatherTemp!.text = "\(item.weatherCurrentTemp)°F"
+            self.weatherTemp!.text = "\(item.weatherCurrentTemp == nil ? unknown:item.weatherCurrentTemp)°F"
             self.weatherTemp!.numberOfLines = 0
-            self.weatherWindSpeed!.text = "Wind Speed: \(item.weatherWindSpeed) mph"
-            self.weatherHumidity!.text = "Humidity: \(item.weatherHumidity)%"
+            self.weatherWindSpeed!.text = "Wind Speed: \(item.weatherWindSpeed == nil ? unknown:item.weatherWindSpeed) mph"
+            self.weatherHumidity!.text = "Humidity: \(item.weatherHumidity == nil ? unknown:item.weatherHumidity)%"
             }, completion: nil)
     }
     

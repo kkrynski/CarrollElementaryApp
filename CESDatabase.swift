@@ -198,13 +198,26 @@ private class PageManagerDatabaseManager : NSObject, NSURLSessionDelegate, PageM
         urlSession = NSURLSession(configuration: urlSessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    func activitySessionForActivityID(activityID: String) -> ActivitySession
+    func activitySessionForActivityID(activityID: String, activity: Activity) -> ActivitySession
     {
         let newActivitySession = ActivitySession()
         newActivitySession.activityID = activityID
         
         let plistPathActivitySessions = NSBundle.mainBundle().pathForResource("ActivitySessions", ofType: "plist")!
-        let activitySessions = NSArray(contentsOfFile: plistPathActivitySessions) as Array<Dictionary<String, String>>
+        let storedSessions = NSArray(contentsOfFile: plistPathActivitySessions) as Array<Dictionary<String, String>>?
+        
+        var activitySessions : Array<Dictionary<String, String>>
+        
+        if storedSessions != nil
+        {
+            activitySessions = storedSessions!
+        }
+        else
+        {
+            newActivitySession.activityData = activity.activityData as Array<Dictionary<NSNumber, AnyObject>>
+            
+            return newActivitySession
+        }
         
         for activitySession in activitySessions
         {
@@ -913,9 +926,17 @@ private class MainActivitiesDatabaseManager : NSObject, NSURLSessionDelegate, Ma
         {
             let data = NSData().dataFromHexString(activityData)
             let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-            //TODO: Uncomment below after Zack fixes his Activity Class
-            //activityToReturn.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
+            activityToReturn.activityData = unarchiver.decodeObjectForKey("activityData") as Array<Dictionary<NSNumber, AnyObject>>
             unarchiver.finishDecoding()
+        }
+        
+        if (activityDict["Quiz"] as String).toInt() == 0
+        {
+            activityToReturn.quizMode = NO
+        }
+        else
+        {
+            activityToReturn.quizMode = YES
         }
         
         activityToReturn.classID = activityDict["Class_ID"] as String
