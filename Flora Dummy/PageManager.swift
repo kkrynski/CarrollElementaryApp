@@ -106,7 +106,7 @@ class PageManager: FormattedVC
     
     //View Controllers On Screen
     private var oldViewController : FormattedVC?
-    private var currentViewController : FormattedVC?
+    private var currentViewController : FormattedVC!
     
     //View Controllers On Screen Constraints
     private var oldViewControllerConstraints = Array<NSLayoutConstraint>()
@@ -288,7 +288,6 @@ class PageManager: FormattedVC
             
             if (shouldShowSaveButton)
             {
-                
                 saveButtonConstraints.append(NSLayoutConstraint(item: saveButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: -4.0))
                 saveButtonConstraints.append(NSLayoutConstraint(item: saveButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -8.0))
                 saveButtonConstraints.append(NSLayoutConstraint(item: saveButton, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.2, constant: 0.0))
@@ -472,6 +471,13 @@ class PageManager: FormattedVC
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: NO)
         setNeedsStatusBarAppearanceUpdate()
         
+        //Update live image
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0)
+        currentViewController.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: YES)
+        let copied = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        tableOfContentsImages[currentIndex + 1] = copied
+        
         let numberOfScreensPerRow = 4.0
         let aspectRatio = 1024.0/768.0
         let bufferY = 47.0
@@ -544,6 +550,8 @@ class PageManager: FormattedVC
             tableOfContentsView.addSubview(titleLabel)
         }
         
+        tableOfContentsView.scrollRectToVisible(self.tableOfContentsImageViews[self.currentIndex + 1].frame, animated: NO)
+        
         tableOfContentsView.bringSubviewToFront(self.tableOfContentsImageViews[self.currentIndex + 1])
         
         selectedImageView = tableOfContentsImageViews[currentIndex + 1]
@@ -572,7 +580,7 @@ class PageManager: FormattedVC
                         self.tableOfContentsImageViews[self.currentIndex + 1].layer.addAnimation(animation, forKey: "cornerRadius")
                         self.tableOfContentsImageViews[self.currentIndex + 1].layer.cornerRadius = 10.0
                         
-                        self.currentViewController!.view.alpha = 0.0
+                        self.currentViewController.view.alpha = 0.0
                         self.tableOfContentsView.backgroundColor = .blackColor()
                         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                             
@@ -632,19 +640,19 @@ class PageManager: FormattedVC
         
         currentViewControllerConstraints = Array<NSLayoutConstraint>()
         
-        currentViewController!.willMoveToParentViewController(self)
-        currentViewController!.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
-        view.addSubview(currentViewController!.view)
-        view.sendSubviewToBack(currentViewController!.view)
+        currentViewController.willMoveToParentViewController(self)
+        currentViewController.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
+        view.addSubview(currentViewController.view)
+        view.sendSubviewToBack(currentViewController.view)
         
-        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
-        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+        currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
         
         view.addConstraints(currentViewControllerConstraints)
         
-        currentViewController!.didMoveToParentViewController(self)
+        currentViewController.didMoveToParentViewController(self)
         
         //Animate out the table of contents
         let animation = CABasicAnimation(keyPath: "cornerRadius")
@@ -716,7 +724,7 @@ class PageManager: FormattedVC
     {
         view.userInteractionEnabled = NO
         
-        let savedObject: AnyObject? = currentViewController!.saveActivityState()
+        let savedObject: AnyObject? = currentViewController.saveActivityState()
         
         let currentActivityPage = currentActivitySession.activityData[currentIndex]
         let currentActivityType = currentActivityPage.keys.array[0]
@@ -818,7 +826,7 @@ class PageManager: FormattedVC
         
         if (direction as NSString).isEqualToString("Same")
         {
-            currentViewController!.view.alpha = 1.0
+            currentViewController.view.alpha = 1.0
             NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
             return
         }
@@ -866,9 +874,9 @@ class PageManager: FormattedVC
             currentViewController = viewControllerForPageType(ActivityViewControllerType(rawValue: currentActivityType.integerValue)!)
             
             let status = currentActivitySession.status
-            if currentViewController!.isViewLoaded() == YES
+            if currentViewController.isViewLoaded() == YES
             {
-                currentViewController!.view.userInteractionEnabled = (status == "Started" || status == "Not Started")
+                currentViewController.view.userInteractionEnabled = (status == "Started" || status == "Not Started")
             }
             
             //Check if we have already saved data in the activity (i.e. the user is going backwards)
@@ -878,16 +886,16 @@ class PageManager: FormattedVC
                 
                 if object as String != "<null>"
                 {
-                    currentViewController!.restoreActivityState(newActivityData[currentIndex].values.array[0])
+                    currentViewController.restoreActivityState(newActivityData[currentIndex].values.array[0])
                 }
                 else
                 {
-                    currentViewController!.restoreActivityState(currentActivityPage.values.array[0])
+                    currentViewController.restoreActivityState(currentActivityPage.values.array[0])
                 }
             }
             else    //There isn't any saved session data for this activity, so load the old session data
             {
-                currentViewController!.restoreActivityState(currentActivityPage.values.array[0])
+                currentViewController.restoreActivityState(currentActivityPage.values.array[0])
             }
         }
         else
@@ -917,19 +925,19 @@ class PageManager: FormattedVC
         {
             if currentViewController != nil
             {
-                currentViewController!.willMoveToParentViewController(self)
-                currentViewController!.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
-                view.addSubview(currentViewController!.view)
-                view.sendSubviewToBack(currentViewController!.view)
+                currentViewController.willMoveToParentViewController(self)
+                currentViewController.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
+                view.addSubview(currentViewController.view)
+                view.sendSubviewToBack(currentViewController.view)
                 
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
                 
                 view.addConstraints(currentViewControllerConstraints)
                 
-                currentViewController!.didMoveToParentViewController(self)
+                currentViewController.didMoveToParentViewController(self)
             }
             self.modalPresentationStyle = .Custom
             if subjectParent.classForCoder !== TestingTVC.classForCoder()
@@ -943,34 +951,34 @@ class PageManager: FormattedVC
             setUpButtons()
             if currentViewController != nil
             {
-                currentViewController!.willMoveToParentViewController(self)
-                currentViewController!.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
-                view.insertSubview(currentViewController!.view, aboveSubview: oldViewController!.view)
-                view.sendSubviewToBack(currentViewController!.view)
+                currentViewController.willMoveToParentViewController(self)
+                currentViewController.view.setTranslatesAutoresizingMaskIntoConstraints(NO)
+                view.insertSubview(currentViewController.view, aboveSubview: oldViewController!.view)
+                view.sendSubviewToBack(currentViewController.view)
                 
                 currentViewControllerConstraints = Array<NSLayoutConstraint>()
                 
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController!.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+                currentViewControllerConstraints.append(NSLayoutConstraint(item: currentViewController.view, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
                 
                 view.addConstraints(currentViewControllerConstraints)
                 
-                currentViewController!.didMoveToParentViewController(self)
+                currentViewController.didMoveToParentViewController(self)
                 
                 switch direction
                 {
                 case "Forward":
-                    currentViewController!.view.transform = CGAffineTransformMakeTranslation(view.frame.size.width, 0.0)
+                    currentViewController.view.transform = CGAffineTransformMakeTranslation(view.frame.size.width, 0.0)
                     break
                     
                 case "Backward":
-                    currentViewController!.view.transform = CGAffineTransformMakeTranslation(-view.frame.size.width, 0.0)
+                    currentViewController.view.transform = CGAffineTransformMakeTranslation(-view.frame.size.width, 0.0)
                     break
                     
                 default:
-                    currentViewController!.view.transform = CGAffineTransformMakeTranslation(view.frame.size.width, 0.0)
+                    currentViewController.view.transform = CGAffineTransformMakeTranslation(view.frame.size.width, 0.0)
                     break
                 }
                 
@@ -978,7 +986,7 @@ class PageManager: FormattedVC
                 
                 UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                     
-                    self.currentViewController!.view.transform = CGAffineTransformIdentity
+                    self.currentViewController.view.transform = CGAffineTransformIdentity
                     
                     if self.oldViewController != nil
                     {

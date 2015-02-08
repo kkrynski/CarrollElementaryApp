@@ -8,7 +8,7 @@
 
 #import "PageVC.h"
 
-@interface PictureQuizVC : PageVC
+@interface PictureQuizVC : FormattedVC
 {
     NSString *imageName;
     NSString *question;

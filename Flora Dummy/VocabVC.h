@@ -11,7 +11,7 @@
 
 
 
-@interface VocabVC : PageVC
+@interface VocabVC : FormattedVC
 @property (nonatomic,retain) IBOutlet UILabel *questionLabel;
 @property (nonatomic,retain) IBOutlet UIButton *butAnswer1;
 @property (nonatomic,retain) IBOutlet UIButton *butAnswer2;

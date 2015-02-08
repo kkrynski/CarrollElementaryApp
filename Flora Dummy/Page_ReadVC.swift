@@ -8,9 +8,8 @@
 
 import UIKit
 
-class Page_ReadVC: PageVC
+class Page_ReadVC: FormattedVC
 {
-    
     var pageText : NSString?
     
     @IBOutlet var summaryTextView : UITextView?
@@ -22,10 +21,6 @@ class Page_ReadVC: PageVC
         let formattedString = (pageText! as NSString).stringByReplacingOccurrencesOfString("\\n", withString: "\n") as String
         
         summaryTextView!.text = formattedString
-        
-        //Frame overrides
-        
-        //otherLabel.frame = CGRectMake(otherLabel.frame.origin.x, 20, otherLabel.frame.size.width, otherLabel.frame.size.height)
     }
 
     //Color Theme setting

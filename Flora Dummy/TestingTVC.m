@@ -192,11 +192,7 @@
     
     testSession.activityData = testSessionData;
     
-    [[PageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
-    
-    //pageManager.currentActivitySession = testSession;
-    
-    //[self presentViewController:pageManager animated:YES completion:nil];
+    activePageManager = [[PageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
 }
 
 -(void) launchModule

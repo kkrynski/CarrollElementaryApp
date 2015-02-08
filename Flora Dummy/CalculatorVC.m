@@ -41,7 +41,6 @@ NSString *curNum = @"";
     [super viewDidLoad];
     [calLabel setAdjustsFontSizeToFitWidth:YES];
     [calLabel setMinimumScaleFactor:0.5];
-    [calLabel setBackgroundColor:[Definitions lighterColorForColor:backgroundColor]];
     expression = [NSMutableArray array];
 }
 
@@ -95,7 +94,7 @@ NSString *curNum = @"";
                     parencount--;
                     if(parencount == 0 ){
                         closeParenIndex = i;
-                         NSLog(@"close minus open: %d%lu", closeParenIndex,openParenIndex);
+                         NSLog(@"close minus open: %d%lu", closeParenIndex,(unsigned long)openParenIndex);
                         if(closeParenIndex-openParenIndex>2){
                         
                         NSArray *insideParenArray = [express subarrayWithRange:NSMakeRange(openParenIndex + 1, (closeParenIndex - openParenIndex) - 1)];
@@ -350,7 +349,7 @@ NSString *curNum = @"";
 }
 - (IBAction)addBut:(id)sender {
     state = 1;
-    [self command:@"+" ];
+    [self command:@"+"];
 }
 - (IBAction)subBut:(id)sender {
     state = 1;

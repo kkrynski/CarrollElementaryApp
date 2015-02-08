@@ -13,7 +13,7 @@
 
 NS_CLASS_DEPRECATED_IOS(8_1, 8_1)
 ///This class is now deprecated.  Please use \b SquareDragAndDrop instead
-@interface Page_DragAndDropVC : PageVC <UICollisionBehaviorDelegate>
+@interface Page_DragAndDropVC : FormattedVC <UICollisionBehaviorDelegate>
 {
     
 }
