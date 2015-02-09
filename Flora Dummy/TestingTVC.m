@@ -108,6 +108,9 @@
         testSessionData = [NSMutableArray arrayWithObjects:
                            [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
                                                                        [NSDictionary dictionaryWithObjectsAndKeys:@"3 + 2=#w#", @"Equation", nil],
+                                                                       [[NSNull alloc] init], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil],
+                           [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"5 + 8 * 2=#d#", @"Equation", nil],
                                                                        [[NSNull alloc] init], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil], nil];
         /*
         MathProblemVC *mathProblem = [[MathProblemVC alloc] init];

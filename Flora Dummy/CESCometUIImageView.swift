@@ -11,7 +11,7 @@ import UIKit
 class CESCometUIImageView: UIView
 {
     let imageView : UIImageView!
-    private let dimView : UIView!
+    let dimView : UIView!
     let wheel : UIActivityIndicatorView!
     var quizLabel : UILabel?
     
@@ -23,10 +23,18 @@ class CESCometUIImageView: UIView
         super.init(frame: frame)
         
         backgroundColor = .whiteColor()
-        clipsToBounds = YES
+        
+        layer.shadowColor = UIColor.whiteColor().CGColor
+        layer.shadowOpacity = 1.0
+        layer.shadowOffset = CGSizeMake(0, 1)
+        
+        layer.shouldRasterize = YES
+        layer.rasterizationScale = UIScreen.mainScreen().scale
         
         imageView = UIImageView()
+        imageView.clipsToBounds = YES
         imageView.setTranslatesAutoresizingMaskIntoConstraints(NO)
+        imageView.layer.cornerRadius = 0.001
         imageView.contentMode = .ScaleAspectFit
         addSubview(imageView)
         
@@ -144,15 +152,25 @@ class CESCometUIImageView: UIView
     private func highlightSelf()
     {
         dimView.alpha = 1.0
+        layer.shadowColor = UIColor.blackColor().CGColor!
     }
     
     private func unHighlightSelf()
     {
         dimView.alpha = 0.0
+        layer.shadowColor = UIColor.whiteColor().CGColor!
     }
     
     private func animateHighlightSelf()
     {
+        let animation = CABasicAnimation(keyPath: "shadowColor")
+        animation.fromValue = UIColor.whiteColor().CGColor!
+        animation.toValue = UIColor.blackColor().CGColor!
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        animation.duration = 0.3
+        self.layer.addAnimation(animation, forKey: "shadowColor")
+        self.layer.shadowColor = UIColor.blackColor().CGColor!
+        
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             self.dimView.alpha = 1.0
             }, completion: nil)
@@ -160,6 +178,14 @@ class CESCometUIImageView: UIView
     
     private func animateUnHighlightSelf()
     {
+        let animation = CABasicAnimation(keyPath: "shadowColor")
+        animation.fromValue = UIColor.blackColor().CGColor!
+        animation.toValue = UIColor.whiteColor().CGColor!
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        animation.duration = 0.3
+        self.layer.addAnimation(animation, forKey: "shadowColor")
+        self.layer.shadowColor = UIColor.whiteColor().CGColor!
+        
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
             self.dimView.alpha = 0.0
             }, completion: nil)
@@ -191,15 +217,22 @@ class CESCometUIImageView: UIView
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent)
     {
+        let previousPoint = (touches.allObjects.first as UITouch).previousLocationInView(self)
         let point = (touches.allObjects.first as UITouch).locationInView(self)
         
         if CGRectContainsPoint(self.bounds, point)
         {
-            animateHighlightSelf()
+            if CGRectContainsPoint(self.bounds, previousPoint) == NO
+            {
+                animateHighlightSelf()
+            }
         }
         else
         {
-            animateUnHighlightSelf()
+            if CGRectContainsPoint(self.bounds, previousPoint)
+            {
+                animateUnHighlightSelf()
+            }
         }
     }
 }

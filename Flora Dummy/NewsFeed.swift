@@ -61,6 +61,9 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
     {
         super.init(frame: frame)
         
+        layer.rasterizationScale = UIScreen.mainScreen().scale
+        layer.shouldRasterize = YES
+        
         color = primaryColor
         delegate = self
         
@@ -99,6 +102,9 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
         infoLabel.center = CGPointMake(logo.frame.size.width + logo.frame.origin.x + 8 + infoLabel.frame.size.width/2.0, view.frame.size.height/2.0)
         view.addSubview(infoLabel)
         
+        view.layer.shouldRasterize = YES
+        view.layer.rasterizationScale = UIScreen.mainScreen().scale
+        
         contentSize = CGSizeMake(view.frame.size.width, 0)
         view.center = CGPointMake(view.frame.size.width/2.0, frame.size.height/2.0)
         addSubview(view)
@@ -108,7 +114,7 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
         
         viewsArray.addObject(view)
         
-        UIView.animateWithDuration(15.0, delay: 0.0, options: .AllowAnimatedContent | .CurveLinear, animations:{ () -> Void in
+        UIView.animateWithDuration(15.0, delay: 0.0, options: .AllowAnimatedContent, animations:{ () -> Void in
             
             self.frame = CGRectMake(oldX, self.frame.origin.y, self.frame.size.width, self.frame.size.height)
             
@@ -145,13 +151,16 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
         infoLabel.center = CGPointMake(8 + logo.frame.size.width + infoLabel.frame.size.width/2.0, view.frame.size.height/2.0)
         view.addSubview(infoLabel)
         
+        view.layer.shouldRasterize = YES
+        view.layer.rasterizationScale = UIScreen.mainScreen().scale
+        
         let oldView = self.viewsArray.firstObject as UIView
         view.center = CGPointMake(oldView.frame.origin.x + oldView.frame.size.width + 8 + view.frame.size.width/2.0, frame.size.height/2.0)
         addSubview(view)
         
         viewsArray.addObject(view)
         
-        UIView.animateWithDuration(15.0, delay: 0.0, options: .AllowAnimatedContent | .CurveLinear, animations:{ () -> Void in
+        UIView.animateWithDuration(15.0, delay: 0.0, options: .AllowAnimatedContent, animations:{ () -> Void in
             
             self.contentOffset = CGPointMake(view.frame.size.width, 0)
             

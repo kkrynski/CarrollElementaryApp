@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
+		101F31171A87CB0300F81711 /* CarollJSONConverterTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101F31161A87CB0300F81711 /* CarollJSONConverterTemp.swift */; };
+		101F31191A87CC0500F81711 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 101F31181A87CC0500F81711 /* Carroll.json */; };
+		101F311A1A87CD3900F81711 /* Rain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CD1A461CDE001C571C /* Rain.mp4 */; };
+		101F311C1A87D24300F81711 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 101F311B1A87D24300F81711 /* Colors.plist */; };
+		101F311E1A87D3B300F81711 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101F311D1A87D3B300F81711 /* ColorManager.swift */; };
 		103265CF1A600CF800511546 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* PageManager.swift */; };
 		104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104187D11A461DDC001C571C /* MediaPlayer.framework */; };
 		104187D61A462BBF001C571C /* Foggy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CA1A461CDE001C571C /* Foggy.mp4 */; };
@@ -114,7 +119,6 @@
 		921DD2681A2A434D00C18079 /* PageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921DD2671A2A434D00C18079 /* PageVC.m */; };
 		923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 923774531A0552A400A49D14 /* PictureQuizVC.m */; };
 		923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923774541A0552A400A49D14 /* PictureQuizVC.xib */; };
-		924B3C041A337AE700A18755 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 924B3C031A337AE700A18755 /* Carroll.json */; };
 		926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0D18E4EA69006CDB2F /* HOME1.gif */; };
 		926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0E18E4EA69006CDB2F /* HOME2.gif */; };
 		926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0F18E4EA69006CDB2F /* HOME3.gif */; };
@@ -187,6 +191,10 @@
 /* Begin PBXFileReference section */
 		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
+		101F31161A87CB0300F81711 /* CarollJSONConverterTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarollJSONConverterTemp.swift; sourceTree = "<group>"; };
+		101F31181A87CC0500F81711 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
+		101F311B1A87D24300F81711 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
+		101F311D1A87D3B300F81711 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		103265CD1A600CE800511546 /* PageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
 		104187CA1A461CDE001C571C /* Foggy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foggy.mp4; sourceTree = "<group>"; };
 		104187CB1A461CDE001C571C /* Night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Night.mp4; sourceTree = "<group>"; };
@@ -351,7 +359,6 @@
 		923774521A0552A400A49D14 /* PictureQuizVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureQuizVC.h; sourceTree = "<group>"; };
 		923774531A0552A400A49D14 /* PictureQuizVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureQuizVC.m; sourceTree = "<group>"; };
 		923774541A0552A400A49D14 /* PictureQuizVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureQuizVC.xib; sourceTree = "<group>"; };
-		924B3C031A337AE700A18755 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		926C9B0D18E4EA69006CDB2F /* HOME1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME1.gif; sourceTree = "<group>"; };
 		926C9B0E18E4EA69006CDB2F /* HOME2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME2.gif; sourceTree = "<group>"; };
 		926C9B0F18E4EA69006CDB2F /* HOME3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME3.gif; sourceTree = "<group>"; };
@@ -551,6 +558,25 @@
 			name = "Math Problems";
 			sourceTree = "<group>";
 		};
+		105E129D1A887AED00130E7B /* UI Objects */ = {
+			isa = PBXGroup;
+			children = (
+				10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */,
+				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
+			);
+			name = "UI Objects";
+			sourceTree = "<group>";
+		};
+		105E129E1A887AF900130E7B /* Global Definitions */ = {
+			isa = PBXGroup;
+			children = (
+				10B8787D19FC2881005D9937 /* Definitions.swift */,
+				1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */,
+				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
+			);
+			name = "Global Definitions";
+			sourceTree = "<group>";
+		};
 		1078FC141A0E944500A14836 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +688,7 @@
 				10BEC0291A3CEBB2008CBFF9 /* Classes.plist */,
 				10BEC02B1A3CEBD7008CBFF9 /* Activities.plist */,
 				106948E41A62F59B0093F9DF /* ActivitySessions.plist */,
+				101F311B1A87D24300F81711 /* Colors.plist */,
 			);
 			name = "Stored Data";
 			sourceTree = "<group>";
@@ -670,13 +697,11 @@
 			isa = PBXGroup;
 			children = (
 				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
+				101F311D1A87D3B300F81711 /* ColorManager.swift */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
-				10B8787D19FC2881005D9937 /* Definitions.swift */,
-				1097EBD31A28D37700BED924 /* OBJ-CDefinitions.h */,
-				1097EBD41A28D37700BED924 /* OBJ-CDefinitions.m */,
-				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
+				105E129E1A887AF900130E7B /* Global Definitions */,
+				105E129D1A887AED00130E7B /* UI Objects */,
 				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
-				10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -881,13 +906,14 @@
 				92E7A1281864E303006A712B /* Pages */,
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
-				924B3C031A337AE700A18755 /* Carroll.json */,
+				101F31181A87CC0500F81711 /* Carroll.json */,
 				1078FC141A0E944500A14836 /* Michael */,
 				923774511A05524100A49D14 /* Stephen's Stuff */,
 				921194FC19FE014200644054 /* Zach's Super Secret Project */,
 				4C0BCF3819FC155900E69F5C /* Riley */,
 				5D709CAC1A09A28A000F44DF /* Mason */,
 				921894EA17F7752A00DFB26B /* Supporting Files */,
+				101F31161A87CB0300F81711 /* CarollJSONConverterTemp.swift */,
 			);
 			path = "Flora Dummy";
 			sourceTree = "<group>";
@@ -1305,6 +1331,7 @@
 				5D18E9DD1A21008900F8DB94 /* great.wav in Resources */,
 				5D18E9E11A21009600F8DB94 /* hand.wav in Resources */,
 				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
+				101F311A1A87CD3900F81711 /* Rain.mp4 in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
 				926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */,
 				104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */,
@@ -1313,6 +1340,7 @@
 				923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */,
 				5D18E9DB1A21007200F8DB94 /* okay.wav in Resources */,
 				5D18E9DF1A21009100F8DB94 /* have.wav in Resources */,
+				101F311C1A87D24300F81711 /* Colors.plist in Resources */,
 				926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */,
 				5D18E9F71A2100D500F8DB94 /* year.wav in Resources */,
 				92D06A2118D140F4004850C6 /* zbar-back.png in Resources */,
@@ -1324,7 +1352,6 @@
 				92C261BA1839D40800FDA09B /* barrel.png in Resources */,
 				92F78DA71A263D0B0048612E /* QuickQuizCreationPopOverVC.xib in Resources */,
 				104187DA1A462BBF001C571C /* Snow.mp4 in Resources */,
-				924B3C041A337AE700A18755 /* Carroll.json in Resources */,
 				9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */,
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
 				106948E51A62F59B0093F9DF /* ActivitySessions.plist in Resources */,
@@ -1346,6 +1373,7 @@
 				109509591A3E01F800030E4B /* LoggedInUser.plist in Resources */,
 				92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */,
 				4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */,
+				101F31191A87CC0500F81711 /* Carroll.json in Resources */,
 				92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */,
 				5D18EA001A210C7500F8DB94 /* Stop_Button.jpeg in Resources */,
 				5D18E9D51A1C12A900F8DB94 /* hello.wav in Resources */,
@@ -1401,7 +1429,9 @@
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
 				5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
+				101F311E1A87D3B300F81711 /* ColorManager.swift in Sources */,
 				10E76B241A86D4F600D9BD83 /* CESCometUIImageView.swift in Sources */,
+				101F31171A87CB0300F81711 /* CarollJSONConverterTemp.swift in Sources */,
 				1095095E1A3E042C00030E4B /* CESEncryption.m in Sources */,
 				923774551A0552A400A49D14 /* PictureQuizVC.m in Sources */,
 				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,

@@ -13,8 +13,6 @@ import QuartzCore
 
 //MARK: - Global Variables
 
-let transitionLength = 0.3  //All transitions in swift files should use this variable for animationDuration to keep uniform
-
 let YES = 1 as Bool
 let NO = 0 as Bool
 
@@ -114,7 +112,7 @@ class Definitions: NSObject
     class func outlineView(view : UIView)
     {
         view.layer.borderWidth = 2.0
-        view.layer.borderColor = UIColor.whiteColor().CGColor
+        view.layer.borderColor = ColorManager.sharedManager().currentColor().secondaryColor.CGColor
     }
     
     //Outline a UIButton
@@ -123,7 +121,7 @@ class Definitions: NSObject
         Definitions.outlineTextInLabel(button.titleLabel!)
         
         button.layer.borderWidth = 4.0
-        button.layer.borderColor = UIColor.whiteColor().CGColor
+        button.layer.borderColor = ColorManager.sharedManager().currentColor().secondaryColor.CGColor
     }
     
     // MARK: - Private Methods for Definitions

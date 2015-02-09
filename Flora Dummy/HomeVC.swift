@@ -11,22 +11,23 @@ import UIKit
 class HomeVC: FormattedVC, NewsFeedDelegate
 {
     //Elements on screen
-    @IBOutlet var titleLabel : UILabel?
-    @IBOutlet var homeImageView : UIImageView?
-    @IBOutlet var weatherView : WeatherView?
+    @IBOutlet var titleLabel : UILabel!
+    @IBOutlet var homeImageView : UIImageView!
+    @IBOutlet var weatherView : WeatherView!
     
-    private var newsFeed : NewsFeed?
+    private var newsFeed : NewsFeed!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateColors", name: ColorSchemeDidChangeNotification, object: nil)
         
-        tabBarController?.tabBar.tintColor = .whiteColor()
+        tabBarController!.tabBar.tintColor = .whiteColor()
         tabBarController!.tabBar.barStyle = .Black
         
         newsFeed = NewsFeed(frame: CGRectMake(0, 0, view.frame.size.width, 40), andPrimaryColor: primaryColor)
-        newsFeed!.newsFeedDelegate = self
-        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.bottomLayoutGuide.length - newsFeed!.frame.size.height/2.0)
+        newsFeed.newsFeedDelegate = self
+        newsFeed.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.bottomLayoutGuide.length - newsFeed!.frame.size.height/2.0)
         view.addSubview(newsFeed!)
     }
     
@@ -34,34 +35,34 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        updateColors()
         
-        tabBarController?.tabBar.tintColor = .whiteColor()
-        tabBarController?.tabBar.barStyle = .Black
+        tabBarController!.tabBar.tintColor = .whiteColor()
+        tabBarController!.tabBar.barStyle = .Black
         
         if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
         {
-            weatherView?.player?.view.alpha = 1.0
-            weatherView?.staticWeatherImage?.alpha = 0.0
-            weatherView?.player?.prepareToPlay()
-            weatherView?.player?.play()
+            weatherView.player?.view.alpha = 1.0
+            weatherView.staticWeatherImage?.alpha = 0.0
+            weatherView.player?.prepareToPlay()
+            weatherView.player?.play()
         }
         else
         {
-            weatherView?.player?.view.alpha = 0.0
-            weatherView?.staticWeatherImage?.alpha = 1.0
+            weatherView.player?.view.alpha = 0.0
+            weatherView.staticWeatherImage?.alpha = 1.0
         }
         
-        titleLabel!.textColor = primaryColor
-        Definitions.outlineTextInLabel(titleLabel!)
+        Definitions.outlineTextInLabel(titleLabel)
         
-        weatherView!.updateColors(primaryColor)
+        weatherView.updateColors(primaryColor)
         
         newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 11)
         
-        if newsFeed!.shouldMoveToNextItem == NO
+        if newsFeed.shouldMoveToNextItem == NO
         {
-            newsFeed!.scrollNextItem()
-            newsFeed!.shouldMoveToNextItem = YES
+            newsFeed.scrollNextItem()
+            newsFeed.shouldMoveToNextItem = YES
         }
     }
     
@@ -73,8 +74,9 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     override func viewWillDisappear(animated: Bool)
     {
         super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         
-        newsFeed!.shouldMoveToNextItem = NO
+        newsFeed.shouldMoveToNextItem = NO
         
         tabBarController?.tabBar.tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
         tabBarController?.tabBar.barStyle = .Default
@@ -86,8 +88,17 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         
         if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
         {
-            weatherView!.player?.pause()
+            weatherView.player?.pause()
         }
+    }
+    
+    override func updateColors()
+    {
+        super.updateColors()
+        
+        UIView.transitionWithView(titleLabel, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
+            self.titleLabel.textColor = ColorManager.sharedManager().currentColor().primaryColor
+        }, completion: nil)
     }
     
     //MARK: - News Feed Delegate
@@ -113,7 +124,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
             breakingNewsLabel.center = CGPointMake(breakingNewsLabel.frame.size.width * 0.3, breakingNewsLabel.center.y)
             
             }, completion: { (finished) -> Void in
-                self.newsFeed!.startFeed()
+                self.newsFeed.startFeed()
         })
     }
 }

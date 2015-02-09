@@ -21,25 +21,6 @@
     
     isPresented = NO;
     
-    /*
-     // Double check to make sure orientation is correct.
-     // iOS 7 introduced a bug where sometimes the VC
-     // doesn't know which orientation it's supposed to be.
-     // Thus, in landscape, it creates a landscape VC but
-     // any reference to its frame will result in portrait
-     // values.
-     CGRect r = self.view.bounds;
-     
-     if (r.size.height > r.size.width)
-     {
-     float w = r.size.width;
-     r.size.width = r.size.height;
-     r.size.height = w;
-     }
-     
-     self.view.bounds = r;
-     */// -- Not an issue in iOS 8 *Michael*
-    
     // Initialize font
     font = [UIFont fontWithName:@"Marker Felt" size:32.0];
     
@@ -50,6 +31,8 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColors) name:ColorSchemeDidChangeNotification object:nil];
     
     // Update colors in case the user changed settings
     [self updateColors];
@@ -67,6 +50,8 @@
     [super viewWillDisappear:animated];
     
     isPresented = NO;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIColor *) colorWithHexString:(NSString *)hexString
@@ -89,34 +74,31 @@
     return hexComponent / 255.0;
 }
 
--(void) updateColors
+- (void) updateColors
 {
-    //Get Colors
-    primaryColor = [Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"primaryColor"]];
-    secondaryColor = [Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"secondaryColor"]];
+    Color *activeColor = [[ColorManager sharedManager] currentColor];
     
-    //Override
-    //TODO: Fix this later
-    primaryColor =[UIColor whiteColor];
-    secondaryColor = [Definitions lighterColorForColor:[Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"backgroundColor"]]];
+    //Get Colors
+    primaryColor = activeColor.primaryColor;
+    secondaryColor = activeColor.secondaryColor;
     
     if (isPresented)
     {
-        [UIView animateWithDuration:0.3 delay:0.0 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
+        [UIView animateWithDuration:transitionLength delay:0.0 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction) animations:^
          {
-             self.view.backgroundColor = [Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"backgroundColor"]];
+             self.view.backgroundColor = activeColor.backgroundColor;
          } completion:nil];
     }
     else
     {
-        self.view.backgroundColor = [Definitions colorWithHexString:[[NSUserDefaults standardUserDefaults] objectForKey:@"backgroundColor"]];
+        self.view.backgroundColor = activeColor.backgroundColor;
     }
 }
 
 // This function outlines the text in a label, meaning it gives
 // the text a border. This presents a more "bubble" letter effect,
 // which is more pleasant for elementary schoolers.
--(void)outlineTextInLabel: (UILabel *)label
+- (void) outlineTextInLabel: (UILabel *)label
 {
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
     label.layer.shadowOffset = CGSizeMake(0.1f, 0.1f);
@@ -131,7 +113,7 @@
 // which is more pleasant for elementary schoolers.
 //
 // Note: this is a little more complicated than a label
--(void)outlineTextInTextView: (UITextView *)textView
+-(void) outlineTextInTextView: (UITextView *)textView
 {
     // Store the text real quick
     NSString *text = textView.text;
@@ -169,7 +151,7 @@
 }
 
 // This function outlines buttons with a border
--(void)outlineButton: (UIButton *)button
+-(void) outlineButton: (UIButton *)button
 {
     float borderWidth = 4.0f;
     
@@ -180,7 +162,7 @@
 }
 
 // THis function outlines views with a border
--(void)outlineView: (UIView *)view
+-(void) outlineView: (UIView *)view
 {
     float borderWidth = 2.0f;
     
@@ -189,7 +171,7 @@
 }
 
 // Creates a slightly lighter color for a given color
-- (UIColor *)lighterColorForColor:(UIColor *)c
+- (UIColor *) lighterColorForColor:(UIColor *)c
 {
     CGFloat r, g, b, a;
     if ([c getRed:&r green:&g blue:&b alpha:&a])
@@ -201,7 +183,7 @@
 }
 
 // Creates a slightly darker color for a given color
-- (UIColor *)darkerColorForColor:(UIColor *)c
+- (UIColor *) darkerColorForColor:(UIColor *)c
 {
     CGFloat r, g, b, a;
     if ([c getRed:&r green:&g blue:&b alpha:&a])

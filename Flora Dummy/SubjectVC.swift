@@ -32,37 +32,32 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     
     private var activitiesLoaded = NO
     
-    //Get all JSON data on startup
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        //We don't need to do this everytime, so we only do it once here.
-        activitiesTable!.layer.borderWidth = CGFloat(borderWidth)
-        activitiesTable!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-    }
-    
     //Everytime the view is shown on screen, make sure all data is updated
     override func viewWillAppear(animated: Bool)
     {
+        super.viewWillAppear(animated)
+        updateColors()
+        
         let standardDefaults = NSUserDefaults.standardUserDefaults()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: ActivityDataLoaded, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: UIApplicationSignificantTimeChangeNotification, object: nil)
         
+        activitiesTable!.layer.borderWidth = CGFloat(borderWidth)
+        activitiesTable!.layer.borderColor = secondaryColor.CGColor
+        
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
         
         notificationField!.textColor = primaryColor
-        notificationField!.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!);
+        notificationField!.backgroundColor = Definitions.lighterColorForColor(ColorManager.sharedManager().currentColor().backgroundColor);
         Definitions.outlineTextInTextView(notificationField!, forFont: font!)
         notificationField!.layer.borderWidth = 2.0
         notificationField!.layer.borderColor = UIColor.whiteColor().CGColor
         notificationField!.textColor = primaryColor
         
         //Set colors for activitiesTable
-        activitiesTable!.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
+        activitiesTable!.backgroundColor = Definitions.lighterColorForColor(ColorManager.sharedManager().currentColor().backgroundColor)
         activitiesTable!.separatorColor = primaryColor
         
         //Update the activities for the tableView
@@ -133,6 +128,14 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         }
         
         activitiesTable!.reloadData()
+    }
+    
+    override func updateColors()
+    {
+        super.updateColors()
+        
+        loadingView?.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
+        noActivitiesView?.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
     }
     
     //Updates the activityTable's data if we went to this screen before it was all downloaded

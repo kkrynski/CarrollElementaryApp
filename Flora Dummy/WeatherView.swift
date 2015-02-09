@@ -13,22 +13,23 @@ import AVFoundation
 class WeatherView: UIView, WeatherManagerDelegate
 {
     //Weather Stuff
-    private var weatherManager : WeatherManager?
-    private var currentWeatherItem : WeatherItem?
+    private var weatherManager : WeatherManager!
+    private var currentWeatherItem : WeatherItem!
     private var indexOfCurrentTempString : Int32?
     
     var player : MPMoviePlayerController?
     var staticWeatherImage : UIImageView?
     
-    @IBOutlet var weatherHumidity : UILabel?
-    @IBOutlet var weatherTemp : UILabel?
-    @IBOutlet var weatherWindSpeed : UILabel?
+    @IBOutlet var weatherHumidity : UILabel!
+    @IBOutlet var weatherTemp : UILabel!
+    @IBOutlet var weatherWindSpeed : UILabel!
     
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateInitialText", userInfo: nil, repeats: NO)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateColors", name: ColorSchemeDidChangeNotification, object: nil)
         
         let audioSession = AVAudioSession.sharedInstance()
         audioSession.setCategory(AVAudioSessionCategoryAmbient, error: nil)
@@ -65,28 +66,43 @@ class WeatherView: UIView, WeatherManagerDelegate
         }
     }
     
+    override func removeFromSuperview()
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        super.removeFromSuperview()
+    }
+    
+    func updateColors()
+    {
+        UIView.transitionWithView(self, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
+            self.weatherHumidity.textColor = ColorManager.sharedManager().currentColor().primaryColor
+            self.weatherTemp.textColor = ColorManager.sharedManager().currentColor().primaryColor
+            self.weatherWindSpeed.textColor = ColorManager.sharedManager().currentColor().primaryColor
+        }, completion: nil)
+    }
+    
     //We have to have this on a delay for initialization
     func updateInitialText()
     {
-        weatherHumidity!.text = "Humidity: Updating..."
-        weatherTemp!.text = "0°F"
-        weatherWindSpeed!.text = "Wind Speed: Updating..."
+        weatherHumidity.text = "Humidity: Updating..."
+        weatherTemp.text = "0°F"
+        weatherWindSpeed.text = "Wind Speed: Updating..."
         
         weatherManager = WeatherManager.sharedManager() as WeatherManager!
-        weatherManager!.delegate = self
-        weatherManager!.startUpdatingLocation()
+        weatherManager.delegate = self
+        weatherManager.startUpdatingLocation()
     }
     
     //Update the colors of the labels in the view
     func updateColors(color: UIColor)
     {
-        weatherTemp!.textColor = color
+        weatherTemp.textColor = color
         Definitions.outlineTextInLabel(weatherTemp!)
         
-        weatherHumidity!.textColor = color
+        weatherHumidity.textColor = color
         Definitions.outlineTextInLabel(weatherHumidity!)
         
-        weatherWindSpeed!.textColor = color
+        weatherWindSpeed.textColor = color
         Definitions.outlineTextInLabel(weatherWindSpeed!)
     }
     
@@ -105,10 +121,10 @@ class WeatherView: UIView, WeatherManagerDelegate
                 self.videoForForcastImage(code)
             }
             self.player?.view.alpha = 1.0
-            self.weatherTemp!.text = "\(item.weatherCurrentTemp == nil ? unknown:item.weatherCurrentTemp)°F"
-            self.weatherTemp!.numberOfLines = 0
-            self.weatherWindSpeed!.text = "Wind Speed: \(item.weatherWindSpeed == nil ? unknown:item.weatherWindSpeed) mph"
-            self.weatherHumidity!.text = "Humidity: \(item.weatherHumidity == nil ? unknown:item.weatherHumidity)%"
+            self.weatherTemp.text = "\(item.weatherCurrentTemp == nil ? unknown:item.weatherCurrentTemp)°F"
+            self.weatherTemp.numberOfLines = 0
+            self.weatherWindSpeed.text = "Wind Speed: \(item.weatherWindSpeed == nil ? unknown:item.weatherWindSpeed) mph"
+            self.weatherHumidity.text = "Humidity: \(item.weatherHumidity == nil ? unknown:item.weatherHumidity)%"
             }, completion: nil)
     }
     
@@ -129,7 +145,7 @@ class WeatherView: UIView, WeatherManagerDelegate
             break
             
         case 143, 248, 260:
-            player?.contentURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Fog", ofType: "mp4")!)
+            player?.contentURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Foggy", ofType: "mp4")!)
             break
             
         case 176, 185, 263, 266, 281, 284, 293, 296, 299, 302, 305, 308, 311, 314, 353, 356, 359, 362, 365:
