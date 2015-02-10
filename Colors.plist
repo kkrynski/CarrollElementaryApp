@@ -8,7 +8,7 @@
 		<key>Primary Color</key>
 		<string>000000</string>
 		<key>Secondary Color</key>
-		<string>EBEBEB</string>
+		<string>737373</string>
 		<key>Background Color</key>
 		<string>FFF79A</string>
 	</dict>
@@ -16,17 +16,17 @@
 		<key>Name</key>
 		<string>Red</string>
 		<key>Primary Color</key>
-		<string>000000</string>
+		<string>FFFFFF</string>
 		<key>Secondary Color</key>
 		<string>EBEBEB</string>
 		<key>Background Color</key>
-		<string>F7977A</string>
+		<string>FF5757</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>Purple</string>
 		<key>Primary Color</key>
-		<string>000000</string>
+		<string>FFFFFF</string>
 		<key>Secondary Color</key>
 		<string>EBEBEB</string>
 		<key>Background Color</key>
@@ -38,7 +38,7 @@
 		<key>Primary Color</key>
 		<string>000000</string>
 		<key>Secondary Color</key>
-		<string>EBEBEB</string>
+		<string>545454</string>
 		<key>Background Color</key>
 		<string>F49AC2</string>
 	</dict>
@@ -48,7 +48,7 @@
 		<key>Primary Color</key>
 		<string>000000</string>
 		<key>Secondary Color</key>
-		<string>EBEBEB</string>
+		<string>636363</string>
 		<key>Background Color</key>
 		<string>F9AD81</string>
 	</dict>
@@ -58,7 +58,7 @@
 		<key>Primary Color</key>
 		<string>000000</string>
 		<key>Secondary Color</key>
-		<string>EBEBEB</string>
+		<string>474747</string>
 		<key>Background Color</key>
 		<string>A2D39C</string>
 	</dict>
@@ -66,7 +66,7 @@
 		<key>Name</key>
 		<string>Blue</string>
 		<key>Primary Color</key>
-		<string>000000</string>
+		<string>FFFFFF</string>
 		<key>Secondary Color</key>
 		<string>EBEBEB</string>
 		<key>Background Color</key>

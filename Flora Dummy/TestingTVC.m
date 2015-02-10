@@ -38,7 +38,6 @@
              @"Michael - SquareDrag",
              @"Zach - Activity Creation",
              @"Stephen - Picture Quiz",
-             @"Mason - Password",
              @"Mason - Spelling Test",
              @"Mason - Microphone",
              @"Zach - Module",
@@ -104,14 +103,12 @@
         return;
     }
     else if ([selectedTest isEqualToString:@"Michael - Math Problem"])
-    {
+    {        
         testSessionData = [NSMutableArray arrayWithObjects:
                            [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
-                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"3 + 2=#w#", @"Equation", nil],
-                                                                       [[NSNull alloc] init], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil],
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"3 + 2=#w#", @"Equation", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil],
                            [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
-                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"5 + 8 * 2=#d#", @"Equation", nil],
-                                                                       [[NSNull alloc] init], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil], nil];
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"5 + 8 * 2=#d#", @"Equation", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil], nil];
         /*
         MathProblemVC *mathProblem = [[MathProblemVC alloc] init];
         mathProblem.mathEquation = @"3 + 2=#w#";
@@ -163,13 +160,6 @@
         [self presentViewController:viewControllerToPresent animated:YES completion:nil];
         return;
     }
-    else if ([selectedTest isEqualToString:@"Mason - Password"])
-    {
-        viewControllerToPresent = [[PasswordVC alloc] init];
-        
-        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
-        return;
-    }
     else if ([selectedTest isEqualToString:@"Mason - Spelling Test"])
     {
         viewControllerToPresent = [[SpellingTestVC alloc] init];
@@ -196,6 +186,7 @@
     testSession.activityData = testSessionData;
     
     activePageManager = [[PageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
+    [activePageManager enablePreviewMode];
 }
 
 -(void) launchModule

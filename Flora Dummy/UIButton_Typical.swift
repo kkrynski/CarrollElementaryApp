@@ -50,6 +50,11 @@ class UIButton_Typical: UIButton
     
     override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool
     {
+        if hidden == YES
+        {
+            return NO
+        }
+        
         let boundsExtension = 5
         let outerBounds = CGRectInset(bounds, CGFloat(0 - boundsExtension), CGFloat(0 - boundsExtension))
         let touchedInside = CGRectContainsPoint(outerBounds, touch.locationInView(self))

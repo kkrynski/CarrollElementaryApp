@@ -16,9 +16,10 @@ class CarollJSONConverterTemp: NSObject
         
         let filePath = NSBundle.mainBundle().pathForResource("Carroll", ofType: "json")
         let JSONData = NSData(contentsOfFile: filePath!)
-        
         let JSONStuff = NSJSONSerialization.JSONObjectWithData(JSONData!, options: .allZeros, error: nil) as NSDictionary
         
-        //println(JSONStuff)
+        let grades = JSONStuff["Courses"] as NSDictionary
+        
+        
     }
 }

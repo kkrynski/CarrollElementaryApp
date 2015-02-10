@@ -53,12 +53,12 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         notificationField!.backgroundColor = Definitions.lighterColorForColor(ColorManager.sharedManager().currentColor().backgroundColor);
         Definitions.outlineTextInTextView(notificationField!, forFont: font!)
         notificationField!.layer.borderWidth = 2.0
-        notificationField!.layer.borderColor = UIColor.whiteColor().CGColor
+        notificationField!.layer.borderColor = secondaryColor.CGColor
         notificationField!.textColor = primaryColor
         
         //Set colors for activitiesTable
         activitiesTable!.backgroundColor = Definitions.lighterColorForColor(ColorManager.sharedManager().currentColor().backgroundColor)
-        activitiesTable!.separatorColor = primaryColor
+        activitiesTable!.separatorColor = secondaryColor
         
         //Update the activities for the tableView
         activities = Array<Activity>()

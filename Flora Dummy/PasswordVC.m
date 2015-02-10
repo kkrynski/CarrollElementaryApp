@@ -20,7 +20,7 @@
     CGContextMoveToPoint(context, CGRectGetMinX(rect), rect.size.height - 15);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor] );
+    CGContextSetStrokeColorWithColor(context, [[ColorManager sharedManager] currentColor].secondaryColor.CGColor);
     CGContextSetLineWidth(context, 3.0);
     CGContextStrokePath(context);
 }
@@ -253,9 +253,11 @@
         
         usernameInput.textColor = self.primaryColor;
         usernameInput.text = @"qwerty";
+        [usernameInput setNeedsDisplay];
         
         passwordInput.textColor = self.primaryColor;
         passwordInput.text = @"qwerty";
+        [passwordInput setNeedsDisplay];
         
         submitButton.titleLabel.font = self.font;
         [submitButton setTitleColor:self.primaryColor forState:UIControlStateNormal];

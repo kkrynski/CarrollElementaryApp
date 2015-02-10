@@ -100,7 +100,7 @@ class PageManager: FormattedVC
             return presentingViewController != nil
         }
     }
-    private var newActivityData = Array<Dictionary<NSNumber, AnyObject?>>()
+    private var newActivityData = Array<Dictionary<NSNumber, AnyObject>>()
     
     //Transition Direction
     private var direction = "Forward"
@@ -212,6 +212,12 @@ class PageManager: FormattedVC
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    ///Disables saving the Activity's Session to the database
+    func enablePreviewMode()
+    {
+        saveButton.hidden = YES
+    }
+    
     private func setUpButtons()
     {
         if currentIndex == currentActivitySession.activityData.count - 1 //Final Page
@@ -270,17 +276,26 @@ class PageManager: FormattedVC
             nextButtonConstraints = Array<NSLayoutConstraint>()
             
             var shouldShowSaveButton = NO
+            var dataIsSame = YES
             
-            for activityData in newActivityData
+            if currentActivitySession.activityData.count > 0 && newActivityData.count > 0
             {
-                if let object: AnyObject = activityData.values.array[0]
+                for index in 0...newActivityData.count - 1
                 {
-                    if object as String != "<null>"
+                    let newActivityDataDict = newActivityData[index] as NSDictionary
+                    let currentActivityDataDict = currentActivitySession.activityData[index] as NSDictionary
+                    
+                    if newActivityDataDict.isEqualToDictionary(currentActivityDataDict) == NO
                     {
-                        shouldShowSaveButton = YES
+                        dataIsSame = NO
                         break
                     }
                 }
+            }
+            
+            if newActivityData.count > 0 && dataIsSame == NO
+            {
+                shouldShowSaveButton = YES
             }
             
             previousButtonConstraints.append(NSLayoutConstraint(item: previousButton, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 8.0))
@@ -418,6 +433,15 @@ class PageManager: FormattedVC
     
     //MARK: - Table Of Contents
     
+    private func updateCurrentViewControllerImage()
+    {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0)
+        currentViewController.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: NO)
+        let copied = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        tableOfContentsImages[currentIndex + 1] = copied
+    }
+    
     private func setUpTOC()
     {
         let introVC = Page_IntroVC(nibName: "Page_IntroVC", bundle: nil)
@@ -441,7 +465,7 @@ class PageManager: FormattedVC
             
             if newActivityData.count > index
             {
-                let object : AnyObject = newActivityData[index].values.array[0]!
+                let object : AnyObject = newActivityData[index].values.array[0]
                 
                 if object as String != "<null>"
                 {
@@ -470,15 +494,13 @@ class PageManager: FormattedVC
     
     func tableOfContents(button: UIButton_Typical)
     {
+        button.userInteractionEnabled = NO
+        
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: NO)
         setNeedsStatusBarAppearanceUpdate()
         
         //Update live image
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0)
-        currentViewController.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: YES)
-        let copied = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        tableOfContentsImages[currentIndex + 1] = copied
+        updateCurrentViewControllerImage()
         
         let numberOfScreensPerRow = 4.0
         let aspectRatio = 1024.0/768.0
@@ -541,7 +563,7 @@ class PageManager: FormattedVC
             titleLabel.font = UIFont(name: "MarkerFelt-Thin", size: 22)
             if index == 0
             {
-                 titleLabel.text = "Introduction"
+                titleLabel.text = "Introduction"
             }
             else
             {
@@ -554,23 +576,19 @@ class PageManager: FormattedVC
         }
         
         tableOfContentsView.scrollRectToVisible(self.tableOfContentsImageViews[self.currentIndex + 1].frame, animated: NO)
-        
         tableOfContentsView.bringSubviewToFront(self.tableOfContentsImageViews[self.currentIndex + 1])
         
         selectedImageView = tableOfContentsImageViews[currentIndex + 1]
-        
         let oldFrame = tableOfContentsImageViews[currentIndex + 1].frame
         
         tableOfContentsImageViews[currentIndex + 1].layer.cornerRadius = 0.001
         tableOfContentsImageViews[currentIndex + 1].frame = CGRectMake(view.bounds.origin.x, view.bounds.origin.y - tableOfContentsView.contentInset.top, view.bounds.size.width, view.bounds.size.height)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "reEnableTOCSelection", userInfo: nil, repeats: NO)
-        
         UIView.animateWithDuration(0.0, animations: { () -> Void in
             self.tableOfContentsImageViews[self.currentIndex + 1].layoutIfNeeded()
             }, completion: { (finished) -> Void in
                 
-                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
                     
                     self.tableOfContentsView.alpha = 1.0
                     
@@ -583,26 +601,23 @@ class PageManager: FormattedVC
                         animation.duration = 0.3
                         self.tableOfContentsImageViews[self.currentIndex + 1].layer.addAnimation(animation, forKey: "cornerRadius")
                         self.tableOfContentsImageViews[self.currentIndex + 1].layer.cornerRadius = 10.0
-                        self.tableOfContentsImageViews[self.currentIndex + 1].imageView.layer.addAnimation(animation, forKey: "cornerRadius")
+                        self.tableOfContentsImageViews[self.currentIndex + 1].imageView.layer.addAnimation(animation.copy() as CABasicAnimation, forKey: "cornerRadius")
                         self.tableOfContentsImageViews[self.currentIndex + 1].imageView.layer.cornerRadius = 10.0
-                        self.tableOfContentsImageViews[self.currentIndex + 1].dimView.layer.addAnimation(animation, forKey: "cornerRadius")
+                        self.tableOfContentsImageViews[self.currentIndex + 1].dimView.layer.addAnimation(animation.copy() as CABasicAnimation, forKey: "cornerRadius")
                         self.tableOfContentsImageViews[self.currentIndex + 1].dimView.layer.cornerRadius = 10.0
                         
                         self.currentViewController.view.alpha = 0.0
                         self.tableOfContentsView.backgroundColor = .blackColor()
-                        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
                             
                             self.tableOfContentsImageViews[self.currentIndex + 1].frame = oldFrame
                             self.tableOfContentsImageViews[self.currentIndex + 1].layoutIfNeeded()
                             
-                            }, completion: nil)
+                            }, completion: { (finished) -> Void in
+                                self.tableOfContentsView.userInteractionEnabled = YES
+                        })
                 })
         })
-    }
-    
-    func reEnableTOCSelection()
-    {
-        tableOfContentsView.userInteractionEnabled = YES
     }
     
     func tableOfContentsOptionWasSelected(timer: NSTimer)
@@ -670,9 +685,9 @@ class PageManager: FormattedVC
         animation.duration = 0.3
         self.tableOfContentsImageViews[self.currentIndex + 1].layer.addAnimation(animation, forKey: "cornerRadius")
         self.tableOfContentsImageViews[self.currentIndex + 1].layer.cornerRadius = 0.001
-        self.tableOfContentsImageViews[self.currentIndex + 1].imageView.layer.addAnimation(animation, forKey: "cornerRadius")
+        self.tableOfContentsImageViews[self.currentIndex + 1].imageView.layer.addAnimation(animation.copy() as CABasicAnimation, forKey: "cornerRadius")
         self.tableOfContentsImageViews[self.currentIndex + 1].imageView.layer.cornerRadius = 0.001
-        self.tableOfContentsImageViews[self.currentIndex + 1].dimView.layer.addAnimation(animation, forKey: "cornerRadius")
+        self.tableOfContentsImageViews[self.currentIndex + 1].dimView.layer.addAnimation(animation.copy() as CABasicAnimation, forKey: "cornerRadius")
         self.tableOfContentsImageViews[self.currentIndex + 1].dimView.layer.cornerRadius = 0.001
         
         
@@ -693,6 +708,8 @@ class PageManager: FormattedVC
                         
                         self.tableOfContentsView.removeFromSuperview()
                         self.tableOfContentsImageViews = Array<CESCometUIImageView>()
+                        
+                        self.TOCButton.userInteractionEnabled = YES
                 })
         })
     }
@@ -718,6 +735,8 @@ class PageManager: FormattedVC
     
     func goBackOnePage(button: UIButton_Typical)
     {
+        updateCurrentViewControllerImage()
+        
         button.userInteractionEnabled = NO
         oldIndex = currentIndex
         currentIndex--
@@ -728,6 +747,8 @@ class PageManager: FormattedVC
     
     func goForwardOnePage(button: UIButton_Typical)
     {
+        updateCurrentViewControllerImage()
+        
         button.userInteractionEnabled = NO
         oldIndex = currentIndex
         currentIndex = currentIndex + 1
@@ -747,7 +768,7 @@ class PageManager: FormattedVC
         
         if newActivityData.count <= currentIndex
         {
-            newActivityData.append(Dictionary<NSNumber, AnyObject?>())
+            newActivityData.append(Dictionary<NSNumber, AnyObject>())
         }
         
         if savedObject == nil
@@ -766,7 +787,7 @@ class PageManager: FormattedVC
         //Update the currentActivity values with the newActivityData values
         for index in 0...(newActivityData.count - 1)
         {
-            currentActivitySessionCopy.activityData[index].updateValue(newActivityData[index].values.array[0]!, forKey: currentActivitySessionCopy.activityData[index].keys.array[0])
+            currentActivitySessionCopy.activityData[index].updateValue(newActivityData[index].values.array[0], forKey: currentActivitySessionCopy.activityData[index].keys.array[0])
         }
         
         if button.titleLabel!.text == "Finish"  //We are actually finishing
@@ -854,36 +875,40 @@ class PageManager: FormattedVC
         let index = currentIndex
         let direc = direction
         
-        if index != -1
+        if oldIndex != -1
         {
-            if oldIndex != -1
+            //If we actually have an oldActivity
+            if let oldVC = oldViewController
             {
-                //If we actually have an oldActivity
-                if let oldVC = oldViewController
+                //Get the oldActivity's type
+                let oldActivityPage = currentActivitySession.activityData[oldIndex]
+                let oldActivityType = oldActivityPage.keys.array[0]
+                
+                //Get the savedObject for the activity
+                let savedObject: AnyObject? = oldVC.saveActivityState()
+                
+                if newActivityData.count <= oldIndex
                 {
-                    //Get the oldActivity's type
-                    let oldActivityPage = currentActivitySession.activityData[oldIndex]
-                    let oldActivityType = oldActivityPage.keys.array[0]
-                    
-                    //Get the savedObject for the activity
-                    let savedObject: AnyObject? = oldVC.saveActivityState()
-                    
-                    if newActivityData.count <= oldIndex
+                    for index in newActivityData.count...oldIndex
                     {
-                        newActivityData.append(Dictionary<NSNumber, AnyObject?>())
-                    }
-                    
-                    //If the activity didn't return a saved object, save a null value
-                    if savedObject == nil
-                    {
-                        newActivityData[oldIndex].updateValue("<null>", forKey: oldActivityType)
-                    }
-                    else //If the activity actually returned a saved object, save it
-                    {
-                        newActivityData[oldIndex].updateValue(savedObject!, forKey: oldActivityType)
+                        newActivityData.append(Dictionary<NSNumber, AnyObject>())
                     }
                 }
+                
+                //If the activity didn't return a saved object, save a null value
+                if savedObject == nil
+                {
+                    newActivityData[oldIndex].updateValue("<null>", forKey: oldActivityType)
+                }
+                else //If the activity actually returned a saved object, save it
+                {
+                    newActivityData[oldIndex].updateValue(savedObject!, forKey: oldActivityType)
+                }
             }
+        }
+        
+        if index != -1
+        {
             
             //Get the new activity's type
             let currentActivityPage = currentActivitySession.activityData[currentIndex]
@@ -901,13 +926,11 @@ class PageManager: FormattedVC
             //Check if we have already saved data in the activity (i.e. the user is going backwards)
             if newActivityData.count > currentIndex
             {
-                let object : AnyObject = newActivityData[currentIndex].values.array[0]!
-                
-                if object as String != "<null>"
+                if newActivityData[currentIndex].isEmpty == NO
                 {
                     currentViewController.restoreActivityState(newActivityData[currentIndex].values.array[0])
                 }
-                else
+                else    //There isn't any saved session data for this activity, so load the old session data
                 {
                     currentViewController.restoreActivityState(currentActivityPage.values.array[0])
                 }
@@ -1103,7 +1126,3 @@ class PageManager: FormattedVC
         }
     }
 }
-
-//MARK: - For Future Renaming
-@availability(*, unavailable, renamed="PageManager")
-typealias NewPageManager = PageManager

@@ -333,7 +333,6 @@
 		921894F217F7752A00DFB26B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		921894F317F7752A00DFB26B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		921894FE17F7752A00DFB26B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9218950517F7752A00DFB26B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9218950D17F7752A00DFB26B /* FloraDummyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FloraDummyTests-Info.plist"; sourceTree = "<group>"; };
 		9218950F17F7752A00DFB26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9218951117F7752A00DFB26B /* Flora_DummyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flora_DummyTests.m; sourceTree = "<group>"; };
@@ -497,7 +496,6 @@
 				1095095D1A3E042C00030E4B /* CESEncryption.m */,
 			);
 			name = CESDatabase;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		104187C81A461CCA001C571C /* Weather Videos */ = {
@@ -577,15 +575,22 @@
 			name = "Global Definitions";
 			sourceTree = "<group>";
 		};
+		105E129F1A8938D900130E7B /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				1078FC151A0E945000A14836 /* Calculator Transition */,
+				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
 		1078FC141A0E944500A14836 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
-				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10BF3F9D1A2BB71C00B1A755 /* Random Squares Drag and Drop */,
 				1093A1471A212CBB002B2B0A /* Clock Drag VC */,
 				10BFE6DD1A20201000E68C77 /* Drag And Drop */,
 				1078FC1F1A0FD72D00A14836 /* Math Problems */,
-				1078FC151A0E945000A14836 /* Calculator Transition */,
 			);
 			name = Michael;
 			sourceTree = "<group>";
@@ -696,12 +701,12 @@
 		1097EBC91A28C3C300BED924 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				105E129F1A8938D900130E7B /* Transitions */,
 				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
 				101F311D1A87D3B300F81711 /* ColorManager.swift */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				105E129E1A887AF900130E7B /* Global Definitions */,
 				105E129D1A887AED00130E7B /* UI Objects */,
-				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -871,6 +876,7 @@
 		921894E217F7752A00DFB26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				104187D11A461DDC001C571C /* MediaPlayer.framework */,
 				1095095F1A3E050100030E4B /* Security.framework */,
 				10BFE6F31A204AE900E68C77 /* MapKit.framework */,
@@ -885,7 +891,6 @@
 				921894E317F7752A00DFB26B /* Foundation.framework */,
 				921894E517F7752A00DFB26B /* CoreGraphics.framework */,
 				921894E717F7752A00DFB26B /* UIKit.framework */,
-				9218950517F7752A00DFB26B /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -78,7 +78,6 @@ class CESCometUIImageView: UIView
             self.imageView.image = image
             }, completion: { (finished) -> Void in
                 self.wheel.removeFromSuperview()
-                self.backgroundColor = .clearColor()
         })
     }
     
