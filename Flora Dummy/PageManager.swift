@@ -462,6 +462,7 @@ class PageManager: FormattedVC
             
             //Initialize the new activity
             let viewControllerToRender = viewControllerForPageType(ActivityViewControllerType(rawValue: currentActivityType.integerValue)!)!
+            viewControllerToRender.renderingView = YES
             
             if newActivityData.count > index
             {
@@ -481,14 +482,16 @@ class PageManager: FormattedVC
                 viewControllerToRender.restoreActivityState(currentActivityPage.values.array[0])
             }
             
-            viewControllerToRender.view.layoutIfNeeded()
-            
-            UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0)
-            viewControllerToRender.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: YES)
-            let copied = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            tableOfContentsImages.append(copied)
+            UIView.transitionWithView(viewControllerToRender.view, duration: 0.0, options: .AllowUserInteraction, animations: { () -> Void in viewControllerToRender.view.layoutIfNeeded() }, completion: { (finished) -> Void in
+                
+                UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, 0)
+                viewControllerToRender.view.drawViewHierarchyInRect(self.view.bounds, afterScreenUpdates: YES)
+                let copied = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                self.tableOfContentsImages.append(copied)
+                
+            })
         }
     }
     
@@ -588,7 +591,7 @@ class PageManager: FormattedVC
             self.tableOfContentsImageViews[self.currentIndex + 1].layoutIfNeeded()
             }, completion: { (finished) -> Void in
                 
-                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
                     
                     self.tableOfContentsView.alpha = 1.0
                     
@@ -608,7 +611,7 @@ class PageManager: FormattedVC
                         
                         self.currentViewController.view.alpha = 0.0
                         self.tableOfContentsView.backgroundColor = .blackColor()
-                        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
                             
                             self.tableOfContentsImageViews[self.currentIndex + 1].frame = oldFrame
                             self.tableOfContentsImageViews[self.currentIndex + 1].layoutIfNeeded()
@@ -691,7 +694,7 @@ class PageManager: FormattedVC
         self.tableOfContentsImageViews[self.currentIndex + 1].dimView.layer.cornerRadius = 0.001
         
         
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction | .BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction | .BeginFromCurrentState, animations: { () -> Void in
             
             self.selectedImageView.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y - self.tableOfContentsView.contentInset.top, self.view.bounds.size.width, self.view.bounds.size.height)
             self.selectedImageView.layoutIfNeeded()
@@ -700,7 +703,7 @@ class PageManager: FormattedVC
             
             }, completion: { (finished) -> Void in
                 
-                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                     
                     self.tableOfContentsView.alpha = 0.0
                     

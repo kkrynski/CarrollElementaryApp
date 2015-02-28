@@ -573,9 +573,11 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         {
             for student in studentUserAccounts!
             {
+                println(student)
+                
                 if student["Student_User_Name"] == encryptedUserName && student["Student_Password"] == encryptedPassword
                 {
-                    let success = NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student").writeToFile(plistPath, atomically: YES)
+                    let success = NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student", student["Student_FName"]!, student["Student_LName"]!).writeToFile(plistPath, atomically: YES)
                     
                     if success == YES
                     {
@@ -614,6 +616,11 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
     private func postUserLoggedIn()
     {
         NSNotificationCenter.defaultCenter().postNotificationName(UserLoggedIn, object: nil)
+    }
+    
+    private func decodedString(string: String) -> String
+    {
+        return NSString(data: NSData().dataFromHexString(string).decryptedAES256DataUsingKey(databaseEncryptionKey, error: nil), encoding: NSASCIIStringEncoding)!
     }
 }
 

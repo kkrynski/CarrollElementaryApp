@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitioningDelegate
 {
     var window: UIWindow?
     
@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
     {
-        let userDefaults = ["selectedColor":"Blue", "calculatorPosition":"Left", "showsDevTab":YES, "animatedWeather":YES]
+        let userDefaults = ["selectedColor":"Blue", "calculatorPosition":"Left", "showsDevTab":YES, "animatedWeather":YES, "defaultLogin":"Student"]
         
         NSUserDefaults.standardUserDefaults().registerDefaults(userDefaults)
         
@@ -67,9 +67,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func presentPasswordScreen()
     {
-        let passwordVC = PasswordVC(nibName: "PasswordVC", bundle: nil)
-        passwordVC.modalPresentationStyle = .FormSheet
+        let passwordVC = PasswordVC()
+        passwordVC.transitioningDelegate = self
+        passwordVC.modalPresentationStyle = .Custom
         
         tabBarController!.presentViewController(passwordVC, animated: YES, completion: nil)
     }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        return PasswordVCTransition()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PasswordVCDismissalTransition()
+    }
+    
+    
 }

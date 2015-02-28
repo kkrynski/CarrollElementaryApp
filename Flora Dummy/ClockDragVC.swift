@@ -9,6 +9,14 @@
 import UIKit
 import QuartzCore
 
+enum MinuteHandRounding : NSInteger
+{
+    case None
+    case NearestFiveMinutes
+    case NearestQuarterHour
+    case NearestHalfHour
+}
+
 class ClockDragVC: FormattedVC, ClockDelegate
 {
     /**
@@ -18,7 +26,7 @@ class ClockDragVC: FormattedVC, ClockDelegate
     
     :param: HH:MM:SS The time format
     */
-    var startTime = "00:00:00"
+    private var startTime = "00:00:00"
     
     /**
     The time to be set on the clock by the user.
@@ -27,42 +35,42 @@ class ClockDragVC: FormattedVC, ClockDelegate
     
     :param: HH:MM:SS The time format
     */
-    var endTime : String?
+    private var endTime : String?
     
     /**
     The buffer zone for how incorrect each hand can be.
-
+    
     By default, this is 00:02:02
     
     :param: HH:MM:SS The time format
     */
-    var bufferZone = "00:02:02"
+    private var bufferZone = "00:02:02"
     
     /**
     Determines whether the hands will move independently of each other
     
-    By default, this is set to 'YES'
-    
-    :param: YES(true) Hands will move in relation to an actual clock.  Moving one hand will move the others based on standard time
-    :param: NO(false) Hands will not move in relation to an actual clock.  Moving one hand will move only that hand
+    By default, this is set to 'YES'.  Setting to 'NO' disables the time-link between each hand.
     */
-    var handsMoveDependently = YES
+    private var handsMoveDependently = YES
     
     /**
     Determines whether the Seconds Hand will be displayed on screen
     
-    By default, this is set to 'YES'
-    
-    :param: YES(true) The Seconds Hand will be shown
-    :param: NO(false) The Seconds Hand will not be shown
+    By default, this is set to 'YES'.  Setting to 'NO' will disable the Seconds Hand.
     */
-    var showSecondsHand = YES
+    private var showSecondsHand = YES
+    
+    private var minuteHandRounding = MinuteHandRounding.None
+    
+    private var didCheckAnswer = NO
+    private var tempTime : String?
     
     //The clock itself
-    private var clock : Clock?
+    private var clock : Clock!
     
     //The current time label
-    private var currentTimeLabel : UILabel?
+    private var currentTimeLabel : UILabel!
+    private var instructions : UILabel!
     
     override func viewDidLoad()
     {
@@ -70,64 +78,166 @@ class ClockDragVC: FormattedVC, ClockDelegate
         
         createAndDisplayClockForStartTime()
         
-        let instructions = UILabel()
+        instructions = UILabel()
         instructions.font = UIFont(name: "Marker Felt", size: 32)
-        instructions.text = "Please set the time on the clock to:\n\(endTime!)"
+        if endTime != nil
+        {
+            if showSecondsHand
+            {
+                instructions.text = "Please set the time on the clock to:\n\(endTime!)"
+            }
+            else
+            {
+                let concattedTime = endTime!.substringToIndex(advance(endTime!.startIndex, 5))
+                instructions.text = "Please set the time on the clock to:\n\(concattedTime)"
+            }
+        }
         instructions.textColor = primaryColor
         instructions.textAlignment = .Center
         instructions.numberOfLines = 0
         instructions.sizeToFit()
-        instructions.center = CGPointMake(clock!.center.x, clock!.frame.origin.y - 8 - instructions.frame.size.height/2.0)
+        instructions.center = CGPointMake(clock.center.x, clock.frame.origin.y - 8 - instructions.frame.size.height/2.0)
         Definitions.outlineTextInLabel(instructions)
         view.addSubview(instructions)
         
         currentTimeLabel = UILabel()
-        currentTimeLabel!.font = UIFont(name: "Marker Felt", size: 32)
-        currentTimeLabel!.text = "Current time set:\n\(startTime)"
-        currentTimeLabel!.textColor = primaryColor
-        currentTimeLabel!.textAlignment = .Center
-        currentTimeLabel!.numberOfLines = 0
-        currentTimeLabel!.sizeToFit()
-        currentTimeLabel!.center = CGPointMake(clock!.center.x, clock!.frame.origin.y + clock!.frame.size.height + 8 + currentTimeLabel!.frame.size.height/2.0)
-        Definitions.outlineTextInLabel(currentTimeLabel!)
-        view.addSubview(currentTimeLabel!)
-        
-        let checkAnswerTap = UITapGestureRecognizer(target: self, action: "checkAnswer")
-        clock!.addGestureRecognizer(checkAnswerTap)
-    }
-    
-    //If we have no end time, we need to dismiss because there's nothing to do.
-    override func viewDidAppear(animated: Bool)
-    {
-        if endTime == nil
+        currentTimeLabel.font = UIFont(name: "Marker Felt", size: 32)
+        if showSecondsHand
         {
-            let errorAlert = UIAlertController(title: "We're Sorry", message: "There was no end time specified.\n\nClock will now dismiss.", preferredStyle: .Alert)
-            errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) -> Void in
-                self.dismissViewControllerAnimated(YES, completion: nil)
-            }))
-            presentViewController(errorAlert, animated: YES, completion: nil)
+            currentTimeLabel.text = "Current time set:\n\(tempTime != nil ? tempTime! : startTime)"
         }
         else
         {
-            clock!.rotateHandsToTime(startTime)
+            let time : String = tempTime != nil ? tempTime! : startTime
+            let concattedTime = time.substringToIndex(advance(startTime.startIndex, 5))
+            currentTimeLabel.text = "Current time set:\n\(concattedTime)"
+        }
+        currentTimeLabel.textColor = primaryColor
+        currentTimeLabel.textAlignment = .Center
+        currentTimeLabel.numberOfLines = 0
+        currentTimeLabel.sizeToFit()
+        currentTimeLabel.center = CGPointMake(clock.center.x, clock.frame.origin.y + clock.frame.size.height + 8 + currentTimeLabel.frame.size.height/2.0)
+        Definitions.outlineTextInLabel(currentTimeLabel)
+        view.addSubview(currentTimeLabel)
+        
+        let checkAnswerTap = UITapGestureRecognizer(target: self, action: "checkAnswer")
+        clock.addGestureRecognizer(checkAnswerTap)
+        
+        clock.rotateHandsToTime(tempTime != nil ? tempTime! : startTime, animated: didCheckAnswer == YES || self.renderingView == YES ? NO:YES)
+        if didCheckAnswer == YES
+        {
+            checkAnswer(NO)
         }
     }
     
-    //MARK: - Create Clock Methods
+    //MARK: - Save and Restore and Settings
+    
+    override func restoreActivityState(object: AnyObject!)
+    {
+        let data = object as [AnyObject]
+        
+        let settings = data.first! as [String : AnyObject]
+        startTime = settings["StartTime"] as String
+        endTime = settings["EndTime"] as? String
+        bufferZone = settings["BufferZone"] as String
+        handsMoveDependently = (settings["HandsMoveDependently"] as NSNumber).boolValue
+        showSecondsHand = (settings["ShowSecondsHand"] as NSNumber).boolValue
+        minuteHandRounding = MinuteHandRounding(rawValue: (settings["MinuteHandRounding"] as NSNumber).integerValue)!
+        if let checkedAnswer = (settings["DidCheckAnswer"] as? NSNumber)?.boolValue
+        {
+            didCheckAnswer = checkedAnswer
+        }
+        
+        if data.count > 1
+        {
+            tempTime = data.last as? String
+        }
+        if clock != nil
+        {
+            if showSecondsHand
+            {
+                instructions.text = "Please set the time on the clock to:\n\(endTime!)"
+            }
+            else
+            {
+                let concattedTime = endTime!.substringToIndex(advance(endTime!.startIndex, 5))
+                instructions.text = "Please set the time on the clock to:\n\(concattedTime)"
+            }
+            if showSecondsHand
+            {
+                currentTimeLabel.text = "Current time set:\n\(tempTime != nil ? tempTime! : startTime)"
+            }
+            else
+            {
+                let time : String = tempTime != nil ? tempTime! : startTime
+                let concattedTime = time.substringToIndex(advance(startTime.startIndex, 5))
+                currentTimeLabel.text = "Current time set:\n\(concattedTime)"
+            }
+            clock.handsMoveDependently = handsMoveDependently
+            clock.showSecondsHand = showSecondsHand
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
+    }
+    
+    override func saveActivityState() -> AnyObject!
+    {
+        var returnArray = Array<AnyObject>()
+        
+        var settings = Dictionary<String, AnyObject>()
+        settings.updateValue(startTime, forKey: "StartTime")
+        settings.updateValue(endTime!, forKey: "EndTime")
+        settings.updateValue(bufferZone, forKey: "BufferZone")
+        settings.updateValue(NSNumber(bool: handsMoveDependently), forKey: "HandsMoveDependently")
+        settings.updateValue(NSNumber(bool: showSecondsHand), forKey: "ShowSecondsHand")
+        settings.updateValue(NSNumber(integer: minuteHandRounding.rawValue), forKey: "MinuteHandRounding")
+        
+        if clock.currentTime != startTime
+        {
+            settings.updateValue(NSNumber(bool: didCheckAnswer), forKey: "DidCheckAnswer")
+            returnArray.append(settings)
+            
+            returnArray.append(clock.currentTime)
+        }
+        else
+        {
+            returnArray.append(settings)
+        }
+        
+        return returnArray
+    }
+    
+    override func settings() -> [NSObject : AnyObject]!
+    {
+        return ["Start Time" : "String",
+            "End Time" : "String",
+            "Buffer Zone" : "String",
+            "Hands Move Dependently" : "Boolean",
+            "Show Seconds Hand" : "Boolean",
+            "Minute Hand Rounding - None, Five, Quarter, Half" : "Picker"]
+    }
+    
+    //MARK: - Create Clock
     
     private func createAndDisplayClockForStartTime()
     {
-        clock = Clock(frame: CGRectMake(0, 0, 400, 400), andBorderWidth: 8.0, showSecondsHand: showSecondsHand)
-        clock!.handsMoveDependently = handsMoveDependently
-        clock!.delegate = self
-        clock!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
+        clock = Clock(frame: CGRectMake(0, 0, 400, 400), andBorderWidth: 8.0)
+        clock.showSecondsHand = showSecondsHand
+        clock.handsMoveDependently = handsMoveDependently
+        clock.delegate = self
+        clock.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
         view.addSubview(clock!)
     }
     
     //MARK: - UI Update Methods
     
-    //Checks the answer and displays the response
     func checkAnswer()
+    {
+        checkAnswer(YES)
+    }
+    
+    //Checks the answer and displays the response
+    private func checkAnswer(animated: Bool)
     {
         clock!.userInteractionEnabled = NO
         
@@ -135,22 +245,29 @@ class ClockDragVC: FormattedVC, ClockDelegate
         
         let currentHours = (currentTimeComponents[0] as NSString).integerValue
         let currentMinutes = (currentTimeComponents[1] as NSString).integerValue
-        let currentSeconds = (currentTimeComponents[2] as NSString).integerValue
+        var currentSeconds = 0
         
         
         let endTimeComponents = endTime!.componentsSeparatedByString(":")
         
         let endHours = (endTimeComponents[0] as NSString).integerValue
         let endMinutes = (endTimeComponents[1] as NSString).integerValue
-        let endSeconds = (endTimeComponents[2] as NSString).integerValue
+        var endSeconds = 0
         
         
         let bufferTimeComponents = bufferZone.componentsSeparatedByString(":")
         
         let bufferHours = (bufferTimeComponents[0] as NSString).integerValue
         let bufferMinutes = (bufferTimeComponents[1] as NSString).integerValue
-        let bufferSeconds = (bufferTimeComponents[2] as NSString).integerValue
+        var bufferSeconds = 0
         
+        
+        if showSecondsHand
+        {
+            currentSeconds = (currentTimeComponents[2] as NSString).integerValue
+            endSeconds = (endTimeComponents[2] as NSString).integerValue
+            bufferSeconds = (bufferTimeComponents[2] as NSString).integerValue
+        }
         
         let dimView = UIView(frame: clock!.frame)
         dimView.clipsToBounds = YES
@@ -159,11 +276,17 @@ class ClockDragVC: FormattedVC, ClockDelegate
         dimView.alpha = 0.0
         view.addSubview(dimView)
         
-        switch  (endHours >= currentHours - bufferHours && endHours <= currentHours + bufferHours) &&
-                (endMinutes >= currentMinutes - bufferMinutes && endMinutes <= currentMinutes + bufferMinutes) &&
-                (endSeconds >= currentSeconds - bufferSeconds && endSeconds <= currentSeconds + bufferSeconds)
+        var checkStatement = (endHours >= currentHours - bufferHours && endHours <= currentHours + bufferHours) &&
+            (endMinutes >= currentMinutes - bufferMinutes && endMinutes <= currentMinutes + bufferMinutes)
+        if showSecondsHand == YES
+        {
+            checkStatement = checkStatement && (endSeconds >= currentSeconds - bufferSeconds && endSeconds <= currentSeconds + bufferSeconds)
+        }
+        
+        switch  checkStatement
         {
         case YES:
+            didCheckAnswer = YES
             dimView.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.4)
             
             let correctLabel = UILabel()
@@ -177,23 +300,23 @@ class ClockDragVC: FormattedVC, ClockDelegate
             dimView.addSubview(correctLabel)
             correctLabel.transform = CGAffineTransformMakeScale(0.3, 0.3)
             
-            UIView.animateWithDuration(0.3, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+            UIView.animateWithDuration(animated == YES ? 0.3: 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                 
                 dimView.alpha = 1.0
                 
-            }, completion: { (finished) -> Void in
-                
-                UIView.animateWithDuration(0.3, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                }, completion: { (finished) -> Void in
                     
-                    correctLabel.alpha = 1.0
+                    UIView.animateWithDuration(animated == YES ? 0.3: 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                        
+                        correctLabel.alpha = 1.0
+                        
+                        }, completion: nil)
+                    UIView.animateWithDuration(animated == YES ? 0.5: 0.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                        
+                        correctLabel.transform = CGAffineTransformIdentity
+                        
+                        }, completion: nil)
                     
-                    }, completion: nil)
-                UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
-                    
-                    correctLabel.transform = CGAffineTransformIdentity
-                    
-                }, completion: nil)
-                
             })
             break
             
@@ -213,24 +336,24 @@ class ClockDragVC: FormattedVC, ClockDelegate
             dimView.addSubview(incorrectLabel)
             incorrectLabel.transform = CGAffineTransformMakeScale(0.3, 0.3)
             
-            UIView.animateWithDuration(0.3, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+            UIView.animateWithDuration(animated == YES ? 0.3: 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                 
                 dimView.alpha = 1.0
                 
                 }, completion: { (finished) -> Void in
                     
-                    UIView.animateWithDuration(0.3, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    UIView.animateWithDuration(animated == YES ? 0.3: 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                         
                         incorrectLabel.alpha = 1.0
                         
                         }, completion: nil)
-                    UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    UIView.animateWithDuration(animated == YES ? 0.5: 0.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                         
                         incorrectLabel.transform = CGAffineTransformIdentity
                         
                         }, completion: { (finished) -> Void in
                             
-                            UIView.animateWithDuration(0.3, delay: 1.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                            UIView.animateWithDuration(animated == YES ? 0.3: 0.0, delay: 1.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
                                 
                                 dimView.alpha = 0.0
                                 incorrectLabel.transform = CGAffineTransformMakeScale(2.0, 2.0)

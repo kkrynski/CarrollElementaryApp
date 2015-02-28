@@ -52,12 +52,11 @@ class Clock: UIView
     /**
     Determines whether the hands will move independently of each other
     
-    By default, this is set to 'YES'
-    
-    :param: YES Hands will move in relation to an actual clock.  Moving one hand will move the others based on standard time
-    :param: NO Hands will not move in relation to an actual clock.  Moving one hand will move only that hand
+    By default, this is set to 'YES'.  Setting to 'No' disables the time-link between each hand.
     */
     var handsMoveDependently = YES
+    
+    var minuteHandRounding = MinuteHandRounding.None
     
     /**
     The current time displayed by the clock
@@ -73,16 +72,16 @@ class Clock: UIView
     private var _currentTime : String?
     
     //The hours hand
-    private var hoursHand : ClockHandView?
+    private var hoursHand : ClockHandView!
     
     //The minutes hand
-    private var minutesHand : ClockHandView?
+    private var minutesHand : ClockHandView!
     
     //The seconds hand
     private var secondsHand : ClockHandView?
     
     //Will show seconds hand
-    private var showSecondsHand : Bool?
+    var showSecondsHand = YES
     
     //Used for moving hands around
     private var startMinuteAngle : Float = 0.0
@@ -92,15 +91,13 @@ class Clock: UIView
     
     //MARK: - init Methods
     
-    init(frame: CGRect, andBorderWidth borderWidth : CGFloat, showSecondsHand : Bool)
+    init(frame: CGRect, andBorderWidth borderWidth : CGFloat)
     {
         super.init(frame: frame)
         layer.borderWidth = borderWidth
         layer.cornerRadius = frame.size.width/2.0
         self.backgroundColor = .whiteColor()
         self.layer.borderColor = UIColor.blackColor().CGColor
-        
-        self.showSecondsHand = showSecondsHand
         
         insertHourTicks()
         insertMinuteTicks()
@@ -110,13 +107,18 @@ class Clock: UIView
         centerPoint.layer.cornerRadius = centerPoint.frame.size.width/2.0
         centerPoint.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
         addSubview(centerPoint)
-        
-        makeHands()
     }
     
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
+    }
+    
+    override func willMoveToSuperview(newSuperview: UIView?)
+    {
+        super.willMoveToSuperview(newSuperview)
+        
+        makeHands()
     }
     
     //MARK: - Build Methods
@@ -177,18 +179,18 @@ class Clock: UIView
     {
         //Hours Hand
         hoursHand = ClockHandView(frame: CGRectMake(0, 0, 14, frame.size.width))
-        hoursHand!.backgroundColor = .clearColor()
-        hoursHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
-        hoursHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
-        hoursHand!.layer.shouldRasterize = YES
+        hoursHand.backgroundColor = .clearColor()
+        hoursHand.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
+        hoursHand.layer.rasterizationScale = UIScreen.mainScreen().scale
+        hoursHand.layer.shouldRasterize = YES
         
         let hoursTick = ClockHand(frame: CGRectMake(0, 0, hoursHand!.frame.size.width, frame.size.width/4.0))
         hoursTick.backgroundColor = .blackColor()
         hoursTick.layer.cornerRadius = 7
-        hoursTick.center = CGPointMake(hoursHand!.frame.size.width/2.0, hoursHand!.frame.size.height/2.0 - hoursTick.frame.size.height/2.0)
-        hoursHand!.addSubview(hoursTick)
-        addSubview(hoursHand!)
-        hoursHand!.clockHand = hoursTick
+        hoursTick.center = CGPointMake(hoursHand.frame.size.width/2.0, hoursHand.frame.size.height/2.0 - hoursTick.frame.size.height/2.0)
+        hoursHand.addSubview(hoursTick)
+        addSubview(hoursHand)
+        hoursHand.clockHand = hoursTick
         
         let hoursPan = UIPanGestureRecognizer(target: self, action: "handleHoursPan:")
         hoursTick.addGestureRecognizer(hoursPan)
@@ -196,17 +198,17 @@ class Clock: UIView
         //Minutes Hand
         
         minutesHand = ClockHandView(frame: CGRectMake(0, 0, 10, frame.size.width))
-        minutesHand!.backgroundColor = .clearColor()
-        minutesHand!.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
-        minutesHand!.layer.rasterizationScale = UIScreen.mainScreen().scale
-        minutesHand!.layer.shouldRasterize = YES
+        minutesHand.backgroundColor = .clearColor()
+        minutesHand.center = CGPointMake(frame.size.width/2.0, frame.size.height/2.0)
+        minutesHand.layer.rasterizationScale = UIScreen.mainScreen().scale
+        minutesHand.layer.shouldRasterize = YES
         
         let minutesTick = ClockHand(frame: CGRectMake(0, 0, minutesHand!.frame.size.width, frame.size.width/2.0 - (layer.borderWidth * 4.0) - 4))
         minutesTick.backgroundColor = Definitions.lighterColorForColor(Definitions.lighterColorForColor(.blackColor()))
         minutesTick.layer.cornerRadius = 5
-        minutesTick.center = CGPointMake(minutesHand!.frame.size.width/2.0, minutesHand!.frame.size.height/2.0 - minutesTick.frame.size.height/2.0)
-        minutesHand!.addSubview(minutesTick)
-        minutesHand!.clockHand = minutesTick
+        minutesTick.center = CGPointMake(minutesHand.frame.size.width/2.0, minutesHand.frame.size.height/2.0 - minutesTick.frame.size.height/2.0)
+        minutesHand.addSubview(minutesTick)
+        minutesHand.clockHand = minutesTick
         
         let minutesBulb = UIView(frame: CGRectMake(0, 0, 24, 24))
         minutesBulb.backgroundColor = minutesTick.backgroundColor
@@ -311,7 +313,10 @@ class Clock: UIView
                     
                     var trueHour = CGFloat(hours)
                     trueHour += CGFloat(Float(minute)/60.0)
-                    trueHour += CGFloat((timeComponents[2] as NSString).doubleValue/3600.0)
+                    if self.showSecondsHand == YES
+                    {
+                        trueHour += CGFloat((timeComponents[2] as NSString).doubleValue/3600.0)
+                    }
                     
                     self.hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(12.0) * trueHour)
                 }
@@ -322,6 +327,17 @@ class Clock: UIView
             oldMinute = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
             oldMinute = oldMinute < 0 ? 60 - abs(oldMinute):oldMinute
             updateCurrentTime()
+            break
+            
+        case .Ended:
+            if minuteHandRounding == .None
+            {
+                break
+            }
+            //Check for minute hand rounding
+            
+            
+            
             break
             
         default:
@@ -412,11 +428,11 @@ class Clock: UIView
     {
         let hours = Int(floor((atan2f(Float(self.hoursHand!.transform.b), Float(self.hoursHand!.transform.a)) * 12.0)/Float(M_PI * 2.0)))
         let minutes = Int(floor((atan2f(Float(self.minutesHand!.transform.b), Float(self.minutesHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
-        let seconds = Int(floor((atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
         
         if showSecondsHand == YES
         {
-        _currentTime = String(format: "%02d:%02d:%02d", (hours < 0 ? 12 - abs(hours):hours), (minutes < 0 ? 60 - abs(minutes):minutes), (seconds < 0 ? 60 - abs(seconds):seconds))
+            let seconds = Int(floor((atan2f(Float(self.secondsHand!.transform.b), Float(self.secondsHand!.transform.a)) * 60.0)/Float(M_PI * 2.0)))
+            _currentTime = String(format: "%02d:%02d:%02d", (hours < 0 ? 12 - abs(hours):hours), (minutes < 0 ? 60 - abs(minutes):minutes), (seconds < 0 ? 60 - abs(seconds):seconds))
         }
         else
         {
@@ -431,20 +447,25 @@ class Clock: UIView
     
     :param: time The time to move to in "HH:MM:SS" format
     */
-    func rotateHandsToTime(time : String)
+    func rotateHandsToTime(time : String, animated: Bool)
     {
         _currentTime = time
         
         let timeComponents = time.componentsSeparatedByString(":")
         
-        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
+        UIView.animateWithDuration(animated == YES ? 1.0: 0.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
             
-            let trueHour = CGFloat((timeComponents[0] as NSString).doubleValue + (timeComponents[1] as NSString).doubleValue/60.0 + ((timeComponents[2] as NSString).doubleValue/60.0/60.0))
+            let secondsValue = self.showSecondsHand == YES ? (timeComponents[2] as NSString).doubleValue/60.0/60.0 : Double(0.0)
+            
+            let trueHour = CGFloat((timeComponents[0] as NSString).doubleValue + (timeComponents[1] as NSString).doubleValue/60.0 + secondsValue)
             self.hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(12.0) * trueHour)
             
-            self.minutesHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(60.0) * CGFloat((timeComponents[1] as NSString).doubleValue + (timeComponents[2] as NSString).doubleValue/60.0))
+            self.minutesHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(60.0) * CGFloat((timeComponents[1] as NSString).doubleValue + (self.showSecondsHand == YES ? (timeComponents[2] as NSString).doubleValue/60.0 : 0.0)))
             
-            self.secondsHand?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(60.0) * CGFloat((timeComponents[2] as NSString).doubleValue))
+            if self.showSecondsHand == YES
+            {
+                self.secondsHand?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(60.0) * CGFloat((timeComponents[2] as NSString).doubleValue))
+            }
             
             }, completion: nil)
     }

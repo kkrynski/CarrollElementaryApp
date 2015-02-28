@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
+		100ACDDE1AA1478500B0FAC2 /* PasswordVCTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDDD1AA1478500B0FAC2 /* PasswordVCTransition.swift */; };
+		100ACDE01AA14FE900B0FAC2 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */; };
+		100ACDE41AA156F100B0FAC2 /* CometAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDE31AA156F100B0FAC2 /* CometAlertController.swift */; };
 		101F31171A87CB0300F81711 /* CarollJSONConverterTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101F31161A87CB0300F81711 /* CarollJSONConverterTemp.swift */; };
 		101F31191A87CC0500F81711 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 101F31181A87CC0500F81711 /* Carroll.json */; };
 		101F311A1A87CD3900F81711 /* Rain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CD1A461CDE001C571C /* Rain.mp4 */; };
@@ -28,7 +31,6 @@
 		106948E51A62F59B0093F9DF /* ActivitySessions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106948E41A62F59B0093F9DF /* ActivitySessions.plist */; };
 		106948E71A6301AA0093F9DF /* SubjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106948E61A6301AA0093F9DF /* SubjectVC.swift */; };
 		107363C31A702F2D000D13A6 /* CESDatabaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107363C21A702F2D000D13A6 /* CESDatabaseProtocols.swift */; };
-		1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D709CAE1A09A2F8000F44DF /* PasswordVC.m */; };
 		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
 		1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */; };
 		1078FC231A0FD83600A14836 /* MathProblemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC221A0FD83600A14836 /* MathProblemVC.swift */; };
@@ -101,7 +103,6 @@
 		5D18E9FE1A210C6A00F8DB94 /* Play_Button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */; };
 		5D18EA001A210C7500F8DB94 /* Stop_Button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5D18E9FF1A210C7500F8DB94 /* Stop_Button.jpeg */; };
 		5D18EA021A210C8A00F8DB94 /* Record_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D18EA011A210C8A00F8DB94 /* Record_Button.png */; };
-		5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */; };
 		5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18E9F91A2103A800F8DB94 /* MicrophoneVC.m */; };
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		921194FF19FE015100644054 /* QuickQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921194FE19FE015100644054 /* QuickQuizVC.m */; };
@@ -123,7 +124,6 @@
 		926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0E18E4EA69006CDB2F /* HOME2.gif */; };
 		926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B0F18E4EA69006CDB2F /* HOME3.gif */; };
 		926C9B1718E4EA69006CDB2F /* HOME4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 926C9B1018E4EA69006CDB2F /* HOME4.gif */; };
-		9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D09818DB70A600E98BC4 /* QRComplete.png */; };
 		9282390618A6A39300223265 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9282390518A6A39300223265 /* Main2.storyboard */; };
 		92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B1938E1824665A00F1583E /* Page_IntroVC.xib */; };
 		92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B193A2182F29F200F1583E /* Page_ReadVC.xib */; };
@@ -152,12 +152,7 @@
 		92D06A0518D13076004850C6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0418D13076004850C6 /* CoreMedia.framework */; };
 		92D06A0718D1307D004850C6 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0618D1307D004850C6 /* CoreVideo.framework */; };
 		92D06A0918D13085004850C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A0818D13085004850C6 /* AVFoundation.framework */; };
-		92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D06A0B18D130FC004850C6 /* Page_QRCodeVC.m */; };
 		92D06A1618D137C7004850C6 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D06A1518D137C7004850C6 /* libiconv.dylib */; };
-		92D06A2118D140F4004850C6 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D06A1D18D140F4004850C6 /* zbar-back.png */; };
-		92D06A2318D140F4004850C6 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 92D06A1E18D140F4004850C6 /* zbar-help.html */; };
-		92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D06A1F18D140F4004850C6 /* zbar-helpicons.png */; };
-		92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D06A2018D140F4004850C6 /* zbar-samples.png */; };
 		92E8CB4D18F0C4BD0025264E /* Wind1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92E8CB4918F0C4BD0025264E /* Wind1.gif */; };
 		92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92E8CB4A18F0C4BD0025264E /* Wind2.gif */; };
 		92E8CB5118F0C4BD0025264E /* Wind3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92E8CB4B18F0C4BD0025264E /* Wind3.gif */; };
@@ -191,6 +186,11 @@
 /* Begin PBXFileReference section */
 		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
+		100ACDDD1AA1478500B0FAC2 /* PasswordVCTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordVCTransition.swift; sourceTree = "<group>"; };
+		100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
+		100ACDE11AA153B400B0FAC2 /* PasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordVC.h; sourceTree = "<group>"; };
+		100ACDE21AA153B400B0FAC2 /* PasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordVC.m; sourceTree = "<group>"; };
+		100ACDE31AA156F100B0FAC2 /* CometAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CometAlertController.swift; sourceTree = "<group>"; };
 		101F31161A87CB0300F81711 /* CarollJSONConverterTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarollJSONConverterTemp.swift; sourceTree = "<group>"; };
 		101F31181A87CC0500F81711 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		101F311B1A87D24300F81711 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
@@ -306,9 +306,6 @@
 		5D18E9FD1A210C6A00F8DB94 /* Play_Button.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Play_Button.jpeg; sourceTree = "<group>"; };
 		5D18E9FF1A210C7500F8DB94 /* Stop_Button.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stop_Button.jpeg; sourceTree = "<group>"; };
 		5D18EA011A210C8A00F8DB94 /* Record_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Record_Button.png; sourceTree = "<group>"; };
-		5D709CAD1A09A2F8000F44DF /* PasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordVC.h; sourceTree = "<group>"; };
-		5D709CAE1A09A2F8000F44DF /* PasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordVC.m; sourceTree = "<group>"; };
-		5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordVC.xib; sourceTree = "<group>"; };
 		9208CD0E18F8CD3500D83602 /* Flora_Garden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Flora_Garden.png; sourceTree = "<group>"; };
 		921194FD19FE015100644054 /* QuickQuizVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickQuizVC.h; sourceTree = "<group>"; };
 		921194FE19FE015100644054 /* QuickQuizVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickQuizVC.m; sourceTree = "<group>"; };
@@ -362,7 +359,6 @@
 		926C9B0E18E4EA69006CDB2F /* HOME2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME2.gif; sourceTree = "<group>"; };
 		926C9B0F18E4EA69006CDB2F /* HOME3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME3.gif; sourceTree = "<group>"; };
 		926C9B1018E4EA69006CDB2F /* HOME4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HOME4.gif; sourceTree = "<group>"; };
-		9278D09818DB70A600E98BC4 /* QRComplete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRComplete.png; sourceTree = "<group>"; };
 		9282390518A6A39300223265 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		92B1938C1824665A00F1583E /* Page_IntroVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page_IntroVC.h; sourceTree = "<group>"; };
 		92B1938D1824665A00F1583E /* Page_IntroVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page_IntroVC.m; sourceTree = "<group>"; };
@@ -402,37 +398,11 @@
 		92CB44D31A2106120082C761 /* PageCreationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCreationVC.h; sourceTree = "<group>"; };
 		92CB44D41A2106120082C761 /* PageCreationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCreationVC.m; sourceTree = "<group>"; };
 		92CB44DA1A2107690082C761 /* ActivityCreation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ActivityCreation.storyboard; path = ../ActivityCreation.storyboard; sourceTree = "<group>"; };
-		92D069E918D12FD6004850C6 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
-		92D069EA18D12FD6004850C6 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
-		92D069EB18D12FD6004850C6 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
-		92D069EC18D12FD6004850C6 /* ImageScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScanner.h; sourceTree = "<group>"; };
-		92D069ED18D12FD6004850C6 /* Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processor.h; sourceTree = "<group>"; };
-		92D069EE18D12FD6004850C6 /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
-		92D069EF18D12FD6004850C6 /* Symbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Symbol.h; sourceTree = "<group>"; };
-		92D069F018D12FD6004850C6 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		92D069F118D12FD6004850C6 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
-		92D069F318D12FF6004850C6 /* zbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zbar.h; sourceTree = "<group>"; };
-		92D069F418D12FF6004850C6 /* ZBarCameraSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarCameraSimulator.h; sourceTree = "<group>"; };
-		92D069F518D12FF6004850C6 /* ZBarCaptureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarCaptureReader.h; sourceTree = "<group>"; };
-		92D069F618D12FF6004850C6 /* ZBarHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarHelpController.h; sourceTree = "<group>"; };
-		92D069F718D12FF6004850C6 /* ZBarImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarImage.h; sourceTree = "<group>"; };
-		92D069F818D12FF6004850C6 /* ZBarImageScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarImageScanner.h; sourceTree = "<group>"; };
-		92D069F918D12FF6004850C6 /* ZBarReaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderController.h; sourceTree = "<group>"; };
-		92D069FA18D12FF6004850C6 /* ZBarReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderView.h; sourceTree = "<group>"; };
-		92D069FB18D12FF6004850C6 /* ZBarReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderViewController.h; sourceTree = "<group>"; };
-		92D069FC18D12FF6004850C6 /* ZBarSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
-		92D069FD18D12FF6004850C6 /* ZBarSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSymbol.h; sourceTree = "<group>"; };
 		92D06A0218D13066004850C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		92D06A0418D13076004850C6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		92D06A0618D1307D004850C6 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		92D06A0818D13085004850C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		92D06A0A18D130FC004850C6 /* Page_QRCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page_QRCodeVC.h; sourceTree = "<group>"; };
-		92D06A0B18D130FC004850C6 /* Page_QRCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page_QRCodeVC.m; sourceTree = "<group>"; };
 		92D06A1518D137C7004850C6 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
-		92D06A1D18D140F4004850C6 /* zbar-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-back.png"; sourceTree = "<group>"; };
-		92D06A1E18D140F4004850C6 /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
-		92D06A1F18D140F4004850C6 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
-		92D06A2018D140F4004850C6 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
 		92E8CB4918F0C4BD0025264E /* Wind1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Wind1.gif; sourceTree = "<group>"; };
 		92E8CB4A18F0C4BD0025264E /* Wind2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Wind2.gif; sourceTree = "<group>"; };
 		92E8CB4B18F0C4BD0025264E /* Wind3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Wind3.gif; sourceTree = "<group>"; };
@@ -496,6 +466,14 @@
 				1095095D1A3E042C00030E4B /* CESEncryption.m */,
 			);
 			name = CESDatabase;
+			sourceTree = "<group>";
+		};
+		100ACDDC1AA1476600B0FAC2 /* PasswordVC Transition */ = {
+			isa = PBXGroup;
+			children = (
+				100ACDDD1AA1478500B0FAC2 /* PasswordVCTransition.swift */,
+			);
+			name = "PasswordVC Transition";
 			sourceTree = "<group>";
 		};
 		104187C81A461CCA001C571C /* Weather Videos */ = {
@@ -578,6 +556,7 @@
 		105E129F1A8938D900130E7B /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				100ACDDC1AA1476600B0FAC2 /* PasswordVC Transition */,
 				1078FC151A0E945000A14836 /* Calculator Transition */,
 				1097EBCE1A28C47100BED924 /* UITabBar Transition */,
 			);
@@ -707,6 +686,7 @@
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				105E129E1A887AF900130E7B /* Global Definitions */,
 				105E129D1A887AED00130E7B /* UI Objects */,
+				100ACDE31AA156F100B0FAC2 /* CometAlertController.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -965,9 +945,9 @@
 		92C02C951A7404D9007D011D /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				5D709CAD1A09A2F8000F44DF /* PasswordVC.h */,
-				5D709CAE1A09A2F8000F44DF /* PasswordVC.m */,
-				5D709CAF1A09A2F8000F44DF /* PasswordVC.xib */,
+				100ACDE11AA153B400B0FAC2 /* PasswordVC.h */,
+				100ACDE21AA153B400B0FAC2 /* PasswordVC.m */,
+				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
 			);
 			name = Password;
 			sourceTree = "<group>";
@@ -1033,64 +1013,6 @@
 			name = "Much Super. So secret. Wow";
 			sourceTree = "<group>";
 		};
-		92D069F218D12FE3004850C6 /* zbar */ = {
-			isa = PBXGroup;
-			children = (
-				92D069E918D12FD6004850C6 /* Decoder.h */,
-				92D069EA18D12FD6004850C6 /* Exception.h */,
-				92D069EB18D12FD6004850C6 /* Image.h */,
-				92D069EC18D12FD6004850C6 /* ImageScanner.h */,
-				92D069ED18D12FD6004850C6 /* Processor.h */,
-				92D069EE18D12FD6004850C6 /* Scanner.h */,
-				92D069EF18D12FD6004850C6 /* Symbol.h */,
-				92D069F018D12FD6004850C6 /* Video.h */,
-				92D069F118D12FD6004850C6 /* Window.h */,
-			);
-			name = zbar;
-			sourceTree = "<group>";
-		};
-		92D069FE18D1300B004850C6 /* ZBarSDK */ = {
-			isa = PBXGroup;
-			children = (
-				92D069F218D12FE3004850C6 /* zbar */,
-				92D069F318D12FF6004850C6 /* zbar.h */,
-				92D069F418D12FF6004850C6 /* ZBarCameraSimulator.h */,
-				92D069F518D12FF6004850C6 /* ZBarCaptureReader.h */,
-				92D069F618D12FF6004850C6 /* ZBarHelpController.h */,
-				92D069F718D12FF6004850C6 /* ZBarImage.h */,
-				92D069F818D12FF6004850C6 /* ZBarImageScanner.h */,
-				92D069F918D12FF6004850C6 /* ZBarReaderController.h */,
-				92D069FA18D12FF6004850C6 /* ZBarReaderView.h */,
-				92D069FB18D12FF6004850C6 /* ZBarReaderViewController.h */,
-				92D069FC18D12FF6004850C6 /* ZBarSDK.h */,
-				92D069FD18D12FF6004850C6 /* ZBarSymbol.h */,
-				92D06A2918D140FD004850C6 /* Help */,
-			);
-			name = ZBarSDK;
-			sourceTree = "<group>";
-		};
-		92D06A0E18D13101004850C6 /* QR Code Stuff */ = {
-			isa = PBXGroup;
-			children = (
-				92D06A0A18D130FC004850C6 /* Page_QRCodeVC.h */,
-				92D06A0B18D130FC004850C6 /* Page_QRCodeVC.m */,
-				9278D09818DB70A600E98BC4 /* QRComplete.png */,
-				92D069FE18D1300B004850C6 /* ZBarSDK */,
-			);
-			name = "QR Code Stuff";
-			sourceTree = "<group>";
-		};
-		92D06A2918D140FD004850C6 /* Help */ = {
-			isa = PBXGroup;
-			children = (
-				92D06A1D18D140F4004850C6 /* zbar-back.png */,
-				92D06A1E18D140F4004850C6 /* zbar-help.html */,
-				92D06A1F18D140F4004850C6 /* zbar-helpicons.png */,
-				92D06A2018D140F4004850C6 /* zbar-samples.png */,
-			);
-			name = Help;
-			sourceTree = "<group>";
-		};
 		92E7A1281864E303006A712B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1100,7 +1022,6 @@
 				921DD2661A2A434D00C18079 /* PageVC.h */,
 				921DD2671A2A434D00C18079 /* PageVC.m */,
 				9208482018E4F9CF00BE2F55 /* Module */,
-				92D06A0E18D13101004850C6 /* QR Code Stuff */,
 				92E7A1331864E3DC006A712B /* Page_GardenData */,
 				92E7A1291864E30B006A712B /* Intro */,
 				92E7A12A1864E314006A712B /* Read */,
@@ -1322,20 +1243,16 @@
 				5D18E9F51A2100CF00F8DB94 /* world.wav in Resources */,
 				5D18E9E91A2100AB00F8DB94 /* part.wav in Resources */,
 				5D18E9E31A21009B00F8DB94 /* life.wav in Resources */,
-				92D06A2318D140F4004850C6 /* zbar-help.html in Resources */,
 				92C261AC18370D1500FDA09B /* Page_DragAndDropVC.xib in Resources */,
 				5D18E9EF1A2100BB00F8DB94 /* week.wav in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
 				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
 				104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */,
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
-				9278D09918DB70A600E98BC4 /* QRComplete.png in Resources */,
 				10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */,
 				10BEC02A1A3CEBB2008CBFF9 /* Classes.plist in Resources */,
-				5D709CB11A09A2F8000F44DF /* PasswordVC.xib in Resources */,
 				5D18E9DD1A21008900F8DB94 /* great.wav in Resources */,
 				5D18E9E11A21009600F8DB94 /* hand.wav in Resources */,
-				92D06A2518D140F4004850C6 /* zbar-helpicons.png in Resources */,
 				101F311A1A87CD3900F81711 /* Rain.mp4 in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
 				926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */,
@@ -1348,7 +1265,6 @@
 				101F311C1A87D24300F81711 /* Colors.plist in Resources */,
 				926C9B1318E4EA69006CDB2F /* HOME2.gif in Resources */,
 				5D18E9F71A2100D500F8DB94 /* year.wav in Resources */,
-				92D06A2118D140F4004850C6 /* zbar-back.png in Resources */,
 				5D18E9E51A2100A000F8DB94 /* long.wav in Resources */,
 				4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */,
 				5D18EA021A210C8A00F8DB94 /* Record_Button.png in Resources */,
@@ -1376,7 +1292,6 @@
 				921894EE17F7752A00DFB26B /* InfoPlist.strings in Resources */,
 				4C6A6C381A11685200C3A7A7 /* extraView.xib in Resources */,
 				109509591A3E01F800030E4B /* LoggedInUser.plist in Resources */,
-				92D06A2718D140F4004850C6 /* zbar-samples.png in Resources */,
 				4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */,
 				101F31191A87CC0500F81711 /* Carroll.json in Resources */,
 				92B193A5182F29F200F1583E /* Page_ReadVC.xib in Resources */,
@@ -1405,6 +1320,7 @@
 				108E9B0E1A27A65F00120A63 /* MWFeedInfo.m in Sources */,
 				10B8787E19FC2881005D9937 /* Definitions.swift in Sources */,
 				106948E71A6301AA0093F9DF /* SubjectVC.swift in Sources */,
+				100ACDE01AA14FE900B0FAC2 /* PasswordVC.swift in Sources */,
 				1097EBD01A28C4AC00BED924 /* TabBarTransitionManager.swift in Sources */,
 				92CB44911A203C550082C761 /* ActivityCreationTVC.m in Sources */,
 				1097EBD51A28D37700BED924 /* OBJ-CDefinitions.m in Sources */,
@@ -1428,6 +1344,7 @@
 				108E9B1C1A27A6EB00120A63 /* GTMNSString+HTML.m in Sources */,
 				10DDE8C81A00616C0079FAB9 /* HomeVC.swift in Sources */,
 				10BFE6E71A20467B00E68C77 /* WeatherManager.m in Sources */,
+				100ACDDE1AA1478500B0FAC2 /* PasswordVCTransition.swift in Sources */,
 				10BF3F9F1A2BB80100B1A755 /* SquaresDragAndDrop.swift in Sources */,
 				104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */,
 				92F78D941A261AFD0048612E /* MathCreationVC.m in Sources */,
@@ -1450,17 +1367,16 @@
 				92F78DAA1A2664E10048612E /* VocabCreationVC.m in Sources */,
 				10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */,
 				921DD2681A2A434D00C18079 /* PageVC.m in Sources */,
-				92D06A0C18D130FC004850C6 /* Page_QRCodeVC.m in Sources */,
 				92F78D911A26176A0048612E /* ReadingCreationVC.m in Sources */,
 				92CB44971A203F140082C761 /* Page.m in Sources */,
 				10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */,
+				100ACDE41AA156F100B0FAC2 /* CometAlertController.swift in Sources */,
 				108E9B191A27A6C900120A63 /* NewsFeed.swift in Sources */,
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,
 				10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */,
 				108E9B011A279EEC00120A63 /* WeatherView.swift in Sources */,
 				10DD07D21A1661350026B0DA /* MathProblemTextField.swift in Sources */,
 				1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */,
-				1078FC1A1A0E950D00A14836 /* PasswordVC.m in Sources */,
 				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
 				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				108E9B151A27A67E00120A63 /* NSString+HTML.m in Sources */,
@@ -1576,6 +1492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1602,6 +1519,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -196,14 +196,21 @@
 
 - (id) saveActivityState
 {
-    NSAssert(1 == 2, @"saveActivityState must be overriden by the activity and must not contain a super call.");
+    NSAssert(1 == 2, @"saveActivityState must be overriden by the activity and must not contain a supercall.");
     
     return nil;
 }
 
 - (void) restoreActivityState:(id)object
 {
-    NSAssert(1 == 2, @"restoreActivityState must be overriden by the activity and must not contain a super call.");
+    NSAssert(1 == 2, @"restoreActivityState must be overriden by the activity and must not contain a supercall.");
+}
+
+- (NSDictionary *) settings
+{
+    NSLog(@"This method needs to be overriden with no supercall");
+    
+    return nil;
 }
 
 @end

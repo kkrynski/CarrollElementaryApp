@@ -29,6 +29,7 @@
     BOOL isPresented;
 }
 
+@property (nonatomic) BOOL renderingView;
 @property (nonatomic, retain) NewPageManager *pageManagerParent;
 
 @property(nonatomic, retain) NSDictionary *colorSchemeDictionary;
@@ -60,40 +61,55 @@
 ///
 /// This presents a more "bubble" letter effect, which is more pleasant for elementary schoolers
 ///
-/// \note This method is deprecated, please use the \b Definitions method instead
+/// \note This method is deprecated, please use the \p Definitions class method instead
 -(void)outlineTextInLabel: (UILabel *)label DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// This function outlines the text in a text view, meaning it gives the text a border
 ///
 /// This presents a more "bubble" letter effect, which is more pleasant for elementary schoolers
 ///
-/// \note This is a little more complicated than a label
+/// This is a little more complicated than a label
 ///
-/// \note This method is deprecated, please use the \b Definitions method instead
+/// \note This method is deprecated, please use the \p Definitions class method instead
 -(void)outlineTextInTextView: (UITextView *)textView DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// This function outlines buttons with a border
 ///
-/// \note This method is deprecated, please use the \b Definitions method instead
+/// \note This method is deprecated, please use the \p Definitions class method instead
 -(void)outlineButton: (UIButton *)button DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// This function outlines views with a border
 ///
-/// \note This method is deprecated, please use the \b Definitions method instead
+/// \note This method is deprecated, please use the \p Definitions class method instead
 -(void)outlineView: (UIView *)view DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// Creates a slightly lighter color for a given color
 ///
-/// \note This method is deprecated, please use the \b Definitions method instead
+/// \note This method is deprecated, please use the \p Definitions class method instead
 - (UIColor *)lighterColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
 /// Creates a slightly darker color for a given color
 ///
-/// \note This method is deprecated, please use the \b Definitions method instead
+/// \note This method is deprecated, please use the \p Definitions class method instead
 - (UIColor *)darkerColorForColor:(UIColor *)c DEPRECATED_MSG_ATTRIBUTE("Please use the Definitions method instead");
 
+///Restores the activity's state.\n This method should process the received object, update the ViewController's display, and then call the notification \p'PageManagerShouldContinuePresentation'
+///\param object The object given to the activity that was returned after a call to \p'saveActivityState'
 - (void) restoreActivityState:(id)object;
 
+///Saves the activity's state.  This method should process all settings and user-entered data into an object.
+///\returns An object of type \p(id) -- \p(AnyObject) in Swift -- that contains the necessary information to be able to restore the activity's state.
 - (id) saveActivityState;
+
+///The settings for the specific activity.  This method should return a dictionary in the ["Setting Name":"Setting Type"] format.  Supported Setting Types are:
+///
+/// \p String
+/// \p Boolean
+/// \p Integer OR \p NSInteger
+/// \p Double OR \p Float OR \p CGFloat
+/// \p Rect
+/// \p Point
+/// \p Picker - X, X[, X ...] (Each X is a picker option)
+- (NSDictionary *) settings;
 
 @end

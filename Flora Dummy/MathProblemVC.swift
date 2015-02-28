@@ -99,6 +99,7 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     private var equationView : UIView?
     
     private var answers : NSArray!
+    private var didCheckAnswers = NO
     
     //Checks to make sure it's a valid equation
     func convertStringIntoEquation(equationString : String) -> Array<String>
@@ -171,28 +172,38 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
                     textField.text = answers[textBoxes!.indexOfObject(object)] as String
                 }
             }
-            var answerResult = 0.0
             
-            for textBox in (textBoxes! as Array<AnyObject>)
+            if didCheckAnswers == YES
             {
-                let answerBox = textBox as UITextField
+                var answerResult = 0.0
                 
-                answerResult += (answerBox.text as NSString).doubleValue
+                for textBox in (textBoxes! as [AnyObject])
+                {
+                    let answerBox = textBox as UITextField
+                    
+                    answerResult += (answerBox.text as NSString).doubleValue
+                }
+                UIView.performWithoutAnimation({ () -> Void in
+                    self.checkAnswer(answerResult, animated: NO)
+                })
             }
-            UIView.performWithoutAnimation({ () -> Void in
-                self.checkAnswer(answerResult, animated: NO)
-            })
         }
     }
     
+    //MARK: - Save and Restore and Settings
+    
     override func restoreActivityState(object: AnyObject!)
     {
-        let settings = (object as Array<AnyObject>)[0] as Dictionary<String, String>
-        mathEquation = settings["Equation"]
+        let settings = (object as [AnyObject])[0] as [String : AnyObject]
+        mathEquation = settings["Equation"]! as? String
+        if let checkedAnswers = (settings["DidCheckAnswers"] as? NSNumber)?.boolValue
+        {
+            didCheckAnswers = checkedAnswers
+        }
         
         if object.count > 1
         {
-            answers = ((object as Array<AnyObject>)[1] as Dictionary<String, NSArray>).values.array[0]
+            answers = ((object as [AnyObject])[1] as [String : NSArray]).values.array[0]
             
         }
         
@@ -204,9 +215,8 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     {
         var returnArray = Array<Dictionary<String, AnyObject>>()
         
-        var settings = Dictionary<String, String>()
+        var settings = Dictionary<String, AnyObject>()
         settings.updateValue(mathEquation!, forKey: "Equation")
-        returnArray.append(settings)
         
         let array = answer()
         var shouldInsertAnswers = NO
@@ -221,12 +231,24 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
         
         if shouldInsertAnswers == YES
         {
+            settings.updateValue(NSNumber(bool: didCheckAnswers), forKey: "DidCheckAnswers")
+            returnArray.append(settings)
+            
             var answers = Dictionary<String, NSArray>()
             answers.updateValue(array, forKey: "Answer")
             returnArray.append(answers)
         }
+        else
+        {
+            returnArray.append(settings)
+        }
         
         return returnArray
+    }
+    
+    override func settings() -> [NSObject : AnyObject]!
+    {
+        return ["Math Equation" : "String"]
     }
     
     //Creates the left equation side
@@ -622,6 +644,8 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     
     private func showCorrect(animated: Bool)
     {
+        didCheckAnswers = YES
+        
         let correctView = UIView(frame: CGRectMake(0, 0, equationView!.frame.size.width, equationView!.frame.size.height))
         correctView.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.8)
         correctView.alpha = 0.0

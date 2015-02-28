@@ -64,12 +64,12 @@ import UIKit
     
     /**
     
-    Uploads a new activity session, or updates it if it already exists
+    Uploads a new activity session, or updates it if it already exists.
+    
+    This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
     
     :param: activitySession A Dictionary of values corresponding to the constants listed for this class.  They may be in any order
     :param: completion The Completion Handler to be called when the upload finishes
-    
-    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
     
     */
     func uploadActivitySession(activitySession: ActivitySession, completion: ((uploadSuccess: Bool) -> Void))
@@ -79,12 +79,12 @@ import UIKit
 {
     /**
     
-    Uploads the activity data to the database
+    Uploads the activity data to the database.
+    
+    This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
     
     :param: activityData The Activity object you created
     :param: completion The Completion Handler to be called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or nil if the upload failed
-    
-    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
     
     */
     func uploadNewActivity(activityData: Activity, completion: ((activityID: String?) -> Void))
@@ -109,7 +109,6 @@ import UIKit
     :param: password The inputted password to check
     
     :returns: This method will return one of three constants upon completion:
-    :returns:
     :returns: *  'UserStateUserIsStudent' -- The inputted information is for a Student Account
     :returns: *  'UserStateUserIsTeacher' -- The inputted information is for a Teacher Account
     :returns: *  'UserStateUserInvalid'   -- The inputted information is invalid
@@ -132,6 +131,8 @@ import UIKit
     
     */
     func storeInputtedUserInformation(username: String, andPassword password: String) -> Bool
+    
+    func decodedString(string: String) -> String
     
     func downloadTeacherAccounts()
     func downloadStudentAccounts()
