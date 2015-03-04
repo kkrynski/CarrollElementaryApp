@@ -10,21 +10,13 @@
 		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
 		100ACDDE1AA1478500B0FAC2 /* PasswordVCTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDDD1AA1478500B0FAC2 /* PasswordVCTransition.swift */; };
 		100ACDE01AA14FE900B0FAC2 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */; };
-		100ACDE41AA156F100B0FAC2 /* CometAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDE31AA156F100B0FAC2 /* CometAlertController.swift */; };
+		100ACDE41AA156F100B0FAC2 /* CESCometAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDE31AA156F100B0FAC2 /* CESCometAlertController.swift */; };
 		101F31171A87CB0300F81711 /* CarollJSONConverterTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101F31161A87CB0300F81711 /* CarollJSONConverterTemp.swift */; };
 		101F31191A87CC0500F81711 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 101F31181A87CC0500F81711 /* Carroll.json */; };
-		101F311A1A87CD3900F81711 /* Rain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CD1A461CDE001C571C /* Rain.mp4 */; };
 		101F311C1A87D24300F81711 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 101F311B1A87D24300F81711 /* Colors.plist */; };
 		101F311E1A87D3B300F81711 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101F311D1A87D3B300F81711 /* ColorManager.swift */; };
 		103265CF1A600CF800511546 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* PageManager.swift */; };
 		104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104187D11A461DDC001C571C /* MediaPlayer.framework */; };
-		104187D61A462BBF001C571C /* Foggy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CA1A461CDE001C571C /* Foggy.mp4 */; };
-		104187D71A462BBF001C571C /* Night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CB1A461CDE001C571C /* Night.mp4 */; };
-		104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */; };
-		104187DA1A462BBF001C571C /* Snow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CE1A461CDE001C571C /* Snow.mp4 */; };
-		104187DB1A462BBF001C571C /* Sunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187CF1A461CDE001C571C /* Sunny.mp4 */; };
-		104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187D01A461CDE001C571C /* Thunder Storm.mp4 */; };
-		104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 104187DD1A46303E001C571C /* Cloudy.mp4 */; };
 		104A4CA01A6AD75800BE217A /* ActivitySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A4C9F1A6AD75800BE217A /* ActivitySession.swift */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
@@ -190,21 +182,13 @@
 		100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
 		100ACDE11AA153B400B0FAC2 /* PasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordVC.h; sourceTree = "<group>"; };
 		100ACDE21AA153B400B0FAC2 /* PasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordVC.m; sourceTree = "<group>"; };
-		100ACDE31AA156F100B0FAC2 /* CometAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CometAlertController.swift; sourceTree = "<group>"; };
+		100ACDE31AA156F100B0FAC2 /* CESCometAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESCometAlertController.swift; sourceTree = "<group>"; };
 		101F31161A87CB0300F81711 /* CarollJSONConverterTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarollJSONConverterTemp.swift; sourceTree = "<group>"; };
 		101F31181A87CC0500F81711 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		101F311B1A87D24300F81711 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		101F311D1A87D3B300F81711 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		103265CD1A600CE800511546 /* PageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
-		104187CA1A461CDE001C571C /* Foggy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foggy.mp4; sourceTree = "<group>"; };
-		104187CB1A461CDE001C571C /* Night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Night.mp4; sourceTree = "<group>"; };
-		104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Partly Cloudy.mp4"; sourceTree = "<group>"; };
-		104187CD1A461CDE001C571C /* Rain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rain.mp4; sourceTree = "<group>"; };
-		104187CE1A461CDE001C571C /* Snow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snow.mp4; sourceTree = "<group>"; };
-		104187CF1A461CDE001C571C /* Sunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sunny.mp4; sourceTree = "<group>"; };
-		104187D01A461CDE001C571C /* Thunder Storm.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thunder Storm.mp4"; sourceTree = "<group>"; };
 		104187D11A461DDC001C571C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		104187DD1A46303E001C571C /* Cloudy.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cloudy.mp4; sourceTree = "<group>"; };
 		104A4C9F1A6AD75800BE217A /* ActivitySession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitySession.swift; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
@@ -476,19 +460,28 @@
 			name = "PasswordVC Transition";
 			sourceTree = "<group>";
 		};
-		104187C81A461CCA001C571C /* Weather Videos */ = {
+		100ACDE51AA265B700B0FAC2 /* Sound Files */ = {
 			isa = PBXGroup;
 			children = (
-				104187DD1A46303E001C571C /* Cloudy.mp4 */,
-				104187CA1A461CDE001C571C /* Foggy.mp4 */,
-				104187CB1A461CDE001C571C /* Night.mp4 */,
-				104187CC1A461CDE001C571C /* Partly Cloudy.mp4 */,
-				104187CD1A461CDE001C571C /* Rain.mp4 */,
-				104187CE1A461CDE001C571C /* Snow.mp4 */,
-				104187CF1A461CDE001C571C /* Sunny.mp4 */,
-				104187D01A461CDE001C571C /* Thunder Storm.mp4 */,
+				5D18E9D81A21006600F8DB94 /* definitions.wav */,
+				5D18E9D41A1C12A900F8DB94 /* hello.wav */,
+				5D18E9DC1A21008900F8DB94 /* great.wav */,
+				5D18E9E01A21009600F8DB94 /* hand.wav */,
+				5D18E9DE1A21009100F8DB94 /* have.wav */,
+				5D18E9E21A21009B00F8DB94 /* life.wav */,
+				5D18E9E41A2100A000F8DB94 /* long.wav */,
+				5D18E9E61A2100A400F8DB94 /* make.wav */,
+				5D18E9DA1A21007200F8DB94 /* okay.wav */,
+				5D18E9E81A2100AB00F8DB94 /* part.wav */,
+				5D18E9EA1A2100AF00F8DB94 /* person.wav */,
+				5D18E9EC1A2100B300F8DB94 /* place.wav */,
+				5D18E9EE1A2100BB00F8DB94 /* week.wav */,
+				5D18E9F21A2100C500F8DB94 /* work.wav */,
+				5D18E9F41A2100CF00F8DB94 /* world.wav */,
+				5D18E9F01A2100C000F8DB94 /* woman.wav */,
+				5D18E9F61A2100D500F8DB94 /* year.wav */,
 			);
-			name = "Weather Videos";
+			name = "Sound Files";
 			sourceTree = "<group>";
 		};
 		104BA0F61A0424DA007BD9DE /* Pages */ = {
@@ -537,6 +530,7 @@
 		105E129D1A887AED00130E7B /* UI Objects */ = {
 			isa = PBXGroup;
 			children = (
+				100ACDE31AA156F100B0FAC2 /* CESCometAlertController.swift */,
 				10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */,
 				10A4EA3B1A278D870062D905 /* UIButton_Typical.swift */,
 			);
@@ -566,6 +560,7 @@
 		1078FC141A0E944500A14836 /* Michael */ = {
 			isa = PBXGroup;
 			children = (
+				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
 				10BF3F9D1A2BB71C00B1A755 /* Random Squares Drag and Drop */,
 				1093A1471A212CBB002B2B0A /* Clock Drag VC */,
 				10BFE6DD1A20201000E68C77 /* Drag And Drop */,
@@ -595,7 +590,6 @@
 		108E9B021A27A44E00120A63 /* Weather Data */ = {
 			isa = PBXGroup;
 			children = (
-				104187C81A461CCA001C571C /* Weather Videos */,
 				10BFE6EE1A2046CE00E68C77 /* Reachability.h */,
 				10BFE6EF1A2046CE00E68C77 /* Reachability.m */,
 				10BFE6E81A20468E00E68C77 /* WeatherItem.h */,
@@ -686,7 +680,6 @@
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				105E129E1A887AF900130E7B /* Global Definitions */,
 				105E129D1A887AED00130E7B /* UI Objects */,
-				100ACDE31AA156F100B0FAC2 /* CometAlertController.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -785,23 +778,7 @@
 		5D709CAC1A09A28A000F44DF /* Mason */ = {
 			isa = PBXGroup;
 			children = (
-				5D18E9D81A21006600F8DB94 /* definitions.wav */,
-				5D18E9D41A1C12A900F8DB94 /* hello.wav */,
-				5D18E9DC1A21008900F8DB94 /* great.wav */,
-				5D18E9E01A21009600F8DB94 /* hand.wav */,
-				5D18E9DE1A21009100F8DB94 /* have.wav */,
-				5D18E9E21A21009B00F8DB94 /* life.wav */,
-				5D18E9E41A2100A000F8DB94 /* long.wav */,
-				5D18E9E61A2100A400F8DB94 /* make.wav */,
-				5D18E9DA1A21007200F8DB94 /* okay.wav */,
-				5D18E9E81A2100AB00F8DB94 /* part.wav */,
-				5D18E9EA1A2100AF00F8DB94 /* person.wav */,
-				5D18E9EC1A2100B300F8DB94 /* place.wav */,
-				5D18E9EE1A2100BB00F8DB94 /* week.wav */,
-				5D18E9F21A2100C500F8DB94 /* work.wav */,
-				5D18E9F41A2100CF00F8DB94 /* world.wav */,
-				5D18E9F01A2100C000F8DB94 /* woman.wav */,
-				5D18E9F61A2100D500F8DB94 /* year.wav */,
+				100ACDE51AA265B700B0FAC2 /* Sound Files */,
 				5D03D4AE1A12E2FA0008A9EA /* SpellingTestVC.h */,
 				5D03D4AF1A12E2FA0008A9EA /* SpellingTestVC.m */,
 				5D03D4B01A12E2FA0008A9EA /* SpellingTestVC.xib */,
@@ -947,7 +924,6 @@
 			children = (
 				100ACDE11AA153B400B0FAC2 /* PasswordVC.h */,
 				100ACDE21AA153B400B0FAC2 /* PasswordVC.m */,
-				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
 			);
 			name = Password;
 			sourceTree = "<group>";
@@ -1247,17 +1223,13 @@
 				5D18E9EF1A2100BB00F8DB94 /* week.wav in Resources */,
 				921894FF17F7752A00DFB26B /* Images.xcassets in Resources */,
 				5D03D4B21A12E2FA0008A9EA /* SpellingTestVC.xib in Resources */,
-				104187DC1A462BBF001C571C /* Thunder Storm.mp4 in Resources */,
 				92C261B81839D40800FDA09B /* apple_yellow.png in Resources */,
 				10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */,
 				10BEC02A1A3CEBB2008CBFF9 /* Classes.plist in Resources */,
 				5D18E9DD1A21008900F8DB94 /* great.wav in Resources */,
 				5D18E9E11A21009600F8DB94 /* hand.wav in Resources */,
-				101F311A1A87CD3900F81711 /* Rain.mp4 in Resources */,
 				92CB44DB1A2107690082C761 /* ActivityCreation.storyboard in Resources */,
 				926C9B1518E4EA69006CDB2F /* HOME3.gif in Resources */,
-				104187D81A462BBF001C571C /* Partly Cloudy.mp4 in Resources */,
-				104187D71A462BBF001C571C /* Night.mp4 in Resources */,
 				92C117831A22A1A4003506DB /* ActivityInfoVC.xib in Resources */,
 				923774561A0552A400A49D14 /* PictureQuizVC.xib in Resources */,
 				5D18E9DB1A21007200F8DB94 /* okay.wav in Resources */,
@@ -1272,18 +1244,14 @@
 				926C9B1118E4EA69006CDB2F /* HOME1.gif in Resources */,
 				92C261BA1839D40800FDA09B /* barrel.png in Resources */,
 				92F78DA71A263D0B0048612E /* QuickQuizCreationPopOverVC.xib in Resources */,
-				104187DA1A462BBF001C571C /* Snow.mp4 in Resources */,
 				9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */,
 				92C261B61839D40800FDA09B /* apple_red.png in Resources */,
 				106948E51A62F59B0093F9DF /* ActivitySessions.plist in Resources */,
-				104187DE1A46303E001C571C /* Cloudy.mp4 in Resources */,
 				92C261BD183BFBBC00FDA09B /* woods.png in Resources */,
 				10BFE6F61A20510800E68C77 /* Weather Images.xcassets in Resources */,
 				10BEC02C1A3CEBD7008CBFF9 /* Activities.plist in Resources */,
 				92F78D9E1A2628A30048612E /* MathPopOverVC.xib in Resources */,
-				104187DB1A462BBF001C571C /* Sunny.mp4 in Resources */,
 				4C6A6C361A11669200C3A7A7 /* expoView.xib in Resources */,
-				104187D61A462BBF001C571C /* Foggy.mp4 in Resources */,
 				92E8CB4F18F0C4BD0025264E /* Wind2.gif in Resources */,
 				92B193901824665A00F1583E /* Page_IntroVC.xib in Resources */,
 				92C1177A1A225F99003506DB /* ContentPopOverVC.xib in Resources */,
@@ -1370,7 +1338,7 @@
 				92F78D911A26176A0048612E /* ReadingCreationVC.m in Sources */,
 				92CB44971A203F140082C761 /* Page.m in Sources */,
 				10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */,
-				100ACDE41AA156F100B0FAC2 /* CometAlertController.swift in Sources */,
+				100ACDE41AA156F100B0FAC2 /* CESCometAlertController.swift in Sources */,
 				108E9B191A27A6C900120A63 /* NewsFeed.swift in Sources */,
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,
 				10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */,

@@ -41,6 +41,7 @@
              @"Mason - Microphone",
              @"Zach - Module",
              nil];
+    tests = [tests sortedArrayUsingSelector:@selector(compare:)];
 }
 
 #pragma mark - TableView DataSource

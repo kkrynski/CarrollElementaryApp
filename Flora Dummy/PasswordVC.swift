@@ -107,7 +107,7 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
         super.updateColors()
         
         //Make sure the backgroundColor is correct
-        if infoView != nil
+        if infoView != nil && otherLoginButton != nil
         {
             UIView.animateWithDuration(0.3, delay: 0.0, options: .AllowUserInteraction | .AllowAnimatedContent, animations: { () -> Void in
                 self.infoView.backgroundColor = self.view.backgroundColor
@@ -497,7 +497,10 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
         {
         case .UserInvalid:
             
-            //TODO: Display Alert
+            let alert = CESCometAlertController(title: "We're Sorry", message: "The username and password are not valid!\n\nPlease try again!", style: .Alert)
+            alert.addAction(CESCometAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            
+            presentViewController(alert, animated: YES, completion: nil)
             
             break
             
@@ -512,12 +515,18 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
                 }
                 else
                 {
-                    //TODO: Display Alert
+                    let alert = CESCometAlertController(title: "We're Sorry", message: "There was a problem getting you started!\n\nPlease try again!", style: .Alert)
+                    alert.addAction(CESCometAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    presentViewController(alert, animated: YES, completion: nil)
                 }
             }
             else
             {
-                //TODO: Display Alert
+                let alert = CESCometAlertController(title: "Are you a Teacher?", message: "This username and password combination seems to be a Teacher Account!\n\nIf you are a teacher, please press the button at the bottom that says \"Are you a teacher?\".", style: .Alert)
+                alert.addAction(CESCometAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                presentViewController(alert, animated: YES, completion: nil)
             }
             
             break
@@ -533,12 +542,18 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
                 }
                 else
                 {
-                    //TODO: Display Alert
+                    let alert = CESCometAlertController(title: "We're Sorry", message: "We couldn't log you in!\n\nPlease try again", style: .Alert)
+                    alert.addAction(CESCometAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    presentViewController(alert, animated: YES, completion: nil)
                 }
             }
             else
             {
-                //TODO: Display Alert
+                let alert = CESCometAlertController(title: "Are you a Student?", message: "You tried logging in to a student account!\n\nIf you're a student, press the \"Are you a student?\" button at the bottom", style: .Alert)
+                alert.addAction(CESCometAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                presentViewController(alert, animated: YES, completion: nil)
             }
             break
             
@@ -552,7 +567,10 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
     {
         transitionOutOfLoadingState()
         
-        //TODO: Display Alert
+        let alert = CESCometAlertController(title: "We're Sorry", message: "We are having a little trouble loading your account!\n\nPlease try again!", style: .Alert)
+        alert.addAction(CESCometAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
+        presentViewController(alert, animated: YES, completion: nil)
     }
     
     private func transitionToLoadingState()
@@ -616,6 +634,8 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
                         welcomeTitle.numberOfLines = 0
                         welcomeTitle.textAlignment = .Center
                         welcomeTitle.text = "Welcome\n\(userInfo[4]) \(userInfo[5])!"
+                        welcomeTitle.layer.shouldRasterize = YES
+                        welcomeTitle.layer.rasterizationScale = UIScreen.mainScreen().scale
                         welcomeTitle.textColor = self.primaryColor
                         Definitions.outlineTextInLabel(welcomeTitle)
                         self.infoView.addSubview(welcomeTitle)
@@ -625,7 +645,7 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
                         self.infoView.addConstraint(NSLayoutConstraint(item: welcomeTitle, attribute: .Bottom, relatedBy: .Equal, toItem: self.infoView, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
                         welcomeTitle.transform = CGAffineTransformMakeScale(0.0, 0.0)
                         
-                        NSTimer.scheduledTimerWithTimeInterval(3.8, target: self, selector: "dismissSelf", userInfo: nil, repeats: NO)
+                        NSTimer.scheduledTimerWithTimeInterval(2.3, target: self, selector: "dismissSelf", userInfo: nil, repeats: NO)
                         
                         UIView.animateWithDuration(0.8, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
                             
@@ -639,6 +659,12 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
     
     func dismissSelf()
     {
+        if NSUserDefaults.standardUserDefaults().stringForKey("defaultLogin") == "Teacher"
+        {
+            (UIApplication.sharedApplication().delegate as AppDelegate).teacherLogin()
+            return
+        }
+        
         dismissViewControllerAnimated(YES, completion: nil)
     }
     
@@ -707,5 +733,106 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
         }
         
         return NO
+    }
+}
+
+class MiniPasswordVC : NSObject
+{
+    class func presentInViewController(viewController: UIViewController)
+    {
+        println(viewController.view.frame)
+        
+        let miniPasswordVC = MiniPasswordVC()
+        viewController.view.addSubview(miniPasswordVC.view)
+        viewController.view.addConstraint(NSLayoutConstraint(item: miniPasswordVC.view, attribute: .Height, relatedBy: .Equal, toItem: viewController.view, attribute: .Height, multiplier: 0.25, constant: 0.0))
+        viewController.view.addConstraint(NSLayoutConstraint(item: miniPasswordVC.view, attribute: .Leading, relatedBy: .Equal, toItem: viewController.view, attribute: .Leading, multiplier: 1.0, constant: 20.0))
+        viewController.view.addConstraint(NSLayoutConstraint(item: miniPasswordVC.view, attribute: .Trailing, relatedBy: .Equal, toItem: viewController.view, attribute: .Trailing, multiplier: 1.0, constant: -20.0))
+        viewController.view.addConstraint(NSLayoutConstraint(item: miniPasswordVC.view, attribute: .Bottom, relatedBy: .Equal, toItem: viewController.view, attribute: .Bottom, multiplier: 1.0, constant: -20.0))
+        viewController.view.layoutIfNeeded()
+        miniPasswordVC.transform = CGAffineTransformMakeTranslation(0.0, (miniPasswordVC.view.frame.size.height + 20))
+        miniPasswordVC.transform = CGAffineTransformScale(miniPasswordVC.transform, 0.001, 0.001)
+        
+        UIView.animateWithDuration(0.7, delay: 0.7, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+            
+            miniPasswordVC.transform = CGAffineTransformIdentity
+            
+            }, completion: { (finished) -> Void in
+                UIView.animateWithDuration(0.7, delay: 2.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    
+                    miniPasswordVC.transform = CGAffineTransformMakeTranslation(0.0, (miniPasswordVC.view.frame.size.height + 20))
+                    miniPasswordVC.transform = CGAffineTransformScale(miniPasswordVC.transform, 0.001, 0.001)
+                    
+                    }, completion: { (finished) -> Void in
+                        miniPasswordVC.view.removeFromSuperview()
+                })
+        })
+        
+    }
+    
+    private var displayView : UIView!
+    var alpha : CGFloat
+        {
+        set
+        {
+            displayView.alpha = newValue
+        }
+        
+        get
+        {
+            return  displayView.alpha
+        }
+    }
+    var transform : CGAffineTransform
+        {
+        set
+        {
+            displayView.transform = newValue
+        }
+        
+        get
+        {
+            return  displayView.transform
+        }
+    }
+    var view : UIView
+        {
+        get
+        {
+            return displayView
+        }
+    }
+    
+    override init()
+    {
+        displayView = UIView()
+        displayView.setTranslatesAutoresizingMaskIntoConstraints(NO)
+        displayView.backgroundColor = ColorManager.sharedManager().currentColor().backgroundColor
+        displayView.layer.cornerRadius = 10.0
+        displayView.layer.shadowOpacity = 1.0
+        displayView.layer.shadowOffset = CGSizeMake(0, 1)
+        displayView.layer.shadowRadius = 10.0
+        displayView.layer.shouldRasterize = YES
+        displayView.layer.rasterizationScale = UIScreen.mainScreen().scale
+        
+        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")!
+        let userInfo = NSArray(contentsOfFile: plistPath)! as [String]
+        
+        let welcomeTitle = UILabel()
+        welcomeTitle.setTranslatesAutoresizingMaskIntoConstraints(NO)
+        welcomeTitle.font = NSUserDefaults.standardUserDefaults().stringForKey("defaultLogin")! == "Student" ? UIFont(name: "MarkerFelt-Wide", size: 48) : UIFont(name: "HelveticaNeue-Medium", size: 36)
+        welcomeTitle.numberOfLines = 0
+        welcomeTitle.textAlignment = .Center
+        welcomeTitle.adjustsFontSizeToFitWidth = YES
+        welcomeTitle.minimumScaleFactor = 0.1
+        welcomeTitle.text = "Welcome back\n\(userInfo[4]) \(userInfo[5])!"
+        welcomeTitle.layer.shouldRasterize = YES
+        welcomeTitle.layer.rasterizationScale = UIScreen.mainScreen().scale
+        welcomeTitle.textColor = ColorManager.sharedManager().currentColor().primaryColor
+        Definitions.outlineTextInLabel(welcomeTitle)
+        displayView.addSubview(welcomeTitle)
+        displayView.addConstraint(NSLayoutConstraint(item: welcomeTitle, attribute: .Top, relatedBy: .Equal, toItem: displayView, attribute: .Top, multiplier: 1.0, constant: 20.0))
+        displayView.addConstraint(NSLayoutConstraint(item: welcomeTitle, attribute: .Leading, relatedBy: .Equal, toItem: displayView, attribute: .Leading, multiplier: 1.0, constant: 20.0))
+        displayView.addConstraint(NSLayoutConstraint(item: welcomeTitle, attribute: .Trailing, relatedBy: .Equal, toItem: displayView, attribute: .Trailing, multiplier: 1.0, constant: -20.0))
+        displayView.addConstraint(NSLayoutConstraint(item: welcomeTitle, attribute: .Bottom, relatedBy: .Equal, toItem: displayView, attribute: .Bottom, multiplier: 1.0, constant: -20.0))
     }
 }

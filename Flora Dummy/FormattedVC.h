@@ -104,11 +104,17 @@
 ///The settings for the specific activity.  This method should return a dictionary in the ["Setting Name":"Setting Type"] format.  Supported Setting Types are:
 ///
 /// \p String
+///
 /// \p Boolean
+///
 /// \p Integer OR \p NSInteger
+///
 /// \p Double OR \p Float OR \p CGFloat
+///
 /// \p Rect
+///
 /// \p Point
+///
 /// \p Picker - X, X[, X ...] (Each X is a picker option)
 - (NSDictionary *) settings;
 

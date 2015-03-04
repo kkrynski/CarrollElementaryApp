@@ -400,18 +400,18 @@ class PageManager: FormattedVC
     
     private func displayDismissAlert(customMessage: String?)
     {
-        var dismissAlert : UIAlertController
+        var dismissAlert : CESCometAlertController
         
         if customMessage != nil
         {
-            dismissAlert = UIAlertController(title: customMessage?.componentsSeparatedByString("|")[0], message: customMessage?.componentsSeparatedByString("|")[1], preferredStyle: .Alert)
+            dismissAlert = CESCometAlertController(title: customMessage!.componentsSeparatedByString("|")[0], message: customMessage!.componentsSeparatedByString("|")[1], style: .Alert)
         }
         else
         {
-            dismissAlert = UIAlertController(title: "We're Sorry", message: "There's been an issue presenting this activity\n\nPlease contact your teacher for assistance", preferredStyle: .Alert)
+            dismissAlert = CESCometAlertController(title: "We're Sorry", message: "There's been an issue presenting this activity\n\nPlease contact your teacher for assistance", style: .Alert)
         }
         
-        dismissAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        dismissAlert.addAction(CESCometAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             self.dismissViewControllerAnimated(YES, completion: nil)
         }))
         
@@ -420,13 +420,13 @@ class PageManager: FormattedVC
     
     func exitActivity(button: UIButton_Typical)
     {
-        var dismissAlert = UIAlertController(title: "Are you sure?", message: "Do you want to leave the activity?\n\nAny work you have done will NOT be saved!", preferredStyle: .Alert)
+        var dismissAlert = CESCometAlertController(title: "Are you sure?", message: "Do you want to leave the activity?\n\nAny work you have done will NOT be saved!", style: .Alert)
         
-        dismissAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action) -> Void in
+        dismissAlert.addAction(CESCometAlertAction(title: "Yes", style: .Destructive, handler: { (action) -> Void in
             self.dismissViewControllerAnimated(YES, completion: nil)
         }))
         
-        dismissAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+        dismissAlert.addAction(CESCometAlertAction(title: "No", style: .Default, handler: nil))
         
         presentViewController(dismissAlert, animated: YES, completion: nil)
     }
@@ -848,8 +848,8 @@ class PageManager: FormattedVC
                                 
                                 self.view.userInteractionEnabled = YES
                                 
-                                let errorAlert = UIAlertController(title: "We're Sorry", message: "There's been an issue saving this activity\n\nPlease contact your teacher for assistance and try again.", preferredStyle: .Alert)
-                                errorAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                                let errorAlert = CESCometAlertController(title: "We're Sorry", message: "There's been an issue saving this activity\n\nPlease contact your teacher for assistance and try again.", style: .Alert)
+                                errorAlert.addAction(CESCometAlertAction(title: "OK", style: .Default, handler: nil))
                                 self.presentViewController(errorAlert, animated: YES, completion: nil)
                         })
                     }

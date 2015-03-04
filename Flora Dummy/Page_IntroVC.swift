@@ -28,7 +28,7 @@ class Page_IntroVC: FormattedVC
             {
                 titleLabel!.textColor = primaryColor
                 Definitions.outlineTextInLabel(titleLabel!)
-                titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 20 + (summaryTextView!.frame.origin.y - 20)/2.0)
+                titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 20 + (summaryTextView.frame.origin.y - 20)/2.0)
                 self.view.addSubview(titleLabel!)
             }
         }
@@ -38,22 +38,22 @@ class Page_IntroVC: FormattedVC
         }
     }
     
-    @IBOutlet var summaryTextView : UITextView?
+    @IBOutlet var summaryTextView : UITextView!
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
-        summaryTextView!.text = summary
-        Definitions.outlineTextInTextView(summaryTextView!, forFont: summaryTextView!.font)
-        summaryTextView!.textColor = primaryColor
-        summaryTextView!.backgroundColor = secondaryColor
+        summaryTextView.text = summary
+        Definitions.outlineTextInTextView(summaryTextView, forFont: summaryTextView.font)
+        summaryTextView.textColor = primaryColor
+        summaryTextView.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
         
         if titleLabel != nil
         {
             titleLabel!.textColor = primaryColor
             Definitions.outlineTextInLabel(titleLabel!)
-            titleLabel!.center = CGPointMake(summaryTextView!.center.x, 20 + (summaryTextView!.frame.origin.y - 20)/2.0)
+            titleLabel!.center = CGPointMake(summaryTextView.center.x, 20 + (summaryTextView.frame.origin.y - 20)/2.0)
             self.view.addSubview(titleLabel!)
         }
     }

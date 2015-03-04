@@ -12,13 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitioningDelegate
 {
     var window: UIWindow?
-    
     private var tabBarController : UITabBarController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
     {
-        let userDefaults = ["selectedColor":"Blue", "calculatorPosition":"Left", "showsDevTab":YES, "animatedWeather":YES, "defaultLogin":"Student"]
-        
+        let userDefaults = ["selectedColor":"Blue", "calculatorPosition":"Left", "showsDevTab":YES, "defaultLogin":"Student"]
         NSUserDefaults.standardUserDefaults().registerDefaults(userDefaults)
         
         //TEMP TO CONVERT JSON STUFF
@@ -27,14 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitio
         ColorManager.sharedManager().loadColorScheme()
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        let storyBoard = UIStoryboard(name: "Main2", bundle: nil)
-        tabBarController = storyBoard.instantiateInitialViewController() as? UITabBarController
-        
+        tabBarController = UIStoryboard(name: "Main2", bundle: nil).instantiateInitialViewController() as? UITabBarController
         window!.rootViewController = tabBarController!
         
-        var showsDevTab = NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab")
-        if showsDevTab == NO
+        if NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab") == NO
         {
             let newTabs = NSMutableArray(array: tabBarController!.viewControllers!)
             newTabs.removeLastObject()
@@ -44,16 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitio
         window!.makeKeyAndVisible()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadActivities", name: UserLoggedIn, object: nil)
-        
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
         let userLoginInfo = NSArray(contentsOfFile: plistPath!)
-        
-        if userLoginInfo!.count != 4
+        if userLoginInfo!.count != 6
         {
             NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentPasswordScreen", userInfo: nil, repeats: NO)
+            
+            //Debug
+            //NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentMiniPasswordScreen", userInfo: nil, repeats: NO)
         }
         else
         {
+            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentMiniPasswordScreen", userInfo: nil, repeats: NO)
             loadActivities()
         }
         
@@ -65,6 +61,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitio
         CESDatabase.databaseManagerForMainActivitiesClass().loadActivities()
     }
     
+    //MARK: - Teacher Login
+    
+    func teacherLogin()
+    {
+        let storyboard = UIStoryboard(name: "ActivityCreation", bundle: nil)
+        let initialVC = storyboard.instantiateInitialViewController() as UIViewController
+        
+        UIView.transitionWithView(window!, duration: 0.5, options: .TransitionCrossDissolve | .AllowAnimatedContent, animations: { () -> Void in
+            
+            self.window!.rootViewController = initialVC
+            }, completion: { (finished) -> Void in
+                
+        })
+    }
+    
+    //MARK: - Password Screen
+    
     func presentPasswordScreen()
     {
         let passwordVC = PasswordVC()
@@ -72,6 +85,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitio
         passwordVC.modalPresentationStyle = .Custom
         
         tabBarController!.presentViewController(passwordVC, animated: YES, completion: nil)
+    }
+    
+    func presentMiniPasswordScreen()
+    {
+        MiniPasswordVC.presentInViewController(tabBarController!)
     }
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?

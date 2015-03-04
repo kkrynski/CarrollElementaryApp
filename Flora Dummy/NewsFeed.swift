@@ -57,6 +57,8 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
     var newsFeedDelegate : NewsFeedDelegate?
     var shouldMoveToNextItem = YES
     
+    private var pixelsPerSecond = 50.0
+    
     init(frame: CGRect, andPrimaryColor primaryColor: UIColor)
     {
         super.init(frame: frame)
@@ -114,7 +116,7 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
         
         viewsArray.addObject(view)
         
-        UIView.animateWithDuration(15.0, delay: 0.0, options: .AllowAnimatedContent, animations:{ () -> Void in
+        UIView.animateWithDuration(Double(view.frame.size.width)/pixelsPerSecond, delay: 0.0, options: .AllowAnimatedContent | .CurveLinear, animations:{ () -> Void in
             
             self.frame = CGRectMake(oldX, self.frame.origin.y, self.frame.size.width, self.frame.size.height)
             
@@ -160,7 +162,7 @@ class NewsFeed: UIScrollView, MWFeedParserDelegate, UIScrollViewDelegate
         
         viewsArray.addObject(view)
         
-        UIView.animateWithDuration(15.0, delay: 0.0, options: .AllowAnimatedContent, animations:{ () -> Void in
+        UIView.animateWithDuration(Double(view.frame.size.width)/pixelsPerSecond, delay: 0.0, options: .AllowAnimatedContent | .CurveLinear, animations:{ () -> Void in
             
             self.contentOffset = CGPointMake(view.frame.size.width, 0)
             

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Ik-EQ-ANA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Ik-EQ-ANA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flora DUmmy 4.png" translatesAutoresizingMaskIntoConstraints="NO" id="YdE-jI-cAd">
+                                <rect key="frame" x="15" y="226" width="993" height="485"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="485" id="Pi5-70-gI3"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZQ-Gn-fJ2" customClass="WeatherView" customModule="FloraDummy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
@@ -32,25 +38,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind Speed: %@ mph %@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000007" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRH-TL-dQi">
-                                        <rect key="frame" x="158" y="135" width="305" height="78"/>
+                                        <rect key="frame" x="158" y="135" width="305" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="305" id="RhV-Zb-OYW"/>
-                                            <constraint firstAttribute="height" constant="78" id="qZF-hZ-pjs"/>
+                                            <constraint firstAttribute="height" constant="43" id="qZF-hZ-pjs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRG-2J-Dvj">
-                                        <rect key="frame" x="20" y="135" width="130" height="156"/>
+                                        <rect key="frame" x="20" y="135" width="130" height="94"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="UuE-6z-Etl"/>
-                                            <constraint firstAttribute="height" constant="156" id="iVK-xM-l7d"/>
+                                            <constraint firstAttribute="height" constant="94" id="iVK-xM-l7d"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="56"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity: %@%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Wh-Ub-iSO">
-                                        <rect key="frame" x="158" y="213" width="305" height="78"/>
+                                        <rect key="frame" x="158" y="186" width="305" height="43"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -74,12 +80,6 @@
                                     <outlet property="weatherWindSpeed" destination="rRH-TL-dQi" id="8xr-yo-C11"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flora DUmmy 4.png" translatesAutoresizingMaskIntoConstraints="NO" id="YdE-jI-cAd">
-                                <rect key="frame" x="15" y="226" width="993" height="485"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="485" id="Pi5-70-gI3"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -473,7 +473,7 @@ Science includes learning about the scientific method and even going on scavenge
                 <navigationController id="fWy-Wx-JYZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="RWO-Nj-QtG"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="oaB-gD-tJk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oaB-gD-tJk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -15,8 +15,8 @@
 
 import Foundation
 
-private let databaseWebsite         = "http://floradummytest.michaelschlosstech.com/appdatabase.php"
-private let databaseUploadWebsite   = "http://floradummytest.michaelschlosstech.com/uploaddatabase.php"
+private let databaseWebsite         = "http://cescomet.michaelschlosstech.com/appdatabase.php"
+private let databaseUploadWebsite   = "http://cescomet.michaelschlosstech.com/uploaddatabase.php"
 private let databasePassword        = "12e45"
 private let databaseEncryptionKey   = "I1rObD475i"
 
@@ -573,8 +573,6 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
         {
             for student in studentUserAccounts!
             {
-                println(student)
-                
                 if student["Student_User_Name"] == encryptedUserName && student["Student_Password"] == encryptedPassword
                 {
                     let success = NSArray(objects: encryptedUserName, encryptedPassword, student["Student_ID"]!, "Student", student["Student_FName"]!, student["Student_LName"]!).writeToFile(plistPath, atomically: YES)
@@ -595,7 +593,7 @@ private class UserAccountsDatabaseManager : NSObject, NSURLSessionDelegate, User
             {
                 if teacher["Teacher_User_Name"] == encryptedUserName && teacher["Teacher_Password"] == encryptedPassword
                 {
-                    let success = NSArray(objects: encryptedUserName, encryptedPassword, teacher["Teacher_ID"]!, "Teacher").writeToFile(plistPath, atomically: YES)
+                    let success = NSArray(objects: encryptedUserName, encryptedPassword, teacher["Teacher_ID"]!, "Teacher", teacher ["Teacher_FName"]!, teacher["Teacher_LName"]!).writeToFile(plistPath, atomically: YES)
                     
                     if success == YES
                     {

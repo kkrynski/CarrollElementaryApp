@@ -18,22 +18,16 @@ class SettingsVC: FormattedVC
     @IBOutlet private var titleLabel : UILabel!
     private var gradeLabel : UILabel!
     private var colorLabel : UILabel!
-    private var animatedWeatherLabel : UILabel!
     
     private var colorButtons = Array<UIButton_Typical>()
     
     private var devModeSwitch : UISwitch!
-    private var animatedWeatherSwitch : UISwitch!
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
         devModeSwitch!.on = NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab")
-        
-        animatedWeatherSwitch!.on = NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
-        let on = animatedWeatherSwitch.on == YES ? "On":"Off"
-        animatedWeatherLabel.text = "Animated Weather: \(on)"
     }
     
     override func viewDidLoad()
@@ -99,23 +93,6 @@ class SettingsVC: FormattedVC
         
         devModeSwitch.center = CGPointMake(devModeLabel.center.x, devModeSwitch.center.y)
         
-        animatedWeatherSwitch = UISwitch()
-        animatedWeatherSwitch.addTarget(self, action: "toggleAnimatedWeather:", forControlEvents: .ValueChanged)
-        animatedWeatherSwitch.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - 20 - tabBarController!.tabBar.frame.size.height - animatedWeatherSwitch.frame.size.height/2.0)
-        view.addSubview(animatedWeatherSwitch)
-        
-        let on = animatedWeatherSwitch.on == YES ? "On":"Off"
-        
-        animatedWeatherLabel = UILabel()
-        animatedWeatherLabel.textAlignment = .Center
-        animatedWeatherLabel.text = "Animated Weather: \(on)"
-        animatedWeatherLabel.textColor = primaryColor
-        animatedWeatherLabel.font = UIFont(name: "MarkerFelt-Thin", size: 26)
-        Definitions.outlineTextInLabel(animatedWeatherLabel)
-        animatedWeatherLabel.sizeToFit()
-        animatedWeatherLabel.center = CGPointMake(view.frame.size.width/2.0, animatedWeatherSwitch.frame.origin.y - 8 - animatedWeatherLabel.frame.size.height/2.0)
-        view.addSubview(animatedWeatherLabel)
-        
         //Update Label colors
         
         titleLabel.textColor = primaryColor
@@ -133,7 +110,6 @@ class SettingsVC: FormattedVC
         button.userInteractionEnabled = NO
         
         //Fancy Animate the button press
-        
         view.bringSubviewToFront(button)
         
         self.colorButtons[self.selectedColorButton].setHighlighted(NO, animated: YES)
@@ -142,9 +118,6 @@ class SettingsVC: FormattedVC
         UIView.transitionWithView(titleLabel, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
             self.titleLabel.textColor = self.primaryColor
         }, completion: nil)
-        UIView.transitionWithView(animatedWeatherLabel, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
-            self.animatedWeatherLabel.textColor = self.primaryColor
-            }, completion: nil)
         
         UIView.animateKeyframesWithDuration(transitionLength, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in
@@ -179,29 +152,6 @@ class SettingsVC: FormattedVC
             let visibleTabs = NSMutableArray(array: tabBarController.viewControllers!)
             visibleTabs.removeLastObject()
             tabBarController.setViewControllers(visibleTabs, animated: YES)
-        }
-    }
-    
-    func toggleAnimatedWeather(weatherToggle : UISwitch)
-    {
-        switch weatherToggle.on
-        {
-        case YES:
-            NSUserDefaults.standardUserDefaults().setBool(YES, forKey: "animatedWeather")
-            UIView.transitionWithView(animatedWeatherLabel, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
-                self.animatedWeatherLabel.text = "Animated Weather: On"
-            }, completion: nil)
-            break
-            
-        case NO:
-            NSUserDefaults.standardUserDefaults().setBool(NO, forKey: "animatedWeather")
-            UIView.transitionWithView(animatedWeatherLabel, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
-                self.animatedWeatherLabel.text = "Animated Weather: Off"
-                }, completion: nil)
-            break
-            
-        default:
-            break
         }
     }
 }

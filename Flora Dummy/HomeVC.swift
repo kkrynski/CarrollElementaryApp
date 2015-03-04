@@ -22,9 +22,6 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateColors", name: ColorSchemeDidChangeNotification, object: nil)
         
-        tabBarController!.tabBar.tintColor = .whiteColor()
-        tabBarController!.tabBar.barStyle = .Black
-        
         newsFeed = NewsFeed(frame: CGRectMake(0, 0, view.frame.size.width, 40), andPrimaryColor: primaryColor)
         newsFeed.newsFeedDelegate = self
         newsFeed.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.bottomLayoutGuide.length - newsFeed!.frame.size.height/2.0)
@@ -37,27 +34,11 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         super.viewWillAppear(animated)
         updateColors()
         
-        tabBarController!.tabBar.tintColor = .whiteColor()
-        tabBarController!.tabBar.barStyle = .Black
-        
-        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
-        {
-            weatherView.player?.view.alpha = 1.0
-            weatherView.staticWeatherImage?.alpha = 0.0
-            weatherView.player?.prepareToPlay()
-            weatherView.player?.play()
-        }
-        else
-        {
-            weatherView.player?.view.alpha = 0.0
-            weatherView.staticWeatherImage?.alpha = 1.0
-        }
-        
         Definitions.outlineTextInLabel(titleLabel)
         
         weatherView.updateColors(primaryColor)
         
-        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 11)
+        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 10)
         
         if newsFeed.shouldMoveToNextItem == NO
         {
@@ -77,19 +58,11 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
         newsFeed.shouldMoveToNextItem = NO
-        
-        tabBarController?.tabBar.tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
-        tabBarController?.tabBar.barStyle = .Default
     }
     
     override func viewDidDisappear(animated: Bool)
     {
         super.viewDidDisappear(animated)
-        
-        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
-        {
-            weatherView.player?.pause()
-        }
     }
     
     override func updateColors()
@@ -109,7 +82,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         breakingNewsLabel.textAlignment = .Center
         breakingNewsLabel.text = "News"
         breakingNewsLabel.textColor = primaryColor
-        breakingNewsLabel.font = UIFont(name: "Marker Felt", size: 22)
+        breakingNewsLabel.font = UIFont(name: "Marker Felt", size: 26)
         breakingNewsLabel.numberOfLines = 0
         breakingNewsLabel.center = CGPointMake(view.frame.size.width + breakingNewsLabel.frame.size.width/2.0, newsFeed!.center.y)
         breakingNewsLabel.layer.shouldRasterize = YES
