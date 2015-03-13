@@ -185,7 +185,7 @@ class CESCometAlertController: FormattedVC, UIViewControllerTransitioningDelegat
         backgroundView = UIView()
         backgroundView.alpha = 0.0
         backgroundView.setTranslatesAutoresizingMaskIntoConstraints(NO)
-        backgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        backgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         backgroundView.layer.rasterizationScale = UIScreen.mainScreen().scale
         backgroundView.layer.shouldRasterize = YES
         view.addSubview(backgroundView)
@@ -200,8 +200,6 @@ class CESCometAlertController: FormattedVC, UIViewControllerTransitioningDelegat
         alertView.clipsToBounds = YES
         alertView.backgroundColor = ColorManager.sharedManager().currentColor().backgroundColor
         alertView.layer.cornerRadius = 10.0
-        alertView.layer.shadowOpacity = 1.0
-        alertView.layer.shadowOffset = CGSizeMake(0, 1)
         alertView.layer.shouldRasterize = YES
         alertView.layer.rasterizationScale = UIScreen.mainScreen().scale
         view.addSubview(alertView)

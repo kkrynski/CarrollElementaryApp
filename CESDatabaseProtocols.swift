@@ -131,16 +131,11 @@ import UIKit
     
     */
     func storeInputtedUserInformation(username: String, andPassword password: String) -> Bool
-    
-    func decodedString(string: String) -> String
-    
-    func downloadTeacherAccounts()
-    func downloadStudentAccounts()
 }
 
 @objc protocol MainActivitiesDatabase
 {
-    func loadActivities()
+    func loadUserActivities()
     
     var activitiesLoaded : Bool { get }
     

@@ -9,12 +9,12 @@
 import UIKit
 import QuartzCore
 
-enum MinuteHandRounding : NSInteger
+enum MinuteHandRounding : Int
 {
-    case None
-    case NearestFiveMinutes
-    case NearestQuarterHour
-    case NearestHalfHour
+    case None = 0
+    case NearestFiveMinutes = 1
+    case NearestQuarterHour = 2
+    case NearestHalfHour = 3
 }
 
 class ClockDragVC: FormattedVC, ClockDelegate
@@ -175,6 +175,7 @@ class ClockDragVC: FormattedVC, ClockDelegate
             }
             clock.handsMoveDependently = handsMoveDependently
             clock.showSecondsHand = showSecondsHand
+            clock.minuteHandRounding = minuteHandRounding
         }
         
         NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
@@ -224,6 +225,7 @@ class ClockDragVC: FormattedVC, ClockDelegate
         clock = Clock(frame: CGRectMake(0, 0, 400, 400), andBorderWidth: 8.0)
         clock.showSecondsHand = showSecondsHand
         clock.handsMoveDependently = handsMoveDependently
+        clock.minuteHandRounding = minuteHandRounding
         clock.delegate = self
         clock.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
         view.addSubview(clock!)

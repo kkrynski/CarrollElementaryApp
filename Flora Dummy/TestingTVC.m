@@ -116,7 +116,7 @@
                            [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
                                                                        [NSDictionary dictionaryWithObjectsAndKeys:@"02:05:24", @"StartTime", @"08:04:32", @"EndTime", @"00:00:00", @"BufferZone", [NSNumber numberWithBool:YES], @"HandsMoveDependently", [NSNumber numberWithBool:NO], @"ShowSecondsHand", [NSNumber numberWithInt:0], @"MinuteHandRounding", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeClockDrag], nil],
                            [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
-                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"05:15:54", @"StartTime", @"02:49:28", @"EndTime", @"00:02:02", @"BufferZone", [NSNumber numberWithBool:YES], @"HandsMoveDependently", [NSNumber numberWithBool:YES], @"ShowSecondsHand", [NSNumber numberWithInt:1], @"MinuteHandRounding", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeClockDrag], nil], nil];
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"05:15:54", @"StartTime", @"02:49:28", @"EndTime", @"00:02:02", @"BufferZone", [NSNumber numberWithBool:YES], @"HandsMoveDependently", [NSNumber numberWithBool:YES], @"ShowSecondsHand", [NSNumber numberWithInt:3], @"MinuteHandRounding", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeClockDrag], nil], nil];
     }
     else if ([selectedTest isEqualToString:@"Michael - SquareDrag"])
     {

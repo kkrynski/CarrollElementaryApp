@@ -43,7 +43,7 @@ class PasswordVC: FormattedVC, UITextFieldDelegate
         backgroundView = UIView()
         backgroundView.alpha = 0.0
         backgroundView.setTranslatesAutoresizingMaskIntoConstraints(NO)
-        backgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        backgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         backgroundView.layer.rasterizationScale = UIScreen.mainScreen().scale
         backgroundView.layer.shouldRasterize = YES
         view.addSubview(backgroundView)

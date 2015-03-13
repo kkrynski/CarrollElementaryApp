@@ -31,9 +31,8 @@ class Color : NSObject
 
 private var colorManagerInstance: ColorManager!
 
-private let databaseWebsite         = "http://cescomet.michaelschlosstech.com/appdatabase.php"
-private let databasePassword        = "12e45"
-private let databaseEncryptionKey   = "I1rObD475i"
+private let databaseWebsite     = "http://cescomet.michaelschlosstech.com/appdatabase.php"
+private let databasePassword    = "7AZ-hSz-X7p-HGB"
 
 @objc class ColorManager
 {

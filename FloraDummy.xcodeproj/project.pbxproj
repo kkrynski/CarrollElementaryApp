@@ -176,7 +176,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1009AC0E1A3BC0DC009B4813 /* README.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
 		100ACDDD1AA1478500B0FAC2 /* PasswordVCTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordVCTransition.swift; sourceTree = "<group>"; };
 		100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
@@ -557,10 +556,18 @@
 			name = Transitions;
 			sourceTree = "<group>";
 		};
-		1078FC141A0E944500A14836 /* Michael */ = {
+		1066297C1AA775A900B418AC /* Password VC */ = {
 			isa = PBXGroup;
 			children = (
 				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
+			);
+			name = "Password VC";
+			sourceTree = "<group>";
+		};
+		1078FC141A0E944500A14836 /* Michael */ = {
+			isa = PBXGroup;
+			children = (
+				1066297C1AA775A900B418AC /* Password VC */,
 				10BF3F9D1A2BB71C00B1A755 /* Random Squares Drag and Drop */,
 				1093A1471A212CBB002B2B0A /* Clock Drag VC */,
 				10BFE6DD1A20201000E68C77 /* Drag And Drop */,
@@ -855,7 +862,6 @@
 		921894E917F7752A00DFB26B /* Flora Dummy */ = {
 			isa = PBXGroup;
 			children = (
-				1009AC0E1A3BC0DC009B4813 /* README.swift */,
 				1097EBC91A28C3C300BED924 /* Utilities */,
 				10B8788319FC422C005D9937 /* Old Objective-C Code */,
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,

@@ -24,16 +24,16 @@ class ClockHand : UIView
 
 class ClockHandView : UIView
 {
-    var clockHand : ClockHand?
+    var clockHand : ClockHand!
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView?
     {
         let frame = CGRectInset(bounds, -20, -10)
         if CGRectContainsPoint(frame, point)
         {
-            if CGRectContainsPoint(CGRectInset(clockHand!.bounds, -20, -20), point)
+            if CGRectContainsPoint(CGRectInset(clockHand.bounds, -20, -20), point)
             {
-                return clockHand!
+                return clockHand
             }
             return self
         }
@@ -330,14 +330,32 @@ class Clock: UIView
             break
             
         case .Ended:
-            if minuteHandRounding == .None
+            if minuteHandRounding != .None
             {
-                break
+                var timeComponents = currentTime.componentsSeparatedByString(":") as [String]
+                var minutes = timeComponents[1].toInt()!
+                minutes = roundedMinute(minutes)
+                timeComponents[1] = String(minutes)
+                timeComponents[2] = String(0)
+                
+                UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
+                    
+                    let secondsValue = self.showSecondsHand == YES ? (timeComponents[2] as NSString).doubleValue/60.0/60.0 : Double(0.0)
+                    
+                    let trueHour = CGFloat((timeComponents[0] as NSString).doubleValue + (timeComponents[1] as NSString).doubleValue/60.0 + secondsValue)
+                    self.hoursHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(12.0) * trueHour)
+                    
+                    self.minutesHand!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(60.0) * CGFloat((timeComponents[1] as NSString).doubleValue + (self.showSecondsHand == YES ? (timeComponents[2] as NSString).doubleValue/60.0 : 0.0)))
+                    
+                    if self.showSecondsHand == YES
+                    {
+                        self.secondsHand?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 2.0)/CGFloat(60.0) * CGFloat((timeComponents[2] as NSString).doubleValue))
+                    }
+                    
+                    self.updateCurrentTime()
+                    
+                    }, completion: nil)
             }
-            //Check for minute hand rounding
-            
-            
-            
             break
             
         default:
@@ -422,6 +440,60 @@ class Clock: UIView
     }
     
     //MARK: - Other Methods
+    
+    private func roundedMinute(minute: Int) -> Int
+    {
+        var returnMinute = minute
+        
+        switch minuteHandRounding
+        {
+        case .NearestFiveMinutes:
+            
+            let moddedMinute = minute % 5
+            
+            if moddedMinute >= 3
+            {
+                returnMinute += 4 - moddedMinute
+            }
+            else
+            {
+                returnMinute += -1 - moddedMinute
+            }
+            
+            break
+            
+        case .NearestHalfHour:
+            let moddedMinute = minute % 30
+            
+            if moddedMinute >= 15
+            {
+                returnMinute += 29 - moddedMinute
+            }
+            else
+            {
+                returnMinute += -1 - moddedMinute
+            }
+            break
+            
+        case .NearestQuarterHour:
+            let moddedMinute = minute % 15
+            
+            if moddedMinute >= 8
+            {
+                returnMinute += 14 - moddedMinute
+            }
+            else
+            {
+                returnMinute += -1 - moddedMinute
+            }
+            break
+            
+        default:
+            break
+        }
+        
+        return returnMinute
+    }
     
     //Updates the current time for display
     private func updateCurrentTime()

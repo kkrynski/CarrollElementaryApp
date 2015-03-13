@@ -53,12 +53,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitio
             loadActivities()
         }
         
+        
+        Definitions.calculate("3 * 2 ^ 10 + ( 3 * 5 + ( 2 + 4 ) ) + 30")
+        
         return YES
     }
     
     func loadActivities()
     {
-        CESDatabase.databaseManagerForMainActivitiesClass().loadActivities()
+        CESDatabase.databaseManagerForMainActivitiesClass().loadUserActivities()
     }
     
     //MARK: - Teacher Login
