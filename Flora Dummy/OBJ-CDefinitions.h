@@ -32,6 +32,11 @@ typedef NS_ENUM(NSInteger, ActivityViewControllerType)
     ActivityViewControllerTypeSpelling,
 };
 
+//All transitions should use this variable for animationDuration to keep uniform
+#define transitionLength 0.3
+
+#define ColorSchemeDidChangeNotification @"Color Scheme Changed"
+
 #define ActivityDataLoaded @"ActivityDataLoaded"
 #define UserAccountsDownloaded @"User Accounts Downloaded Notification"
 #define UserLoggedIn @"User Logged In Notification"

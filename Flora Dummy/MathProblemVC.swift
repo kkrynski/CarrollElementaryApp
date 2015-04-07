@@ -20,7 +20,7 @@ class MathProblemAnswerGradiant : UIView
         
         self.backgroundColor = UIColor.whiteColor()
     }
-
+    
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
@@ -56,7 +56,7 @@ class MathProblemAnswerGradiant : UIView
     }
 }
 
-class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
+class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitioningDelegate
 {
     /**
     The Math Equation to be displayed.
@@ -64,24 +64,24 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     Please format your math equation based the following rules:
     
     - Fractions: Use "[X,Y,Z]" to form fractions, where
-        - "X" is the whole number (This can be '0')
-        - "Y" is the numerator of the fraction
-        - "Z" is the denominator of the fraction
+    - "X" is the whole number (This can be '0')
+    - "Y" is the numerator of the fraction
+    - "Z" is the denominator of the fraction
     - Exponents: Use "X^Y" to denote an exponent, where
-        - "X" is the base
-        - "Y" is the power, or exponent
+    - "X" is the base
+    - "Y" is the power, or exponent
     - Random Numbers: Use "#rw(X,Y)#" to create a random number, where
-        - "X" is the starting number
-        - "Y" is the ending range of numbers
+    - "X" is the starting number
+    - "Y" is the ending range of numbers
     - Parentheses: Use "( XX )" to create paretheses, where 'XX' is an equation satisfying the before-mentioned rules
-        - NOTE: Parentheses are not supported yet
+    - NOTE: Parentheses are not supported yet
     
     - Answer Spaces: Use "#X#" to denote answer spaces, where 'X' takes the following substitutions:
-        - "w" creates an answer box accepting only Whole Numbers
-        - "fr" creates an answer box for fractions accepting any acceptable character
-        - "v" creates an answer box accepting only Variables
-            - NOTE: Not supported yet
-        - "d" creates an answer box accepting decimals
+    - "w" creates an answer box accepting only Whole Numbers
+    - "fr" creates an answer box for fractions accepting any acceptable character
+    - "v" creates an answer box accepting only Variables
+    - NOTE: Not supported yet
+    - "d" creates an answer box accepting decimals
     
     Each item must be have a space on both sides, except if it is the first or last item or it is next to the '=' sign, then only spaces on the inner sides.
     
@@ -98,6 +98,9 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     
     private var equationView : UIView?
     
+    private var answers : NSArray!
+    private var didCheckAnswers = NO
+    
     //Checks to make sure it's a valid equation
     func convertStringIntoEquation(equationString : String) -> Array<String>
     {
@@ -110,9 +113,9 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         return tempArray
     }
     
-    override func viewDidLoad()
+    override func viewWillAppear(animated: Bool)
     {
-        super.viewDidLoad()
+        super.viewWillAppear(animated)
         
         if mathEquation == nil || mathEquation == ""
         {
@@ -158,16 +161,94 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         view.addSubview(calculatorButton)
         calculatorButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
         calculatorButton.center = CGPointMake(view.frame.size.width/2.0, equationView!.frame.size.height/2.0 + equationView!.center.y + 10 + calculatorButton.frame.size.height/2.0)
+        
+        if answers != nil
+        {
+            for object in textBoxes!
+            {
+                let textField = object as UITextField
+                if answers[textBoxes!.indexOfObject(object)] as String != "<null>"
+                {
+                    textField.text = answers[textBoxes!.indexOfObject(object)] as String
+                }
+            }
+            
+            if didCheckAnswers == YES
+            {
+                var answerResult = 0.0
+                
+                for textBox in (textBoxes! as [AnyObject])
+                {
+                    let answerBox = textBox as UITextField
+                    
+                    answerResult += (answerBox.text as NSString).doubleValue
+                }
+                UIView.performWithoutAnimation({ () -> Void in
+                    self.checkAnswer(answerResult, animated: NO)
+                })
+            }
+        }
     }
+    
+    //MARK: - Save and Restore and Settings
     
     override func restoreActivityState(object: AnyObject!)
     {
-        println(object)
+        let settings = (object as [AnyObject])[0] as [String : AnyObject]
+        mathEquation = settings["Equation"]! as? String
+        if let checkedAnswers = (settings["DidCheckAnswers"] as? NSNumber)?.boolValue
+        {
+            didCheckAnswers = checkedAnswers
+        }
+        
+        if object.count > 1
+        {
+            answers = ((object as [AnyObject])[1] as [String : NSArray]).values.array[0]
+            
+        }
+        
+        view.layoutIfNeeded()
+        NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
     }
     
     override func saveActivityState() -> AnyObject!
     {
-        return nil
+        var returnArray = Array<Dictionary<String, AnyObject>>()
+        
+        var settings = Dictionary<String, AnyObject>()
+        settings.updateValue(mathEquation!, forKey: "Equation")
+        
+        let array = answer()
+        var shouldInsertAnswers = NO
+        for answer in array
+        {
+            if answer as String != "<null>"
+            {
+                shouldInsertAnswers = YES
+                break
+            }
+        }
+        
+        if shouldInsertAnswers == YES
+        {
+            settings.updateValue(NSNumber(bool: didCheckAnswers), forKey: "DidCheckAnswers")
+            returnArray.append(settings)
+            
+            var answers = Dictionary<String, NSArray>()
+            answers.updateValue(array, forKey: "Answer")
+            returnArray.append(answers)
+        }
+        else
+        {
+            returnArray.append(settings)
+        }
+        
+        return returnArray
+    }
+    
+    override func settings() -> [NSObject : AnyObject]!
+    {
+        return ["Math Equation" : "String"]
     }
     
     //Creates the left equation side
@@ -452,7 +533,7 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
     //MARK: - Answer box methods
     
     //Checks the answer.  Answer box(es) must be in right side
-    func checkAnswer(textBoxAnswer : Double)
+    func checkAnswer(textBoxAnswer : Double, animated: Bool)
     {
         //Build final result
         
@@ -553,39 +634,104 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
         //Do checking
         if textBoxAnswer == finalResult
         {
-            for object in textBoxes!
-            {
-                let textBox = object as UITextField
-                textBox.userInteractionEnabled = NO
-                
-                let correct = MathProblemAnswerGradiant(frame: textBox.frame, isCorrect: YES)
-                textBox.superview!.insertSubview(correct, belowSubview: textBox)
-                
-                UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
-                    correct.transform = CGAffineTransformMakeScale(1.2, 1.3)
-                    }, completion: nil)
-            }
+            showCorrect(animated)
         }
         else
         {
-            for object in textBoxes!
-            {
-                let textBox = object as UITextField
+            showIncorrect(animated)
+        }
+    }
+    
+    private func showCorrect(animated: Bool)
+    {
+        didCheckAnswers = YES
+        
+        let correctView = UIView(frame: CGRectMake(0, 0, equationView!.frame.size.width, equationView!.frame.size.height))
+        correctView.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.8)
+        correctView.alpha = 0.0
+        correctView.clipsToBounds = YES
+        equationView!.addSubview(correctView)
+        
+        let correctLabel = UILabel()
+        correctLabel.alpha = 0.0
+        correctLabel.text = "Correct!"
+        correctLabel.textColor = primaryColor
+        correctLabel.font = UIFont(name: "MarkerFelt-Thin", size: 72)
+        correctLabel.sizeToFit()
+        Definitions.outlineTextInLabel(correctLabel)
+        correctLabel.center = CGPointMake(correctView.frame.size.width/2.0, correctView.frame.size.height/2.0)
+        correctView.addSubview(correctLabel)
+        correctLabel.transform = CGAffineTransformMakeScale(0.3, 0.3)
+        
+        UIView.animateWithDuration(animated == YES ? 0.3 : 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+            
+            correctView.alpha = 1.0
+            
+            }, completion: { (finished) -> Void in
                 
-                let correct = MathProblemAnswerGradiant(frame: textBox.frame, isCorrect: NO)
-                textBox.superview!.insertSubview(correct, belowSubview: textBox)
+                UIView.animateWithDuration(animated == YES ? 0.3 : 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    
+                    correctLabel.alpha = 1.0
+                    
+                    }, completion: nil)
+                UIView.animateWithDuration(animated == YES ? 0.5 : 0.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    
+                    correctLabel.transform = CGAffineTransformIdentity
+                    
+                    }, completion: nil)
                 
-                UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
-                    correct.transform = CGAffineTransformMakeScale(1.2, 1.3)
+        })
+    }
+    
+    private func showIncorrect(animated: Bool)
+    {
+        let incorrectView = UIView(frame: CGRectMake(0, 0, equationView!.frame.size.width, equationView!.frame.size.height))
+        incorrectView.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.8)
+        incorrectView.alpha = 0.0
+        incorrectView.clipsToBounds = YES
+        equationView!.addSubview(incorrectView)
+        
+        let incorrectLabel = UILabel()
+        incorrectLabel.alpha = 0.0
+        incorrectLabel.text = "Incorrect!\nPlease try again!"
+        incorrectLabel.numberOfLines = 0
+        incorrectLabel.textAlignment = .Center
+        incorrectLabel.textColor = primaryColor
+        incorrectLabel.font = UIFont(name: "MarkerFelt-Thin", size: 72)
+        incorrectLabel.sizeToFit()
+        Definitions.outlineTextInLabel(incorrectLabel)
+        incorrectLabel.center = CGPointMake(incorrectView.frame.size.width/2.0, incorrectView.frame.size.height/2.0)
+        incorrectView.addSubview(incorrectLabel)
+        incorrectLabel.transform = CGAffineTransformMakeScale(0.3, 0.3)
+        
+        UIView.animateWithDuration(animated == YES ? 0.3 : 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+            
+            incorrectView.alpha = 1.0
+            
+            }, completion: { (finished) -> Void in
+                
+                UIView.animateWithDuration(animated == YES ? 0.3 : 0.0, delay: 0.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    
+                    incorrectLabel.alpha = 1.0
+                    
+                    }, completion: nil)
+                UIView.animateWithDuration(animated == YES ? 0.5 : 0.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                    
+                    incorrectLabel.transform = CGAffineTransformIdentity
+                    
                     }, completion: { (finished) -> Void in
-                        UIView.animateWithDuration(0.3, delay: 1.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
-                            correct.transform = CGAffineTransformIdentity
-                        }, completion: { (finished) -> Void in
-                            correct.removeFromSuperview()
+                        
+                        UIView.animateWithDuration(animated == YES ? 0.3 : 0.0, delay: 1.0, options: .AllowAnimatedContent | .AllowUserInteraction, animations: { () -> Void in
+                            
+                            incorrectView.alpha = 0.0
+                            incorrectLabel.transform = CGAffineTransformMakeScale(2.0, 2.0)
+                            
+                            }, completion: { (finished) -> Void in
+                                
+                                incorrectView.removeFromSuperview()
                         })
                 })
-            }
-        }
+        })
     }
     
     //MARK: - MathProblemTextField Delegate Methods
@@ -639,7 +785,28 @@ class MathProblemVC: PageVC, UITextFieldDelegate, UIViewControllerTransitioningD
             
             answerResult += (answerBox.text as NSString).doubleValue
         }
-        checkAnswer(answerResult)
+        checkAnswer(answerResult, animated: YES)
+    }
+    
+    private func answer() -> NSArray
+    {
+        var answerResult = Array<String>()
+        
+        for textBox in (textBoxes! as Array<AnyObject>)
+        {
+            let answerBox = textBox as UITextField
+            
+            if answerBox.text != nil && answerBox.text != ""
+            {
+                answerResult.append(answerBox.text)
+            }
+            else
+            {
+                answerResult.append("<null>")
+            }
+        }
+        
+        return answerResult
     }
     
     //MARK: - Calculator Presentation

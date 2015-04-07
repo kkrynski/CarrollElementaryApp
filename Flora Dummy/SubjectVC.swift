@@ -32,38 +32,33 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     
     private var activitiesLoaded = NO
     
-    //Get all JSON data on startup
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        //We don't need to do this everytime, so we only do it once here.
-        activitiesTable!.layer.borderWidth = CGFloat(borderWidth)
-        activitiesTable!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-    }
-    
     //Everytime the view is shown on screen, make sure all data is updated
     override func viewWillAppear(animated: Bool)
     {
+        super.viewWillAppear(animated)
+        updateColors()
+        
         let standardDefaults = NSUserDefaults.standardUserDefaults()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: ActivityDataLoaded, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: UIApplicationSignificantTimeChangeNotification, object: nil)
         
+        activitiesTable!.layer.borderWidth = CGFloat(borderWidth)
+        activitiesTable!.layer.borderColor = secondaryColor.CGColor
+        
         titleLabel!.textColor = primaryColor
         Definitions.outlineTextInLabel(titleLabel!)
         
         notificationField!.textColor = primaryColor
-        notificationField!.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!);
+        notificationField!.backgroundColor = Definitions.lighterColorForColor(ColorManager.sharedManager().currentColor().backgroundColor);
         Definitions.outlineTextInTextView(notificationField!, forFont: font!)
         notificationField!.layer.borderWidth = 2.0
-        notificationField!.layer.borderColor = UIColor.whiteColor().CGColor
+        notificationField!.layer.borderColor = secondaryColor.CGColor
         notificationField!.textColor = primaryColor
         
         //Set colors for activitiesTable
-        activitiesTable!.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
-        activitiesTable!.separatorColor = primaryColor
+        activitiesTable!.backgroundColor = Definitions.lighterColorForColor(ColorManager.sharedManager().currentColor().backgroundColor)
+        activitiesTable!.separatorColor = secondaryColor
         
         //Update the activities for the tableView
         activities = Array<Activity>()
@@ -133,6 +128,14 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         }
         
         activitiesTable!.reloadData()
+    }
+    
+    override func updateColors()
+    {
+        super.updateColors()
+        
+        loadingView?.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
+        noActivitiesView?.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
     }
     
     //Updates the activityTable's data if we went to this screen before it was all downloaded
@@ -343,23 +346,46 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         activityLoadingLoadingView.center = CGPointMake(activityLoadingView.frame.size.width/2.0, activityLoadingView.frame.size.height/2.0)
         
         view.addSubview(activityLoadingView)
-        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
-            
-            activityLoadingView.frame = CGRectMake(0, 0, self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
-            activityLoadingView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
             activityLoadingView.alpha = 1.0
-            
-            activityLoadingLoadingView.frame = CGRectMake(0, 0, activityLoadingView.frame.size.width, activityLoadingView.frame.size.height)
-            loadingWheel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 - 4 - loadingWheel.frame.size.height/2.0)
-            loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
-            
             }, completion: { (finished) -> Void in
                 
-                let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row].name)
-                let pageManager = NewPageManager(nibName: nil, bundle: nil, activitySession: activitySession, forActivity: self.activities[indexPath.row], withParent:self)
-                pageManager.presentNextViewController()
+                self.setCornerRadius(activityLoadingView)
+                UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                    
+                    activityLoadingView.frame = CGRectMake(0, 0, self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+                    activityLoadingView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+                    
+                    activityLoadingLoadingView.frame = CGRectMake(0, 0, activityLoadingView.frame.size.width, activityLoadingView.frame.size.height)
+                    loadingWheel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 - 4 - loadingWheel.frame.size.height/2.0)
+                    loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
+                    
+                    }, completion: { (finished) -> Void in
+                        
+                        //TODO: Uncomment after legit activites on database
+                        
+                        //let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row].name, activity: self.activities[indexPath.row])
+                        //let pageManager = NewPageManager(nibName: nil, bundle: nil, activitySession: activitySession, forActivity: self.activities[indexPath.row], withParent:self)
+                        
+                        //Debug code
+                        UIView.animateWithDuration(1.5, delay: 1.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                            
+                            activityLoadingView.transform = CGAffineTransformMakeScale(self.view.frame.size.width/activityLoadingView.frame.size.width, self.view.frame.size.height/activityLoadingView.frame.size.height)
+                            activityLoadingView.alpha = 0.0
+                            
+                            }, completion: { (finished) -> Void in
+                                
+                                activityLoadingView.removeFromSuperview()
+                                UIApplication.sharedApplication().keyWindow?.userInteractionEnabled = YES
+                        })
+                })
         })
         
+        
+    }
+    
+    func setCornerRadius(activityLoadingView: UIVisualEffectView)
+    {
         let animation = CABasicAnimation(keyPath: "cornerRadius")
         animation.fromValue = NSNumber(double: 0.001)
         animation.toValue = NSNumber(double: 10.0)

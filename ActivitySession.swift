@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ActivitySession : NSObject
+class ActivitySession : NSObject, NSCopying
 {
     ///The Activity's ID
     var activityID = "000000"
@@ -32,5 +32,19 @@ class ActivitySession : NSObject
     override init()
     {
         super.init()
+    }
+    
+    func copyWithZone(zone: NSZone) -> AnyObject
+    {
+        let returnActivitySession = ActivitySession()
+        
+        returnActivitySession.activityID = self.activityID
+        returnActivitySession.grade = self.grade
+        returnActivitySession.activityData = self.activityData
+        returnActivitySession.startDate = self.startDate
+        returnActivitySession.endDate = self.endDate
+        returnActivitySession.status = self.status
+        
+        return returnActivitySession
     }
 }

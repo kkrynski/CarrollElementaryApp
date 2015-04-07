@@ -9,28 +9,10 @@
 #import "VocabVC.h"
 #import "FloraDummy-Swift.h"
 
-@interface VocabVC ()
-{
-    
-}
-@end
-
 @implementation VocabVC
 @synthesize questionLabel;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-//NSString *question;
-//NSArray *answers;
-//int *indexOfAnswer;
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     questionLabel.text = [NSString stringWithFormat:@"  %@",_question];
@@ -76,12 +58,12 @@
     
 }
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)but1:(id)sender {
+- (IBAction) but1:(id)sender {
     if(![[_answers objectAtIndex:0] isEqualToString:@""]){
         if (_correctIndex.intValue == 0) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @""
@@ -108,7 +90,7 @@
     
 }
 
-- (IBAction)but2:(id)sender {
+- (IBAction) but2:(id)sender {
     if(![[_answers objectAtIndex:1] isEqualToString:@""]){
         if (_correctIndex.intValue == 1) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @""
@@ -135,7 +117,7 @@
     
 }
 
-- (IBAction)but3:(id)sender {
+- (IBAction) but3:(id)sender {
     if(![[_answers objectAtIndex:2] isEqualToString:@""]){
         if (_correctIndex.intValue == 2) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @""
@@ -161,7 +143,7 @@
     
 }
 
-- (IBAction)but4:(id)sender {
+- (IBAction) but4:(id)sender {
     if(![[_answers objectAtIndex:3] isEqualToString:@""]){
         if (_correctIndex.intValue == 3) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @""
@@ -187,7 +169,7 @@
     
 }
 
-- (IBAction)but5:(id)sender {
+- (IBAction) but5:(id)sender {
     if(![[_answers objectAtIndex:4] isEqualToString:@""]){
         if (_correctIndex.intValue == 4) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @""

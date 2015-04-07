@@ -71,8 +71,7 @@ class CalculatorTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
                 {
                     presentedControllerView.center.x -= 40 + presentedControllerView.frame.size.width
                 }
-            }, completion:
-            {(completed: Bool) -> Void in
+            }, completion: {(completed: Bool) -> Void in
                 transitionContext.completeTransition(completed)
         })
     }
@@ -95,8 +94,7 @@ class CalculatorTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
                 {
                     presentedControllerView.center.x += 40 + presentedControllerView.frame.size.width
                 }
-            }, completion:
-            {(completed: Bool) -> Void in
+            }, completion: {(completed: Bool) -> Void in
                 transitionContext.completeTransition(completed)
         })
     }

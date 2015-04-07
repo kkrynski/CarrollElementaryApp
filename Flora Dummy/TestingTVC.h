@@ -9,9 +9,13 @@
 
 @import UIKit;
 
+@class PageManager;
+
 @interface TestingTVC : UITableViewController <UIViewControllerTransitioningDelegate>
 {
     NSArray *tests;
+    
+    PageManager *activePageManager;
 }
 
 @end

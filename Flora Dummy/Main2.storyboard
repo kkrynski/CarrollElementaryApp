@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Ik-EQ-ANA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Ik-EQ-ANA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flora DUmmy 4.png" translatesAutoresizingMaskIntoConstraints="NO" id="YdE-jI-cAd">
+                                <rect key="frame" x="15" y="226" width="993" height="485"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="485" id="Pi5-70-gI3"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZQ-Gn-fJ2" customClass="WeatherView" customModule="FloraDummy" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
@@ -32,25 +38,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind Speed: %@ mph %@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000007" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRH-TL-dQi">
-                                        <rect key="frame" x="158" y="135" width="305" height="78"/>
+                                        <rect key="frame" x="158" y="135" width="305" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="305" id="RhV-Zb-OYW"/>
-                                            <constraint firstAttribute="height" constant="78" id="qZF-hZ-pjs"/>
+                                            <constraint firstAttribute="height" constant="43" id="qZF-hZ-pjs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRG-2J-Dvj">
-                                        <rect key="frame" x="20" y="135" width="130" height="156"/>
+                                        <rect key="frame" x="20" y="135" width="130" height="94"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="UuE-6z-Etl"/>
-                                            <constraint firstAttribute="height" constant="156" id="iVK-xM-l7d"/>
+                                            <constraint firstAttribute="height" constant="94" id="iVK-xM-l7d"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="56"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity: %@%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Wh-Ub-iSO">
-                                        <rect key="frame" x="158" y="213" width="305" height="78"/>
+                                        <rect key="frame" x="158" y="186" width="305" height="43"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -74,12 +80,6 @@
                                     <outlet property="weatherWindSpeed" destination="rRH-TL-dQi" id="8xr-yo-C11"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flora DUmmy 4.png" translatesAutoresizingMaskIntoConstraints="NO" id="YdE-jI-cAd">
-                                <rect key="frame" x="15" y="226" width="993" height="485"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="485" id="Pi5-70-gI3"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -453,196 +453,6 @@ Science includes learning about the scientific method and even going on scavenge
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Grade" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-ZE-BAm">
-                                <rect key="frame" x="20" y="174" width="984" height="47"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SA4-kr-9hj">
-                                <rect key="frame" x="23" y="229" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
-                                <state key="normal" title="K">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gradeButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="RZD-QQ-anj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8q-OE-fim">
-                                <rect key="frame" x="305" y="229" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
-                                <state key="normal" title="2">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gradeButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="RSg-MK-bn4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDc-Zf-WMA">
-                                <rect key="frame" x="164" y="229" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
-                                <state key="normal" title="1">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gradeButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="IqG-Vv-TKV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWv-Hv-nPu">
-                                <rect key="frame" x="446" y="229" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
-                                <state key="normal" title="3">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gradeButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="1Lt-gC-Iwr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmb-ZC-5Uy">
-                                <rect key="frame" x="587" y="229" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
-                                <state key="normal" title="4">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gradeButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="U8z-rH-vcV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnZ-5B-kK0">
-                                <rect key="frame" x="728" y="229" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
-                                <state key="normal" title="5">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gradeButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="PeU-mU-KFX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGe-O5-4mz">
-                                <rect key="frame" x="869" y="229" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="80"/>
-                                <state key="normal" title="6">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gradeButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="fVw-U8-wra"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Color" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q92-mV-3KG">
-                                <rect key="frame" x="20" y="370" width="984" height="47"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJQ-HV-mPP">
-                                <rect key="frame" x="23" y="425" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Purple">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="QfA-nP-X6Z"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKR-Rf-9CS">
-                                <rect key="frame" x="305" y="425" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Pink">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="fol-th-cS9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hu-s5-oEe">
-                                <rect key="frame" x="446" y="425" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Orange">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="UbP-NT-9i2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZ9-9W-9ID">
-                                <rect key="frame" x="587" y="425" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Yellow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="ZyV-xa-RwT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMa-lM-fr5">
-                                <rect key="frame" x="728" y="425" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Green">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="LX9-Vd-Zhw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvF-x5-oSp">
-                                <rect key="frame" x="869" y="425" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Blue">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="3ws-wu-Z56"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29S-0W-rtQ">
-                                <rect key="frame" x="164" y="425" width="133" height="133"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <state key="normal" title="Red">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="colorButtonPressed:" destination="aUo-zj-yvZ" eventType="touchUpInside" id="vUh-yq-jDw"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Dev Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EU-IR-LS1">
-                                <rect key="frame" x="335" y="609" width="136" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrU-jk-Vup">
-                                <rect key="frame" x="379" y="638" width="51" height="31"/>
-                                <connections>
-                                    <action selector="toggleDevMode:" destination="aUo-zj-yvZ" eventType="valueChanged" id="rt8-ft-gce"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Animated Weather" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvb-Wh-CvU">
-                                <rect key="frame" x="496" y="596" width="193" height="35"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yIe-Kf-UOB">
-                                <rect key="frame" x="568" y="639" width="51" height="31"/>
-                                <connections>
-                                    <action selector="toggleAnimatedWeather:" destination="aUo-zj-yvZ" eventType="valueChanged" id="6FZ-L4-Tes"/>
-                                </connections>
-                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -650,26 +460,7 @@ Science includes learning about the scientific method and even going on scavenge
                     <navigationItem key="navigationItem" title="Settings" id="DLz-2e-vBy"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="animatedWeatherLabel" destination="Wvb-Wh-CvU" id="Bjf-Dy-xPd"/>
-                        <outlet property="animatedWeatherSwitch" destination="yIe-Kf-UOB" id="CqJ-jY-3zZ"/>
-                        <outlet property="blueButton" destination="pvF-x5-oSp" id="leS-Mq-y3B"/>
-                        <outlet property="colorLabel" destination="Q92-mV-3KG" id="tRP-Md-9S8"/>
-                        <outlet property="devModeSwitch" destination="GrU-jk-Vup" id="vbq-26-9qI"/>
-                        <outlet property="fifthButton" destination="wnZ-5B-kK0" id="8oA-jd-i4L"/>
-                        <outlet property="firstButton" destination="rDc-Zf-WMA" id="GZA-yj-q8m"/>
-                        <outlet property="fourthButton" destination="Lmb-ZC-5Uy" id="an6-dx-Ryd"/>
-                        <outlet property="gradeLabel" destination="oV6-ZE-BAm" id="K1V-zC-xu5"/>
-                        <outlet property="greenButton" destination="JMa-lM-fr5" id="vfR-QR-biP"/>
-                        <outlet property="kindergartenButton" destination="SA4-kr-9hj" id="ZNu-cJ-Xff"/>
-                        <outlet property="orangeButton" destination="5hu-s5-oEe" id="hLL-sy-zhQ"/>
-                        <outlet property="pinkButton" destination="WKR-Rf-9CS" id="boC-0C-52i"/>
-                        <outlet property="purpleButton" destination="PJQ-HV-mPP" id="yVE-bD-GYf"/>
-                        <outlet property="redButton" destination="29S-0W-rtQ" id="ter-1N-tsR"/>
-                        <outlet property="secondButton" destination="I8q-OE-fim" id="9Pt-bP-Sxk"/>
-                        <outlet property="sixthButton" destination="IGe-O5-4mz" id="sva-Kt-W9Z"/>
-                        <outlet property="thirdButton" destination="LWv-Hv-nPu" id="aMU-iQ-dcf"/>
                         <outlet property="titleLabel" destination="NzY-Gl-8xe" id="85v-0b-y65"/>
-                        <outlet property="yellowButton" destination="HZ9-9W-9ID" id="T4A-7z-XAl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vt-VB-rX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -682,7 +473,7 @@ Science includes learning about the scientific method and even going on scavenge
                 <navigationController id="fWy-Wx-JYZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="RWO-Nj-QtG"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="oaB-gD-tJk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oaB-gD-tJk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

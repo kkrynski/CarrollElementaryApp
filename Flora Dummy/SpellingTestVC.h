@@ -7,19 +7,15 @@
 //
 
 #import "PageVC.h"
-#import <Availability.h>
+//#import <Availability.h>
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-
-@class AudioController;
-
-@interface SpellingTestVC : PageVC {
-    
+@interface SpellingTestVC : FormattedVC
+{
     
 }
 
-@property(strong,nonatomic) AudioController* audioController;
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSString *word;
 @property(nonatomic,retain) IBOutlet UIButton *submit;

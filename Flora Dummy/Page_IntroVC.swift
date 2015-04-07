@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Page_IntroVC: PageVC
+class Page_IntroVC: FormattedVC
 {
     var summary = "Welcome to activity foo, where will you learn to blah and bleh by using bluh.\n\nPress \"Next\" to move on or \"Previous\" to move back."
     
@@ -28,7 +28,7 @@ class Page_IntroVC: PageVC
             {
                 titleLabel!.textColor = primaryColor
                 Definitions.outlineTextInLabel(titleLabel!)
-                titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 10 /* self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8*/ + titleLabel!.frame.size.height/2.0)
+                titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 20 + (summaryTextView.frame.origin.y - 20)/2.0)
                 self.view.addSubview(titleLabel!)
             }
         }
@@ -38,24 +38,22 @@ class Page_IntroVC: PageVC
         }
     }
     
-    @IBOutlet var summaryTextView : UITextView?
+    @IBOutlet var summaryTextView : UITextView!
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
-        //pageControl?.numberOfPages = pageCount.integerValue
-        
-        summaryTextView!.text = summary
-        Definitions.outlineTextInTextView(summaryTextView!, forFont: summaryTextView!.font)
-        summaryTextView!.textColor = primaryColor
-        summaryTextView!.backgroundColor = secondaryColor
+        summaryTextView.text = summary
+        Definitions.outlineTextInTextView(summaryTextView, forFont: summaryTextView.font)
+        summaryTextView.textColor = primaryColor
+        summaryTextView.backgroundColor = Definitions.lighterColorForColor(view.backgroundColor!)
         
         if titleLabel != nil
         {
             titleLabel!.textColor = primaryColor
             Definitions.outlineTextInLabel(titleLabel!)
-            titleLabel!.center = CGPointMake(self.view.frame.size.width/2.0, 10 /*self.otherLabel.frame.size.height + self.otherLabel.frame.origin.y + 8*/ + titleLabel!.frame.size.height/2.0)
+            titleLabel!.center = CGPointMake(summaryTextView.center.x, 20 + (summaryTextView.frame.origin.y - 20)/2.0)
             self.view.addSubview(titleLabel!)
         }
     }

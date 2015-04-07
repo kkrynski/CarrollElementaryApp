@@ -11,22 +11,20 @@ import UIKit
 class HomeVC: FormattedVC, NewsFeedDelegate
 {
     //Elements on screen
-    @IBOutlet var titleLabel : UILabel?
-    @IBOutlet var homeImageView : UIImageView?
-    @IBOutlet var weatherView : WeatherView?
+    @IBOutlet var titleLabel : UILabel!
+    @IBOutlet var homeImageView : UIImageView!
+    @IBOutlet var weatherView : WeatherView!
     
-    private var newsFeed : NewsFeed?
+    private var newsFeed : NewsFeed!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        tabBarController?.tabBar.tintColor = .whiteColor()
-        tabBarController!.tabBar.barStyle = .Black
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateColors", name: ColorSchemeDidChangeNotification, object: nil)
         
         newsFeed = NewsFeed(frame: CGRectMake(0, 0, view.frame.size.width, 40), andPrimaryColor: primaryColor)
-        newsFeed!.newsFeedDelegate = self
-        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.bottomLayoutGuide.length - newsFeed!.frame.size.height/2.0)
+        newsFeed.newsFeedDelegate = self
+        newsFeed.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.bottomLayoutGuide.length - newsFeed!.frame.size.height/2.0)
         view.addSubview(newsFeed!)
     }
     
@@ -34,34 +32,18 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        updateColors()
         
-        tabBarController?.tabBar.tintColor = .whiteColor()
-        tabBarController?.tabBar.barStyle = .Black
+        Definitions.outlineTextInLabel(titleLabel)
         
-        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
+        weatherView.updateColors(primaryColor)
+        
+        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 10)
+        
+        if newsFeed.shouldMoveToNextItem == NO
         {
-            weatherView?.player?.view.alpha = 1.0
-            weatherView?.staticWeatherImage?.alpha = 0.0
-            weatherView?.player?.prepareToPlay()
-            weatherView?.player?.play()
-        }
-        else
-        {
-            weatherView?.player?.view.alpha = 0.0
-            weatherView?.staticWeatherImage?.alpha = 1.0
-        }
-        
-        titleLabel!.textColor = primaryColor
-        Definitions.outlineTextInLabel(titleLabel!)
-        
-        weatherView!.updateColors(primaryColor)
-        
-        newsFeed!.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height - self.tabBarController!.tabBar.frame.size.height - newsFeed!.frame.size.height/2.0 - 11)
-        
-        if newsFeed!.shouldMoveToNextItem == NO
-        {
-            newsFeed!.scrollNextItem()
-            newsFeed!.shouldMoveToNextItem = YES
+            newsFeed.scrollNextItem()
+            newsFeed.shouldMoveToNextItem = YES
         }
     }
     
@@ -73,21 +55,23 @@ class HomeVC: FormattedVC, NewsFeedDelegate
     override func viewWillDisappear(animated: Bool)
     {
         super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         
-        newsFeed!.shouldMoveToNextItem = NO
-        
-        tabBarController?.tabBar.tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
-        tabBarController?.tabBar.barStyle = .Default
+        newsFeed.shouldMoveToNextItem = NO
     }
     
     override func viewDidDisappear(animated: Bool)
     {
         super.viewDidDisappear(animated)
+    }
+    
+    override func updateColors()
+    {
+        super.updateColors()
         
-        if NSUserDefaults.standardUserDefaults().boolForKey("animatedWeather")
-        {
-            weatherView!.player?.pause()
-        }
+        UIView.transitionWithView(titleLabel, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
+            self.titleLabel.textColor = ColorManager.sharedManager().currentColor().primaryColor
+        }, completion: nil)
     }
     
     //MARK: - News Feed Delegate
@@ -98,7 +82,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
         breakingNewsLabel.textAlignment = .Center
         breakingNewsLabel.text = "News"
         breakingNewsLabel.textColor = primaryColor
-        breakingNewsLabel.font = UIFont(name: "Marker Felt", size: 22)
+        breakingNewsLabel.font = UIFont(name: "Marker Felt", size: 26)
         breakingNewsLabel.numberOfLines = 0
         breakingNewsLabel.center = CGPointMake(view.frame.size.width + breakingNewsLabel.frame.size.width/2.0, newsFeed!.center.y)
         breakingNewsLabel.layer.shouldRasterize = YES
@@ -113,7 +97,7 @@ class HomeVC: FormattedVC, NewsFeedDelegate
             breakingNewsLabel.center = CGPointMake(breakingNewsLabel.frame.size.width * 0.3, breakingNewsLabel.center.y)
             
             }, completion: { (finished) -> Void in
-                self.newsFeed!.startFeed()
+                self.newsFeed.startFeed()
         })
     }
 }

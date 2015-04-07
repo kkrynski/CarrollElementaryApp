@@ -32,7 +32,7 @@ import UIKit
     
     \note This could be nil.  Please watch out for nil pageManagerParents
     */
-    var pageManagerParent: NewPageManager? { get set }
+    var pageManagerParent: PageManager? { get set }
     
     /**
     Saves the Activity's state.  All user inputted data, taps, and movements (if necessary) should be saved into an object of your choice
@@ -60,16 +60,16 @@ import UIKit
     :returns: The Session of data that was initally uploaded with the activity
     
     */
-    func activitySessionForActivityID(activityID: String) -> ActivitySession
+    func activitySessionForActivityID(activityID: String, activity: Activity) -> ActivitySession
     
     /**
     
-    Uploads a new activity session, or updates it if it already exists
+    Uploads a new activity session, or updates it if it already exists.
+    
+    This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
     
     :param: activitySession A Dictionary of values corresponding to the constants listed for this class.  They may be in any order
     :param: completion The Completion Handler to be called when the upload finishes
-    
-    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
     
     */
     func uploadActivitySession(activitySession: ActivitySession, completion: ((uploadSuccess: Bool) -> Void))
@@ -79,12 +79,12 @@ import UIKit
 {
     /**
     
-    Uploads the activity data to the database
+    Uploads the activity data to the database.
+    
+    This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
     
     :param: activityData The Activity object you created
     :param: completion The Completion Handler to be called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or nil if the upload failed
-    
-    :returns: This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a 'nil' activityID
     
     */
     func uploadNewActivity(activityData: Activity, completion: ((activityID: String?) -> Void))
@@ -109,7 +109,6 @@ import UIKit
     :param: password The inputted password to check
     
     :returns: This method will return one of three constants upon completion:
-    :returns:
     :returns: *  'UserStateUserIsStudent' -- The inputted information is for a Student Account
     :returns: *  'UserStateUserIsTeacher' -- The inputted information is for a Teacher Account
     :returns: *  'UserStateUserInvalid'   -- The inputted information is invalid
@@ -136,7 +135,7 @@ import UIKit
 
 @objc protocol MainActivitiesDatabase
 {
-    func loadActivities()
+    func loadUserActivities()
     
     var activitiesLoaded : Bool { get }
     

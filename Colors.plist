@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Name</key>
+		<string>Yellow</string>
+		<key>Primary Color</key>
+		<string>000000</string>
+		<key>Secondary Color</key>
+		<string>737373</string>
+		<key>Background Color</key>
+		<string>FFF79A</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Red</string>
+		<key>Primary Color</key>
+		<string>FFFFFF</string>
+		<key>Secondary Color</key>
+		<string>EBEBEB</string>
+		<key>Background Color</key>
+		<string>FF5757</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Purple</string>
+		<key>Primary Color</key>
+		<string>FFFFFF</string>
+		<key>Secondary Color</key>
+		<string>EBEBEB</string>
+		<key>Background Color</key>
+		<string>A187BE</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Pink</string>
+		<key>Primary Color</key>
+		<string>000000</string>
+		<key>Secondary Color</key>
+		<string>545454</string>
+		<key>Background Color</key>
+		<string>F49AC2</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Orange</string>
+		<key>Primary Color</key>
+		<string>000000</string>
+		<key>Secondary Color</key>
+		<string>636363</string>
+		<key>Background Color</key>
+		<string>F9AD81</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Green</string>
+		<key>Primary Color</key>
+		<string>000000</string>
+		<key>Secondary Color</key>
+		<string>474747</string>
+		<key>Background Color</key>
+		<string>A2D39C</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Blue</string>
+		<key>Primary Color</key>
+		<string>FFFFFF</string>
+		<key>Secondary Color</key>
+		<string>EBEBEB</string>
+		<key>Background Color</key>
+		<string>7EA7D8</string>
+	</dict>
+</array>
+</plist>

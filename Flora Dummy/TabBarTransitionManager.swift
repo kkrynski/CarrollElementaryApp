@@ -60,7 +60,9 @@ class TabBarTransitionManager: NSObject, UIViewControllerAnimatedTransitioning
             // Position the presented view off the right side of the container view
             presentedControllerView.frame = transitionContext.finalFrameForViewController(presentedController)
             presentedControllerView.center = CGPointMake(reverse ? -presentedControllerView.frame.size.width/2.0 : containerView.frame.size.width + presentedControllerView.frame.size.width/2.0, containerView.frame.size.height/2.0)
+            presentedController.willMoveToParentViewController(presentingController)
             containerView.addSubview(presentedControllerView)
+            presentedController.didMoveToParentViewController(presentingController)
             
             // Animate the presented view to it's final position
             UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations:

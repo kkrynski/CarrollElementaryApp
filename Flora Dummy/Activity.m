@@ -45,7 +45,8 @@
         self.pageArray = [[NSArray alloc] initWithObjects:nil];
         self.activityDescription = [[NSString alloc] initWithFormat:@""];
         self.totalPoints = -1;
-        self.activityData = [[NSDictionary alloc] init];
+        self.activityData = [[NSArray alloc] init];
+        self.quizMode = NO;
         self.classID = [[NSString alloc] initWithFormat:@""];
 
     }
@@ -69,7 +70,8 @@
         //////
         self.activityDescription = [[NSString alloc] initWithFormat:@""];
         self.totalPoints = -1;
-        self.activityData = [[NSDictionary alloc] init];
+        self.activityData = [[NSArray alloc] init];
+        self.quizMode = NO;
         self.classID = [[NSString alloc] initWithFormat:@""];
         
     }

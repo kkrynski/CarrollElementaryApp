@@ -23,7 +23,6 @@
         if (content != nil && content.count > 0)
         {
             [self populateScreenWithObjects:content];
-
         }
     }
     return self;

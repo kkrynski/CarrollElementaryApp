@@ -9,27 +9,26 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerTransitioningDelegate
 {
     var window: UIWindow?
-    
     private var tabBarController : UITabBarController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
     {
-        let userDefaults = ["gradeNumber":"Kindergarten", "primaryColor":"000000", "secondaryColor":"EBEBEB", "backgroundColor":"7EA7D8", "selectedBackgroundButton":7, "calculatorPosition":"Left", "showsDevTab":YES, "animatedWeather":YES]
-        
+        let userDefaults = ["selectedColor":"Blue", "calculatorPosition":"Left", "showsDevTab":YES, "defaultLogin":"Student"]
         NSUserDefaults.standardUserDefaults().registerDefaults(userDefaults)
         
+        //TEMP TO CONVERT JSON STUFF
+        CarollJSONConverterTemp()
+        
+        ColorManager.sharedManager().loadColorScheme()
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        let storyBoard = UIStoryboard(name: "Main2", bundle: nil)
-        tabBarController = storyBoard.instantiateInitialViewController() as? UITabBarController
-        
+        tabBarController = UIStoryboard(name: "Main2", bundle: nil).instantiateInitialViewController() as? UITabBarController
         window!.rootViewController = tabBarController!
         
-        var showsDevTab = NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab")
-        if showsDevTab == NO
+        if NSUserDefaults.standardUserDefaults().boolForKey("showsDevTab") == NO
         {
             let newTabs = NSMutableArray(array: tabBarController!.viewControllers!)
             newTabs.removeLastObject()
@@ -39,32 +38,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         window!.makeKeyAndVisible()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadActivities", name: UserLoggedIn, object: nil)
-        
         let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
         let userLoginInfo = NSArray(contentsOfFile: plistPath!)
-        
-        if userLoginInfo!.count != 4
+        if userLoginInfo!.count != 6
         {
             NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentPasswordScreen", userInfo: nil, repeats: NO)
+            
+            //Debug
+            //NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentMiniPasswordScreen", userInfo: nil, repeats: NO)
         }
         else
         {
+            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "presentMiniPasswordScreen", userInfo: nil, repeats: NO)
             loadActivities()
         }
+        
+        
+        Definitions.calculate("3 * 2 ^ 10 + ( 3 * 5 + ( 2 + 4 ) ) + 30")
         
         return YES
     }
     
     func loadActivities()
     {
-        CESDatabase.databaseManagerForMainActivitiesClass().loadActivities()
+        CESDatabase.databaseManagerForMainActivitiesClass().loadUserActivities()
     }
+    
+    //MARK: - Teacher Login
+    
+    func teacherLogin()
+    {
+        let storyboard = UIStoryboard(name: "ActivityCreation", bundle: nil)
+        let initialVC = storyboard.instantiateInitialViewController() as UIViewController
+        
+        UIView.transitionWithView(window!, duration: 0.5, options: .TransitionCrossDissolve | .AllowAnimatedContent, animations: { () -> Void in
+            
+            self.window!.rootViewController = initialVC
+            }, completion: { (finished) -> Void in
+                
+        })
+    }
+    
+    //MARK: - Password Screen
     
     func presentPasswordScreen()
     {
-        let passwordVC = PasswordVC(nibName: "PasswordVC", bundle: nil)
-        passwordVC.modalPresentationStyle = .FormSheet
+        let passwordVC = PasswordVC()
+        passwordVC.transitioningDelegate = self
+        passwordVC.modalPresentationStyle = .Custom
         
         tabBarController!.presentViewController(passwordVC, animated: YES, completion: nil)
     }
+    
+    func presentMiniPasswordScreen()
+    {
+        MiniPasswordVC.presentInViewController(tabBarController!)
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        return PasswordVCTransition()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PasswordVCDismissalTransition()
+    }
+    
+    
 }

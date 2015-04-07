@@ -9,7 +9,7 @@
 import UIKit
 
 class UIButton_Typical: UIButton
-{    
+{
     override func setTitle(title: String?, forState state: UIControlState)
     {
         super.setTitle(title, forState: state)
@@ -17,9 +17,21 @@ class UIButton_Typical: UIButton
         Definitions.outlineTextInLabel(titleLabel!)
     }
     
+    func setHighlighted(highlighted: Bool, animated: Bool)
+    {
+        self.highlighted = highlighted
+        
+        highlighted == YES ? animated == YES ? highlightButton() : nonAnimatedHighlight() : animated == YES ? unhighlightButton() : nonAnimatedUnHighlight()
+    }
+    
     private func nonAnimatedHighlight()
     {
         alpha = 0.6
+    }
+    
+    private func nonAnimatedUnHighlight()
+    {
+        alpha = 1.0
     }
     
     private func highlightButton()
@@ -38,6 +50,11 @@ class UIButton_Typical: UIButton
     
     override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool
     {
+        if hidden == YES
+        {
+            return NO
+        }
+        
         let boundsExtension = 5
         let outerBounds = CGRectInset(bounds, CGFloat(0 - boundsExtension), CGFloat(0 - boundsExtension))
         let touchedInside = CGRectContainsPoint(outerBounds, touch.locationInView(self))

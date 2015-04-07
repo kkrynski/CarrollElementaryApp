@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PageVC.h"
 
-@interface ModuleVC : PageVC
+@interface ModuleVC : FormattedVC
 {
     
 }

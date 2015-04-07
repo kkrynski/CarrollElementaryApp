@@ -255,7 +255,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
         
         containerView!.removeGestureRecognizer(self.dismissTap!)
         
-        if calculatorExtension != nil && oldCalculatorExtension != nil  //A calculator extension is already presented
+        if oldCalculatorExtension != nil  //A calculator extension is already presented
         {
             calculatorHolderView!.insertSubview(calculatorExtension!, belowSubview: presentedView())
             calculatorHolderView!.userInteractionEnabled = NO
@@ -278,6 +278,8 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
                 self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
                 self.calculatorExtension!.frame = CGRectMake(self.calculatorExtension!.frame.origin.x, self.calculatorExtension!.frame.origin.y, self.frameOfPresentedViewInContainerView().size.width - self.presentedView().frame.size.width, self.frameOfPresentedViewInContainerView().size.height)
                 
+                self.oldCalculatorExtension!.alpha = 0.0
+                
                 if NSUserDefaults.standardUserDefaults().stringForKey("calculatorPosition") == "Left"
                 {
                     self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 - (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
@@ -287,6 +289,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
                 {
                     self.presentedView().center = CGPointMake(self.calculatorHolderView!.frame.size.width/2.0 + (self.calculatorHolderView!.frame.size.width - self.presentedView().frame.size.width)/2.0, self.calculatorHolderView!.frame.size.height/2.0)
                     self.calculatorExtension!.center = CGPointMake(self.calculatorExtension!.frame.size.width/2.0 + 20, self.calculatorExtension!.center.y)
+                    self.oldCalculatorExtension!.center = CGPointMake(self.oldCalculatorExtension!.frame.size.width/2.0 + 20, self.oldCalculatorExtension!.center.y)
                 }
                 
                 self.calculatorExtension!.alpha = 1.0
@@ -294,7 +297,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
                 }, completion: { (finished) -> Void in
                     
                     self.oldCalculatorExtension!.removeFromSuperview()
-                    self.oldCalculatorExtension = self.calculatorExtension!
+                    self.oldCalculatorExtension = self.calculatorExtension
                     self.calculatorExtension = nil
                     
                     self.calculatorHolderView!.userInteractionEnabled = YES
@@ -350,7 +353,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
                 self.infoView!.alpha = 0.0
                 }, completion: { (finished) -> Void in
                     
-                    self.oldCalculatorExtension = self.calculatorExtension!
+                    self.oldCalculatorExtension = self.calculatorExtension
                     self.calculatorExtension = nil
                     
                     self.calculatorHolderView!.userInteractionEnabled = YES

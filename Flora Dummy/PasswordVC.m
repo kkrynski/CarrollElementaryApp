@@ -4,7 +4,7 @@
 //
 //  Created by Mason Herhusky on 11/4/14.
 //  Copyright (c) 2014 SGSC. All rights reserved.
-//  Modified by Michael Schloss and Zack Nichols on 1/24/15 - 1/25/15
+//  Modified by Michael Schloss and Zack Nichols on 1/24/15 - 2/8/15
 //
 
 #import "PasswordVC.h"
@@ -20,7 +20,7 @@
     CGContextMoveToPoint(context, CGRectGetMinX(rect), rect.size.height - 15);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor] );
+    CGContextSetStrokeColorWithColor(context, [[ColorManager sharedManager] currentColor].secondaryColor.CGColor);
     CGContextSetLineWidth(context, 3.0);
     CGContextStrokePath(context);
 }
@@ -43,7 +43,18 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [self makeMePretty];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-4]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:-4]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-4]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:4]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:usernameInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:4]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:usernameInput attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:userLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:4]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordInput attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:passwordLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
     [self.view layoutIfNeeded];
     
@@ -53,6 +64,14 @@
     userIsWaiting = NO;
     
     [[CESDatabase databaseManagerForPasswordVCClass] downloadUserAccounts];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColors) name:ColorSchemeDidChangeNotification object:nil];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateColors];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -65,6 +84,14 @@
     loadingWheel.transform = CGAffineTransformMakeScale(1.3, 1.3);
     loadingWheel.alpha = 0.0;
     [self.view addSubview:loadingWheel];
+}
+
+- (void) dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+    [super dismissViewControllerAnimated:flag completion:completion];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void) transitionToLoadingState
@@ -214,38 +241,32 @@
     }
 }
 
-- (void) makeMePretty
+- (void) updateColors
 {
-    [titleLabel setTextColor:self.primaryColor];
+    [super updateColors];
     
-    userLabel.textColor = self.primaryColor;
-    passwordLabel.textColor = self.primaryColor;
-    
-    usernameInput.textColor = self.primaryColor;
-    usernameInput.text = @"qwerty";
-    
-    passwordInput.textColor = self.primaryColor;
-    passwordInput.text = @"qwerty";
-
-    submitButton.titleLabel.font = self.font;
-    [submitButton setTitleColor:self.primaryColor forState:UIControlStateNormal];
-    
-    [Definitions outlineTextInLabel:userLabel];
-    [Definitions outlineTextInLabel:titleLabel];
-    [Definitions outlineTextInLabel:passwordLabel];
-    [Definitions outlineTextInLabel:submitButton.titleLabel];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-4]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:userLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:-4]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-4]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:4]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:usernameInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:4]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:usernameInput attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:userLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordInput attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:4]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordInput attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:passwordLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    [UIView transitionWithView:self.view duration:self.presentingViewController == nil ? 0.0:0.3 options:(UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionTransitionCrossDissolve) animations:^{
+        [titleLabel setTextColor:self.primaryColor];
+        
+        userLabel.textColor = self.primaryColor;
+        passwordLabel.textColor = self.primaryColor;
+        
+        usernameInput.textColor = self.primaryColor;
+        usernameInput.text = @"qwerty";
+        [usernameInput setNeedsDisplay];
+        
+        passwordInput.textColor = self.primaryColor;
+        passwordInput.text = @"qwerty";
+        [passwordInput setNeedsDisplay];
+        
+        submitButton.titleLabel.font = self.font;
+        [submitButton setTitleColor:self.primaryColor forState:UIControlStateNormal];
+        
+        [Definitions outlineTextInLabel:userLabel];
+        [Definitions outlineTextInLabel:titleLabel];
+        [Definitions outlineTextInLabel:passwordLabel];
+        [Definitions outlineTextInLabel:submitButton.titleLabel];
+    } completion:nil];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -263,55 +284,5 @@
     
     return NO;
 }
-
-/*
- --------------------
- -- [[ Constants ]] --
- --------------------
- 
- 
- NSString *UserAccountsDownloaded ([UserAccountsDatabaseManager UserAccountsDownloaded])
- *  Use this constant to listen for the notification when user accounts finish
- downloading
- 
- 
- -------------------
- -- [[ Methods ]] --
- -------------------
- 
- 
- - (void) downloadUserAccounts
- *  Downloads the user accounts for Teachers and Students.  This method should be called
- immediately in 'viewDidLoad:'
- *  Once the accounts have downloaded, this method sends out the "UserAccountsDownloaded"
- notification.  Add your class as an observer to properly respond to the finished download
- 
- - (NSString *) inputtedUsernameIsValid:(NSString *)username andPassword:(NSString *)password
- *  Compares the received user account information with the downloaded information.  If no
- data has been downloaded, this method immediately returns 'UserStateUserInvalid'.
- *  There are three NSString Constants that can be returned:
- *  'UserStateUserIsStudent' -- If you receive this NSString constant, that means the
- inputted information is for a Student Account
- *  'UserStateUserIsTeacher' -- If you receive this NSString constant, that means the
- inputted information is for a Teacher Account
- *  'UserStateUserInvalid'   -- If you receive this NSString constant, that means the
- inputted information is invalid
- 
- - (BOOL) storeInputtedUsername:(NSString *)username andPassword:(NSString *)password
- *  Stores the inputted Username and Password onto the device.  User information is encrypted
- first.
- *  NOTE: This method will do nothing if '- (UserState) inputtedUserInformationIsValid:'
- hasn't been called yet, or returned UserStateUserInvalid.
- *  If returned 'true', the information was successfuly stored onto the device.
- If returned 'false' the information was not successfully stored onto the device.
- *  You should use this Bool to determine whether or not you can/should dismiss the
- PasswordVC.
- 
- NOTE:   You will not have access to the downloaded user accounts.  This is due in part because
- they are not stored on the device's memory, and in part because they are stored as Swift
- objects.  They are unreadable to all but the database manager, and are never decrypted.
- */
-
-
 
 @end

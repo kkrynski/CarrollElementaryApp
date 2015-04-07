@@ -7,22 +7,10 @@
 //
 
 #import "MicrophoneVC.h"
-#import <AVFoundation/AVFoundation.h>
-
-@interface MicrophoneVC () {
-    AVAudioRecorder *recorder;
-    AVAudioPlayer *player;
-}
-
-@end
 
 @implementation MicrophoneVC
 
-@synthesize recordPauseButton;
-@synthesize playButton;
-@synthesize stopButton;
-
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     
@@ -55,18 +43,22 @@
     [recorder prepareToRecord];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)recordPauseTapped:(id)sender {
+- (IBAction) recordPauseTapped:(id)sender
+{
     // Stop the audio player before recording
-    if (player.playing) {
+    if (player.playing)
+    {
         [player stop];
     }
     
-    if (!recorder.recording) {
+    if (!recorder.recording)
+    {
         AVAudioSession *session = [AVAudioSession sharedInstance];
         [session setActive:YES error:nil];
         
@@ -74,7 +66,9 @@
         [recorder record];
         [recordPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
         
-    } else {
+    }
+    else
+    {
         
         // Pause recording
         [recorder pause];
@@ -85,47 +79,37 @@
     [playButton setEnabled:NO];
 }
 
-- (IBAction)stopTapped:(id)sender {
+- (IBAction) stopTapped:(id)sender
+{
     [recorder stop];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
 }
 
-- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
+- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag
+{
     [recordPauseButton setTitle:@"Record" forState:UIControlStateNormal];
     
     [stopButton setEnabled:NO];
     [playButton setEnabled:YES];
 }
 
-- (IBAction)playTapped:(id)sender {
-    if (!recorder.recording){
+- (IBAction) playTapped:(id)sender
+{
+    if (!recorder.recording)
+    {
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
         [player setDelegate:self];
         [player play];
     }
 }
 
-- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Done"
-                                                    message: @"Finish playing the recording!"
-                                                   delegate: nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:@"Finished playing the recording!" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

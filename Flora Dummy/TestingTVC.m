@@ -15,7 +15,6 @@
 #import "CalculatorVC.h"
 #import "QuickQuizVC.h"
 #import "PictureQuizVC.h"
-#import "PasswordVC.h"
 #import "SpellingTestVC.h"
 #import "ActivityCreationTVC.h"
 #import "ClassConversions.h"
@@ -38,11 +37,11 @@
              @"Michael - SquareDrag",
              @"Zach - Activity Creation",
              @"Stephen - Picture Quiz",
-             @"Mason - Password",
              @"Mason - Spelling Test",
              @"Mason - Microphone",
              @"Zach - Module",
              nil];
+    tests = [tests sortedArrayUsingSelector:@selector(compare:)];
 }
 
 #pragma mark - TableView DataSource
@@ -104,26 +103,20 @@
         return;
     }
     else if ([selectedTest isEqualToString:@"Michael - Math Problem"])
-    {
+    {        
         testSessionData = [NSMutableArray arrayWithObjects:
                            [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
-                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"3 + 2=#w#", @"Equation", nil],
-                                                                       [[NSNull alloc] init], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil], nil];
-        
-        MathProblemVC *mathProblem = [[MathProblemVC alloc] init];
-        mathProblem.mathEquation = @"3 + 2=#w#";
-        
-        [self presentViewController:mathProblem animated:YES completion:nil];
-        return;
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"3 + 2=#w#", @"Equation", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil],
+                           [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"5 + 8 * 2=#d#", @"Equation", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeMathProblem], nil], nil];
     }
     else if ([selectedTest isEqualToString:@"Michael - Clock"])
     {
-        viewControllerToPresent = [[ClockDragVC alloc] init];
-        ((ClockDragVC *)viewControllerToPresent).startTime = @"04:15:23";
-        ((ClockDragVC *)viewControllerToPresent).endTime = @"08:12:34";
-        
-        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
-        return;
+        testSessionData = [NSMutableArray arrayWithObjects:
+                           [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"02:05:24", @"StartTime", @"08:04:32", @"EndTime", @"00:00:00", @"BufferZone", [NSNumber numberWithBool:YES], @"HandsMoveDependently", [NSNumber numberWithBool:NO], @"ShowSecondsHand", [NSNumber numberWithInt:0], @"MinuteHandRounding", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeClockDrag], nil],
+                           [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:
+                                                                       [NSDictionary dictionaryWithObjectsAndKeys:@"05:15:54", @"StartTime", @"02:49:28", @"EndTime", @"00:02:02", @"BufferZone", [NSNumber numberWithBool:YES], @"HandsMoveDependently", [NSNumber numberWithBool:YES], @"ShowSecondsHand", [NSNumber numberWithInt:3], @"MinuteHandRounding", nil], nil], [NSNumber numberWithInteger:ActivityViewControllerTypeClockDrag], nil], nil];
     }
     else if ([selectedTest isEqualToString:@"Michael - SquareDrag"])
     {
@@ -160,13 +153,6 @@
         [self presentViewController:viewControllerToPresent animated:YES completion:nil];
         return;
     }
-    else if ([selectedTest isEqualToString:@"Mason - Password"])
-    {
-        viewControllerToPresent = [[PasswordVC alloc] init];
-        
-        [self presentViewController:viewControllerToPresent animated:YES completion:nil];
-        return;
-    }
     else if ([selectedTest isEqualToString:@"Mason - Spelling Test"])
     {
         viewControllerToPresent = [[SpellingTestVC alloc] init];
@@ -192,11 +178,8 @@
     
     testSession.activityData = testSessionData;
     
-    [[NewPageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
-    
-    //pageManager.currentActivitySession = testSession;
-    
-    //[self presentViewController:pageManager animated:YES completion:nil];
+    activePageManager = [[PageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
+    [activePageManager enablePreviewMode];
 }
 
 -(void) launchModule
@@ -316,3 +299,5 @@
 }
 
 @end
+
+//Live Long and Prosper

@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
-#import "PageVC.h"
-
 @interface PasswordVCTextField : UITextField
 
 @end
+
+@class FormattedVC;
 
 @interface PasswordVC : FormattedVC <UITextFieldDelegate>
 {    
@@ -26,5 +26,8 @@
     
     UIActivityIndicatorView *loadingWheel;
 }
+
+@property (nonatomic, retain) IBOutlet UIView *backgroundView;
+@property (nonatomic, retain) IBOutlet UIView *infoView;
 
 @end
